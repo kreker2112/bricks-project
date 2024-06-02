@@ -6,6 +6,11 @@
       alt="bricks-frame"
     />
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
+    <img
+      class="instruments"
+      src="../images/logos/instruments.png"
+      alt="instruments"
+    />
     <!-- <div
       v-for="(service, index) in services"
       :key="index"
@@ -97,13 +102,21 @@ export default {
 
 .ideas {
   width: 100%;
-  margin-top: 438px;
+  margin-top: 335px;
   color: #ffffff;
   z-index: 1;
 }
 
-.brick {
+.instruments {
+  width: 356px;
+  height: 90px;
+  margin-left: 92px;
+  margin-top: -140px;
   z-index: 2;
+}
+
+.brick {
+  z-index: 3;
   position: absolute;
 }
 </style>

@@ -13,8 +13,19 @@
         src="../images/logos/instruments.png"
         alt="instruments"
       />
+      <img
+        src="../images/logos/instruments-arrow.png"
+        alt="instruments-arrow"
+        class="instruments__arrow"
+      />
       <img class="add" src="../images/logos/add.png" alt="add" />
+      <img
+        src="../images/logos/add-arrow.png"
+        alt="add-arrow"
+        class="add-arrow"
+      />
     </div>
+
     <!-- <div
       v-for="(service, index) in services"
       :key="index"
@@ -112,16 +123,18 @@ export default {
 }
 
 .center-content {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  pointer-events: none; /* Чтобы изображения не мешали взаимодействию с кирпичами */
+  pointer-events: none;
 }
 
 .instruments,
@@ -130,15 +143,31 @@ export default {
 }
 
 .instruments {
-  width: 275px;
-  height: 85px;
-  margin-bottom: 40px; /* Adjust margin as needed */
+  position: absolute;
+  top: 555px;
+  left: 105px;
+  width: 335px;
   z-index: 2;
 }
 
+.instruments__arrow {
+  position: absolute;
+  top: 605px;
+  left: 450px;
+}
+
 .add {
-  margin-top: 20px; /* Adjust margin as needed */
+  position: absolute;
+  width: 227px;
+  top: 538px;
+  right: 202px;
   z-index: 2;
+}
+
+.add-arrow {
+  position: absolute;
+  top: 485px;
+  right: 79px;
 }
 
 .brick {

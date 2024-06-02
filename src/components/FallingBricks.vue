@@ -6,11 +6,15 @@
       alt="bricks-frame"
     />
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
-    <img
-      class="instruments"
-      src="../images/logos/instruments.png"
-      alt="instruments"
-    />
+
+    <div class="center-content">
+      <img
+        class="instruments"
+        src="../images/logos/instruments.png"
+        alt="instruments"
+      />
+      <img class="add" src="../images/logos/add.png" alt="add" />
+    </div>
     <!-- <div
       v-for="(service, index) in services"
       :key="index"
@@ -107,11 +111,33 @@ export default {
   z-index: 1;
 }
 
+.center-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none; /* Чтобы изображения не мешали взаимодействию с кирпичами */
+}
+
+.instruments,
+.add {
+  pointer-events: auto; /* Чтобы изображения снова могли быть интерактивными */
+}
+
 .instruments {
-  width: 356px;
-  height: 90px;
-  margin-left: 92px;
-  margin-top: -140px;
+  width: 275px;
+  height: 85px;
+  margin-bottom: 40px; /* Adjust margin as needed */
+  z-index: 2;
+}
+
+.add {
+  margin-top: 20px; /* Adjust margin as needed */
   z-index: 2;
 }
 

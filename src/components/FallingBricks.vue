@@ -1,11 +1,12 @@
 <template>
   <div class="falling-bricks" @drop="onDrop" @dragover.prevent>
-    <a href="#"
-      ><img
+    <a href="#">
+      <img
         class="bricks-frame"
         src="../images/logos/bricks-frame.png"
         alt="bricks-frame"
-    /></a>
+      />
+    </a>
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
     <div class="center-content">
@@ -27,7 +28,7 @@
       />
     </div>
 
-    <!-- <div
+    <div
       v-for="(service, index) in services"
       :key="index"
       class="brick"
@@ -36,7 +37,7 @@
       @dragstart="onDragStart(service)"
     >
       {{ service }}
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -81,7 +82,7 @@ export default {
       };
     };
 
-    const onDragStart = (service) => {
+    const onDragStart = (event, service) => {
       event.dataTransfer.setData("service", service);
     };
 
@@ -129,7 +130,6 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
   height: 100%;
   position: absolute;
   top: 0;

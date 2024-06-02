@@ -1,10 +1,11 @@
 <template>
   <div class="falling-bricks" @drop="onDrop" @dragover.prevent>
-    <img
-      class="bricks-frame"
-      src="../images/logos/bricks-frame.png"
-      alt="bricks-frame"
-    />
+    <a href="#"
+      ><img
+        class="bricks-frame"
+        src="../images/logos/bricks-frame.png"
+        alt="bricks-frame"
+    /></a>
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
     <div class="center-content">

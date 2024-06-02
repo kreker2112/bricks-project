@@ -1,6 +1,12 @@
 <template>
   <footer class="footer">
-    <div class="left">вирішуємо проблему в 1 клік</div>
+    <div class="footer-frame">
+      <img src="../images/footerframe.png" alt="footerframe" />
+    </div>
+    <div class="left">
+      ВИРІШУЄМО <br />
+      ПРОБЛЕМУ В 1 КЛІК
+    </div>
     <div class="center">
       <a href="#">ПРО НАС</a>
       <a href="#">МАРКЕТИНГ</a>
@@ -9,9 +15,11 @@
       <a href="#">ПРОСУВАННЯ</a>
     </div>
     <div class="right">
-      <i class="fa fa-facebook"></i>
-      <i class="fa fa-instagram"></i>
-      0 800 123 45 67
+      <a href="#"><img src="../images/logos/facebook.png" alt="facebook" /></a>
+      <a href="#"
+        ><img src="../images/logos/instagram.png" alt="instagram"
+      /></a>
+      <a href="tel:08001234567">0 800 123 45 67</a>
     </div>
   </footer>
 </template>
@@ -20,39 +28,63 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 121px;
-  background-color: #333;
-  color: white;
+  background-color: #ff6400;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  box-sizing: border-box;
+  height: 121px;
+  flex-shrink: 0;
 }
+
+.footer-frame {
+  margin-left: 41px;
+}
+
 .left {
-  flex: 1;
-}
-.center {
-  flex: 1;
+  margin-left: 24.77px;
+  width: 181px;
+  height: 39px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  font-family: "Montserrat";
+  font-size: 16px;
+  font-weight: bold;
 }
+
+.center {
+  position: relative;
+}
+
 .center a {
   margin: 0 10px;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
+  position: relative;
+  font-family: "Montserrat";
+  font-size: 18px;
 }
+
 .right {
+  margin-right: 65.92px;
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 32px;
 }
-.right i {
-  margin-right: 10px;
+
+.right a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 </style>

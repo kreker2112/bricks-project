@@ -42,8 +42,8 @@ export default {
   background-color: #002d6e;
   color: white;
   padding: 20px;
-  width: 960px;
-  height: 948px;
+  width: 50%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;

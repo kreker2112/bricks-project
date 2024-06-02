@@ -1,30 +1,36 @@
 <template>
-  <div class="app">
-    <FirstPage />
-    <SecondPage />
+  <div id="app">
+    <div class="main-content">
+      <router-view />
+    </div>
     <FooterComponent />
   </div>
 </template>
 
 <script>
-import FirstPage from "./views/FirstPage.vue";
-import SecondPage from "./views/SecondPage.vue";
 import FooterComponent from "./components/FooterComponent.vue";
 
 export default {
   components: {
-    FirstPage,
-    SecondPage,
     FooterComponent,
   },
 };
 </script>
 
 <style>
-.app {
+#app {
+  height: 100vh;
   display: flex;
-  flex-direction: row;
-  width: 4281px;
-  height: 1080px;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.footer {
+  flex-shrink: 0; /* Ensures footer does not shrink and occupies fixed space */
 }
 </style>

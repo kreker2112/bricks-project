@@ -26,8 +26,8 @@ export default {
 .second-page {
   display: flex;
   flex-direction: row;
-  width: 2419px;
-  height: 1080px;
+  width: 100vw;
+  height: 100%;
 }
 
 .left-section {
@@ -38,12 +38,12 @@ export default {
 
 .upper-row {
   display: flex;
-  height: 374px;
+  height: 40%; /* Використання відсотків для відносної висоти */
 }
 
 .lower-row {
   display: flex;
-  height: 342px;
+  height: 40%; /* Використання відсотків для відносної висоти */
 }
 
 .image {

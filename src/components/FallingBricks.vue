@@ -78,6 +78,10 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #002d6e;
+  background-image: url(../images/logos/logo.png);
+  background-repeat: no-repeat;
+  background-position: 121px 146px;
+  background-size: auto;
 }
 
 .brick {

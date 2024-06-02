@@ -25,37 +25,18 @@ export default {
 .first-page {
   display: flex;
   flex-direction: row;
-  width: 1862px;
-  height: 1080px;
+  height: 100%;
 }
 
 .left-side {
-  width: 1129px;
-  height: 959px;
+  width: 60%;
   background-color: #002d6e;
   position: relative;
 }
 
 .right-side {
-  width: 733px;
-  height: 959px;
+  width: 40%;
   display: flex;
   flex-direction: column;
-}
-
-.right-side > div {
-  margin-bottom: 20px;
-}
-
-.funnel {
-  width: 397.2px;
-  height: 397.2px;
-  margin: 155px 0 16.8px 336px;
-}
-
-.checkboxes {
-  width: 289px;
-  height: 249px;
-  margin: 248px 44px 72px 407px;
 }
 </style>

@@ -1,6 +1,12 @@
 <template>
   <div class="falling-bricks" @drop="onDrop" @dragover.prevent>
-    <div
+    <img
+      class="bricks-frame"
+      src="../images/logos/bricks-frame.png"
+      alt="bricks-frame"
+    />
+    <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
+    <!-- <div
       v-for="(service, index) in services"
       :key="index"
       class="brick"
@@ -9,7 +15,7 @@
       @dragstart="onDragStart(service)"
     >
       {{ service }}
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -80,11 +86,24 @@ export default {
   background-color: #002d6e;
   background-image: url(../images/logos/logo.png);
   background-repeat: no-repeat;
-  background-position: 121px 146px;
+  background-position: center 220px;
   background-size: auto;
 }
 
+.bricks-frame {
+  margin-left: 18px;
+  margin-top: 19px;
+}
+
+.ideas {
+  width: 100%;
+  margin-top: 438px;
+  color: #ffffff;
+  z-index: 1;
+}
+
 .brick {
+  z-index: 2;
   position: absolute;
 }
 </style>

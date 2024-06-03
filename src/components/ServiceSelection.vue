@@ -29,30 +29,28 @@
             class="service"
           />
         </div>
-
         <img
           src="../images/logos/instruction-funnel.png"
           alt="instruction-funnel"
           class="instruction-funnel"
         />
         <img
-          src="../images/logos/instruction-funnel__active.png"
-          alt="instruction-funnel__active"
-          class="instruction-funnel__active"
+          src="../images/logos/instruction-funnel-water.png"
+          alt="instruction-funnel-water"
+          class="instruction-funnel-water"
         />
         <img
-          src="../images/logos/instruction-tree.png"
-          alt="instruction-tree"
-          class="instruction-tree"
+          src="../images/logos/instruction-grow.png"
+          alt="instruction-grow"
+          class="instruction-grow"
         />
       </div>
       <div class="funnel-container">
         <img
-          class="funnel-image"
+          :class="['funnel-image', { 'funnel-moving': isPouring }]"
           src="../images/logos/funnel.png"
           alt="funnel"
-          @drop="onDrop"
-          @dragover.prevent
+          @click="pourWater"
         />
         <img
           class="funnel-mozaic__logo"
@@ -94,18 +92,32 @@
           src="../images/business_up-arrow.png"
           alt="business_up-arrow"
         />
-        <img class="money" src="../images/money.png" alt="money" />
-        <img
-          class="money-arrow"
-          src="../images/money-arrow.png"
-          alt="money-arrow"
-        />
-        <img
-          src="../images/small-tree.png"
-          alt="small-tree"
-          class="small-tree"
-        />
-        <img src="../images/coin.png" alt="coin" class="coin" />
+        <transition name="small-tree-grow">
+          <img
+            v-if="!isGrown"
+            class="small-tree"
+            src="../images/small-tree.png"
+            alt="small-tree"
+          />
+        </transition>
+        <transition name="big-tree-grow">
+          <img
+            v-if="isGrown"
+            class="big-tree"
+            src="../images/big-tree.png"
+            alt="big-tree"
+          />
+        </transition>
+        <transition-group name="coins-fall">
+          <img
+            v-for="(coin, index) in coins"
+            :key="index"
+            :class="'coin-' + index"
+            :src="coin"
+            alt="coin"
+            class="coin"
+          />
+        </transition-group>
       </div>
       <div class="service-selection__lower--cases">
         <img
@@ -144,18 +156,40 @@ export default {
     ]);
 
     const selectedServices = ref([]);
+    const isPouring = ref(false);
+    const isGrown = ref(false);
+    const coins = ref([]);
 
-    const onDrop = (event) => {
-      const service = event.dataTransfer.getData("service");
-      if (!selectedServices.value.includes(service)) {
-        selectedServices.value.push(service);
-      }
+    const pourWater = () => {
+      isPouring.value = true;
+      setTimeout(() => {
+        growTree();
+      }, 4000); // время анимации лейки
+    };
+
+    const growTree = () => {
+      isPouring.value = false;
+      setTimeout(() => {
+        isGrown.value = true;
+        dropCoins();
+      }, 3000);
+    };
+
+    const dropCoins = () => {
+      const coinImages = Array(6).fill("../images/big-coin.png");
+      coins.value = coinImages;
+      setTimeout(() => {
+        coins.value = [];
+      }, 2000);
     };
 
     return {
       services,
       selectedServices,
-      onDrop,
+      pourWater,
+      isPouring,
+      isGrown,
+      coins,
     };
   },
 };
@@ -175,7 +209,6 @@ export default {
   background-color: #828282;
   width: 100%;
   height: 60%;
-  position: relative;
 }
 
 .grow_buisness-with-mosaic {
@@ -189,6 +222,7 @@ export default {
   left: 667px;
   top: 95px;
 }
+
 .instruction-container {
   position: absolute;
   display: flex;
@@ -242,7 +276,7 @@ export default {
   background-color: #ededed;
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;
-  background-position: bottom; /* Позиционирование фона внизу */
+  background-position: bottom;
 }
 
 .business_up {
@@ -274,13 +308,34 @@ export default {
 .small-tree {
   position: absolute;
   left: 196px;
-  top: 180px;
+  top: 192px;
+  width: 100px;
+  height: 100px;
+  transition: all 3s ease-in-out;
+}
+
+.big-tree {
+  position: absolute;
+  left: 196px;
+  top: 192px; /* Тот же top, что и у small-tree */
+  width: 200px;
+  height: 200px;
 }
 
 .coin {
   position: absolute;
   left: 258px;
   top: 170px;
+  transition: all 2s ease-in-out;
+}
+
+.funnel-container {
+  position: absolute;
+  top: 155px;
+  right: 0;
+  width: 350px;
+  height: auto;
+  z-index: 0;
 }
 
 .service-selection__lower--cases {
@@ -297,19 +352,15 @@ export default {
   left: 70px;
 }
 
-.funnel-container {
-  position: absolute;
-  top: 155px;
-  right: 0;
-  width: 350px;
-  height: auto;
-  z-index: 0;
-}
-
 .funnel-image {
   cursor: pointer;
   width: 100%;
   z-index: 2;
+  transition: transform 4s ease-in-out; /* Время и плавность анимации */
+}
+
+.funnel-moving {
+  transform: translateX(-250px) translateY(100px) rotate(-30deg); /* Перемещение к кусту и наклон */
 }
 
 .funnel-mozaic__logo {
@@ -320,6 +371,78 @@ export default {
   transform: translate(-30%, 140%);
   z-index: 1;
   pointer-events: none;
+}
+
+.coin-0 {
+  top: 20px;
+  left: 20px;
+}
+
+.coin-1 {
+  top: 40px;
+  left: 40px;
+}
+
+.coin-2 {
+  top: 60px;
+  left: 60px;
+}
+
+.coin-3 {
+  top: 80px;
+  left: 80px;
+}
+
+.coin-4 {
+  top: 100px;
+  left: 100px;
+}
+
+.coin-5 {
+  top: 120px;
+  left: 120px;
+}
+
+@keyframes drop {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.small-tree-grow-enter-active,
+.small-tree-grow-leave-active {
+  transition: opacity 3s;
+}
+
+.small-tree-grow-enter,
+.small-tree-grow-leave-to {
+  opacity: 0;
+}
+
+.big-tree-grow-enter-active,
+.big-tree-grow-leave-active {
+  transition: opacity 3s;
+}
+
+.big-tree-grow-enter,
+.big-tree-grow-leave-to {
+  opacity: 0;
+}
+
+.coins-fall-enter-active,
+.coins-fall-leave-active {
+  transition: all 2s;
+}
+
+.instruction-funnel__active {
+  display: none;
+}
+
+.instruction-tree {
+  display: none;
 }
 
 .checkboxes-container {

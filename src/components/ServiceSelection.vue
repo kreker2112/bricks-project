@@ -1,6 +1,16 @@
 <template>
   <div class="service-selection">
     <div class="service-selection__upper">
+      <img
+        class="grow_buisness-with-mosaic"
+        src="../images/grow_buisness-with-mosaic.png"
+        alt="grow_buisness"
+      />
+      <img
+        class="business-arrow__down"
+        src="../images/business-arrow__down.png"
+        alt="business-arrow__down"
+      />
       <div class="instruction-container">
         <div class="instruction-service__container">
           <img
@@ -19,6 +29,7 @@
             class="service"
           />
         </div>
+
         <img
           src="../images/logos/instruction-funnel.png"
           alt="instruction-funnel"
@@ -72,7 +83,30 @@
       </div>
     </div>
     <div class="service-selection__lower">
-      <div class="service-selection__lower--tree"></div>
+      <div class="service-selection__lower--tree">
+        <img
+          class="business_up"
+          src="../images/business_up.svg"
+          alt="business_up"
+        />
+        <img
+          class="business_up-arrow"
+          src="../images/business_up-arrow.png"
+          alt="business_up-arrow"
+        />
+        <img class="money" src="../images/money.png" alt="money" />
+        <img
+          class="money-arrow"
+          src="../images/money-arrow.png"
+          alt="money-arrow"
+        />
+        <img
+          src="../images/small-tree.png"
+          alt="small-tree"
+          class="small-tree"
+        />
+        <img src="../images/coin.png" alt="coin" class="coin" />
+      </div>
       <div class="service-selection__lower--cases">
         <img
           class="cases-arrow"
@@ -144,6 +178,17 @@ export default {
   position: relative;
 }
 
+.grow_buisness-with-mosaic {
+  position: absolute;
+  left: 435px;
+  top: 45px;
+}
+
+.business-arrow__down {
+  position: absolute;
+  left: 667px;
+  top: 95px;
+}
 .instruction-container {
   position: absolute;
   display: flex;
@@ -192,12 +237,50 @@ export default {
 }
 
 .service-selection__lower--tree {
+  position: relative;
   width: 78%;
   background-color: #ededed;
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;
   background-position: bottom; /* Позиционирование фона внизу */
-  background-size: cover; /* Масштабирование фона по всей ширине */
+}
+
+.business_up {
+  position: absolute;
+  left: 42px;
+  top: 32px;
+  width: 173px;
+  height: 88px;
+}
+
+.business_up-arrow {
+  position: absolute;
+  left: 110px;
+  top: 120px;
+}
+
+.money {
+  position: absolute;
+  right: 93px;
+  top: 80px;
+}
+
+.money-arrow {
+  position: absolute;
+  top: 140px;
+  right: 230px;
+}
+
+.small-tree {
+  position: absolute;
+  left: 196px;
+  top: 180px;
+}
+
+.coin {
+  position: absolute;
+  left: 258px;
+  top: 170px;
 }
 
 .service-selection__lower--cases {
@@ -205,8 +288,7 @@ export default {
   width: 22%;
   background-image: url(../images/logos/cases.png);
   background-repeat: no-repeat;
-  background-position: center 20px;
-  /* background-size: cover; */
+  background-position: center 50px;
 }
 
 .cases-arrow {

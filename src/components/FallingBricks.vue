@@ -143,11 +143,8 @@ export default {
     };
 
     const onDragStart = (event, service) => {
+      console.log("Drag start:", service);
       event.dataTransfer.setData("service", service);
-    };
-
-    const onDrop = () => {
-      // обработка drop события
     };
 
     return {
@@ -155,7 +152,6 @@ export default {
       container,
       getBrickStyle,
       onDragStart,
-      onDrop,
       isFalling,
     };
   },
@@ -235,7 +231,7 @@ export default {
 }
 
 .brick {
-  z-index: 3;
+  z-index: 999;
   position: absolute;
   box-sizing: border-box;
   overflow: hidden;

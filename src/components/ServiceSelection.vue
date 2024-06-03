@@ -37,25 +37,30 @@
         <img
           src="../images/logos/instruction-funnel-water.png"
           alt="instruction-funnel-water"
-          class="instruction-funnel-water"
         />
         <img
           src="../images/logos/instruction-grow.png"
           alt="instruction-grow"
-          class="instruction-grow"
         />
       </div>
       <div class="funnel-container">
         <img
-          :class="['funnel-image', { 'funnel-moving': isPouring }]"
-          src="../images/logos/funnel.png"
+          :class="[
+            'funnel-image',
+            {
+              'funnel-moving': isPouring,
+              'funnel-hovered': isHoveringOverFunnel,
+            },
+          ]"
+          src="../images/logos/funnel.svg"
           alt="funnel"
           @click="pourWater"
-        />
-        <img
-          class="funnel-mozaic__logo"
-          src="../images/logos/funnel-mozaic__logo.png"
-          alt="funnel mozaic logo"
+          @dragenter.prevent="onDragEnterFunnel"
+          @dragleave.prevent="onDragLeaveFunnel"
+          @drop="onDrop"
+          @dragover.prevent="onDragOverFunnel"
+          @mouseenter="isHoveringOverFunnel = true"
+          @mouseleave="isHoveringOverFunnel = false"
         />
       </div>
       <div class="checkboxes-container">
@@ -92,18 +97,19 @@
           src="../images/business_up-arrow.png"
           alt="business_up-arrow"
         />
-        <transition name="tree-grow">
+        <transition name="tree-fade">
           <img
-            v-if="!isGrown"
+            v-if="showSmallTree"
             class="small-tree"
-            src="../images/small-tree.png"
+            src="../images/small-tree.svg"
             alt="small-tree"
           />
         </transition>
-        <transition name="tree-grow">
+        <transition name="tree-grow" @after-enter="onTreeGrown">
           <img
             v-if="isGrown"
             class="big-tree"
+            :class="{ 'tree-grow': isGrown }"
             src="../images/big-tree.png"
             alt="big-tree"
           />
@@ -112,12 +118,20 @@
           <img
             v-for="(coin, index) in coins"
             :key="index"
-            :class="'coin-' + index"
+            :class="['big-coin', 'coin-' + index]"
             :src="coin"
             alt="coin"
-            class="coin"
           />
         </transition-group>
+        <div class="drops-container">
+          <img
+            v-for="(drop, index) in drops"
+            :key="index"
+            :class="['drop', drop.size]"
+            :src="drop.src"
+            alt="drop"
+          />
+        </div>
       </div>
       <div class="service-selection__lower--cases">
         <img
@@ -132,6 +146,9 @@
 
 <script>
 import { ref } from "vue";
+import dropBig from "../images/drop-big.png";
+import dropMedium from "../images/drop-medium.png";
+import dropSmall from "../images/drop-small.png";
 
 export default {
   setup() {
@@ -158,29 +175,101 @@ export default {
     const selectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
+    const showSmallTree = ref(true);
     const coins = ref([]);
+    const drops = ref([]);
+    const isHoveringOverFunnel = ref(false);
+
+    const addServiceOnHover = (service) => {
+      if (!selectedServices.value.includes(service)) {
+        selectedServices.value.push(service);
+      }
+    };
 
     const pourWater = () => {
       isPouring.value = true;
+      setTimeout(() => {
+        createDrops();
+      }, 2000); // начнем создание капель через 2 секунды после начала анимации лейки
       setTimeout(() => {
         growTree();
       }, 4000); // время анимации лейки
     };
 
-    const growTree = () => {
-      isPouring.value = false;
-      setTimeout(() => {
-        isGrown.value = true;
-        dropCoins();
-      }, 3000);
+    const createDrops = () => {
+      const dropSizes = ["big", "medium", "small"];
+      const dropSources = {
+        big: dropBig,
+        medium: dropMedium,
+        small: dropSmall,
+      };
+      let dropIndex = 0;
+
+      const intervalId = setInterval(() => {
+        if (dropIndex >= dropSizes.length) {
+          clearInterval(intervalId);
+          setTimeout(() => {
+            drops.value = [];
+          }, 6000); // время анимации капель
+          return;
+        }
+
+        drops.value.push({
+          src: dropSources[dropSizes[dropIndex]],
+          size: dropSizes[dropIndex],
+        });
+
+        dropIndex += 1;
+      }, 500); // интервал между каплями 500ms
     };
 
-    const dropCoins = () => {
-      const coinImages = Array(6).fill("../images/big-coin.png");
+    const growTree = () => {
+      setTimeout(() => {
+        isGrown.value = true;
+        setTimeout(() => {
+          showSmallTree.value = false;
+        }, 1); // задержка перед скрытием маленького дерева после роста большого
+        isPouring.value = false;
+      }, 1000); // быстрое появление дерева перед ростом
+    };
+
+    const onTreeGrown = () => {
+      const coinImages = Array(6).fill("src/images/big-coin.png");
       coins.value = coinImages;
       setTimeout(() => {
         coins.value = [];
-      }, 2000);
+      }, 4000);
+    };
+
+    const onDrop = (event) => {
+      const service = event.dataTransfer.getData("service");
+      console.log("Dropped service:", service);
+      addServiceOnHover(service);
+      animateFunnel(); // Анимация лейки при добавлении услуги
+    };
+
+    const onDragOverFunnel = (event) => {
+      event.preventDefault();
+      const service = event.dataTransfer.getData("service");
+      addServiceOnHover(service);
+      animateFunnel(); // Анимация лейки при наведении кирпича
+    };
+
+    const onDragEnterFunnel = () => {
+      isHoveringOverFunnel.value = true;
+      animateFunnel(); // Анимация лейки при наведении кирпича
+    };
+
+    const onDragLeaveFunnel = () => {
+      isHoveringOverFunnel.value = false;
+    };
+
+    const animateFunnel = () => {
+      const funnel = document.querySelector(".funnel-image");
+      funnel.classList.add("funnel-animate");
+      setTimeout(() => {
+        funnel.classList.remove("funnel-animate");
+      }, 500); // Время анимации
     };
 
     return {
@@ -189,19 +278,30 @@ export default {
       pourWater,
       isPouring,
       isGrown,
+      showSmallTree,
       coins,
+      onTreeGrown,
+      drops,
+      onDrop,
+      addServiceOnHover,
+      isHoveringOverFunnel,
+      onDragOverFunnel,
+      onDragEnterFunnel,
+      onDragLeaveFunnel,
     };
   },
 };
 </script>
 
-<style scoped>
+<style>
 .service-selection {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .service-selection__upper {
@@ -268,6 +368,7 @@ export default {
   flex-direction: row;
   width: 100%;
   height: 40%;
+  z-index: 1;
 }
 
 .service-selection__lower--tree {
@@ -277,11 +378,59 @@ export default {
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;
   background-position: bottom;
+  z-index: 1;
+}
+
+.drops-container {
+  position: absolute;
+  top: 177px; /* Убедитесь, что это значение подходит для позиционирования над деревом */
+  left: 50%;
+  transform: translate(-50%, -100%); /* Центрирование над деревом */
+  pointer-events: none; /* чтобы капли не мешали другим элементам */
+}
+
+.drop {
+  position: absolute;
+  bottom: 90px;
+  left: calc(50% - 40px); /* центрируем над деревом */
+  animation: drop-fall 3s linear forwards;
+}
+
+.drop.small {
+  width: 15px;
+  height: 15px;
+}
+
+.drop.medium {
+  width: 20px;
+  height: 20px;
+}
+
+.drop.big {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes drop-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(300px); /* Анимация падения капли */
+  }
+}
+
+.drop-fall-enter-active {
+  transition:
+    transform 2s,
+    opacity 1s;
 }
 
 .business_up {
   position: absolute;
-  left: 42px;
+  left: 12px;
   top: 32px;
   width: 173px;
   height: 88px;
@@ -289,7 +438,7 @@ export default {
 
 .business_up-arrow {
   position: absolute;
-  left: 110px;
+  left: 70px;
   top: 120px;
 }
 
@@ -305,38 +454,82 @@ export default {
   right: 230px;
 }
 
-.small-tree,
-.big-tree {
+.small-tree {
   position: absolute;
   left: 196px;
   top: 192px;
-}
-
-.small-tree {
   width: 100px;
   height: 100px;
-  transition: all 3s ease-in-out;
+  transition:
+    opacity 0.001s ease-in-out,
+    transform 0.001s ease-in-out;
 }
 
-.big-tree {
-  width: 100px; /* Начинаем с той же ширины и высоты */
-  height: 100px;
-  animation: grow 3s forwards; /* Анимация роста */
+.small-tree.hidden {
+  animation: fadeOut 0.001s forwards;
 }
 
-@keyframes grow {
-  to {
-    width: 200px;
-    height: 200px;
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
   }
 }
 
-.coin {
+.big-tree {
   position: absolute;
-  left: 258px;
-  top: 170px;
-  transition: all 2s ease-in-out;
+  left: 196px;
+  top: 177px;
+  width: 110px;
+  height: 110px;
+  transform-origin: bottom;
+  transition:
+    width 3s ease-in-out,
+    height 3s ease-in-out,
+    opacity 1s ease-in-out;
   opacity: 0;
+}
+
+.big-tree.tree-grow {
+  transform: scale(2);
+  opacity: 1;
+  animation: growTree 5s ease-in-out forwards;
+}
+
+@keyframes growTree {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.25);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  75% {
+    transform: scale(1.75);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+.big-coin {
+  position: absolute;
+  transition: transform 2s ease-in-out;
+  transform: scale(0); /* Изначально монеты скрыты */
 }
 
 .coin-0 {
@@ -369,16 +562,14 @@ export default {
   left: 120px;
 }
 
+.big-coin.appear {
+  transform: scale(
+    1
+  ); /* Монеты появляются и увеличиваются до нормального размера */
+}
+
 .coins-appear-enter-active {
-  transition: opacity 2s;
-}
-
-.coins-appear-enter {
-  opacity: 0;
-}
-
-.coins-appear-enter-to {
-  opacity: 1;
+  transition: transform 2s;
 }
 
 .funnel-container {
@@ -387,7 +578,7 @@ export default {
   right: 0;
   width: 350px;
   height: auto;
-  z-index: 0;
+  z-index: 10; /* Устанавливаем высокий z-index для лейки */
 }
 
 .service-selection__lower--cases {
@@ -407,22 +598,16 @@ export default {
 .funnel-image {
   cursor: pointer;
   width: 100%;
-  z-index: 2;
   transition: transform 4s ease-in-out; /* Время и плавность анимации */
+  z-index: 10; /* Устанавливаем высокий z-index для лейки */
 }
 
 .funnel-moving {
-  transform: translateX(-250px) translateY(100px) rotate(-30deg); /* Перемещение к кусту и наклон */
+  transform: translateX(-200px) translateY(200px) rotate(-60deg); /* Перемещение к кусту и наклон */
 }
 
-.funnel-mozaic__logo {
-  position: absolute;
-  width: 125px;
-  top: 50%;
-  left: 51%;
-  transform: translate(-30%, 140%);
-  z-index: 1;
-  pointer-events: none;
+.funnel-animate {
+  transform: scale(1.1); /* Увеличение на 10% */
 }
 
 .instruction-funnel__active {
@@ -454,6 +639,7 @@ export default {
   font-weight: 500;
   font-size: 14px;
   color: #9e9e9e;
+  z-index: 20;
 }
 
 .checkbox-item.checked {

@@ -92,7 +92,7 @@
           src="../images/business_up-arrow.png"
           alt="business_up-arrow"
         />
-        <transition name="small-tree-grow">
+        <transition name="tree-grow">
           <img
             v-if="!isGrown"
             class="small-tree"
@@ -100,7 +100,7 @@
             alt="small-tree"
           />
         </transition>
-        <transition name="big-tree-grow">
+        <transition name="tree-grow">
           <img
             v-if="isGrown"
             class="big-tree"
@@ -108,7 +108,7 @@
             alt="big-tree"
           />
         </transition>
-        <transition-group name="coins-fall">
+        <transition-group name="coins-appear">
           <img
             v-for="(coin, index) in coins"
             :key="index"
@@ -305,21 +305,30 @@ export default {
   right: 230px;
 }
 
-.small-tree {
+.small-tree,
+.big-tree {
   position: absolute;
   left: 196px;
   top: 192px;
+}
+
+.small-tree {
   width: 100px;
   height: 100px;
   transition: all 3s ease-in-out;
 }
 
 .big-tree {
-  position: absolute;
-  left: 196px;
-  top: 192px; /* Тот же top, что и у small-tree */
-  width: 200px;
-  height: 200px;
+  width: 100px; /* Начинаем с той же ширины и высоты */
+  height: 100px;
+  animation: grow 3s forwards; /* Анимация роста */
+}
+
+@keyframes grow {
+  to {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .coin {
@@ -327,6 +336,49 @@ export default {
   left: 258px;
   top: 170px;
   transition: all 2s ease-in-out;
+  opacity: 0;
+}
+
+.coin-0 {
+  top: 20px;
+  left: 20px;
+}
+
+.coin-1 {
+  top: 40px;
+  left: 40px;
+}
+
+.coin-2 {
+  top: 60px;
+  left: 60px;
+}
+
+.coin-3 {
+  top: 80px;
+  left: 80px;
+}
+
+.coin-4 {
+  top: 100px;
+  left: 100px;
+}
+
+.coin-5 {
+  top: 120px;
+  left: 120px;
+}
+
+.coins-appear-enter-active {
+  transition: opacity 2s;
+}
+
+.coins-appear-enter {
+  opacity: 0;
+}
+
+.coins-appear-enter-to {
+  opacity: 1;
 }
 
 .funnel-container {
@@ -371,70 +423,6 @@ export default {
   transform: translate(-30%, 140%);
   z-index: 1;
   pointer-events: none;
-}
-
-.coin-0 {
-  top: 20px;
-  left: 20px;
-}
-
-.coin-1 {
-  top: 40px;
-  left: 40px;
-}
-
-.coin-2 {
-  top: 60px;
-  left: 60px;
-}
-
-.coin-3 {
-  top: 80px;
-  left: 80px;
-}
-
-.coin-4 {
-  top: 100px;
-  left: 100px;
-}
-
-.coin-5 {
-  top: 120px;
-  left: 120px;
-}
-
-@keyframes drop {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.small-tree-grow-enter-active,
-.small-tree-grow-leave-active {
-  transition: opacity 3s;
-}
-
-.small-tree-grow-enter,
-.small-tree-grow-leave-to {
-  opacity: 0;
-}
-
-.big-tree-grow-enter-active,
-.big-tree-grow-leave-active {
-  transition: opacity 3s;
-}
-
-.big-tree-grow-enter,
-.big-tree-grow-leave-to {
-  opacity: 0;
-}
-
-.coins-fall-enter-active,
-.coins-fall-leave-active {
-  transition: all 2s;
 }
 
 .instruction-funnel__active {

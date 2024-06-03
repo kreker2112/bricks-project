@@ -37,12 +37,16 @@ export default {};
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  height: 121px;
+  height: 80px;
   flex-shrink: 0;
 }
 
 .footer-frame {
-  margin-left: 41px;
+  margin-left: 10px;
+}
+
+.footer-frame img {
+  width: 50px;
 }
 
 .left {
@@ -53,7 +57,7 @@ export default {};
   flex-direction: column;
   flex: 1;
   font-family: "Montserrat";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -67,7 +71,7 @@ export default {};
   text-decoration: none;
   position: relative;
   font-family: "Montserrat";
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .right {
@@ -82,7 +86,7 @@ export default {};
 .right a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 32px;
+  font-size: 28px;
   display: flex;
   align-items: center;
   height: 100%;

@@ -440,7 +440,7 @@ export default {
 .small-tree {
   position: absolute;
   left: 196px;
-  top: 192px;
+  top: 210px;
   width: 100px;
   height: 100px;
   transition:
@@ -474,7 +474,7 @@ export default {
 .big-tree {
   position: absolute;
   left: 196px;
-  top: 177px;
+  top: 194px;
   width: 110px;
   height: 110px;
   transform-origin: bottom;

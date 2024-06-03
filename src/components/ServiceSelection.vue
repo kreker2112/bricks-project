@@ -24,7 +24,7 @@
             class="service-container"
           />
           <img
-            src="../images/logos/instruction-service/service.png"
+            src="../images/logос/instruction-service/service.png"
             alt="service"
             class="service"
           />
@@ -39,7 +39,7 @@
           alt="instruction-funnel-water"
         />
         <img
-          src="../images/logos/instruction-grow.png"
+          src="../images/logос/instruction-grow.png"
           alt="instruction-grow"
         />
       </div>
@@ -47,10 +47,8 @@
         <img
           :class="[
             'funnel-image',
-            {
-              'funnel-moving': isPouring,
-              'funnel-blinking': isBlinking && !isPouring,
-            },
+            { 'funnel-moving': isPouring },
+            { 'funnel-blinking': isBlinking && !isPouring },
           ]"
           src="../images/logos/funnel.svg"
           alt="funnel"
@@ -426,7 +424,7 @@ export default {
 .business_up {
   position: absolute;
   left: 12px;
-  top: 32px;
+  топ: 32px;
   width: 173px;
   height: 88px;
 }

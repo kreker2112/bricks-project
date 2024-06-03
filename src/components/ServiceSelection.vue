@@ -24,7 +24,7 @@
             class="service-container"
           />
           <img
-            src="../images/logос/instruction-service/service.png"
+            src="../images/logos/instruction-service/service.png"
             alt="service"
             class="service"
           />
@@ -39,17 +39,13 @@
           alt="instruction-funnel-water"
         />
         <img
-          src="../images/logос/instruction-grow.png"
+          src="../images/logos/instruction-grow.png"
           alt="instruction-grow"
         />
       </div>
       <div class="funnel-container">
         <img
-          :class="[
-            'funnel-image',
-            { 'funnel-moving': isPouring },
-            { 'funnel-blinking': isBlinking && !isPouring },
-          ]"
+          :class="['funnel-image', isPouring ? 'funnel-moving' : '']"
           src="../images/logos/funnel.svg"
           alt="funnel"
           @click="pourWater"
@@ -177,7 +173,6 @@ export default {
     const coins = ref([]);
     const drops = ref([]);
     const isHoveringOverFunnel = ref(false);
-    const isBlinking = ref(false);
 
     const addServiceOnHover = (service) => {
       if (!selectedServices.value.includes(service)) {
@@ -187,7 +182,6 @@ export default {
 
     const pourWater = () => {
       isPouring.value = true;
-      isBlinking.value = false; // Остановить мигание лейки при нажатии
       setTimeout(() => {
         createDrops();
       }, 2000); // начнем создание капель через 2 секунды после начала анимации лейки
@@ -245,19 +239,16 @@ export default {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
       addServiceOnHover(service);
-      isBlinking.value = true; // Начать мигание лейки при добавлении услуги
     };
 
     const onDragOverFunnel = (event) => {
       event.preventDefault();
       const service = event.dataTransfer.getData("service");
       addServiceOnHover(service);
-      isBlinking.value = true; // Начать мигание лейки при наведении кирпича
     };
 
     const onDragEnterFunnel = () => {
       isHoveringOverFunnel.value = true;
-      isBlinking.value = true; // Начать мигание лейки при наведении кирпича
     };
 
     const onDragLeaveFunnel = () => {
@@ -280,7 +271,6 @@ export default {
       onDragOverFunnel,
       onDragEnterFunnel,
       onDragLeaveFunnel,
-      isBlinking,
     };
   },
 };
@@ -424,7 +414,7 @@ export default {
 .business_up {
   position: absolute;
   left: 12px;
-  топ: 32px;
+  top: 32px;
   width: 173px;
   height: 88px;
 }
@@ -597,20 +587,6 @@ export default {
 
 .funnel-moving {
   transform: translateX(-200px) translateY(200px) rotate(-60deg); /* Перемещение к кусту и наклон */
-}
-
-.funnel-blinking {
-  animation: funnel-blink 1s infinite; /* Анимация мигания */
-}
-
-@keyframes funnel-blink {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1); /* Увеличение на 10% */
-  }
 }
 
 .instruction-funnel__active {

@@ -1,3 +1,4 @@
+Копіювати код
 <template>
   <div class="falling-bricks" ref="container">
     <a href="#">
@@ -31,347 +32,236 @@
     <!-- Статически созданные кирпичи -->
     <div
       class="brick"
-      style="
-        width: 180px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 265px;
-        left: calc(6px + 82% + 15px);
-        transform: rotate(-8.07deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
+      v-for="(brick, index) in bricks"
+      :key="index"
+      :style="brick.style"
+      @dragstart="onDragStart($event, brick.service)"
+      draggable="true"
     >
-      Контекст
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 121px;
-        height: 70px;
-        bottom: 135px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 290px;
-        left: calc(3px + 31% + 15px);
-        transform: rotate(-6.07deg);
-        background-color: #ffffff;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Ідеї
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 201px;
-        height: 70px;
-        bottom: 135px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 215px;
-        left: 25px;
-        transform: rotate(-8.22deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Концепції
-    </div>
-
-    <div
-      class="brick"
-      style="
-        width: 246px;
-        height: 70px;
-        bottom: 135px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 72px;
-        left: 35px;
-        transform: rotate(39.57deg);
-        background-color: #ffffff;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Брендування
-    </div>
-
-    <div
-      class="brick"
-      style="
-        width: 128px;
-        height: 70px;
-        bottom: 135px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 220px;
-        left: calc(3px + 25% + 6px);
-        transform: rotate(11.1deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      SMM
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 153px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 152px;
-        left: calc(3px + 13% + 6px);
-        transform: rotate(-2.76deg);
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Аудит
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 213px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 45px;
-        left: calc(3px + 20% + 5px);
-        transform: rotate(25.45deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Маркетинг
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 186px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 140px;
-        left: calc(3px + 27% + 5px);
-        transform: rotate(-10.7deg);
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Стратегії
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 199px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 42px;
-        left: calc(3px + 36% + 11px);
-        transform: rotate(25.63deg);
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Інтеграції
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 232px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 193px;
-        left: calc(2px + 40% + 6px);
-        transform: rotate(20.08deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Просування
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 172px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 85px;
-        left: calc(2px + 52% + 5px);
-        transform: rotate(-8.95deg);
-        background-color: #ffffff;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Дизайн
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 182px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 285px;
-        left: calc(30px + 49% + 8px);
-        transform: rotate(-25.14deg);
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Логотип
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 177px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 247px;
-        left: calc(20px + 63% + 8px);
-        transform: rotate(-3.94deg);
-        border-radius: 16px;
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Неймінг
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 120px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 159px;
-        left: calc(2px + 63% + 8px);
-        transform: rotate(17.88deg);
-        background-color: #d8d8d8;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      SEO
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 199px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 50px;
-        left: calc(5px + 62%);
-        transform: rotate(-33.74deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Розсилки
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 235px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        bottom: 155px;
-        left: calc(75px + 71% + 20px);
-        transform: rotate(26.68deg);
-        background-color: #ff6400;
-        color: #002d6e;
-        border-radius: 16px;
-      "
-    >
-      Партнерство
-    </div>
-    <div
-      class="brick"
-      style="
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: bold;
-        width: 105px;
-        height: 65px;
-        bottom: 92px;
-        left: calc(5px + 79% + 7px);
-        transform: rotate(6.99deg);
-        color: #002d6e;
-        background-color: #d9d9d9;
-        border-radius: 16px;
-      "
-    >
-      TV
-    </div>
-    <div
-      class="brick"
-      style="
-        width: 289px;
-        height: 70px;
-        font-style: Montserrat;
-        font-size: 25px;
-        font-weight: 900;
-        bottom: 15px;
-        left: calc(30px + 65% + 80px);
-        transform: rotate(-5.73deg);
-        color: #002d6e;
-        background-color: #ffffff;
-        border-radius: 16px;
-      "
-    >
-      Позиціонування
+      {{ brick.service }}
     </div>
   </div>
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
+
 export default {
   setup() {
+    const container = ref(null);
+    const footerHeight = 80; // Высота футера
+    const bricks = ref([
+      { service: "Контекст", style: {} },
+      { service: "Ідеї", style: {} },
+      { service: "Концепції", style: {} },
+      { service: "Брендування", style: {} },
+      { service: "SMM", style: {} },
+      { service: "Аудит", style: {} },
+      { service: "Маркетинг", style: {} },
+      { service: "Стратегії", style: {} },
+      { service: "Інтеграції", style: {} },
+      { service: "Просування", style: {} },
+      { service: "Дизайн", style: {} },
+      { service: "Логотип", style: {} },
+      { service: "Неймінг", style: {} },
+      { service: "SEO", style: {} },
+      { service: "Розсилки", style: {} },
+      { service: "Партнерство", style: {} },
+      { service: "TV", style: {} },
+      { service: "Позиціонування", style: {} },
+    ]);
+
     const onDragStart = (event, service) => {
-      console.log("Drag start:", service);
       event.dataTransfer.setData("service", service);
     };
 
+    const setBrickStyles = () => {
+      const positions = [
+        {
+          width: 180,
+          height: 70,
+          bottom: 265,
+          left: "82%",
+          rotation: -8.07,
+          color: "#ff6400",
+        },
+        {
+          width: 121,
+          height: 70,
+          bottom: 290,
+          left: "31%",
+          rotation: -6.07,
+          color: "#ffffff",
+        },
+        {
+          width: 201,
+          height: 70,
+          bottom: 215,
+          left: "25px",
+          rotation: -8.22,
+          color: "#ff6400",
+        },
+        {
+          width: 246,
+          height: 70,
+          bottom: 72,
+          left: "35px",
+          rotation: 39.57,
+          color: "#ffffff",
+        },
+        {
+          width: 128,
+          height: 70,
+          bottom: 220,
+          left: "25%",
+          rotation: 11.1,
+          color: "#ff6400",
+        },
+        {
+          width: 153,
+          height: 70,
+          bottom: 152,
+          left: "13%",
+          rotation: -2.76,
+          color: "#d8d8d8",
+        },
+        {
+          width: 213,
+          height: 70,
+          bottom: 45,
+          left: "20%",
+          rotation: 25.45,
+          color: "#ff6400",
+        },
+        {
+          width: 186,
+          height: 70,
+          bottom: 140,
+          left: "27%",
+          rotation: -10.7,
+          color: "#d8d8d8",
+        },
+        {
+          width: 199,
+          height: 70,
+          bottom: 42,
+          left: "36%",
+          rotation: 25.63,
+          color: "#d8d8d8",
+        },
+        {
+          width: 232,
+          height: 70,
+          bottom: 193,
+          left: "40%",
+          rotation: 20.08,
+          color: "#ff6400",
+        },
+        {
+          width: 172,
+          height: 70,
+          bottom: 85,
+          left: "52%",
+          rotation: -8.95,
+          color: "#ffffff",
+        },
+        {
+          width: 182,
+          height: 70,
+          bottom: 285,
+          left: "49%",
+          rotation: -25.14,
+          color: "#d8d8d8",
+        },
+        {
+          width: 177,
+          height: 70,
+          bottom: 247,
+          left: "63%",
+          rotation: -3.94,
+          color: "#d8d8d8",
+        },
+        {
+          width: 120,
+          height: 70,
+          bottom: 159,
+          left: "63%",
+          rotation: 17.88,
+          color: "#d8d8d8",
+        },
+        {
+          width: 199,
+          height: 70,
+          bottom: 50,
+          left: "62%",
+          rotation: -33.74,
+          color: "#ff6400",
+        },
+        {
+          width: 235,
+          height: 70,
+          bottom: 155,
+          left: "77.5%",
+          rotation: 26.68,
+          color: "#ff6400",
+        },
+        {
+          width: 105,
+          height: 65,
+          bottom: 92,
+          left: "79%",
+          rotation: 6.99,
+          color: "#d9d9d9",
+        },
+        {
+          width: 280,
+          height: 70,
+          bottom: 15,
+          left: "calc(65% + 100px)",
+          rotation: -5.73,
+          color: "#ffffff",
+        },
+      ];
+
+      bricks.value.forEach((brick, index) => {
+        const pos = positions[index];
+        brick.style = {
+          width: `${pos.width}px`,
+          height: `${pos.height}px`,
+          left: `calc(${pos.left} + 15px)`,
+          transform: `rotate(${pos.rotation}deg)`,
+          backgroundColor: pos.color,
+          color: "#002d6e",
+          borderRadius: "16px",
+          fontStyle: "Montserrat",
+          fontSize: "25px",
+          fontWeight: "bold",
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: "0",
+          transition: "top 1s ease-in-out",
+          top: `-${pos.height}px`, // начальная позиция выше экрана
+        };
+
+        // Используем footerHeight для установки конечной позиции
+        setTimeout(
+          () => {
+            brick.style.top = `calc(100vh - ${pos.bottom + footerHeight}px - ${pos.height}px)`;
+          },
+          100 * (index + 1),
+        ); // добавляем задержку для последовательного падения
+      });
+    };
+
+    onMounted(() => {
+      setBrickStyles();
+    });
+
     return {
+      container,
+      bricks,
       onDragStart,
     };
   },

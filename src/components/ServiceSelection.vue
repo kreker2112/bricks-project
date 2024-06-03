@@ -49,7 +49,7 @@
             'funnel-image',
             {
               'funnel-moving': isPouring,
-              'funnel-hovered': isHoveringOverFunnel,
+              'funnel-blinking': isBlinking && !isPouring,
             },
           ]"
           src="../images/logos/funnel.svg"
@@ -179,6 +179,7 @@ export default {
     const coins = ref([]);
     const drops = ref([]);
     const isHoveringOverFunnel = ref(false);
+    const isBlinking = ref(false);
 
     const addServiceOnHover = (service) => {
       if (!selectedServices.value.includes(service)) {
@@ -188,6 +189,7 @@ export default {
 
     const pourWater = () => {
       isPouring.value = true;
+      isBlinking.value = false; // Остановить мигание лейки при нажатии
       setTimeout(() => {
         createDrops();
       }, 2000); // начнем создание капель через 2 секунды после начала анимации лейки
@@ -245,31 +247,23 @@ export default {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
       addServiceOnHover(service);
-      animateFunnel(); // Анимация лейки при добавлении услуги
+      isBlinking.value = true; // Начать мигание лейки при добавлении услуги
     };
 
     const onDragOverFunnel = (event) => {
       event.preventDefault();
       const service = event.dataTransfer.getData("service");
       addServiceOnHover(service);
-      animateFunnel(); // Анимация лейки при наведении кирпича
+      isBlinking.value = true; // Начать мигание лейки при наведении кирпича
     };
 
     const onDragEnterFunnel = () => {
       isHoveringOverFunnel.value = true;
-      animateFunnel(); // Анимация лейки при наведении кирпича
+      isBlinking.value = true; // Начать мигание лейки при наведении кирпича
     };
 
     const onDragLeaveFunnel = () => {
       isHoveringOverFunnel.value = false;
-    };
-
-    const animateFunnel = () => {
-      const funnel = document.querySelector(".funnel-image");
-      funnel.classList.add("funnel-animate");
-      setTimeout(() => {
-        funnel.classList.remove("funnel-animate");
-      }, 500); // Время анимации
     };
 
     return {
@@ -288,6 +282,7 @@ export default {
       onDragOverFunnel,
       onDragEnterFunnel,
       onDragLeaveFunnel,
+      isBlinking,
     };
   },
 };
@@ -606,8 +601,18 @@ export default {
   transform: translateX(-200px) translateY(200px) rotate(-60deg); /* Перемещение к кусту и наклон */
 }
 
-.funnel-animate {
-  transform: scale(1.1); /* Увеличение на 10% */
+.funnel-blinking {
+  animation: funnel-blink 1s infinite; /* Анимация мигания */
+}
+
+@keyframes funnel-blink {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Увеличение на 10% */
+  }
 }
 
 .instruction-funnel__active {

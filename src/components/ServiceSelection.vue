@@ -194,6 +194,10 @@ export default {
 .service-selection__lower--tree {
   width: 78%;
   background-color: #ededed;
+  background-image: url(../images/ground.png);
+  background-repeat: no-repeat;
+  background-position: bottom; /* Позиционирование фона внизу */
+  background-size: cover; /* Масштабирование фона по всей ширине */
 }
 
 .service-selection__lower--cases {
@@ -201,8 +205,8 @@ export default {
   width: 22%;
   background-image: url(../images/logos/cases.png);
   background-repeat: no-repeat;
-  background-position: center 45px;
-  background-size: auto;
+  background-position: center 20px;
+  /* background-size: cover; */
 }
 
 .cases-arrow {

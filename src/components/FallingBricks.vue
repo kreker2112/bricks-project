@@ -1,4 +1,3 @@
-Копіювати код
 <template>
   <div class="falling-bricks" ref="container">
     <a href="#">

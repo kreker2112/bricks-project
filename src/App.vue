@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <div class="main-content">
-      <transition-group name="slide" tag="div" class="app-container">
-        <router-view v-slot="{ Component, route }">
-          <component :is="Component" :key="route.path" class="view" />
-        </router-view>
-      </transition-group>
+      <transition name="slide-right" mode="out-in">
+        <router-view />
+      </transition>
     </div>
     <FooterComponent />
   </div>
@@ -64,13 +62,8 @@ export default {
   flex-shrink: 0;
 }
 
-/* Добавляем стили для анимации */
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.5s ease;
-}
-
-.slide-enter, .slide-leave-to /* .slide-leave-active в версиях до 2.1.8 */ {
-  transform: translateX(100%);
+.slide-right-enter-active,
+.slide-right-leave-active {
+  animation: slideRight 0.5s forwards;
 }
 </style>

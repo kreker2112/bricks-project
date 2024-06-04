@@ -29,7 +29,7 @@ export default {
 .second-page {
   display: flex;
   flex-direction: row;
-  width: 100vw;
+  width: 200vw; /* Увеличиваем ширину для горизонтальной прокрутки */
   height: 100%;
 }
 
@@ -37,25 +37,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
+  width: 50vw; /* Соответственно ширина секций уменьшена до половины экрана */
 }
 
-.upper-row {
-  display: flex;
-  gap: 0;
-  height: 39%;
-}
-
-.middle-row {
-  display: flex;
-  gap: 0;
-  height: 35%;
-}
-
+.upper-row,
+.middle-row,
 .lower-row {
   display: flex;
   gap: 0;
-  height: 25%;
 }
 
 .image {
@@ -63,5 +52,10 @@ export default {
   background-color: #ccc;
   margin: 1px;
   border: 2px #ccc;
+}
+
+.left-section,
+.form-component {
+  flex: 1;
 }
 </style>

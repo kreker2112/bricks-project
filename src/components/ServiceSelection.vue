@@ -316,8 +316,11 @@ export default {
     };
 
     const applySelection = () => {
-      console.log("Apply selection and navigate to SecondPage");
-      router.push("/second-page");
+      const container = document.querySelector(".main-content");
+      container.scrollTo({ left: window.innerWidth, behavior: "smooth" });
+      setTimeout(() => {
+        router.push("/second-page");
+      }, 600); // Задержка для завершения анимации прокрутки
     };
 
     const closeLightbox = () => {

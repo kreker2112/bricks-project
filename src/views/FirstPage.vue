@@ -1,3 +1,4 @@
+<!-- FirstPage.vue -->
 <template>
   <div class="first-page">
     <div class="left-side">
@@ -25,7 +26,7 @@ export default {
 .first-page {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: 100vh;
 }
 
 .left-side {
@@ -38,5 +39,15 @@ export default {
   width: 40%;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .left-side,
+  .right-side {
+    width: 100%;
+  }
+  .first-page {
+    flex-direction: column;
+  }
 }
 </style>

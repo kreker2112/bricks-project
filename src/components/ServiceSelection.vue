@@ -282,8 +282,6 @@ export default {
           showSmallTree.value = false;
         }, 1);
         isPouring.value = false;
-        showLightbox.value = true;
-        lightboxSelectedServices.value = [...selectedServices.value];
       }, 1000);
     };
 
@@ -292,6 +290,8 @@ export default {
       coins.value = coinImages;
       setTimeout(() => {
         coins.value = [];
+        showLightbox.value = true;
+        lightboxSelectedServices.value = [...selectedServices.value];
       }, 4000);
     };
 
@@ -440,6 +440,7 @@ export default {
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;
   background-position: bottom;
+  background-size: 100% auto; /* изображение растягивается на всю ширину, высота остается неизменной */
   z-index: 1;
 }
 
@@ -822,7 +823,7 @@ export default {
 }
 
 .form button {
-  background-color: orange;
+  background-color: ff6400;
   font-size: 18px;
   padding: 9.43px 18.85px;
   border-radius: 8px;

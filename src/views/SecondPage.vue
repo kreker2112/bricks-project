@@ -43,19 +43,19 @@ export default {
 .upper-row {
   display: flex;
   gap: 0;
-  height: 39%; /* Використання відсотків для відносної висоти */
+  height: 39%;
 }
 
 .middle-row {
   display: flex;
   gap: 0;
-  height: 35%; /* Використання відсотків для відносної висоти */
+  height: 35%;
 }
 
 .lower-row {
   display: flex;
   gap: 0;
-  height: 25%; /* Використання відсотків для відносної висоти */
+  height: 25%;
 }
 
 .image {

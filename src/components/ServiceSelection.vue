@@ -135,7 +135,7 @@
         />
       </div>
     </div>
-    <!-- Лайтбокс -->
+
     <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
@@ -242,10 +242,10 @@ export default {
       isPouring.value = true;
       setTimeout(() => {
         createDrops();
-      }, 2000); // начнем создание капель через 2 секунды после начала анимации лейки
+      }, 2000);
       setTimeout(() => {
         growTree();
-      }, 4000); // время анимации лейки
+      }, 4000);
     };
 
     const createDrops = () => {
@@ -262,7 +262,7 @@ export default {
           clearInterval(intervalId);
           setTimeout(() => {
             drops.value = [];
-          }, 6000); // время анимации капель
+          }, 6000);
           return;
         }
 
@@ -272,7 +272,7 @@ export default {
         });
 
         dropIndex += 1;
-      }, 500); // интервал между каплями 500ms
+      }, 500);
     };
 
     const growTree = () => {
@@ -280,11 +280,11 @@ export default {
         isGrown.value = true;
         setTimeout(() => {
           showSmallTree.value = false;
-        }, 1); // задержка перед скрытием маленького дерева после роста большого
+        }, 1);
         isPouring.value = false;
-        showLightbox.value = true; // Показать лайтбокс после анимации
-        lightboxSelectedServices.value = [...selectedServices.value]; // Копируем выбранные сервисы в лайтбокс
-      }, 1000); // быстрое появление дерева перед ростом
+        showLightbox.value = true;
+        lightboxSelectedServices.value = [...selectedServices.value];
+      }, 1000);
     };
 
     const onTreeGrown = () => {
@@ -316,7 +316,6 @@ export default {
     };
 
     const applySelection = () => {
-      // Логика перехода на SecondPage
       console.log("Apply selection and navigate to SecondPage");
       router.push("/second-page");
     };
@@ -443,16 +442,16 @@ export default {
 
 .drops-container {
   position: absolute;
-  top: 177px; /* Убедитесь, что это значение подходит для позиционирования над деревом */
+  top: 177px;
   left: 50%;
-  transform: translate(-50%, -100%); /* Центрирование над деревом */
-  pointer-events: none; /* чтобы капли не мешали другим элементам */
+  transform: translate(-50%, -100%);
+  pointer-events: none;
 }
 
 .drop {
   position: absolute;
   bottom: 90px;
-  left: calc(50% - 40px); /* центрируем над деревом */
+  left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
 }
 
@@ -478,7 +477,7 @@ export default {
   }
   100% {
     opacity: 0;
-    transform: translateY(300px); /* Анимация падения капли */
+    transform: translateY(300px);
   }
 }
 
@@ -589,7 +588,7 @@ export default {
 .big-coin {
   position: absolute;
   transition: transform 2s ease-in-out;
-  transform: scale(0); /* Изначально монеты скрыты */
+  transform: scale(0);
 }
 
 .coin-0 {
@@ -625,7 +624,7 @@ export default {
 .big-coin.appear {
   transform: scale(
     1
-  ); /* Монеты появляются и увеличиваются до нормального размера */
+  );
 }
 
 .coins-appear-enter-active {
@@ -638,7 +637,7 @@ export default {
   right: 0;
   width: 350px;
   height: auto;
-  z-index: 10; /* Устанавливаем высокий z-index для лейки */
+  z-index: 10;
 }
 
 .service-selection__lower--cases {
@@ -658,12 +657,12 @@ export default {
 .funnel-image {
   cursor: pointer;
   width: 100%;
-  transition: transform 4s ease-in-out; /* Время и плавность анимации */
-  z-index: 10; /* Устанавливаем высокий z-index для лейки */
+  transition: transform 4s ease-in-out;
+  z-index: 10;
 }
 
 .funnel-moving {
-  transform: translateX(-200px) translateY(200px) rotate(-60deg); /* Перемещение к кусту и наклон */
+  transform: translateX(-200px) translateY(200px) rotate(-60deg);
 }
 
 .instruction-funnel__active {
@@ -782,7 +781,7 @@ export default {
 }
 
 .fade-enter,
-.fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+.fade-leave-to {
   opacity: 0;
 }
 

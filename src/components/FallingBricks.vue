@@ -29,7 +29,6 @@
       />
     </div>
 
-    <!-- Статически созданные кирпичи -->
     <div
       class="brick"
       v-for="(brick, index) in bricks"
@@ -49,7 +48,7 @@ import { ref, onMounted } from "vue";
 export default {
   setup() {
     const container = ref(null);
-    const footerHeight = 80; // Высота футера
+    const footerHeight = 80;
     const bricks = ref([
       { service: "Контекст", style: {} },
       { service: "Ідеї", style: {} },
@@ -242,16 +241,16 @@ export default {
           justifyContent: "center",
           zIndex: "0",
           transition: "top 1s ease-in-out",
-          top: `-${pos.height}px`, // начальная позиция выше экрана
+          top: `-${pos.height}px`,
         };
 
-        // Используем footerHeight для установки конечной позиции
+        
         setTimeout(
           () => {
             brick.style.top = `calc(100vh - ${pos.bottom + footerHeight}px - ${pos.height}px)`;
           },
           100 * (index + 1),
-        ); // добавляем задержку для последовательного падения
+        );
       });
     };
 
@@ -272,7 +271,7 @@ export default {
 .falling-bricks {
   position: relative;
   width: 100%;
-  height: 100%; /* Высота 100% от высоты родительского контейнера */
+  height: 100%;
   background-color: #002d6e;
   background-image: url(../images/logos/logo.png);
   background-repeat: no-repeat;
@@ -309,7 +308,7 @@ export default {
 
 .instruments,
 .add {
-  pointer-events: auto; /* Чтобы изображения снова могли быть интерактивными */
+  pointer-events: auto;
 }
 
 .instruments {

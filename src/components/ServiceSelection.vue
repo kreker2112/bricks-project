@@ -135,17 +135,69 @@
         />
       </div>
     </div>
+    <!-- Лайтбокс -->
+    <transition name="fade">
+      <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
+        <div class="lightbox-content">
+          <button class="close-button" @click="closeLightbox">&times;</button>
+          <h2>Поживна суміш для зростання:</h2>
+          <div class="lightbox__checkboxes-container">
+            <form class="lightbox-checkboxes">
+              <div
+                v-for="(service, index) in services"
+                :key="service"
+                :class="[
+                  'checkbox-item',
+                  { checked: selectedServices.includes(service) },
+                ]"
+              >
+                <input
+                  :id="'lightbox-service-' + index"
+                  :name="'lightbox-service-' + index"
+                  type="checkbox"
+                  :value="service"
+                  v-model="lightboxSelectedServices"
+                />
+                <label :for="'lightbox-service-' + index">{{ service }}</label>
+              </div>
+            </form>
+          </div>
+          <div class="form">
+            <input
+              type="text"
+              v-model="lightboxName"
+              placeholder="Ім'я"
+              required
+            />
+            <input
+              type="tel"
+              v-model="lightboxPhone"
+              placeholder="Телефон"
+              required
+            />
+            <textarea
+              v-model="lightboxMessage"
+              placeholder="Повідомлення"
+              required
+            ></textarea>
+            <button @click="applySelection">Застосувати</button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
 
 export default {
   setup() {
+    const router = useRouter();
     const services = ref([
       "Позиціонування",
       "Брендування",
@@ -167,12 +219,18 @@ export default {
     ]);
 
     const selectedServices = ref([]);
+    const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
     const showSmallTree = ref(true);
+    const showLightbox = ref(false);
     const coins = ref([]);
     const drops = ref([]);
     const isHoveringOverFunnel = ref(false);
+
+    const lightboxName = ref("");
+    const lightboxPhone = ref("");
+    const lightboxMessage = ref("");
 
     const addServiceOnHover = (service) => {
       if (!selectedServices.value.includes(service)) {
@@ -224,6 +282,8 @@ export default {
           showSmallTree.value = false;
         }, 1); // задержка перед скрытием маленького дерева после роста большого
         isPouring.value = false;
+        showLightbox.value = true; // Показать лайтбокс после анимации
+        lightboxSelectedServices.value = [...selectedServices.value]; // Копируем выбранные сервисы в лайтбокс
       }, 1000); // быстрое появление дерева перед ростом
     };
 
@@ -255,13 +315,25 @@ export default {
       isHoveringOverFunnel.value = false;
     };
 
+    const applySelection = () => {
+      // Логика перехода на SecondPage
+      console.log("Apply selection and navigate to SecondPage");
+      router.push("/second-page");
+    };
+
+    const closeLightbox = () => {
+      showLightbox.value = false;
+    };
+
     return {
       services,
       selectedServices,
+      lightboxSelectedServices,
       pourWater,
       isPouring,
       isGrown,
       showSmallTree,
+      showLightbox,
       coins,
       onTreeGrown,
       drops,
@@ -271,12 +343,17 @@ export default {
       onDragOverFunnel,
       onDragEnterFunnel,
       onDragLeaveFunnel,
+      lightboxName,
+      lightboxPhone,
+      lightboxMessage,
+      applySelection,
+      closeLightbox,
     };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .service-selection {
   display: flex;
   flex-direction: column;
@@ -650,5 +727,117 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
+}
+
+.lightbox {
+  position: relative;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.568);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 740px;
+  height: 918px;
+  color: #ededed;
+  background-color: #002d6e;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.lightbox-content h2 {
+  font-size: 36px;
+  margin-bottom: 80px;
+}
+
+.lightbox__checkboxes-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+.form {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 366px;
+  height: 220px;
+}
+
+.form input {
+  border-radius: 8px;
+  height: 35px;
+  font-size: 16px;
+  font-family: "Montserrat";
+}
+
+.form textarea {
+  border-radius: 8px;
+  height: 98px;
+  font-size: 16px;
+  font-family: "Montserrat";
+}
+
+.form button {
+  margin-top: 20px;
+  width: 275px;
+  height: 52px;
+  background-color: #ff6400;
+}
+
+.form input,
+.form textarea {
+  width: 80%;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.form button {
+  background-color: orange;
+  font-size: 18px;
+  padding: 9.43px 18.85px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 </style>

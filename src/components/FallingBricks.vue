@@ -169,7 +169,7 @@ export default {
           width: 182,
           height: 70,
           bottom: 285,
-          left: "49%",
+          left: "50%",
           rotation: -25.14,
           color: "#d8d8d8",
         },
@@ -331,7 +331,6 @@ export default {
   width: 227px;
   top: 538px;
   right: 202px;
-  z-index: 2;
 }
 
 .add-arrow {

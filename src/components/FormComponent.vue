@@ -42,12 +42,18 @@ export default {
   background-color: #002d6e;
   color: white;
   padding: 20px;
-  width: 50%;
-  height: 80%;
+  width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.form h2 {
+  font-size: 42px;
+  font-family: "Montserrat";
+  font-weight: 400;
 }
 
 form {
@@ -57,15 +63,30 @@ form {
   align-items: center;
 }
 
-input,
-textarea {
-  width: 80%;
+input {
+  width: 289px;
+  height: 49px;
   margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+textarea {
+  width: 289px;
+  height: 78px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-left: 10px;
 }
 
 button {
-  background-color: orange;
+  margin-top: 60px;
+  background-color: #ff6400;
+  color: #ffffff;
   font-size: 18px;
+  font-weight: bolder;
   padding: 9.43px 18.85px;
   border-radius: 8px;
   border: none;

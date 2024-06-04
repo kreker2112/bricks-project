@@ -4,6 +4,9 @@
       <div class="upper-row">
         <div class="image" v-for="i in 2" :key="i"></div>
       </div>
+      <div class="middle-row">
+        <div class="image" v-for="i in 5" :key="i"></div>
+      </div>
       <div class="lower-row">
         <div class="image" v-for="i in 4" :key="i"></div>
       </div>
@@ -34,21 +37,31 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 70%;
 }
 
 .upper-row {
   display: flex;
-  height: 40%; /* Використання відсотків для відносної висоти */
+  gap: 0;
+  height: 39%; /* Використання відсотків для відносної висоти */
+}
+
+.middle-row {
+  display: flex;
+  gap: 0;
+  height: 35%; /* Використання відсотків для відносної висоти */
 }
 
 .lower-row {
   display: flex;
-  height: 40%; /* Використання відсотків для відносної висоти */
+  gap: 0;
+  height: 25%; /* Використання відсотків для відносної висоти */
 }
 
 .image {
   flex: 1;
   background-color: #ccc;
-  margin: 10px;
+  margin: 1px;
+  border: 2px #ccc;
 }
 </style>

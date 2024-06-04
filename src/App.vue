@@ -31,6 +31,6 @@ export default {
 }
 
 .footer {
-  flex-shrink: 0; /* Ensures footer does not shrink and occupies fixed space */
+  flex-shrink: 0;
 }
 </style>

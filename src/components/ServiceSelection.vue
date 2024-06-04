@@ -622,9 +622,7 @@ export default {
 }
 
 .big-coin.appear {
-  transform: scale(
-    1
-  );
+  transform: scale(1);
 }
 
 .coins-appear-enter-active {

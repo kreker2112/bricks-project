@@ -23,9 +23,7 @@ export default {
     const phone = ref("");
     const message = ref("");
 
-    const submitForm = () => {
-    
-    };
+    const submitForm = () => {};
 
     return {
       name,

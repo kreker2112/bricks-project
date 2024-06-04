@@ -243,7 +243,6 @@ export default {
           top: `-${pos.height}px`,
         };
 
-        
         setTimeout(
           () => {
             brick.style.top = `calc(100vh - ${pos.bottom + footerHeight}px - ${pos.height}px)`;

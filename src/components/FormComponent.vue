@@ -24,7 +24,7 @@ export default {
     const message = ref("");
 
     const submitForm = () => {
-      // handle form submission
+    
     };
 
     return {

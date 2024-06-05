@@ -1,6 +1,5 @@
-<!-- SecondPage.vue -->
 <template>
-  <div class="second-page-content">
+  <div class="second-page-content page">
     <div class="second-page">
       <div class="left-section">
         <div class="upper-row">
@@ -37,15 +36,10 @@ export default {
 </script>
 
 <style scoped>
-.page {
-  width: 0 !important;
-  height: 100%;
-  flex-shrink: 0;
-}
 .second-page-content {
   height: 100%;
-  opacity: 1; /* Замените на нужный вам цвет */
 }
+
 .second-page {
   display: flex;
   flex-direction: row;
@@ -63,19 +57,19 @@ export default {
 .upper-row {
   display: flex;
   gap: 0;
-  height: 40%; /* Використання відсотків для відносної висоти */
+  height: 40%;
 }
 
 .middle-row {
   display: flex;
   gap: 0;
-  height: 35%; /* Використання відсотків для відносної висоти */
+  height: 35%;
 }
 
 .lower-row {
   display: flex;
   gap: 0;
-  height: 25%; /* Використання відсотків для відносної висоти */
+  height: 25%;
 }
 
 .upper-row--image_1 {
@@ -140,18 +134,5 @@ export default {
 .left-section,
 .form-component {
   flex: 1;
-}
-
-.slide-right-enter-active {
-  animation: slideRight 1s forwards;
-}
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
 }
 </style>

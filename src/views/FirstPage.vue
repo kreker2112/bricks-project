@@ -1,6 +1,5 @@
-<!-- FirstPage.vue -->
 <template>
-  <div class="first-page-content" ref="firstPage">
+  <div class="first-page-content page">
     <div class="left-side">
       <FallingBricks />
     </div>
@@ -21,10 +20,7 @@ export default {
   },
   methods: {
     handleApplySelection() {
-      this.$refs.firstPage.classList.add("slide-left-leave-active");
-      setTimeout(() => {
-        this.$router.push("/second-page");
-      }, 500); // Длительность анимации в миллисекундах
+      this.$router.push("/second-page");
     },
   },
 };
@@ -47,15 +43,5 @@ export default {
   width: 40%;
   display: flex;
   flex-direction: column;
-}
-
-@media (max-width: 1200px) {
-  .left-side,
-  .right-side {
-    width: 100%;
-  }
-  .first-page-content {
-    flex-direction: column;
-  }
 }
 </style>

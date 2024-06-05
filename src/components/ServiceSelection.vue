@@ -479,6 +479,10 @@ export default {
     opacity: 1;
     transform: translateY(10px);
   }
+  50% {
+    opacity: 0.5;
+    transform: translateY(150px);
+  }
   100% {
     opacity: 0;
     transform: translateY(300px);
@@ -1267,7 +1271,7 @@ export default {
 }
 
 .coins-appear-enter-active {
-  transition: transform 2s;
+  transition: transform 3s;
 }
 
 .funnel-container {

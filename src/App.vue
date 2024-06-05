@@ -83,7 +83,7 @@ export default {
   opacity: 1; /* Пример цвета для второй страницы */
 }
 
-.slide-left-enter-active,
+/* .slide-left-enter-active,
 .slide-left-leave-active {
   animation: slideLeft 0.5s forwards;
 }
@@ -95,5 +95,5 @@ export default {
   100% {
     transform: translateX(-100%);
   }
-}
+} */
 </style>

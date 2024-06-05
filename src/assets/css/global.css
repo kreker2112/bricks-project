@@ -11,7 +11,7 @@ body {
   overflow: hidden;
 }
 
-@keyframes slideRight {
+/* @keyframes slideRight {
   from {
     transform: translateX(0);
   }
@@ -35,4 +35,4 @@ body {
 
 .slide-right-leave-active {
   animation: slideLeft 0.5s forwards;
-}
+} */

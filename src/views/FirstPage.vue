@@ -58,8 +58,8 @@ export default {
   }
 }
 
-.slide-left-leave-active {
-  animation: slideLeft 0.5s forwards;
+/* .slide-left-leave-active {
+  animation: slideLeft 0.01s forwards;
 }
 
 @keyframes slideLeft {
@@ -69,5 +69,5 @@ export default {
   100% {
     transform: translateX(-100%);
   }
-}
+} */
 </style>

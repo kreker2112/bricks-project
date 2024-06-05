@@ -143,15 +143,12 @@ export default {
 }
 
 .slide-right-enter-active {
-  animation: slideRight 0.5s forwards;
+  animation: slideRight 0.01s forwards;
 }
 
 @keyframes slideRight {
   0% {
     transform: translateX(100%);
-  }
-  50% {
-    transform: translateX(50%);
   }
   100% {
     transform: translateX(0);

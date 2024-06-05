@@ -194,9 +194,11 @@ import { ref } from "vue";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
+import { useRouter } from "vue-router";
 
 export default {
   setup(props, { emit }) {
+    const router = useRouter();
     const services = ref([
       "Позиціонування",
       "Брендування",
@@ -318,6 +320,7 @@ export default {
 
     const applySelection = () => {
       emit("apply-selection");
+      router.push("/second-page");
     };
 
     const closeLightbox = () => {

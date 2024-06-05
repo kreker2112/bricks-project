@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .second-page-content {
   height: 100%;
-  background-color: #ffffff; /* Замените на нужный вам цвет */
+  opacity: 1; /* Замените на нужный вам цвет */
 }
 .second-page {
   display: flex;
@@ -54,7 +54,7 @@ export default {
 .upper-row {
   display: flex;
   gap: 0;
-  height: 39%; /* Використання відсотків для відносної висоти */
+  height: 40%; /* Використання відсотків для відносної висоти */
 }
 
 .middle-row {

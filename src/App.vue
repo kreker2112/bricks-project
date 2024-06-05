@@ -64,36 +64,22 @@ export default {
 .page-container {
   display: flex;
   flex-direction: row;
-  width: 200vw; /* 100vw для каждой страницы */
+  width: 200vw;
   height: 100%;
   overflow: hidden;
 }
 
 .page {
   height: 100%;
-  flex-shrink: 0;
-  transition: width 0.5s;
+  flex-shrink: 1;
+  transition: width 1s;
 }
 
 .first-page {
-  opacity: 1; /* Пример цвета для первой страницы */
+  opacity: 1;
 }
 
 .second-page {
-  opacity: 1; /* Пример цвета для второй страницы */
+  opacity: 1;
 }
-
-/* .slide-left-enter-active,
-.slide-left-leave-active {
-  animation: slideLeft 0.5s forwards;
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-} */
 </style>

@@ -57,17 +57,4 @@ export default {
     flex-direction: column;
   }
 }
-
-/* .slide-left-leave-active {
-  animation: slideLeft 0.01s forwards;
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-} */
 </style>

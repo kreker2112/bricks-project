@@ -10,29 +10,3 @@ body {
     sans-serif;
   overflow: hidden;
 }
-
-/* @keyframes slideRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideLeft {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.slide-right-enter-active {
-  animation: slideRight 2s forwards;
-}
-
-.slide-right-leave-active {
-  animation: slideLeft 0.5s forwards;
-} */

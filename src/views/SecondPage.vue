@@ -143,7 +143,7 @@ export default {
 }
 
 .slide-right-enter-active {
-  animation: slideRight 0.01s forwards;
+  animation: slideRight 1s forwards;
 }
 
 @keyframes slideRight {

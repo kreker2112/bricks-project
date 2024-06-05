@@ -1,3 +1,4 @@
+<!-- ServiceSelection.vue -->
 <template>
   <div class="service-selection">
     <div class="service-selection__upper">
@@ -432,7 +433,7 @@ export default {
 
 .service-selection__lower--tree {
   position: relative;
-  width: 78%;
+  width: 100%;
   background-color: #ededed;
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;

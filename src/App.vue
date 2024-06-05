@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div class="main-content">
-      <transition name="slide-right" mode="out-in">
-        <router-view />
-      </transition>
+      <router-view />
     </div>
     <FooterComponent />
   </div>
@@ -20,14 +18,18 @@ export default {
   },
   setup() {
     const route = useRoute();
-    const activeRouteName = ref(route.name);
+    const transitionName = ref("");
 
-    watch(route, (newRoute) => {
-      activeRouteName.value = newRoute.name;
+    watch(route, (newRoute, oldRoute) => {
+      if (newRoute.name === "second-page" && oldRoute.name !== "second-page") {
+        transitionName.value = "slide-right";
+      } else {
+        transitionName.value = "";
+      }
     });
 
     return {
-      activeRouteName,
+      transitionName,
     };
   },
 };
@@ -47,23 +49,30 @@ export default {
   scroll-behavior: smooth;
 }
 
-.app-container {
-  display: flex;
-  width: 200vw; /* 100vw для каждой страницы */
-  height: 100%;
-}
-
-.view {
-  width: 100vw;
-  height: 100%;
-}
-
-.footer {
-  flex-shrink: 0;
-}
-
 .slide-right-enter-active,
 .slide-right-leave-active {
   animation: slideRight 0.5s forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slide-right-leave-active {
+  animation: slideLeft 0.5s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 </style>

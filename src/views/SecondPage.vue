@@ -30,6 +30,9 @@ export default {
   components: {
     FormComponent,
   },
+  mounted() {
+    this.$el.classList.add("slide-right-enter-active");
+  },
 };
 </script>
 
@@ -51,7 +54,7 @@ export default {
 .upper-row {
   display: flex;
   gap: 0;
-  height: 40%; /* Використання відсотків для відносної висоти */
+  height: 39%; /* Використання відсотків для відносної висоти */
 }
 
 .middle-row {
@@ -71,6 +74,7 @@ export default {
   width: 50%;
   background-color: #f3f3f3;
 }
+
 .upper-row--image_2 {
   height: 100%;
   width: 50%;
@@ -127,5 +131,18 @@ export default {
 .left-section,
 .form-component {
   flex: 1;
+}
+
+.slide-right-enter-active {
+  animation: slideRight 0.5s forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>

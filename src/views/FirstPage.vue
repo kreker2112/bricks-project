@@ -26,7 +26,7 @@ export default {
 .first-page {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 100%;
 }
 
 .left-side {
@@ -49,5 +49,8 @@ export default {
   .first-page {
     flex-direction: column;
   }
+}
+.slide-right-enter-active {
+  animation: slideRight 0.5s forwards;
 }
 </style>

@@ -1,3 +1,4 @@
+<!-- FormComponent.vue -->
 <template>
   <div class="form">
     <h2>Зв'яжіться з нами</h2>

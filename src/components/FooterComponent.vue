@@ -1,3 +1,4 @@
+<!-- FooterComponent.vue -->
 <template>
   <footer class="footer">
     <div class="footer-frame">

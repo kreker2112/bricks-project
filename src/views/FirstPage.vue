@@ -1,3 +1,4 @@
+<!-- FirstPage.vue -->
 <template>
   <div class="first-page-content" ref="firstPage">
     <div class="left-side">

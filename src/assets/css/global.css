@@ -10,3 +10,44 @@ body {
     sans-serif;
   overflow: hidden;
 }
+
+@media (max-width: 1080px) {
+  .falling-bricks,
+  .second-page-content,
+  .service-selection,
+  .form {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .center-content {
+    flex-direction: column;
+  }
+
+  .instruments,
+  .add {
+    top: auto;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+  }
+
+  .add-arrow,
+  .instruments__arrow {
+    top: auto;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+  }
+
+  .brick {
+    width: calc(100% - 30px);
+    margin: 15px 0;
+    left: 15px;
+    right: 15px;
+    top: auto;
+    bottom: 15px;
+    transform: none;
+  }
+}

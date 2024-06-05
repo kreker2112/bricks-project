@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="page-container">
-      <transition name="slide-left" mode="">
+      <transition
+        :name="initialLoad ? '' : 'slide-left'"
+        @after-enter="afterEnter"
+      >
         <router-view :key="$route.fullPath" />
       </transition>
     </div>
@@ -11,10 +14,25 @@
 
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
+import { ref } from "vue";
 
 export default {
   components: {
     FooterComponent,
+  },
+  setup() {
+    const initialLoad = ref(true);
+
+    const afterEnter = () => {
+      if (initialLoad.value) {
+        initialLoad.value = false;
+      }
+    };
+
+    return {
+      initialLoad,
+      afterEnter,
+    };
   },
 };
 </script>

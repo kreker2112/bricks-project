@@ -1,11 +1,11 @@
 <!-- FirstPage.vue -->
 <template>
-  <div class="first-page">
+  <div class="first-page-content" ref="firstPage">
     <div class="left-side">
       <FallingBricks />
     </div>
     <div class="right-side">
-      <ServiceSelection />
+      <ServiceSelection @apply-selection="handleApplySelection" />
     </div>
   </div>
 </template>
@@ -19,11 +19,19 @@ export default {
     FallingBricks,
     ServiceSelection,
   },
+  methods: {
+    handleApplySelection() {
+      this.$refs.firstPage.classList.add("slide-left-leave-active");
+      setTimeout(() => {
+        this.$router.push("/second-page");
+      }, 500); // Длительность анимации в миллисекундах
+    },
+  },
 };
 </script>
 
 <style scoped>
-.first-page {
+.first-page-content {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -46,11 +54,21 @@ export default {
   .right-side {
     width: 100%;
   }
-  .first-page {
+  .first-page-content {
     flex-direction: column;
   }
 }
-.slide-right-enter-active {
-  animation: slideRight 0.5s forwards;
+
+.slide-left-leave-active {
+  animation: slideLeft 0.5s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 </style>

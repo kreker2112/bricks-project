@@ -1,6 +1,6 @@
 <!-- ServiceSelection.vue -->
 <template>
-  <div class="service-selection">
+  <div class="service-selection" ref="serviceSelection">
     <div class="service-selection__upper">
       <img
         class="grow_buisness-with-mosaic"
@@ -191,14 +191,12 @@
 
 <script>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
 
 export default {
-  setup() {
-    const router = useRouter();
+  setup(props, { emit }) {
     const services = ref([
       "Позиціонування",
       "Брендування",
@@ -287,7 +285,7 @@ export default {
     };
 
     const onTreeGrown = () => {
-      const coinImages = Array(6).fill("src/images/big-coin.png");
+      const coinImages = Array(6).fill("../images/big-coin.png");
       coins.value = coinImages;
       setTimeout(() => {
         coins.value = [];
@@ -297,6 +295,7 @@ export default {
         }, 100);
       }, 500);
     };
+
     const onDrop = (event) => {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
@@ -318,7 +317,7 @@ export default {
     };
 
     const applySelection = () => {
-      router.push("/second-page");
+      emit("apply-selection");
     };
 
     const closeLightbox = () => {
@@ -433,7 +432,7 @@ export default {
 
 .service-selection__lower--tree {
   position: relative;
-  width: 100%;
+  width: 78%;
   background-color: #ededed;
   background-image: url(../images/ground.png);
   background-repeat: no-repeat;

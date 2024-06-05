@@ -1,7 +1,17 @@
+<!-- App.vue -->
 <template>
   <div id="app">
-    <div class="main-content">
-      <router-view />
+    <div class="page-container" ref="pageContainer">
+      <div class="page first-page">
+        <transition name="slide-left" mode="out-in">
+          <router-view v-if="$route.name === 'first-page'" />
+        </transition>
+      </div>
+      <div class="page second-page">
+        <transition name="slide-left" mode="out-in">
+          <router-view v-if="$route.name === 'second-page'" />
+        </transition>
+      </div>
     </div>
     <FooterComponent />
   </div>
@@ -9,28 +19,10 @@
 
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
 
 export default {
   components: {
     FooterComponent,
-  },
-  setup() {
-    const route = useRoute();
-    const transitionName = ref("");
-
-    watch(route, (newRoute, oldRoute) => {
-      if (newRoute.name === "second-page" && oldRoute.name !== "second-page") {
-        transitionName.value = "slide-right";
-      } else {
-        transitionName.value = "";
-      }
-    });
-
-    return {
-      transitionName,
-    };
   },
 };
 </script>
@@ -42,28 +34,30 @@ export default {
   flex-direction: column;
 }
 
-.main-content {
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
+.page-container {
+  display: flex;
+  flex-direction: row;
+  width: 200vw; /* 100vw для каждой страницы */
+  height: 100%;
+  overflow: hidden;
 }
 
-.slide-right-enter-active,
-.slide-right-leave-active {
-  animation: slideRight 0.5s forwards;
+.page {
+  width: 100vw;
+  height: 100%;
+  flex-shrink: 0;
 }
 
-@keyframes slideRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.first-page {
+  opacity: 1; /* Пример цвета для первой страницы */
 }
 
-.slide-right-leave-active {
+.second-page {
+  opacity: 1; /* Пример цвета для второй страницы */
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
   animation: slideLeft 0.5s forwards;
 }
 

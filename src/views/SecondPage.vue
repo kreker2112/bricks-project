@@ -1,42 +1,42 @@
+<!-- SecondPage.vue -->
 <template>
-  <div class="second-page">
-    <div class="left-section">
-      <div class="upper-row">
-        <div class="upper-row--image_1"></div>
-        <div class="upper-row--image_2"></div>
+  <div class="second-page-content">
+    <div class="second-page">
+      <div class="left-section">
+        <div class="upper-row">
+          <div class="upper-row--image_1"></div>
+          <div class="upper-row--image_2"></div>
+        </div>
+        <div class="middle-row">
+          <div class="middle-row--image_1"></div>
+          <div class="middle-row--image_2"></div>
+          <div class="middle-row--image_3"></div>
+          <div class="middle-row--image_4"></div>
+          <div class="middle-row--image_5"></div>
+        </div>
+        <div class="lower-row">
+          <div class="lower-row--image_1"></div>
+          <div class="lower-row--image_2"></div>
+          <div class="lower-row--image_3"></div>
+          <div class="lower-row--image_4"></div>
+        </div>
       </div>
-      <div class="middle-row">
-        <div class="middle-row--image_1"></div>
-        <div class="middle-row--image_2"></div>
-        <div class="middle-row--image_3"></div>
-        <div class="middle-row--image_4"></div>
-        <div class="middle-row--image_5"></div>
-      </div>
-      <div class="lower-row">
-        <div class="lower-row--image_1"></div>
-        <div class="lower-row--image_2"></div>
-        <div class="lower-row--image_3"></div>
-        <div class="lower-row--image_4"></div>
-      </div>
+      <FormComponent />
     </div>
-    <FormComponent />
   </div>
 </template>
 
 <script>
-import FormComponent from "../components/FormComponent.vue";
-
 export default {
-  components: {
-    FormComponent,
-  },
-  mounted() {
-    this.$el.classList.add("slide-right-enter-active");
-  },
+  name: "SecondPage",
 };
 </script>
 
 <style scoped>
+.second-page-content {
+  height: 100%;
+  background-color: #ffffff; /* Замените на нужный вам цвет */
+}
 .second-page {
   display: flex;
   flex-direction: row;

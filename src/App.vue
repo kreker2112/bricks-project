@@ -1,13 +1,12 @@
-<!-- App.vue -->
 <template>
   <div id="app">
     <div class="page-container" ref="pageContainer">
-      <div class="page first-page">
+      <div class="page first-page" :style="pageStyle('first-page')">
         <transition name="slide-left" mode="out-in">
           <router-view v-if="$route.name === 'first-page'" />
         </transition>
       </div>
-      <div class="page second-page">
+      <div class="page second-page" :style="pageStyle('second-page')">
         <transition name="slide-left" mode="out-in">
           <router-view v-if="$route.name === 'second-page'" />
         </transition>
@@ -19,10 +18,38 @@
 
 <script>
 import FooterComponent from "./components/FooterComponent.vue";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 
 export default {
   components: {
     FooterComponent,
+  },
+  setup() {
+    const route = useRoute();
+
+    const isSecondPage = computed(() => route.name === "second-page");
+
+    const pageStyle = (pageName) => {
+      if (isSecondPage.value && pageName === "second-page") {
+        return {
+          width: "100vw",
+        };
+      } else if (isSecondPage.value && pageName === "first-page") {
+        return {
+          width: "0",
+        };
+      } else {
+        return {
+          width: "100vw",
+        };
+      }
+    };
+
+    return {
+      isSecondPage,
+      pageStyle,
+    };
   },
 };
 </script>
@@ -43,9 +70,9 @@ export default {
 }
 
 .page {
-  width: 100vw;
   height: 100%;
   flex-shrink: 0;
+  transition: width 0.5s;
 }
 
 .first-page {

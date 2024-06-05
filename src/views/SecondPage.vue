@@ -27,12 +27,21 @@
 </template>
 
 <script>
+import FormComponent from "../components/FormComponent.vue";
 export default {
+  components: {
+    FormComponent,
+  },
   name: "SecondPage",
 };
 </script>
 
 <style scoped>
+.page {
+  width: 0 !important;
+  height: 100%;
+  flex-shrink: 0;
+}
 .second-page-content {
   height: 100%;
   opacity: 1; /* Замените на нужный вам цвет */
@@ -72,13 +81,13 @@ export default {
 .upper-row--image_1 {
   height: 100%;
   width: 50%;
-  background-color: #f3f3f3;
+  background-color: #d9d9d9;
 }
 
 .upper-row--image_2 {
   height: 100%;
   width: 50%;
-  background-color: #d9d9d9;
+  background-color: #f3f3f3;
 }
 
 .middle-row--image_1 {
@@ -140,6 +149,9 @@ export default {
 @keyframes slideRight {
   0% {
     transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(50%);
   }
   100% {
     transform: translateX(0);

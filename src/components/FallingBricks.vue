@@ -9,6 +9,7 @@
         />
       </a>
     </div>
+    <div class="services-block"></div>
 
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
@@ -340,6 +341,18 @@ export default {
   background-color: #002d6e;
 }
 
+.services-block {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  z-index: 10;
+  border: 4px dotted #ff6400;
+  z-index: 50;
+  border-radius: 15px;
+}
+
 .background-canvas {
   position: absolute;
   top: 0;
@@ -411,14 +424,14 @@ export default {
 .add {
   position: absolute;
   width: 227px;
-  top: 538px;
-  right: 202px;
+  top: 200px;
+  right: 300px;
 }
 
 .add-arrow {
   position: absolute;
-  top: 485px;
-  right: 79px;
+  top: 150px;
+  right: 190px;
 }
 
 .brick {

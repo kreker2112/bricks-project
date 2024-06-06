@@ -1258,7 +1258,7 @@ export default {
 .checkboxes-container {
   position: absolute;
   left: 43px;
-  top: 200px;
+  top: 30%;
   width: 290px;
   height: 300px;
 }

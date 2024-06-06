@@ -306,8 +306,6 @@ export default {
       }
     };
 
-    // Dragging
-
     return {
       services,
       selectedServices,

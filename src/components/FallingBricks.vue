@@ -306,8 +306,6 @@ export default {
       store.dispatch("addService", data);
     };
 
-    // const handleDragOver = (event) => {
-
     return {
       container,
       backgroundCanvas,

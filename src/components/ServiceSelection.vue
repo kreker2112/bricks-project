@@ -1318,7 +1318,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.568);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1363,10 +1362,10 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  animation: fadeIn 1s;
+  animation: fadeInLightbox 1s;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInLightbox {
   from {
     opacity: 0;
   }
@@ -1376,10 +1375,10 @@ export default {
 }
 
 .fade-leave-active {
-  animation: fadeOut 1s;
+  animation: fadeOutLightbox 1s;
 }
 
-@keyframes fadeOut {
+@keyframes fadeOutLightbox {
   from {
     opacity: 1;
   }

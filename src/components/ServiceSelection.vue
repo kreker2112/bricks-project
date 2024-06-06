@@ -12,38 +12,7 @@
         src="../images/business-arrow__down.png"
         alt="business-arrow__down"
       />
-      <div class="instruction-container">
-        <div class="instruction-service__container">
-          <img
-            src="../images/logos/instruction-service/service-arrow.png"
-            alt="service-arrow"
-            class="service-arrow"
-          />
-          <img
-            src="../images/logos/instruction-service/service-container.png"
-            alt="service-container"
-            class="service-container"
-          />
-          <img
-            src="../images/logos/instruction-service/service.png"
-            alt="service"
-            class="service"
-          />
-        </div>
-        <img
-          src="../images/logos/instruction-funnel.png"
-          alt="instruction-funnel"
-          class="instruction-funnel"
-        />
-        <img
-          src="../images/logos/instruction-funnel-water.png"
-          alt="instruction-funnel-water"
-        />
-        <img
-          src="../images/logos/instruction-grow.png"
-          alt="instruction-grow"
-        />
-      </div>
+
       <FallingBricks
         @service-dropped="handleServiceDropped"
         :funnelArea="funnelArea"
@@ -393,46 +362,6 @@ export default {
   position: absolute;
   left: 667px;
   top: 95px;
-}
-
-.instruction-container {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  left: 24px;
-  top: 25px;
-  width: 337px;
-  height: 140px;
-  border-radius: 16px;
-  background-color: #ffffff;
-}
-
-.instruction-funnel {
-  margin-top: 35px;
-}
-
-.service-arrow {
-  position: absolute;
-  bottom: 15px;
-  left: 55px;
-}
-
-.service-container {
-  position: absolute;
-  bottom: 20px;
-  left: 74px;
-}
-
-.service {
-  position: absolute;
-  bottom: 24px;
-  left: 84px;
-}
-
-.instruction-service__container {
-  position: relative;
 }
 
 .service-selection__lower {
@@ -1329,9 +1258,9 @@ export default {
 .checkboxes-container {
   position: absolute;
   left: 43px;
-  bottom: 74px;
-  width: 282px;
-  height: 249px;
+  top: 200px;
+  width: 290px;
+  height: 300px;
 }
 
 .checkboxes {

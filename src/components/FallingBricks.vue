@@ -125,7 +125,7 @@ export default {
         restitution: 0.8, // настройка упругости
         friction: 0.5, // настройка трения
       });
-      const leftWall = Bodies.rectangle(2, height / 2, 2, height, {
+      const leftWall = Bodies.rectangle(1, height / 2, 2, height, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,

@@ -1,4 +1,3 @@
-<!-- FallingBricks.vue -->
 <template>
   <div class="falling-bricks" ref="container">
     <a href="#">
@@ -29,238 +28,291 @@
       />
     </div>
 
-    <div
-      class="brick"
-      v-for="(brick, index) in bricks"
-      :key="index"
-      :style="brick.style"
-      @dragstart="onDragStart($event, brick.service)"
-      draggable="true"
-    >
-      {{ brick.service }}
-    </div>
+    <canvas ref="backgroundCanvas" class="background-canvas"></canvas>
+    <canvas ref="bricksCanvas" class="bricks-canvas"></canvas>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import {
+  Engine,
+  Render,
+  World,
+  Bodies,
+  Body,
+  Mouse,
+  MouseConstraint,
+  Events,
+  Composite,
+} from "matter-js";
 
 export default {
   setup() {
     const container = ref(null);
-    const footerHeight = 80;
+    const backgroundCanvas = ref(null);
+    const bricksCanvas = ref(null);
+    const engine = ref(null);
+    const renderBackground = ref(null);
+    const renderBricks = ref(null);
+
     const bricks = ref([
-      { service: "Контекст", style: {} },
-      { service: "Ідеї", style: {} },
-      { service: "Концепції", style: {} },
-      { service: "Брендування", style: {} },
-      { service: "SMM", style: {} },
-      { service: "Аудит", style: {} },
-      { service: "Маркетинг", style: {} },
-      { service: "Стратегії", style: {} },
-      { service: "Інтеграції", style: {} },
-      { service: "Просування", style: {} },
-      { service: "Дизайн", style: {} },
-      { service: "Логотип", style: {} },
-      { service: "Неймінг", style: {} },
-      { service: "SEO", style: {} },
-      { service: "Розсилки", style: {} },
-      { service: "Партнерство", style: {} },
-      { service: "TV", style: {} },
-      { service: "Позиціонування", style: {} },
+      { service: "Контекст" },
+      { service: "Ідеї" },
+      { service: "Концепції" },
+      { service: "Брендування" },
+      { service: "SMM" },
+      { service: "Аудит" },
+      { service: "Маркетинг" },
+      { service: "Стратегії" },
+      { service: "Інтеграції" },
+      { service: "Просування" },
+      { service: "Дизайн" },
+      { service: "Логотип" },
+      { service: "Неймінг" },
+      { service: "SEO" },
+      { service: "Розсилки" },
+      { service: "Партнерство" },
+      { service: "TV" },
+      { service: "Позиціонування" },
     ]);
 
-    const onDragStart = (event, service) => {
-      event.dataTransfer.setData("service", service);
+    const funnelArea = { x: 800, y: 500, width: 200, height: 200 }; // Примерные координаты лейки, замените на реальные значения
+
+    const addServiceOnHover = (service) => {
+      console.log("Service added to funnel:", service);
+      // Логика для добавления сервиса в список выбранных
     };
 
-    const setBrickStyles = () => {
-      const positions = [
-        {
-          width: 180,
-          height: 70,
-          bottom: 265,
-          left: "82%",
-          rotation: -8.07,
-          color: "#ff6400",
-        },
-        {
-          width: 121,
-          height: 70,
-          bottom: 290,
-          left: "31%",
-          rotation: -6.07,
-          color: "#ffffff",
-        },
-        {
-          width: 201,
-          height: 70,
-          bottom: 215,
-          left: "25px",
-          rotation: -8.22,
-          color: "#ff6400",
-        },
-        {
-          width: 246,
-          height: 70,
-          bottom: 72,
-          left: "35px",
-          rotation: 39.57,
-          color: "#ffffff",
-        },
-        {
-          width: 128,
-          height: 70,
-          bottom: 220,
-          left: "25%",
-          rotation: 11.1,
-          color: "#ff6400",
-        },
-        {
-          width: 153,
-          height: 70,
-          bottom: 152,
-          left: "13%",
-          rotation: -2.76,
-          color: "#d8d8d8",
-        },
-        {
-          width: 213,
-          height: 70,
-          bottom: 45,
-          left: "20%",
-          rotation: 25.45,
-          color: "#ff6400",
-        },
-        {
-          width: 186,
-          height: 70,
-          bottom: 140,
-          left: "27%",
-          rotation: -10.7,
-          color: "#d8d8d8",
-        },
-        {
-          width: 199,
-          height: 70,
-          bottom: 42,
-          left: "36%",
-          rotation: 25.63,
-          color: "#d8d8d8",
-        },
-        {
-          width: 232,
-          height: 70,
-          bottom: 193,
-          left: "40%",
-          rotation: 20.08,
-          color: "#ff6400",
-        },
-        {
-          width: 172,
-          height: 70,
-          bottom: 85,
-          left: "52%",
-          rotation: -8.95,
-          color: "#ffffff",
-        },
-        {
-          width: 182,
-          height: 70,
-          bottom: 285,
-          left: "50%",
-          rotation: -25.14,
-          color: "#d8d8d8",
-        },
-        {
-          width: 177,
-          height: 70,
-          bottom: 247,
-          left: "63%",
-          rotation: -3.94,
-          color: "#d8d8d8",
-        },
-        {
-          width: 120,
-          height: 70,
-          bottom: 159,
-          left: "63%",
-          rotation: 17.88,
-          color: "#d8d8d8",
-        },
-        {
-          width: 199,
-          height: 70,
-          bottom: 50,
-          left: "62%",
-          rotation: -33.74,
-          color: "#ff6400",
-        },
-        {
-          width: 235,
-          height: 70,
-          bottom: 155,
-          left: "77.5%",
-          rotation: 26.68,
-          color: "#ff6400",
-        },
-        {
-          width: 105,
-          height: 65,
-          bottom: 92,
-          left: "79%",
-          rotation: 6.99,
-          color: "#d9d9d9",
-        },
-        {
-          width: 280,
-          height: 70,
-          bottom: 15,
-          left: "calc(65% + 100px)",
-          rotation: -5.73,
-          color: "#ffffff",
-        },
-      ];
+    const updateCanvasSize = () => {
+      const width = container.value.clientWidth;
+      const height = container.value.clientHeight;
 
-      bricks.value.forEach((brick, index) => {
-        const pos = positions[index];
-        brick.style = {
-          width: `${pos.width}px`,
-          height: `${pos.height}px`,
-          left: `calc(${pos.left} + 15px)`,
-          transform: `rotate(${pos.rotation}deg)`,
-          backgroundColor: pos.color,
-          color: "#002d6e",
-          borderRadius: "16px",
-          fontStyle: "Montserrat",
-          fontSize: "25px",
-          fontWeight: "bold",
-          position: "absolute",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: "0",
-          transition: "top 1s ease-in-out",
-          top: `-${pos.height}px`,
-        };
+      renderBackground.value.options.width = width;
+      renderBackground.value.options.height = height;
 
-        setTimeout(
-          () => {
-            brick.style.top = `calc(100vh - ${pos.bottom + footerHeight}px - ${pos.height}px)`;
+      renderBackground.value.canvas.width = width;
+      renderBackground.value.canvas.height = height;
+
+      renderBackground.value.bounds.max.x = width;
+      renderBackground.value.bounds.max.y = height;
+
+      renderBricks.value.options.width = width;
+      renderBricks.value.options.height = height;
+
+      renderBricks.value.canvas.width = width;
+      renderBricks.value.canvas.height = height;
+
+      renderBricks.value.bounds.max.x = width;
+      renderBricks.value.bounds.max.y = height;
+
+      Render.lookAt(renderBackground.value, {
+        min: { x: 0, y: 0 },
+        max: { x: width, y: height },
+      });
+
+      Render.lookAt(renderBricks.value, {
+        min: { x: 0, y: 0 },
+        max: { x: width, y: height },
+      });
+
+      World.clear(engine.value.world);
+      Engine.clear(engine.value);
+
+      // Создание статических объектов (границы блока)
+      const ground = Bodies.rectangle(width / 2, height + 5, width, 10, {
+        isStatic: true,
+        restitution: 0.8, // настройка упругости
+        friction: 0.5, // настройка трения
+      });
+      const leftWall = Bodies.rectangle(2, height / 2, 2, height, {
+        isStatic: true,
+        restitution: 0.8,
+        friction: 0.5,
+      });
+      const rightWall = Bodies.rectangle(width + 5, height / 2, 10, height, {
+        isStatic: true,
+        restitution: 0.8,
+        friction: 0.5,
+      });
+      const ceiling = Bodies.rectangle(width / 2, -5, width, 10, {
+        isStatic: true,
+        restitution: 0.8,
+        friction: 0.5,
+      });
+
+      // Создание кирпичей
+      const brickBodies = bricks.value.map((brick) => {
+        const context = renderBricks.value.context;
+        context.font = "25px Montserrat";
+        const textWidth = context.measureText(brick.service).width + 20;
+        const brickWidth = Math.max(180, textWidth);
+        const brickHeight = 70;
+        const x = Math.random() * (width - brickWidth) + brickWidth / 2;
+        const y = Math.random() * (height - brickHeight) + brickHeight / 2;
+        const body = Bodies.rectangle(x, y, brickWidth, brickHeight, {
+          render: {
+            fillStyle: "#ff6400",
+            strokeStyle: "#000000",
+            lineWidth: 3,
           },
-          100 * (index + 1),
-        );
+          chamfer: { radius: 15 },
+          label: brick.service,
+          restitution: 0.8,
+          friction: 0.5,
+        });
+        Body.rotate(body, Math.random() * Math.PI);
+        return body;
+      });
+
+      // Добавление объектов в мир
+      World.add(engine.value.world, [
+        ground,
+        leftWall,
+        rightWall,
+        ceiling,
+        ...brickBodies,
+      ]);
+
+      // Создание мыши и ее ограничений
+      const mouse = Mouse.create(renderBricks.value.canvas);
+      const mouseConstraint = MouseConstraint.create(engine.value, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: {
+            visible: false,
+          },
+        },
+      });
+      World.add(engine.value.world, mouseConstraint);
+
+      renderBricks.value.mouse = mouse;
+
+      // Обработка событий мыши
+      Events.on(mouseConstraint, "mousedown", (event) => {
+        const { body } = event;
+        if (body) {
+          console.log("Dragging:", body.label);
+        }
+      });
+
+      // Логика обработки дропа в лейку
+      Events.on(mouseConstraint, "enddrag", (event) => {
+        const { body } = event;
+        if (body) {
+          const { position } = body;
+          if (
+            position.x > funnelArea.x &&
+            position.x < funnelArea.x + funnelArea.width &&
+            position.y > funnelArea.y &&
+            position.y < funnelArea.y + funnelArea.height
+          ) {
+            console.log("Dropped into the funnel:", body.label);
+            addServiceOnHover(body.label);
+            World.remove(engine.value.world, body);
+          } else {
+            // Возвращаем кирпич в границы канваса, если он был отпущен за его пределами
+            Body.setPosition(body, {
+              x: Math.max(0, Math.min(width, body.position.x)),
+              y: Math.max(0, Math.min(height, body.position.y)),
+            });
+          }
+        }
+      });
+
+      // Ограничение скорости для предотвращения вылета кирпичей
+      Events.on(engine.value, "beforeUpdate", () => {
+        const allBodies = Composite.allBodies(engine.value.world);
+        allBodies.forEach((body) => {
+          const maxSpeed = 10;
+          const speed = Math.sqrt(body.velocity.x ** 2 + body.velocity.y ** 2);
+          if (speed > maxSpeed) {
+            const scale = maxSpeed / speed;
+            Body.setVelocity(body, {
+              x: body.velocity.x * scale,
+              y: body.velocity.y * scale,
+            });
+          }
+        });
+      });
+
+      // Добавление текста поверх кирпичей
+      Events.on(renderBricks.value, "afterRender", () => {
+        const context = renderBricks.value.context;
+        const allBodies = Composite.allBodies(engine.value.world);
+        context.font = "25px Montserrat";
+        context.fillStyle = "#002d6e";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+
+        allBodies.forEach((body) => {
+          if (body.label && !body.isStatic) {
+            const { x, y } = body.position;
+            context.save();
+            context.translate(x, y);
+            context.rotate(body.angle);
+            context.fillText(body.label, 0, 0);
+            context.restore();
+          }
+        });
       });
     };
 
     onMounted(() => {
-      setBrickStyles();
+      // Создание физического движка
+      engine.value = Engine.create();
+
+      // Создание рендерера для фона
+      renderBackground.value = Render.create({
+        element: container.value,
+        canvas: backgroundCanvas.value,
+        engine: engine.value,
+        options: {
+          width: container.value.clientWidth,
+          height: container.value.clientHeight,
+          wireframes: false,
+          background: "transparent",
+        },
+      });
+
+      // Создание рендерера для кирпичей
+      renderBricks.value = Render.create({
+        element: container.value,
+        canvas: bricksCanvas.value,
+        engine: engine.value,
+        options: {
+          width: container.value.clientWidth,
+          height: container.value.clientHeight,
+          wireframes: false,
+          background: "transparent",
+        },
+      });
+
+      // Запуск движка и рендереров
+      Engine.run(engine.value);
+      Render.run(renderBackground.value);
+      Render.run(renderBricks.value);
+
+      updateCanvasSize();
+
+      // Обработка изменения размера окна
+      window.addEventListener("resize", updateCanvasSize);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener("resize", updateCanvasSize);
+      Render.stop(renderBackground.value);
+      Render.stop(renderBricks.value);
+      World.clear(engine.value.world);
+      Engine.clear(engine.value);
     });
 
     return {
       container,
+      backgroundCanvas,
+      bricksCanvas,
       bricks,
-      onDragStart,
     };
   },
 };
@@ -272,11 +324,24 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #002d6e;
-  background-image: url(../images/logos/logo.png);
-  background-repeat: no-repeat;
-  background-position: center 220px;
-  background-size: auto;
-  overflow: hidden;
+}
+
+.background-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
+.bricks-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
 }
 
 .bricks-frame {
@@ -288,7 +353,7 @@ export default {
   width: 100%;
   margin-top: 335px;
   color: #ffffff;
-  z-index: 1;
+  z-index: 30;
 }
 
 .center-content {
@@ -303,6 +368,7 @@ export default {
   left: 0;
   width: 100%;
   pointer-events: none;
+  z-index: 30;
 }
 
 .instruments,
@@ -315,7 +381,7 @@ export default {
   top: 555px;
   left: 105px;
   width: 335px;
-  z-index: 2;
+  z-index: 30;
 }
 
 .instruments__arrow {
@@ -338,10 +404,12 @@ export default {
 }
 
 .brick {
-  z-index: 0 !important;
+  z-index: 60 !important;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid black;
+  border-radius: 15px;
 }
 </style>

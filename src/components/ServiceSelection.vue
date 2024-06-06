@@ -44,6 +44,10 @@
           alt="instruction-grow"
         />
       </div>
+      <FallingBricks
+        @service-dropped="handleServiceDropped"
+        :funnelArea="funnelArea"
+      />
       <div class="funnel-container">
         <img
           :class="['funnel-image', isPouring ? 'funnel-moving' : '']"
@@ -1383,7 +1387,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .lightbox-content {
@@ -1398,11 +1402,13 @@ export default {
   border-radius: 8px;
   text-align: center;
   position: relative;
+  z-index: 1000;
 }
 
 .lightbox-content h2 {
   font-size: 36px;
   margin-bottom: 80px;
+  z-index: 1000;
 }
 
 .lightbox__checkboxes-container {
@@ -1410,12 +1416,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .lightbox-checkboxes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  z-index: 1000;
 }
 
 .fade-enter-active,

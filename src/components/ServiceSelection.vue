@@ -8,13 +8,18 @@
       />
       <img
         class="business-arrow__down"
+        :class="{ animated: isArrowAnimating }"
         src="../images/business-arrow__down.png"
         alt="business-arrow__down"
       />
 
       <div class="funnel-container">
         <img
-          :class="['funnel-image', isPouring ? 'funnel-moving' : '']"
+          :class="[
+            'funnel-image',
+            isPouring ? 'funnel-moving' : '',
+            isAnimating ? 'funnel-animating' : '',
+          ]"
           src="../images/logos/funnel.svg"
           alt="funnel"
           @click="pourWater"
@@ -206,6 +211,9 @@ export default {
     const lightboxName = ref("");
     const lightboxPhone = ref("");
     const lightboxMessage = ref("");
+    const isArrowAnimating = ref(false);
+    const isAnimating = ref(false);
+    let checkboxCounter = 0;
 
     const pourWater = () => {
       isPouring.value = true;
@@ -303,7 +311,19 @@ export default {
         store.dispatch("removeService", service);
       } else {
         store.dispatch("addService", service);
+        checkboxCounter++;
+        if (checkboxCounter === 1) {
+          isArrowAnimating.value = true;
+        }
+        animateFunnel();
       }
+    };
+
+    const animateFunnel = () => {
+      isAnimating.value = true;
+      setTimeout(() => {
+        isAnimating.value = false;
+      }, 300);
     };
 
     return {
@@ -329,6 +349,8 @@ export default {
       applySelection,
       closeLightbox,
       toggleService,
+      isArrowAnimating,
+      isAnimating,
     };
   },
 };
@@ -1431,14 +1453,29 @@ export default {
   cursor: pointer;
 }
 
-.close-button {
+.business-arrow__down {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 24px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
+  left: 667px;
+  top: 95px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.business-arrow__down.animated {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.funnel-animating {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 </style>

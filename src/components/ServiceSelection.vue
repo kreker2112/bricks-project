@@ -60,6 +60,7 @@
           @dragover.prevent="onDragOverFunnel"
           @mouseenter="isHoveringOverFunnel = true"
           @mouseleave="isHoveringOverFunnel = false"
+          @mousedown="startDragging"
         />
       </div>
       <div class="checkboxes-container">
@@ -144,7 +145,6 @@
     <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
-          <button class="close-button" @click="closeLightbox">&times;</button>
           <h2>Поживна суміш для зростання:</h2>
           <div class="lightbox__checkboxes-container">
             <form class="lightbox-checkboxes">
@@ -198,6 +198,9 @@ import { ref } from "vue";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
+import dropBig1 from "../images/drop-big1.png";
+import dropMedium1 from "../images/drop-medium1.png";
+import dropSmall1 from "../images/drop-small1.png";
 import { useRouter } from "vue-router";
 
 export default {
@@ -254,11 +257,14 @@ export default {
     };
 
     const createDrops = () => {
-      const dropSizes = ["big", "medium", "small"];
+      const dropSizes = ["big1", "medium1", "small1", "big", "medium", "small"];
       const dropSources = {
         big: dropBig,
         medium: dropMedium,
         small: dropSmall,
+        big1: dropBig1,
+        medium1: dropMedium1,
+        small1: dropSmall1,
       };
       let dropIndex = 0;
 
@@ -277,7 +283,7 @@ export default {
         });
 
         dropIndex += 1;
-      }, 500);
+      }, 600);
     };
 
     const growTree = () => {
@@ -298,7 +304,7 @@ export default {
         setTimeout(() => {
           showLightbox.value = true;
           lightboxSelectedServices.value = [...selectedServices.value];
-        }, 100);
+        }, 2000);
       }, 500);
     };
 
@@ -532,12 +538,12 @@ export default {
   width: 100px;
   height: 100px;
   transition:
-    opacity 0.001s ease-in-out,
-    transform 0.001s ease-in-out;
+    opacity 0.005s ease-in-out,
+    transform 0.005s ease-in-out;
 }
 
 .small-tree.hidden {
-  animation: fadeOut 0.001s forwards;
+  animation: fadeOut 0.005s forwards;
 }
 
 @keyframes fadeOut {
@@ -1378,7 +1384,7 @@ export default {
 .lightbox {
   position: relative;
   margin: 0 auto;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -1395,9 +1401,9 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 740px;
-  height: 918px;
+  height: calc(100vh - 80px);
   color: #ededed;
-  background-color: #002d6e;
+  background-color: #0049af;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -1489,7 +1495,7 @@ export default {
 }
 
 .form button {
-  background-color: ff6400;
+  background-color: #ff6400;
   font-size: 18px;
   padding: 9.43px 18.85px;
   border-radius: 8px;

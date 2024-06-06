@@ -1,12 +1,15 @@
 <template>
   <div class="falling-bricks" ref="container">
-    <a href="#">
-      <img
-        class="bricks-frame"
-        src="../images/logos/bricks-frame.png"
-        alt="bricks-frame"
-      />
-    </a>
+    <div class="brick-frame__container">
+      <a href="#">
+        <img
+          class="bricks-frame"
+          src="../images/logos/bricks-frame.png"
+          alt="bricks-frame"
+        />
+      </a>
+    </div>
+
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
     <div class="center-content">
@@ -141,38 +144,49 @@ export default {
         friction: 0.5,
       });
 
-      // Создание кирпичей
-      const brickBodies = bricks.value.map((brick) => {
+      // Массив цветов
+      const colors = ["#ff6400", "#d8d8d8", "#d9d9d9", "#ffffff"];
+
+      // Создание кирпичей с равномерным распределением цветов
+      const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        context.font = "25px Montserrat";
-        const textWidth = context.measureText(brick.service).width + 20;
-        const brickWidth = Math.max(180, textWidth);
-        const brickHeight = 70;
+        context.font = "18px Montserrat"; // Устанавливаем разумный размер шрифта
+        const padding = 20; // Добавление отступов для текста внутри кирпича
+        const textWidth = context.measureText(brick.service).width + padding;
+        const brickWidth = Math.max(160, textWidth); // Минимальная ширина кирпича
+        const brickHeight = 50;
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
-        const y = Math.random() * (height - brickHeight) + brickHeight / 2;
+        const y = brickHeight / 2; // Начальная позиция за пределами канваса
+        const color = colors[index % colors.length]; // Равномерное распределение цветов
         const body = Bodies.rectangle(x, y, brickWidth, brickHeight, {
           render: {
-            fillStyle: "#ff6400",
+            fillStyle: color,
             strokeStyle: "#000000",
             lineWidth: 3,
           },
-          chamfer: { radius: 15 },
+          chamfer: { radius: 25 },
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
         });
-        Body.rotate(body, Math.random() * Math.PI);
+        Body.rotate(body, Math.random() * Math.PI); // Случайный угол для каждого кирпича
         return body;
       });
 
       // Добавление объектов в мир
-      World.add(engine.value.world, [
-        ground,
-        leftWall,
-        rightWall,
-        ceiling,
-        ...brickBodies,
-      ]);
+      World.add(engine.value.world, [ground, leftWall, rightWall, ceiling]);
+
+      // Функция для добавления кирпичей по одному
+      let currentBrickIndex = 0;
+      const dropBrick = () => {
+        if (currentBrickIndex < brickBodies.length) {
+          World.add(engine.value.world, brickBodies[currentBrickIndex]);
+          currentBrickIndex++;
+          setTimeout(dropBrick, 500); // Интервал между падениями кирпичей
+        }
+      };
+
+      dropBrick(); // Запуск функции для падения кирпичей
 
       // Создание мыши и ее ограничений
       const mouse = Mouse.create(renderBricks.value.canvas);
@@ -241,7 +255,7 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        context.font = "25px Montserrat";
+        context.font = "18px Montserrat";
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";
@@ -342,17 +356,21 @@ export default {
   z-index: 60;
   width: 100%;
   height: 100%;
+  z-index: 90;
 }
 
 .bricks-frame {
   margin-left: 18px;
   margin-top: 19px;
+  z-index: 800;
+}
+.bricks-frame:hover {
+  cursor: pointer;
 }
 
 .ideas {
   width: 100%;
   margin-top: 335px;
-  color: #ffffff;
   z-index: 30;
 }
 
@@ -409,6 +427,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px !important;
   border: 1px solid black;
   border-radius: 15px;
 }

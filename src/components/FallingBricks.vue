@@ -9,7 +9,7 @@
         />
       </a>
     </div>
-    <div class="services-block"></div>
+    <div class="services-block" @drop="handleDrop" @dragover.prevent></div>
 
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
@@ -50,9 +50,11 @@ import {
   Events,
   Composite,
 } from "matter-js";
+import { useStore } from "vuex";
 
 export default {
   setup() {
+    const store = useStore();
     const container = ref(null);
     const backgroundCanvas = ref(null);
     const bricksCanvas = ref(null);
@@ -81,13 +83,6 @@ export default {
       { service: "Позиціонування" },
     ]);
 
-    const funnelArea = { x: 800, y: 500, width: 200, height: 200 }; // Примерные координаты лейки, замените на реальные значения
-
-    const addServiceOnHover = (service) => {
-      console.log("Service added to funnel:", service);
-      // Логика для добавления сервиса в список выбранных
-    };
-
     const updateCanvasSize = () => {
       const width = container.value.clientWidth;
       const height = container.value.clientHeight;
@@ -110,24 +105,13 @@ export default {
       renderBricks.value.bounds.max.x = width;
       renderBricks.value.bounds.max.y = height;
 
-      Render.lookAt(renderBackground.value, {
-        min: { x: 0, y: 0 },
-        max: { x: width, y: height },
-      });
-
-      Render.lookAt(renderBricks.value, {
-        min: { x: 0, y: 0 },
-        max: { x: width, y: height },
-      });
-
       World.clear(engine.value.world);
       Engine.clear(engine.value);
 
-      // Создание статических объектов (границы блока)
       const ground = Bodies.rectangle(width / 2, height + 5, width, 10, {
         isStatic: true,
-        restitution: 0.8, // настройка упругости
-        friction: 0.5, // настройка трения
+        restitution: 0.8,
+        friction: 0.5,
       });
       const leftWall = Bodies.rectangle(1, height / 2, 2, height, {
         isStatic: true,
@@ -145,20 +129,18 @@ export default {
         friction: 0.5,
       });
 
-      // Массив цветов
       const colors = ["#ff6400", "#d8d8d8", "#d9d9d9", "#ffffff"];
 
-      // Создание кирпичей с равномерным распределением цветов
       const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        context.font = "18px Montserrat"; // Устанавливаем разумный размер шрифта
-        const padding = 20; // Добавление отступов для текста внутри кирпича
+        context.font = "18px Montserrat";
+        const padding = 20;
         const textWidth = context.measureText(brick.service).width + padding;
-        const brickWidth = Math.max(160, textWidth); // Минимальная ширина кирпича
+        const brickWidth = Math.max(160, textWidth);
         const brickHeight = 50;
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
-        const y = brickHeight / 2; // Начальная позиция за пределами канваса
-        const color = colors[index % colors.length]; // Равномерное распределение цветов
+        const y = brickHeight / 2;
+        const color = colors[index % colors.length];
         const body = Bodies.rectangle(x, y, brickWidth, brickHeight, {
           render: {
             fillStyle: color,
@@ -170,26 +152,23 @@ export default {
           restitution: 0.8,
           friction: 0.5,
         });
-        Body.rotate(body, Math.random() * Math.PI); // Случайный угол для каждого кирпича
+        Body.rotate(body, Math.random() * Math.PI);
         return body;
       });
 
-      // Добавление объектов в мир
       World.add(engine.value.world, [ground, leftWall, rightWall, ceiling]);
 
-      // Функция для добавления кирпичей по одному
       let currentBrickIndex = 0;
       const dropBrick = () => {
         if (currentBrickIndex < brickBodies.length) {
           World.add(engine.value.world, brickBodies[currentBrickIndex]);
           currentBrickIndex++;
-          setTimeout(dropBrick, 500); // Интервал между падениями кирпичей
+          setTimeout(dropBrick, 500);
         }
       };
 
-      dropBrick(); // Запуск функции для падения кирпичей
+      dropBrick();
 
-      // Создание мыши и ее ограничений
       const mouse = Mouse.create(renderBricks.value.canvas);
       const mouseConstraint = MouseConstraint.create(engine.value, {
         mouse: mouse,
@@ -204,7 +183,6 @@ export default {
 
       renderBricks.value.mouse = mouse;
 
-      // Обработка событий мыши
       Events.on(mouseConstraint, "mousedown", (event) => {
         const { body } = event;
         if (body) {
@@ -212,22 +190,28 @@ export default {
         }
       });
 
-      // Логика обработки дропа в лейку
       Events.on(mouseConstraint, "enddrag", (event) => {
         const { body } = event;
         if (body) {
           const { position } = body;
+          const funnelArea = container.value
+            .querySelector(".services-block")
+            .getBoundingClientRect();
+          const funnelX = funnelArea.left;
+          const funnelY = funnelArea.top;
+          const funnelWidth = funnelArea.width;
+          const funnelHeight = funnelArea.height;
+
           if (
-            position.x > funnelArea.x &&
-            position.x < funnelArea.x + funnelArea.width &&
-            position.y > funnelArea.y &&
-            position.y < funnelArea.y + funnelArea.height
+            position.x > funnelX &&
+            position.x < funnelX + funnelWidth &&
+            position.y > funnelY &&
+            position.y < funnelY + funnelHeight
           ) {
             console.log("Dropped into the funnel:", body.label);
-            addServiceOnHover(body.label);
+            store.dispatch("addService", body.label);
             World.remove(engine.value.world, body);
           } else {
-            // Возвращаем кирпич в границы канваса, если он был отпущен за его пределами
             Body.setPosition(body, {
               x: Math.max(0, Math.min(width, body.position.x)),
               y: Math.max(0, Math.min(height, body.position.y)),
@@ -236,7 +220,6 @@ export default {
         }
       });
 
-      // Ограничение скорости для предотвращения вылета кирпичей
       Events.on(engine.value, "beforeUpdate", () => {
         const allBodies = Composite.allBodies(engine.value.world);
         allBodies.forEach((body) => {
@@ -252,7 +235,6 @@ export default {
         });
       });
 
-      // Добавление текста поверх кирпичей
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
@@ -275,10 +257,8 @@ export default {
     };
 
     onMounted(() => {
-      // Создание физического движка
       engine.value = Engine.create();
 
-      // Создание рендерера для фона
       renderBackground.value = Render.create({
         element: container.value,
         canvas: backgroundCanvas.value,
@@ -291,7 +271,6 @@ export default {
         },
       });
 
-      // Создание рендерера для кирпичей
       renderBricks.value = Render.create({
         element: container.value,
         canvas: bricksCanvas.value,
@@ -304,14 +283,12 @@ export default {
         },
       });
 
-      // Запуск движка и рендереров
       Engine.run(engine.value);
       Render.run(renderBackground.value);
       Render.run(renderBricks.value);
 
       updateCanvasSize();
 
-      // Обработка изменения размера окна
       window.addEventListener("resize", updateCanvasSize);
     });
 
@@ -323,11 +300,20 @@ export default {
       Engine.clear(engine.value);
     });
 
+    const handleDrop = (event) => {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text");
+      store.dispatch("addService", data);
+    };
+
+    // const handleDragOver = (event) => {
+
     return {
       container,
       backgroundCanvas,
       bricksCanvas,
       bricks,
+      handleDrop,
     };
   },
 };

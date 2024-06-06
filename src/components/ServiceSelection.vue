@@ -1,4 +1,3 @@
-<!-- ServiceSelection.vue -->
 <template>
   <div class="service-selection" ref="serviceSelection">
     <div class="service-selection__upper">
@@ -13,10 +12,6 @@
         alt="business-arrow__down"
       />
 
-      <FallingBricks
-        @service-dropped="handleServiceDropped"
-        :funnelArea="funnelArea"
-      />
       <div class="funnel-container">
         <img
           :class="['funnel-image', isPouring ? 'funnel-moving' : '']"
@@ -48,6 +43,7 @@
               type="checkbox"
               :value="service"
               v-model="selectedServices"
+              @change="toggleService(service)"
             />
             <label :for="'service-' + index">{{ service }}</label>
           </div>
@@ -163,7 +159,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
@@ -174,6 +171,7 @@ import { useRouter } from "vue-router";
 
 export default {
   setup(props, { emit }) {
+    const store = useStore();
     const router = useRouter();
     const services = ref([
       "Позиціонування",
@@ -195,7 +193,7 @@ export default {
       "SEO",
     ]);
 
-    const selectedServices = ref([]);
+    const selectedServices = computed(() => store.getters.selectedServices);
     const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
@@ -208,12 +206,6 @@ export default {
     const lightboxName = ref("");
     const lightboxPhone = ref("");
     const lightboxMessage = ref("");
-
-    const addServiceOnHover = (service) => {
-      if (!selectedServices.value.includes(service)) {
-        selectedServices.value.push(service);
-      }
-    };
 
     const pourWater = () => {
       isPouring.value = true;
@@ -280,13 +272,13 @@ export default {
     const onDrop = (event) => {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
-      addServiceOnHover(service);
+      store.dispatch("addService", service);
     };
 
     const onDragOverFunnel = (event) => {
       event.preventDefault();
       const service = event.dataTransfer.getData("service");
-      addServiceOnHover(service);
+      store.dispatch("addService", service);
     };
 
     const onDragEnterFunnel = () => {
@@ -306,6 +298,16 @@ export default {
       showLightbox.value = false;
     };
 
+    const toggleService = (service) => {
+      if (selectedServices.value.includes(service)) {
+        store.dispatch("removeService", service);
+      } else {
+        store.dispatch("addService", service);
+      }
+    };
+
+    // Dragging
+
     return {
       services,
       selectedServices,
@@ -319,7 +321,6 @@ export default {
       onTreeGrown,
       drops,
       onDrop,
-      addServiceOnHover,
       isHoveringOverFunnel,
       onDragOverFunnel,
       onDragEnterFunnel,
@@ -329,6 +330,7 @@ export default {
       lightboxMessage,
       applySelection,
       closeLightbox,
+      toggleService,
     };
   },
 };

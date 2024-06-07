@@ -57,6 +57,7 @@
     </div>
     <div class="service-selection__lower">
       <div class="service-selection__lower--tree">
+        <img class="ground" src="../images/ground.png" alt="ground" />
         <img
           class="business_up"
           src="../images/business_up.svg"
@@ -104,6 +105,14 @@
         </div>
       </div>
       <div class="service-selection__lower--cases">
+        <div class="cases__image-container">
+          <img
+            class="cases-image"
+            src="../images/logos/cases.png"
+            alt="cases"
+          />
+        </div>
+
         <img
           class="cases-arrow"
           src="../images/logos/cases-arrow.png"
@@ -398,11 +407,13 @@ export default {
   position: relative;
   width: 78%;
   background-color: #ededed;
-  background-image: url(../images/ground.png);
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: 100% auto; /* изображение растягивается на всю ширину, высота остается неизменной */
+  display: flex;
+  align-items: flex-end; /* Выравнивание по нижнему краю */
   z-index: 1;
+}
+
+.ground {
+  width: 100%;
 }
 
 .drops-container {
@@ -485,7 +496,7 @@ export default {
 .small-tree {
   position: absolute;
   left: 196px;
-  top: 210px;
+  top: 53%;
   width: 100px;
   height: 100px;
   transition:
@@ -867,7 +878,7 @@ export default {
 .big-tree {
   position: absolute;
   left: 196px;
-  top: 194px;
+  bottom: 100px; /* Привязываем дерево к нижнему краю контейнера */
   width: 110px;
   height: 110px;
   transform-origin: bottom;
@@ -1247,9 +1258,23 @@ export default {
 .service-selection__lower--cases {
   position: relative;
   width: 22%;
-  background-image: url(../images/logos/cases.png);
-  background-repeat: no-repeat;
-  background-position: center 50px;
+  display: flex;
+  align-items: flex-end; /* Выравнивание по нижнему краю */
+}
+
+.cases__image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.cases-image {
+  position: absolute;
+  top: 10%;
 }
 
 .cases-arrow {

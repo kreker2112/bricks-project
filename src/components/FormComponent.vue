@@ -1,8 +1,8 @@
 <!-- FormComponent.vue -->
 <template>
-  <div class="form">
+  <div class="right__section">
     <h2>Зв'яжіться з нами</h2>
-    <form @submit.prevent="submitForm">
+    <form class="form-right__section" @submit.prevent="submitForm">
       <input type="text" v-model="name" placeholder="Ім'я" required />
       <input type="tel" v-model="phone" placeholder="Телефон" required />
       <textarea
@@ -37,10 +37,9 @@ export default {
 </script>
 
 <style scoped>
-.form {
+.right__section {
   background-color: #002d6e;
   color: white;
-  padding: 20px;
   width: 30%;
   height: 100%;
   display: flex;
@@ -49,13 +48,13 @@ export default {
   align-items: center;
 }
 
-.form h2 {
+.right__section h2 {
   font-size: 42px;
   font-family: "Montserrat";
   font-weight: 400;
 }
 
-form {
+.form-right__section {
   display: flex;
   flex-direction: column;
   width: 100%;

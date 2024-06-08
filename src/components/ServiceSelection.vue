@@ -3,6 +3,7 @@
     <div class="service-selection__upper">
       <img
         class="grow_buisness-with-mosaic"
+        :class="{ animated: isGrowBusinessAnimating }"
         src="../images/grow_buisness-with-mosaic.png"
         alt="grow_buisness"
       />
@@ -127,7 +128,7 @@
       </div>
     </div>
 
-    <!-- <transition name="fade">
+    <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -174,12 +175,12 @@
           </div>
         </div>
       </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
 
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
@@ -222,13 +223,25 @@ export default {
     const coins = ref([]);
     const drops = ref([]);
     const isHoveringOverFunnel = ref(false);
-
+    const isGrowBusinessAnimating = ref(false);
     const lightboxName = ref("");
     const lightboxPhone = ref("");
     const lightboxMessage = ref("");
     const isArrowAnimating = ref(false);
     const isAnimating = ref(false);
     let checkboxCounter = 0;
+
+    watch(
+      () => store.getters.animationTrigger,
+      () => {
+        isGrowBusinessAnimating.value = true;
+        isArrowAnimating.value = true;
+        setTimeout(() => {
+          isGrowBusinessAnimating.value = false;
+          isArrowAnimating.value = false;
+        }, 1000); // Длительность анимации
+      },
+    );
 
     const pourWater = () => {
       isPouring.value = true;
@@ -326,18 +339,27 @@ export default {
         store.dispatch("removeService", service);
       } else {
         store.dispatch("addService", service);
-        checkboxCounter++;
+        checkboxCounter += 1;
         if (checkboxCounter === 1) {
           isArrowAnimating.value = true;
         }
         animateFunnel();
       }
+      animateGrowBusiness();
+    };
+
+    const animateGrowBusiness = () => {
+      isGrowBusinessAnimating.value = true;
+      setTimeout(() => {
+        isGrowBusinessAnimating.value = false;
+      }, 1000);
     };
 
     const animateFunnel = () => {
       isAnimating.value = true;
       setTimeout(() => {
         isAnimating.value = false;
+        isGrowBusinessAnimating.value = false;
       }, 300);
     };
 
@@ -366,6 +388,7 @@ export default {
       toggleService,
       isArrowAnimating,
       isAnimating,
+      isGrowBusinessAnimating,
     };
   },
 };
@@ -389,13 +412,6 @@ export default {
   height: 60%;
 }
 
-.grow_buisness-with-mosaic {
-  position: absolute;
-  right: 7%;
-  top: 7%;
-  width: 32%;
-}
-
 .funnel-container {
   position: absolute;
   top: 28%;
@@ -405,18 +421,28 @@ export default {
   z-index: 10;
 }
 
+@media (max-width: 2992px) {
+  .funnel-container {
+    width: 40%;
+  }
+}
+
 .funnel-image {
   cursor: pointer;
   width: 100%;
-  height: 100%;
   object-fit: contain;
   object-position: center;
   transition: transform 4s ease-in-out;
   z-index: 10;
 }
 
+.funnel-animating {
+  transform: scale(1.2);
+  transition: transform 1s ease-in-out;
+}
+
 .funnel-moving {
-  transform: translateX(-200px) translateY(200px) rotate(-60deg);
+  transform: translateX(-200px) translateY(180px) rotate(-60deg);
 }
 
 .drops-container {
@@ -432,6 +458,7 @@ export default {
   bottom: 90px;
   left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
+  z-index: 100;
 }
 
 .drop.small {
@@ -862,11 +889,37 @@ export default {
     opacity 1s;
 }
 
+.grow_buisness-with-mosaic {
+  position: absolute;
+  right: 7%;
+  top: 7%;
+  width: 32%;
+  transition: transform 1s ease-in-out;
+}
+
+.grow_buisness-with-mosaic.animated {
+  transform: scale(1.05);
+}
+
 .business-arrow__down {
   position: absolute;
   right: 5.5%;
   top: 15%;
   width: 7%;
+}
+
+.business-arrow__down.animated {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .service-selection__lower {
@@ -891,6 +944,7 @@ export default {
   position: relative;
   height: 40%;
   width: 100%;
+  z-index: 10;
 }
 
 .ground {
@@ -938,10 +992,19 @@ export default {
   z-index: 20;
 }
 
+@media (max-width: 2992px) {
+  .small-tree {
+    bottom: -6%;
+  }
+  .big-tree {
+    bottom: -2%;
+  }
+}
+
 .big-tree.tree-grow {
   transform: scale(2);
   opacity: 1;
-  animation: growTree 3s ease-in-out forwards;
+  animation: growTree 4s ease-in-out forwards;
 }
 
 @keyframes fadeOut {
@@ -1691,14 +1754,34 @@ export default {
   width: 18%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  z-index: 1000;
+}
+
+.service-selection__lower--cases-arrow {
+  width: 100%;
+  z-index: 1000;
 }
 
 .cases-arrow {
-  margin-left: 30%;
+  margin-left: 40%;
+  width: 50%;
+  z-index: 1000;
+}
+
+.cases-image {
+  width: 60%;
+  z-index: 1000;
+}
+
+.service-selection__lower--cases-image {
+  width: 100%;
+  z-index: 1000;
+}
+
+@media (max-width: 2992px) {
 }
 
 .checkboxes-container {
@@ -1765,6 +1848,24 @@ export default {
   pointer-events: none;
 }
 
+@media (max-width: 2992px) {
+  .checkboxes-container {
+    top: 15%;
+    width: 50%;
+    height: 60%;
+  }
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item {
+    width: 150%;
+    font-weight: 15%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+}
+
 .lightbox {
   position: absolute;
   top: 0;
@@ -1774,14 +1875,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .lightbox-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 740px;
+  width: 100%;
   height: calc(100vh - 80px);
   color: #ededed;
   background-color: #0049af;
@@ -1789,13 +1890,13 @@ export default {
   border-radius: 8px;
   text-align: center;
   position: relative;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .lightbox-content h2 {
   font-size: 36px;
   margin-bottom: 80px;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .lightbox__checkboxes-container {
@@ -1803,14 +1904,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .lightbox-checkboxes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .fade-enter-active,
@@ -1882,24 +1983,5 @@ export default {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-}
-
-.business-arrow__down.animated {
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.funnel-animating {
-  transform: scale(1.05);
-  transition: transform 0.3s ease-in-out;
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <div class="page-container">
-      <transition
-        :name="initialLoad ? '' : 'slide-left'"
-        @after-enter="afterEnter"
-      >
-        <router-view :key="$route.fullPath" />
-      </transition>
+      <router-view v-slot="{ Component }">
+        <transition
+          :name="initialLoad ? '' : 'slide-left'"
+          @after-enter="afterEnter"
+        >
+          <component :is="Component" :key="$route.fullPath" />
+        </transition>
+      </router-view>
     </div>
     <FooterComponent />
   </div>

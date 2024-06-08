@@ -57,7 +57,6 @@
     </div>
     <div class="service-selection__lower">
       <div class="service-selection__lower--tree">
-        <img class="ground" src="../images/ground.png" alt="ground" />
         <img
           class="business_up"
           src="../images/business_up.svg"
@@ -68,32 +67,38 @@
           src="../images/business_up-arrow.png"
           alt="business_up-arrow"
         />
-        <transition name="tree-fade">
-          <img
-            v-if="showSmallTree"
-            class="small-tree"
-            src="../images/small-tree.svg"
-            alt="small-tree"
-          />
-        </transition>
-        <transition name="tree-grow" @after-enter="onTreeGrown">
-          <img
-            v-if="isGrown"
-            class="big-tree"
-            :class="{ 'tree-grow': isGrown }"
-            src="../images/big-tree.png"
-            alt="big-tree"
-          />
-        </transition>
-        <transition-group name="coins-appear">
-          <img
-            v-for="(coin, index) in coins"
-            :key="index"
-            :class="['big-coin', 'coin-' + index]"
-            :src="coin"
-            alt="coin"
-          />
-        </transition-group>
+        <div class="small-tree__container">
+          <transition name="tree-fade">
+            <img
+              v-if="showSmallTree"
+              class="small-tree"
+              src="../images/small-tree.svg"
+              alt="small-tree"
+            />
+          </transition>
+          <transition name="tree-grow" @after-enter="onTreeGrown">
+            <img
+              v-if="isGrown"
+              class="big-tree"
+              :class="{ 'tree-grow': isGrown }"
+              src="../images/big-tree.png"
+              alt="big-tree"
+            />
+          </transition>
+          <transition-group name="coins-appear">
+            <img
+              v-for="(coin, index) in coins"
+              :key="index"
+              :class="['big-coin', 'coin-' + index]"
+              :src="coin"
+              alt="coin"
+            />
+          </transition-group>
+        </div>
+        <div class="ground-container">
+          <img class="ground" src="../images/ground.png" alt="ground" />
+        </div>
+
         <div class="drops-container">
           <img
             v-for="(drop, index) in drops"
@@ -105,23 +110,24 @@
         </div>
       </div>
       <div class="service-selection__lower--cases">
-        <div class="cases__image-container">
+        <div class="service-selection__lower--cases-arrow">
+          <img
+            class="cases-arrow"
+            src="../images/logos/cases-arrow.png"
+            alt="cases-arrow"
+          />
+        </div>
+        <div class="service-selection__lower--cases-image">
           <img
             class="cases-image"
             src="../images/logos/cases.png"
             alt="cases"
           />
         </div>
-
-        <img
-          class="cases-arrow"
-          src="../images/logos/cases-arrow.png"
-          alt="cases-arrow"
-        />
       </div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -168,7 +174,7 @@
           </div>
         </div>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -251,7 +257,7 @@ export default {
           clearInterval(intervalId);
           setTimeout(() => {
             drops.value = [];
-          }, 6000);
+          }, 4000);
           return;
         }
 
@@ -261,7 +267,7 @@ export default {
         });
 
         dropIndex += 1;
-      }, 600);
+      }, 700);
     };
 
     const growTree = () => {
@@ -365,7 +371,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .service-selection {
   display: flex;
   flex-direction: column;
@@ -385,35 +391,32 @@ export default {
 
 .grow_buisness-with-mosaic {
   position: absolute;
-  left: 435px;
-  top: 45px;
+  right: 7%;
+  top: 7%;
+  width: 32%;
 }
 
-.business-arrow__down {
+.funnel-container {
   position: absolute;
-  left: 667px;
-  top: 95px;
+  top: 28%;
+  right: 2%;
+  width: 40%;
+  height: 50%;
+  z-index: 10;
 }
 
-.service-selection__lower {
-  display: flex;
-  flex-direction: row;
+.funnel-image {
+  cursor: pointer;
   width: 100%;
-  height: 40%;
-  z-index: 1;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 4s ease-in-out;
+  z-index: 10;
 }
 
-.service-selection__lower--tree {
-  position: relative;
-  width: 78%;
-  background-color: #ededed;
-  display: flex;
-  align-items: flex-end; /* Выравнивание по нижнему краю */
-  z-index: 1;
-}
-
-.ground {
-  width: 100%;
+.funnel-moving {
+  transform: translateX(-200px) translateY(200px) rotate(-60deg);
 }
 
 .drops-container {
@@ -449,56 +452,468 @@ export default {
 @keyframes drop-fall {
   0% {
     opacity: 1;
-    transform: translateY(10px);
+    transform: translateY(6px);
+  }
+  1% {
+    opacity: 0.99;
+    transform: translateY(12px);
+  }
+  2% {
+    opacity: 0.98;
+    transform: translateY(18px);
+  }
+  3% {
+    opacity: 0.97;
+    transform: translateY(24px);
+  }
+  4% {
+    opacity: 0.96;
+    transform: translateY(30px);
+  }
+  5% {
+    opacity: 0.95;
+    transform: translateY(36px);
+  }
+  6% {
+    opacity: 0.94;
+    transform: translateY(42px);
+  }
+  7% {
+    opacity: 0.93;
+    transform: translateY(48px);
+  }
+  8% {
+    opacity: 0.92;
+    transform: translateY(54px);
+  }
+  9% {
+    opacity: 0.91;
+    transform: translateY(60px);
+  }
+  10% {
+    opacity: 0.9;
+    transform: translateY(66px);
+  }
+  11% {
+    opacity: 0.89;
+    transform: translateY(72px);
+  }
+  12% {
+    opacity: 0.88;
+    transform: translateY(78px);
+  }
+  13% {
+    opacity: 0.87;
+    transform: translateY(84px);
+  }
+  14% {
+    opacity: 0.86;
+    transform: translateY(90px);
+  }
+  15% {
+    opacity: 0.85;
+    transform: translateY(96px);
+  }
+  16% {
+    opacity: 0.84;
+    transform: translateY(102px);
+  }
+  17% {
+    opacity: 0.83;
+    transform: translateY(108px);
+  }
+  18% {
+    opacity: 0.82;
+    transform: translateY(114px);
+  }
+  19% {
+    opacity: 0.81;
+    transform: translateY(120px);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(126px);
+  }
+  21% {
+    opacity: 0.79;
+    transform: translateY(132px);
+  }
+  22% {
+    opacity: 0.78;
+    transform: translateY(138px);
+  }
+  23% {
+    opacity: 0.77;
+    transform: translateY(144px);
+  }
+  24% {
+    opacity: 0.76;
+    transform: translateY(150px);
+  }
+  25% {
+    opacity: 0.75;
+    transform: translateY(156px);
+  }
+  26% {
+    opacity: 0.74;
+    transform: translateY(162px);
+  }
+  27% {
+    opacity: 0.73;
+    transform: translateY(168px);
+  }
+  28% {
+    opacity: 0.72;
+    transform: translateY(174px);
+  }
+  29% {
+    opacity: 0.71;
+    transform: translateY(180px);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateY(186px);
+  }
+  31% {
+    opacity: 0.69;
+    transform: translateY(192px);
+  }
+  32% {
+    opacity: 0.68;
+    transform: translateY(198px);
+  }
+  33% {
+    opacity: 0.67;
+    transform: translateY(204px);
+  }
+  34% {
+    opacity: 0.66;
+    transform: translateY(210px);
+  }
+  35% {
+    opacity: 0.65;
+    transform: translateY(216px);
+  }
+  36% {
+    opacity: 0.64;
+    transform: translateY(222px);
+  }
+  37% {
+    opacity: 0.63;
+    transform: translateY(228px);
+  }
+  38% {
+    opacity: 0.62;
+    transform: translateY(234px);
+  }
+  39% {
+    opacity: 0.61;
+    transform: translateY(240px);
+  }
+  40% {
+    opacity: 0.6;
+    transform: translateY(246px);
+  }
+  41% {
+    opacity: 0.59;
+    transform: translateY(252px);
+  }
+  42% {
+    opacity: 0.58;
+    transform: translateY(258px);
+  }
+  43% {
+    opacity: 0.57;
+    transform: translateY(264px);
+  }
+  44% {
+    opacity: 0.56;
+    transform: translateY(270px);
+  }
+  45% {
+    opacity: 0.55;
+    transform: translateY(276px);
+  }
+  46% {
+    opacity: 0.54;
+    transform: translateY(282px);
+  }
+  47% {
+    opacity: 0.53;
+    transform: translateY(288px);
+  }
+  48% {
+    opacity: 0.52;
+    transform: translateY(294px);
+  }
+  49% {
+    opacity: 0.51;
+    transform: translateY(300px);
   }
   50% {
     opacity: 0.5;
-    transform: translateY(150px);
+    transform: translateY(306px);
+  }
+  51% {
+    opacity: 0.49;
+    transform: translateY(312px);
+  }
+  52% {
+    opacity: 0.48;
+    transform: translateY(318px);
+  }
+  53% {
+    opacity: 0.47;
+    transform: translateY(324px);
+  }
+  54% {
+    opacity: 0.46;
+    transform: translateY(330px);
+  }
+  55% {
+    opacity: 0.45;
+    transform: translateY(336px);
+  }
+  56% {
+    opacity: 0.44;
+    transform: translateY(342px);
+  }
+  57% {
+    opacity: 0.43;
+    transform: translateY(348px);
+  }
+  58% {
+    opacity: 0.42;
+    transform: translateY(354px);
+  }
+  59% {
+    opacity: 0.41;
+    transform: translateY(360px);
+  }
+  60% {
+    opacity: 0.4;
+    transform: translateY(366px);
+  }
+  61% {
+    opacity: 0.39;
+    transform: translateY(372px);
+  }
+  62% {
+    opacity: 0.38;
+    transform: translateY(378px);
+  }
+  63% {
+    opacity: 0.37;
+    transform: translateY(384px);
+  }
+  64% {
+    opacity: 0.36;
+    transform: translateY(390px);
+  }
+  65% {
+    opacity: 0.35;
+    transform: translateY(396px);
+  }
+  66% {
+    opacity: 0.34;
+    transform: translateY(402px);
+  }
+  67% {
+    opacity: 0.33;
+    transform: translateY(408px);
+  }
+  68% {
+    opacity: 0.32;
+    transform: translateY(414px);
+  }
+  69% {
+    opacity: 0.31;
+    transform: translateY(420px);
+  }
+  70% {
+    opacity: 0.3;
+    transform: translateY(426px);
+  }
+  71% {
+    opacity: 0.29;
+    transform: translateY(432px);
+  }
+  72% {
+    opacity: 0.28;
+    transform: translateY(438px);
+  }
+  73% {
+    opacity: 0.27;
+    transform: translateY(444px);
+  }
+  74% {
+    opacity: 0.26;
+    transform: translateY(450px);
+  }
+  75% {
+    opacity: 0.25;
+    transform: translateY(456px);
+  }
+  76% {
+    opacity: 0.24;
+    transform: translateY(462px);
+  }
+  77% {
+    opacity: 0.23;
+    transform: translateY(468px);
+  }
+  78% {
+    opacity: 0.22;
+    transform: translateY(474px);
+  }
+  79% {
+    opacity: 0.21;
+    transform: translateY(480px);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translateY(486px);
+  }
+  81% {
+    opacity: 0.19;
+    transform: translateY(492px);
+  }
+  82% {
+    opacity: 0.18;
+    transform: translateY(498px);
+  }
+  83% {
+    opacity: 0.17;
+    transform: translateY(504px);
+  }
+  84% {
+    opacity: 0.16;
+    transform: translateY(510px);
+  }
+  85% {
+    opacity: 0.15;
+    transform: translateY(516px);
+  }
+  86% {
+    opacity: 0.14;
+    transform: translateY(522px);
+  }
+  87% {
+    opacity: 0.13;
+    transform: translateY(528px);
+  }
+  88% {
+    opacity: 0.12;
+    transform: translateY(534px);
+  }
+  89% {
+    opacity: 0.11;
+    transform: translateY(540px);
+  }
+  90% {
+    opacity: 0.1;
+    transform: translateY(546px);
+  }
+  91% {
+    opacity: 0.09;
+    transform: translateY(552px);
+  }
+  92% {
+    opacity: 0.08;
+    transform: translateY(558px);
+  }
+  93% {
+    opacity: 0.07;
+    transform: translateY(564px);
+  }
+  94% {
+    opacity: 0.06;
+    transform: translateY(570px);
+  }
+  95% {
+    opacity: 0.05;
+    transform: translateY(576px);
+  }
+  96% {
+    opacity: 0.04;
+    transform: translateY(582px);
+  }
+  97% {
+    opacity: 0.03;
+    transform: translateY(588px);
+  }
+  98% {
+    opacity: 0.02;
+    transform: translateY(594px);
+  }
+  99% {
+    opacity: 0.01;
+    transform: translateY(598px);
   }
   100% {
     opacity: 0;
-    transform: translateY(300px);
+    transform: translateY(600px);
   }
 }
 
 .drop-fall-enter-active {
   transition:
-    transform 2s,
+    transform 4s,
     opacity 1s;
 }
 
-.business_up {
+.business-arrow__down {
   position: absolute;
-  left: 12px;
-  top: 32px;
-  width: 173px;
-  height: 88px;
+  right: 5.5%;
+  top: 15%;
+  width: 7%;
 }
 
-.business_up-arrow {
-  position: absolute;
-  left: 70px;
-  top: 120px;
+.service-selection__lower {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60%;
+  z-index: 1;
 }
 
-.money {
-  position: absolute;
-  right: 93px;
-  top: 80px;
+.service-selection__lower--tree {
+  position: relative;
+  width: 82%;
+  background-color: #ededed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 1;
 }
 
-.money-arrow {
+.ground-container {
+  position: relative;
+  height: 40%;
+  width: 100%;
+}
+
+.ground {
   position: absolute;
-  top: 140px;
-  right: 230px;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.small-tree__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 60%;
 }
 
 .small-tree {
   position: absolute;
-  left: 196px;
-  top: 53%;
-  width: 100px;
-  height: 100px;
+  left: 30%;
+  bottom: -17.5%;
+  width: 15%;
   transition:
     opacity 0.005s ease-in-out,
     transform 0.005s ease-in-out;
@@ -506,6 +921,25 @@ export default {
 
 .small-tree.hidden {
   animation: fadeOut 0.005s forwards;
+}
+
+.big-tree {
+  position: absolute;
+  left: 30%;
+  bottom: -15.5%;
+  width: 15%;
+  transform-origin: bottom;
+  transition:
+    width 3s ease-in-out,
+    height 3s ease-in-out,
+    opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.big-tree.tree-grow {
+  transform: scale(2);
+  opacity: 1;
+  animation: growTree 3s ease-in-out forwards;
 }
 
 @keyframes fadeOut {
@@ -875,26 +1309,6 @@ export default {
   }
 }
 
-.big-tree {
-  position: absolute;
-  left: 196px;
-  bottom: 100px; /* Привязываем дерево к нижнему краю контейнера */
-  width: 110px;
-  height: 110px;
-  transform-origin: bottom;
-  transition:
-    width 3s ease-in-out,
-    height 3s ease-in-out,
-    opacity 1s ease-in-out;
-  opacity: 0;
-}
-
-.big-tree.tree-grow {
-  transform: scale(2);
-  opacity: 1;
-  animation: growTree 3s ease-in-out forwards;
-}
-
 @keyframes growTree {
   0% {
     transform: scale(1);
@@ -1246,84 +1660,76 @@ export default {
   transition: transform 3s;
 }
 
-.funnel-container {
+.business_up {
+  margin-top: 4%;
+  margin-left: 4%;
+  width: 29%;
+}
+
+.business_up-arrow {
+  margin-top: 1%;
+  margin-left: 16%;
+  width: 10%;
+}
+
+.money {
   position: absolute;
-  top: 155px;
-  right: 0;
-  width: 350px;
-  height: auto;
-  z-index: 10;
+  right: 93px;
+  top: 80px;
+}
+
+.money-arrow {
+  position: absolute;
+  top: 140px;
+  right: 230px;
 }
 
 .service-selection__lower--cases {
   position: relative;
-  width: 22%;
+  width: 18%;
   display: flex;
-  align-items: flex-end; /* Выравнивание по нижнему краю */
-}
-
-.cases__image-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
+  flex-direction: column;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  z-index: 10;
-}
-
-.cases-image {
-  position: absolute;
-  top: 10%;
+  text-align: center;
 }
 
 .cases-arrow {
-  position: absolute;
-  top: 10px;
-  left: 70px;
-}
-
-.funnel-image {
-  cursor: pointer;
-  width: 100%;
-  transition: transform 4s ease-in-out;
-  z-index: 10;
-}
-
-.funnel-moving {
-  transform: translateX(-200px) translateY(200px) rotate(-60deg);
-}
-
-.instruction-funnel__active {
-  display: none;
-}
-
-.instruction-tree {
-  display: none;
+  margin-left: 30%;
 }
 
 .checkboxes-container {
   position: absolute;
-  left: 43px;
+  left: 2%;
   top: 30%;
-  width: 290px;
-  height: 300px;
+  width: 50%;
+  height: 47%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .checkboxes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  grid-gap: 5%;
+  width: 100%;
+  height: 100%;
 }
 
 .checkbox-item {
   display: flex;
   align-items: center;
   font-family: "Montserrat";
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 10%;
   color: #9e9e9e;
-  z-index: 20;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.checkbox-item label {
+  font-size: 90%;
 }
 
 .checkbox-item.checked {
@@ -1358,9 +1764,7 @@ export default {
 }
 
 .lightbox {
-  position: relative;
-  margin: 0 auto;
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -1476,13 +1880,6 @@ export default {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-}
-
-.business-arrow__down {
-  position: absolute;
-  left: 667px;
-  top: 95px;
-  transition: transform 0.5s ease-in-out;
 }
 
 .business-arrow__down.animated {

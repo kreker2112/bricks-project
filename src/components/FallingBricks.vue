@@ -1,14 +1,13 @@
 <template>
   <div class="falling-bricks" ref="container">
-    <div class="brick-frame__container">
-      <a href="#">
-        <img
-          class="bricks-frame"
-          src="../images/logos/bricks-frame.png"
-          alt="bricks-frame"
-        />
-      </a>
-    </div>
+    <a href="#">
+      <img
+        class="bricks-frame"
+        src="../images/logos/bricks-frame.png"
+        alt="bricks-frame"
+      />
+    </a>
+
     <div class="services-block" @drop="handleDrop" @dragover.prevent></div>
 
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
@@ -327,14 +326,13 @@
 
 .services-block {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 200px;
-  height: 200px;
-  z-index: 10;
+  top: 2%;
+  right: 2%;
+  width: 18%;
+  height: 19%;
   border: 4px dotted #ff6400;
   z-index: 50;
-  border-radius: 15px;
+  border-radius: 15%;
 }
 
 .background-canvas {
@@ -357,8 +355,10 @@
 }
 
 .bricks-frame {
-  margin-left: 18px;
-  margin-top: 19px;
+  position: absolute;
+  left: 2%;
+  top: 2%;
+  width: 6%;
   z-index: 800;
 }
 .bricks-frame:hover {
@@ -367,7 +367,7 @@
 
 .ideas {
   width: 100%;
-  margin-top: 335px;
+  margin-top: 29%;
   z-index: 30;
 }
 
@@ -393,29 +393,31 @@
 
 .instruments {
   position: absolute;
-  top: 555px;
-  left: 105px;
-  width: 335px;
+  top: 47%;
+  left: 9%;
+  width: 29%;
   z-index: 30;
 }
 
 .instruments__arrow {
   position: absolute;
-  top: 605px;
-  left: 450px;
+  top: 55%;
+  left: 38%;
+  width: 9%;
 }
 
 .add {
   position: absolute;
-  width: 227px;
-  top: 200px;
-  right: 300px;
+  width: 22%;
+  top: 20%;
+  right: 26%;
 }
 
 .add-arrow {
   position: absolute;
-  top: 150px;
-  right: 190px;
+  top: 15%;
+  right: 16%;
+  width: 9%;
 }
 
 .brick {

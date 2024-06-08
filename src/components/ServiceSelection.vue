@@ -907,6 +907,7 @@ export default {
   justify-content: flex-end;
   width: 100%;
   height: 60%;
+  z-index: 20;
 }
 
 .small-tree {
@@ -934,6 +935,7 @@ export default {
     height 3s ease-in-out,
     opacity 1s ease-in-out;
   opacity: 0;
+  z-index: 20;
 }
 
 .big-tree.tree-grow {

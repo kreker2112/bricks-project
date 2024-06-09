@@ -405,15 +405,15 @@ export default {
 
 @media (max-width: 3200px) {
   .falling-bricks .instruments__arrow {
-    top: 68% !important;
-    left: 39% !important;
+    top: 68%;
+    left: 39%;
   }
 }
 
 @media (max-width: 3000px) {
   .instruments {
-    top: 62% !important;
-    left: 9% !important;
+    top: 62%;
+    left: 9%;
   }
 }
 
@@ -423,8 +423,8 @@ export default {
     left: 9%;
   }
   .instruments__arrow {
-    top: 62% !important;
-    left: 39% !important;
+    top: 62%;
+    left: 39%;
   }
 }
 
@@ -434,12 +434,12 @@ export default {
     left: 9%;
   }
   .instruments__arrow {
-    top: 52% !important;
-    left: 39% !important;
+    top: 52%;
+    left: 39%;
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1200px) {
+@media (max-width: 1920px) and (max-height: 1083px) {
   .instruments {
     top: 53%;
   }
@@ -448,7 +448,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1080px) {
+@media (max-width: 1920px) and (max-height: 963px) {
   .instruments {
     top: 60%;
   }
@@ -457,7 +457,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 933px) {
   .instruments {
     top: 46%;
   }

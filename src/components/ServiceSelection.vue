@@ -60,13 +60,27 @@
       <div class="service-selection__lower--tree">
         <img
           class="business_up"
+          :class="{ invisible: isGrown }"
           src="../images/business_up.svg"
           alt="business_up"
         />
         <img
           class="business_up-arrow"
+          :class="{ invisible: isGrown }"
           src="../images/business_up-arrow.png"
           alt="business_up-arrow"
+        />
+        <img
+          class="take-money"
+          :class="{ invisible: isGrown }"
+          src="../images/money.png"
+          alt="take-money"
+        />
+        <img
+          class="take-money__arrow"
+          :class="{ invisible: isGrown }"
+          src="../images/money-arrow.png"
+          alt="money-arrow"
         />
         <div class="small-tree__container">
           <transition name="tree-fade">
@@ -128,7 +142,7 @@
       </div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -175,7 +189,7 @@
           </div>
         </div>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -463,21 +477,21 @@ export default {
   transform: translateX(-200px) translateY(180px) rotate(-60deg);
 }
 
-@media (max-width: 1920px) and (max-height: 1080px) {
+@media (max-width: 3000px) {
   .funnel-moving {
-    transform: translateX(-200px) translateY(140px) rotate(-60deg);
+    transform: translateX(-250px) translateY(180px) rotate(-60deg);
+  }
+}
+
+@media (max-width: 1920px) {
+  .funnel-moving {
+    transform: translateX(-200px) translateY(200px) rotate(-60deg);
   }
 }
 
 @media (max-width: 1400px) {
   .funnel-moving {
-    transform: translateX(-140px) translateY(180px) rotate(-60deg);
-  }
-}
-
-@media (max-width: 3000px) {
-  .funnel-moving {
-    transform: translateX(-250px) translateY(180px) rotate(-60deg);
+    transform: translateX(-140px) translateY(220px) rotate(-60deg);
   }
 }
 
@@ -523,7 +537,7 @@ export default {
   height: 40px;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 933px) {
   .drops-container {
     .drop.small {
       width: 10px;
@@ -556,7 +570,14 @@ export default {
   }
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 3000px) {
+  .drops-container {
+    top: 30%;
+    left: 34%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1083px) {
   .drops-container {
     top: 30%;
     left: 32%;
@@ -567,13 +588,6 @@ export default {
   .drops-container {
     top: 30%;
     left: 32%;
-  }
-}
-
-@media (max-width: 3000px) {
-  .drops-container {
-    top: 30%;
-    left: 34%;
   }
 }
 
@@ -998,7 +1012,7 @@ export default {
   transition: transform 2s ease-in-out;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 933px) {
   .grow_buisness-with-mosaic {
     width: 29%;
   }
@@ -1104,12 +1118,13 @@ export default {
   bottom: -17.5%;
   width: 15%;
   transition:
-    opacity 0.005s ease-in-out,
-    transform 0.005s ease-in-out;
+    opacity 0.0005s ease-out,
+    transform 0.0005s ease-out;
+  z-index: 90;
 }
 
 .small-tree.hidden {
-  animation: fadeOut 0.005s forwards;
+  animation: fadeOut 0.0005s ease-out;
 }
 
 .big-tree {
@@ -1123,13 +1138,76 @@ export default {
     height 3s ease-in-out,
     opacity 1s ease-in-out;
   opacity: 0;
-  z-index: 20;
+  z-index: 90;
 }
 
 .big-tree.tree-grow {
-  transform: scale(2);
+  transform: scale(3); /* Было 2 */
   opacity: 1;
-  animation: growTree 4s ease-in-out forwards;
+  animation: growTree 3s ease-in-out forwards;
+}
+
+@media (max-width: 3000px) {
+  .small-tree {
+    bottom: -5%;
+  }
+  .big-tree {
+    bottom: -5%;
+  }
+}
+@media (max-width: 2992px) {
+  .small-tree {
+    bottom: -6%;
+  }
+  .big-tree {
+    bottom: -2%;
+  }
+}
+@media (max-width: 2691px) {
+  .small-tree {
+    bottom: -18%;
+  }
+  .big-tree {
+    bottom: -16%;
+  }
+}
+@media (max-width: 1920px) and (max-height: 1083px) {
+  .small-tree {
+    bottom: -20%;
+  }
+  .big-tree {
+    bottom: -19%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 963px) {
+  .small-tree {
+    bottom: -10%;
+  }
+  .big-tree {
+    bottom: -9%;
+  }
+}
+
+@media (max-width: 1400px) and (max-height: 933px) {
+  .small-tree {
+    bottom: -20%;
+    left: 26%;
+    width: 20%;
+  }
+  .big-tree {
+    bottom: -20%;
+    width: 20%;
+    left: 28%;
+  }
+}
+@media (max-width: 1365px) {
+  .small-tree {
+    bottom: -25%;
+  }
+  .big-tree {
+    bottom: -26%;
+  }
 }
 
 @keyframes fadeOut {
@@ -1504,305 +1582,304 @@ export default {
     transform: scale(1);
   }
   1% {
-    transform: scale(1.01);
+    transform: scale(1.02); /* 3/150 = 0.02 */
   }
   2% {
-    transform: scale(1.02);
+    transform: scale(1.04); /* 3/150 * 2 = 0.04 */
   }
   3% {
-    transform: scale(1.03);
-  }
-  4% {
-    transform: scale(1.04);
-  }
-  5% {
-    transform: scale(1.05);
-  }
-  6% {
     transform: scale(1.06);
   }
-  7% {
-    transform: scale(1.07);
-  }
-  8% {
+  4% {
     transform: scale(1.08);
   }
-  9% {
-    transform: scale(1.09);
-  }
-  10% {
+  5% {
     transform: scale(1.1);
   }
-  11% {
-    transform: scale(1.11);
-  }
-  12% {
+  6% {
     transform: scale(1.12);
   }
-  13% {
-    transform: scale(1.13);
-  }
-  14% {
+  7% {
     transform: scale(1.14);
   }
-  15% {
-    transform: scale(1.15);
-  }
-  16% {
+  8% {
     transform: scale(1.16);
   }
-  17% {
-    transform: scale(1.17);
-  }
-  18% {
+  9% {
     transform: scale(1.18);
   }
-  19% {
-    transform: scale(1.19);
-  }
-  20% {
+  10% {
     transform: scale(1.2);
   }
-  21% {
-    transform: scale(1.21);
-  }
-  22% {
+  11% {
     transform: scale(1.22);
   }
-  23% {
-    transform: scale(1.23);
-  }
-  24% {
+  12% {
     transform: scale(1.24);
   }
-  25% {
-    transform: scale(1.25);
-  }
-  26% {
+  13% {
     transform: scale(1.26);
   }
-  27% {
-    transform: scale(1.27);
-  }
-  28% {
+  14% {
     transform: scale(1.28);
   }
-  29% {
-    transform: scale(1.29);
-  }
-  30% {
+  15% {
     transform: scale(1.3);
   }
-  31% {
-    transform: scale(1.31);
-  }
-  32% {
+  16% {
     transform: scale(1.32);
   }
-  33% {
-    transform: scale(1.33);
-  }
-  34% {
+  17% {
     transform: scale(1.34);
   }
-  35% {
-    transform: scale(1.35);
-  }
-  36% {
+  18% {
     transform: scale(1.36);
   }
-  37% {
-    transform: scale(1.37);
-  }
-  38% {
+  19% {
     transform: scale(1.38);
   }
-  39% {
-    transform: scale(1.39);
-  }
-  40% {
+  20% {
     transform: scale(1.4);
   }
-  41% {
-    transform: scale(1.41);
-  }
-  42% {
+  21% {
     transform: scale(1.42);
   }
-  43% {
-    transform: scale(1.43);
-  }
-  44% {
+  22% {
     transform: scale(1.44);
   }
-  45% {
-    transform: scale(1.45);
-  }
-  46% {
+  23% {
     transform: scale(1.46);
   }
-  47% {
-    transform: scale(1.47);
-  }
-  48% {
+  24% {
     transform: scale(1.48);
   }
-  49% {
-    transform: scale(1.49);
-  }
-  50% {
+  25% {
     transform: scale(1.5);
   }
-  51% {
-    transform: scale(1.51);
-  }
-  52% {
+  26% {
     transform: scale(1.52);
   }
-  53% {
-    transform: scale(1.53);
-  }
-  54% {
+  27% {
     transform: scale(1.54);
   }
-  55% {
-    transform: scale(1.55);
-  }
-  56% {
+  28% {
     transform: scale(1.56);
   }
-  57% {
-    transform: scale(1.57);
-  }
-  58% {
+  29% {
     transform: scale(1.58);
   }
-  59% {
-    transform: scale(1.59);
-  }
-  60% {
+  30% {
     transform: scale(1.6);
   }
-  61% {
-    transform: scale(1.61);
-  }
-  62% {
+  31% {
     transform: scale(1.62);
   }
-  63% {
-    transform: scale(1.63);
-  }
-  64% {
+  32% {
     transform: scale(1.64);
   }
-  65% {
-    transform: scale(1.65);
-  }
-  66% {
+  33% {
     transform: scale(1.66);
   }
-  67% {
-    transform: scale(1.67);
-  }
-  68% {
+  34% {
     transform: scale(1.68);
   }
-  69% {
-    transform: scale(1.69);
-  }
-  70% {
+  35% {
     transform: scale(1.7);
   }
-  71% {
-    transform: scale(1.71);
-  }
-  72% {
+  36% {
     transform: scale(1.72);
   }
-  73% {
-    transform: scale(1.73);
-  }
-  74% {
+  37% {
     transform: scale(1.74);
   }
-
-  75% {
-    transform: scale(1.75);
-  }
-  76% {
+  38% {
     transform: scale(1.76);
   }
-  77% {
-    transform: scale(1.77);
-  }
-  78% {
+  39% {
     transform: scale(1.78);
   }
-  79% {
-    transform: scale(1.79);
-  }
-  80% {
+  40% {
     transform: scale(1.8);
   }
-  81% {
-    transform: scale(1.81);
-  }
-  82% {
+  41% {
     transform: scale(1.82);
   }
-  83% {
-    transform: scale(1.83);
-  }
-  84% {
+  42% {
     transform: scale(1.84);
   }
-  85% {
-    transform: scale(1.85);
-  }
-  86% {
+  43% {
     transform: scale(1.86);
   }
-  87% {
-    transform: scale(1.87);
-  }
-  88% {
+  44% {
     transform: scale(1.88);
   }
-  89% {
-    transform: scale(1.89);
-  }
-  90% {
+  45% {
     transform: scale(1.9);
   }
-  91% {
-    transform: scale(1.91);
-  }
-  92% {
+  46% {
     transform: scale(1.92);
   }
-  93% {
-    transform: scale(1.93);
-  }
-  94% {
+  47% {
     transform: scale(1.94);
   }
-  95% {
-    transform: scale(1.95);
-  }
-  96% {
+  48% {
     transform: scale(1.96);
   }
-  97% {
-    transform: scale(1.97);
-  }
-  98% {
+  49% {
     transform: scale(1.98);
   }
+  50% {
+    transform: scale(2);
+  }
+  51% {
+    transform: scale(2.02);
+  }
+  52% {
+    transform: scale(2.04);
+  }
+  53% {
+    transform: scale(2.06);
+  }
+  54% {
+    transform: scale(2.08);
+  }
+  55% {
+    transform: scale(2.1);
+  }
+  56% {
+    transform: scale(2.12);
+  }
+  57% {
+    transform: scale(2.14);
+  }
+  58% {
+    transform: scale(2.16);
+  }
+  59% {
+    transform: scale(2.18);
+  }
+  60% {
+    transform: scale(2.2);
+  }
+  61% {
+    transform: scale(2.22);
+  }
+  62% {
+    transform: scale(2.24);
+  }
+  63% {
+    transform: scale(2.26);
+  }
+  64% {
+    transform: scale(2.28);
+  }
+  65% {
+    transform: scale(2.3);
+  }
+  66% {
+    transform: scale(2.32);
+  }
+  67% {
+    transform: scale(2.34);
+  }
+  68% {
+    transform: scale(2.36);
+  }
+  69% {
+    transform: scale(2.38);
+  }
+  70% {
+    transform: scale(2.4);
+  }
+  71% {
+    transform: scale(2.42);
+  }
+  72% {
+    transform: scale(2.44);
+  }
+  73% {
+    transform: scale(2.46);
+  }
+  74% {
+    transform: scale(2.48);
+  }
+  75% {
+    transform: scale(2.5);
+  }
+  76% {
+    transform: scale(2.52);
+  }
+  77% {
+    transform: scale(2.54);
+  }
+  78% {
+    transform: scale(2.56);
+  }
+  79% {
+    transform: scale(2.58);
+  }
+  80% {
+    transform: scale(2.6);
+  }
+  81% {
+    transform: scale(2.62);
+  }
+  82% {
+    transform: scale(2.64);
+  }
+  83% {
+    transform: scale(2.66);
+  }
+  84% {
+    transform: scale(2.68);
+  }
+  85% {
+    transform: scale(2.7);
+  }
+  86% {
+    transform: scale(2.72);
+  }
+  87% {
+    transform: scale(2.74);
+  }
+  88% {
+    transform: scale(2.76);
+  }
+  89% {
+    transform: scale(2.78);
+  }
+  90% {
+    transform: scale(2.8);
+  }
+  91% {
+    transform: scale(2.82);
+  }
+  92% {
+    transform: scale(2.84);
+  }
+  93% {
+    transform: scale(2.86);
+  }
+  94% {
+    transform: scale(2.88);
+  }
+  95% {
+    transform: scale(2.9);
+  }
+  96% {
+    transform: scale(2.92);
+  }
+  97% {
+    transform: scale(2.94);
+  }
+  98% {
+    transform: scale(2.96);
+  }
   99% {
-    transform: scale(1.99);
+    transform: scale(2.98);
   }
   100% {
-    transform: scale(2);
+    transform: scale(3); /* Было 2 */
   }
 }
 
@@ -1854,12 +1931,30 @@ export default {
   margin-top: 4%;
   margin-left: 4%;
   width: 29%;
+  z-index: 50;
 }
 
 .business_up-arrow {
   margin-top: 1%;
   margin-left: 16%;
   width: 10%;
+  z-index: 50;
+}
+
+.take-money {
+  position: absolute;
+  right: 25%;
+  top: 45%;
+  width: 29%;
+  z-index: 50;
+}
+
+.take-money__arrow {
+  position: absolute;
+  top: 56%;
+  right: 47%;
+  width: 10%;
+  z-index: 50;
 }
 
 @media (max-width: 3000px) {
@@ -1873,16 +1968,38 @@ export default {
   }
 }
 
-.money {
-  position: absolute;
-  right: 93px;
-  top: 80px;
+@media (max-width: 1920px) and (max-height: 963px) {
+  .take-money {
+    right: 25%;
+    top: 40%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 50%;
+    right: 46%;
+    width: 11%;
+  }
 }
 
-.money-arrow {
-  position: absolute;
-  top: 140px;
-  right: 230px;
+@media (max-width: 1400px) and (max-height: 933px) {
+  .business_up {
+    width: 40%;
+  }
+  .business_up-arrow {
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 20%;
+  }
+  .take-money {
+    right: 20%;
+    top: 48%;
+    width: 40%;
+  }
+  .take-money__arrow {
+    top: 57%;
+    right: 45%;
+    width: 12%;
+  }
 }
 
 .service-selection__lower--cases {
@@ -1912,6 +2029,16 @@ export default {
   width: 100%;
 }
 
+@media (max-width: 3000px) {
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 70%;
+  }
+}
+
 @media (max-width: 2691px) {
   .cases-arrow {
     margin-left: 30%;
@@ -1922,19 +2049,19 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1200px) {
+@media (max-width: 1920px) and (max-height: 1083px) {
   .cases-image {
     width: 76%;
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1080px) {
+@media (max-width: 1920px) and (max-height: 963px) {
   .cases-image {
     width: 70%;
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 933px) {
   .service-selection__lower--cases {
     justify-content: center;
     gap: 4%;
@@ -1945,16 +2072,6 @@ export default {
   }
   .cases-image {
     width: 85%;
-  }
-}
-
-@media (max-width: 3000px) {
-  .cases-arrow {
-    margin-left: 30%;
-    width: 55%;
-  }
-  .cases-image {
-    width: 70%;
   }
 }
 
@@ -2024,19 +2141,19 @@ export default {
 
 @media (max-width: 3000px) {
   .checkboxes-container {
-    top: 8% !important;
-    width: 55% !important;
-    height: 65% !important;
+    top: 8%;
+    width: 55%;
+    height: 65%;
   }
   .checkboxes {
-    grid-gap: 8% !important;
+    grid-gap: 8%;
   }
   .checkbox-item {
-    width: 170% !important;
-    font-weight: 20% !important;
+    width: 170%;
+    font-weight: 20%;
   }
   .checkbox-item label {
-    font-size: 130% !important;
+    font-size: 130%;
   }
 }
 
@@ -2058,7 +2175,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1200px) {
+@media (max-width: 1920px) and (max-height: 1083px) {
   .checkboxes-container {
     top: 10%;
     left: 5%;
@@ -2067,7 +2184,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1080px) {
+@media (max-width: 1920px) and (max-height: 963px) {
   .checkboxes-container {
     top: 10%;
     left: 5%;
@@ -2082,7 +2199,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 933px) {
   .checkboxes-container {
     top: 6%;
     width: 15%;
@@ -2218,60 +2335,8 @@ export default {
   cursor: pointer;
 }
 
-@media (max-width: 1365px) {
-  .small-tree {
-    bottom: -25% !important;
-  }
-  .big-tree {
-    bottom: -26% !important;
-  }
-}
-@media (max-width: 1400px) {
-  .small-tree {
-    bottom: -28% !important;
-  }
-  .big-tree {
-    bottom: -26% !important;
-  }
-}
-@media (max-width: 1920px) and (max-height: 1080px) {
-  .small-tree {
-    bottom: -8% !important;
-  }
-  .big-tree {
-    bottom: -6% !important;
-  }
-}
-@media (max-width: 1920px) and (max-height: 1200px) {
-  .small-tree {
-    bottom: -18% !important;
-  }
-  .big-tree {
-    bottom: -16% !important;
-  }
-}
-@media (max-width: 2691px) {
-  .small-tree {
-    bottom: -18% !important;
-  }
-  .big-tree {
-    bottom: -16% !important;
-  }
-}
-@media (max-width: 2992px) {
-  .small-tree {
-    bottom: -6% !important;
-  }
-  .big-tree {
-    bottom: -2% !important;
-  }
-}
-@media (max-width: 3000px) {
-  .small-tree {
-    bottom: -5% !important;
-  }
-  .big-tree {
-    bottom: -5% !important;
-  }
+.invisible {
+  visibility: hidden;
+  opacity: 0;
 }
 </style>

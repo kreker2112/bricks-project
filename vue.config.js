@@ -2,9 +2,9 @@ const { defineConfig } = require("@vue/cli-service");
 const webpack = require("webpack");
 
 module.exports = defineConfig({
-  // devServer: {
-  //   hot: false,
-  // },
+  devServer: {
+    hot: true,
+  },
   publicPath: "/Mozaic/",
   transpileDependencies: true,
   configureWebpack: {

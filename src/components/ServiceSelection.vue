@@ -73,7 +73,7 @@
             <img
               v-if="showSmallTree"
               class="small-tree"
-              src="../images/small-tree.svg"
+              src="@/images/small-tree.svg"
               alt="small-tree"
             />
           </transition>
@@ -82,7 +82,7 @@
               v-if="isGrown"
               class="big-tree"
               :class="{ 'tree-grow': isGrown }"
-              src="../images/big-tree.png"
+              src="@/images/big-tree.png"
               alt="big-tree"
             />
           </transition>
@@ -230,24 +230,35 @@ export default {
     const isArrowAnimating = ref(false);
     const isAnimating = ref(false);
     let checkboxCounter = 0;
+    let arrowAnimationInterval;
+    let growBusinessAnimationTimeout;
 
     watch(
       () => store.getters.animationTrigger,
       () => {
-        isGrowBusinessAnimating.value = true;
-        isArrowAnimating.value = true;
-        setTimeout(() => {
-          isGrowBusinessAnimating.value = false;
-          isArrowAnimating.value = false;
-        }, 1000); // Длительность анимации
+        startArrowAnimation();
+        animateGrowBusiness();
+        animateFunnel();
       },
     );
 
+    const startArrowAnimation = () => {
+      clearInterval(arrowAnimationInterval);
+      isArrowAnimating.value = true;
+      arrowAnimationInterval = setInterval(() => {
+        isArrowAnimating.value = false;
+        setTimeout(() => {
+          isArrowAnimating.value = true;
+        }, 1000);
+      }, 2000);
+    };
+
     const pourWater = () => {
+      stopAllAnimations();
       isPouring.value = true;
       setTimeout(() => {
         createDrops();
-      }, 2000);
+      }, 1200);
       setTimeout(() => {
         growTree();
       }, 4000);
@@ -280,7 +291,7 @@ export default {
         });
 
         dropIndex += 1;
-      }, 700);
+      }, 400);
     };
 
     const growTree = () => {
@@ -341,7 +352,7 @@ export default {
         store.dispatch("addService", service);
         checkboxCounter += 1;
         if (checkboxCounter === 1) {
-          isArrowAnimating.value = true;
+          startArrowAnimation();
         }
         animateFunnel();
       }
@@ -349,8 +360,9 @@ export default {
     };
 
     const animateGrowBusiness = () => {
+      clearTimeout(growBusinessAnimationTimeout);
       isGrowBusinessAnimating.value = true;
-      setTimeout(() => {
+      growBusinessAnimationTimeout = setTimeout(() => {
         isGrowBusinessAnimating.value = false;
       }, 1000);
     };
@@ -360,7 +372,14 @@ export default {
       setTimeout(() => {
         isAnimating.value = false;
         isGrowBusinessAnimating.value = false;
-      }, 300);
+      }, 1000);
+    };
+
+    const stopAllAnimations = () => {
+      clearInterval(arrowAnimationInterval);
+      clearTimeout(growBusinessAnimationTimeout);
+      isArrowAnimating.value = false;
+      isGrowBusinessAnimating.value = false;
     };
 
     return {
@@ -415,7 +434,7 @@ export default {
 .funnel-container {
   position: absolute;
   top: 28%;
-  right: 2%;
+  right: 4%;
   width: 40%;
   height: 50%;
   z-index: 10;
@@ -432,48 +451,119 @@ export default {
   width: 100%;
   object-fit: contain;
   object-position: center;
-  transition: transform 4s ease-in-out;
+  transition: transform 2s ease-in-out;
   z-index: 10;
 }
 
 .funnel-animating {
-  transform: scale(1.2);
-  transition: transform 1s ease-in-out;
+  transform: scale(1.3);
 }
 
 .funnel-moving {
   transform: translateX(-200px) translateY(180px) rotate(-60deg);
 }
 
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .funnel-moving {
+    transform: translateX(-200px) translateY(140px) rotate(-60deg);
+  }
+}
+
+@media (max-width: 1400px) {
+  .funnel-moving {
+    transform: translateX(-140px) translateY(180px) rotate(-60deg);
+  }
+}
+
 .drops-container {
   position: absolute;
   top: 177px;
-  left: 50%;
+  left: 45%;
   transform: translate(-50%, -100%);
   pointer-events: none;
 }
 
 .drop {
-  position: absolute;
-  bottom: 90px;
+  /* position: absolute;
+  bottom: 90px; */
   left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
-  z-index: 100;
 }
 
 .drop.small {
   width: 15px;
   height: 15px;
 }
-
-.drop.medium {
+.drop.small1 {
   width: 20px;
   height: 20px;
 }
 
-.drop.big {
+.drop.medium {
+  width: 25px;
+  height: 25px;
+}
+
+.drop.medium1 {
   width: 30px;
   height: 30px;
+}
+
+.drop.big {
+  width: 35px;
+  height: 35px;
+}
+
+.drop.big1 {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 1400px) {
+  .drops-container {
+    .drop.small {
+      width: 10px;
+      height: 10px;
+    }
+    .drop.small1 {
+      width: 12px;
+      height: 12px;
+    }
+
+    .drop.medium {
+      width: 15px;
+      height: 15px;
+    }
+
+    .drop.medium1 {
+      width: 18px;
+      height: 18px;
+    }
+
+    .drop.big {
+      width: 20px;
+      height: 20px;
+    }
+
+    .drop.big1 {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+@media (max-width: 1920px) {
+  .drops-container {
+    top: 30%;
+    left: 32%;
+  }
+}
+
+@media (max-width: 1884px) {
+  .drops-container {
+    top: 30%;
+    left: 32%;
+  }
 }
 
 @keyframes drop-fall {
@@ -894,11 +984,17 @@ export default {
   right: 7%;
   top: 7%;
   width: 32%;
-  transition: transform 1s ease-in-out;
+  transition: transform 2s ease-in-out;
+}
+
+@media (max-width: 1400px) {
+  .grow_buisness-with-mosaic {
+    width: 29%;
+  }
 }
 
 .grow_buisness-with-mosaic.animated {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .business-arrow__down {
@@ -913,12 +1009,39 @@ export default {
 }
 
 @keyframes bounce {
-  0%,
   100% {
     transform: translateY(0);
   }
+  90% {
+    transform: translateY(-2px);
+  }
+  80% {
+    transform: translateY(-4px);
+  }
+  70% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
   50% {
+    transform: translateY(-12px);
+  }
+  40% {
+    transform: translateY(-14px);
+  }
+  30% {
+    transform: translateY(-16px);
+  }
+
+  20% {
+    transform: translateY(-18px);
+  }
+  10% {
     transform: translateY(-20px);
+  }
+  0% {
+    transform: translateY(-22px);
   }
 }
 
@@ -998,6 +1121,51 @@ export default {
   }
   .big-tree {
     bottom: -2%;
+  }
+}
+
+@media (max-width: 2691px) {
+  .small-tree {
+    bottom: -18%;
+  }
+  .big-tree {
+    bottom: -16%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1200px) {
+  .small-tree {
+    bottom: -18%;
+  }
+  .big-tree {
+    bottom: -16%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .small-tree {
+    bottom: -8%;
+  }
+  .big-tree {
+    bottom: -6%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .small-tree {
+    bottom: -28%;
+  }
+  .big-tree {
+    bottom: -26%;
+  }
+}
+
+@media (max-width: 1365px) {
+  .small-tree {
+    bottom: -25% !important;
+  }
+  .big-tree {
+    bottom: -26% !important;
   }
 }
 
@@ -1757,31 +1925,59 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  z-index: 1000;
 }
 
 .service-selection__lower--cases-arrow {
   width: 100%;
-  z-index: 1000;
 }
 
 .cases-arrow {
   margin-left: 40%;
   width: 50%;
-  z-index: 1000;
 }
 
 .cases-image {
   width: 60%;
-  z-index: 1000;
 }
 
 .service-selection__lower--cases-image {
   width: 100%;
-  z-index: 1000;
 }
 
-@media (max-width: 2992px) {
+@media (max-width: 2691px) {
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 75%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1200px) {
+  .cases-image {
+    width: 76%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .cases-image {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .service-selection__lower--cases {
+    justify-content: center;
+    gap: 4%;
+  }
+  .cases-arrow {
+    margin-left: 15%;
+    width: 68%;
+  }
+  .cases-image {
+    width: 85%;
+  }
 }
 
 .checkboxes-container {
@@ -1863,6 +2059,51 @@ export default {
   }
   .checkbox-item label {
     font-size: 120%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1200px) {
+  .checkboxes-container {
+    top: 10%;
+    left: 5%;
+    width: 50%;
+    height: 60%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .checkboxes-container {
+    top: 10%;
+    left: 5%;
+    width: 40%;
+    height: 65%;
+  }
+  .checkboxes {
+    grid-gap: 6%;
+  }
+  /* .checkbox-item {
+    width: 130%;
+    font-weight: 12%;
+  } */
+  .checkbox-item label {
+    font-size: 110%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .checkboxes-container {
+    top: 6%;
+    width: 15%;
+  }
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item {
+    width: 100%;
+    font-weight: 10%;
+  }
+  .checkbox-item label {
+    font-size: 100%;
   }
 }
 

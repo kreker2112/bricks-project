@@ -36,60 +36,65 @@ export default {};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 1%;
   box-sizing: border-box;
   height: 80px;
   flex-shrink: 0;
 }
 
 .footer-frame {
-  margin-left: 10px;
+  margin-left: 1%;
 }
 
 .footer-frame img {
-  width: 50px;
+  width: 90%;
 }
 
 .left {
-  margin-left: 24.77px;
-  width: 181px;
-  height: 39px;
+  margin-left: 1%;
   display: flex;
   flex-direction: column;
   flex: 1;
   font-family: "Montserrat";
-  font-size: 14px;
+  font-size: 100%;
   font-weight: bold;
 }
 
 .center {
   position: relative;
+  width: 40%;
 }
 
 .center a {
-  margin: 0 10px;
+  margin: 0 2%;
   color: #ffffff;
   text-decoration: none;
   position: relative;
   font-family: "Montserrat";
-  font-size: 16px;
+  font-size: 100%;
 }
 
 .right {
-  margin-right: 65.92px;
+  margin-right: 2%;
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 32px;
+  gap: 6%;
 }
 
 .right a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 180%;
   display: flex;
   align-items: center;
-  height: 100%;
+}
+
+@media (max-width: 1400px) {
+  .center a {
+    margin: 0 1%;
+    font-size: 90%;
+  }
 }
 </style>

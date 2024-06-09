@@ -413,6 +413,44 @@ export default {
   }
 }
 
+@media (max-width: 2691px) {
+  .instruments {
+    top: 47%;
+    left: 9%;
+  }
+  .instruments__arrow {
+    top: 52% !important;
+    left: 39% !important;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1200px) {
+  .instruments {
+    top: 53%;
+  }
+  .instruments__arrow {
+    top: 60% !important;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .instruments {
+    top: 60%;
+  }
+  .instruments__arrow {
+    top: 65% !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .instruments {
+    top: 46%;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+}
+
 .instruments__arrow {
   position: absolute;
   top: 55%;
@@ -432,16 +470,5 @@ export default {
   top: 15%;
   right: 16%;
   width: 9%;
-}
-
-.brick {
-  z-index: 60 !important;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px !important;
-  border: 1px solid black;
-  border-radius: 15px;
 }
 </style>

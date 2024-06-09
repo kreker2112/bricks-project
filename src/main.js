@@ -9,6 +9,6 @@ const viewportHeight = window.innerHeight;
 
 console.log(`Ширина вьюпорта: ${viewportWidth}px`);
 console.log(`Высота вьюпорта: ${viewportHeight}px`);
-console.log(window.devicePixelRatio);
+console.log(`PixelRatio: ${window.devicePixelRatio}`);
 
 createApp(App).use(router).use(store).mount("#app");

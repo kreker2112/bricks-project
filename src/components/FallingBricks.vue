@@ -403,6 +403,20 @@ export default {
   z-index: 30;
 }
 
+@media (max-width: 3200px) {
+  .falling-bricks .instruments__arrow {
+    top: 68% !important;
+    left: 39% !important;
+  }
+}
+
+@media (max-width: 3000px) {
+  .instruments {
+    top: 62% !important;
+    left: 9% !important;
+  }
+}
+
 @media (max-width: 2992px) {
   .instruments {
     top: 56%;

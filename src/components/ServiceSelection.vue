@@ -475,6 +475,12 @@ export default {
   }
 }
 
+@media (max-width: 3000px) {
+  .funnel-moving {
+    transform: translateX(-250px) translateY(180px) rotate(-60deg);
+  }
+}
+
 .drops-container {
   position: absolute;
   top: 177px;
@@ -484,8 +490,6 @@ export default {
 }
 
 .drop {
-  /* position: absolute;
-  bottom: 90px; */
   left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
 }
@@ -563,6 +567,13 @@ export default {
   .drops-container {
     top: 30%;
     left: 32%;
+  }
+}
+
+@media (max-width: 3000px) {
+  .drops-container {
+    top: 30%;
+    left: 34%;
   }
 }
 
@@ -1113,60 +1124,6 @@ export default {
     opacity 1s ease-in-out;
   opacity: 0;
   z-index: 20;
-}
-
-@media (max-width: 2992px) {
-  .small-tree {
-    bottom: -6%;
-  }
-  .big-tree {
-    bottom: -2%;
-  }
-}
-
-@media (max-width: 2691px) {
-  .small-tree {
-    bottom: -18%;
-  }
-  .big-tree {
-    bottom: -16%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 1200px) {
-  .small-tree {
-    bottom: -18%;
-  }
-  .big-tree {
-    bottom: -16%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 1080px) {
-  .small-tree {
-    bottom: -8%;
-  }
-  .big-tree {
-    bottom: -6%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .small-tree {
-    bottom: -28%;
-  }
-  .big-tree {
-    bottom: -26%;
-  }
-}
-
-@media (max-width: 1365px) {
-  .small-tree {
-    bottom: -25% !important;
-  }
-  .big-tree {
-    bottom: -26% !important;
-  }
 }
 
 .big-tree.tree-grow {
@@ -1905,6 +1862,17 @@ export default {
   width: 10%;
 }
 
+@media (max-width: 3000px) {
+  .business_up {
+    width: 25%;
+  }
+  .business_up-arrow {
+    margin-top: 1%;
+    margin-left: 16%;
+    width: 10%;
+  }
+}
+
 .money {
   position: absolute;
   right: 93px;
@@ -1980,6 +1948,16 @@ export default {
   }
 }
 
+@media (max-width: 3000px) {
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 70%;
+  }
+}
+
 .checkboxes-container {
   position: absolute;
   left: 2%;
@@ -2044,6 +2022,24 @@ export default {
   pointer-events: none;
 }
 
+@media (max-width: 3000px) {
+  .checkboxes-container {
+    top: 8% !important;
+    width: 55% !important;
+    height: 65% !important;
+  }
+  .checkboxes {
+    grid-gap: 8% !important;
+  }
+  .checkbox-item {
+    width: 170% !important;
+    font-weight: 20% !important;
+  }
+  .checkbox-item label {
+    font-size: 130% !important;
+  }
+}
+
 @media (max-width: 2992px) {
   .checkboxes-container {
     top: 15%;
@@ -2081,10 +2077,6 @@ export default {
   .checkboxes {
     grid-gap: 6%;
   }
-  /* .checkbox-item {
-    width: 130%;
-    font-weight: 12%;
-  } */
   .checkbox-item label {
     font-size: 110%;
   }
@@ -2224,5 +2216,62 @@ export default {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 1365px) {
+  .small-tree {
+    bottom: -25% !important;
+  }
+  .big-tree {
+    bottom: -26% !important;
+  }
+}
+@media (max-width: 1400px) {
+  .small-tree {
+    bottom: -28% !important;
+  }
+  .big-tree {
+    bottom: -26% !important;
+  }
+}
+@media (max-width: 1920px) and (max-height: 1080px) {
+  .small-tree {
+    bottom: -8% !important;
+  }
+  .big-tree {
+    bottom: -6% !important;
+  }
+}
+@media (max-width: 1920px) and (max-height: 1200px) {
+  .small-tree {
+    bottom: -18% !important;
+  }
+  .big-tree {
+    bottom: -16% !important;
+  }
+}
+@media (max-width: 2691px) {
+  .small-tree {
+    bottom: -18% !important;
+  }
+  .big-tree {
+    bottom: -16% !important;
+  }
+}
+@media (max-width: 2992px) {
+  .small-tree {
+    bottom: -6% !important;
+  }
+  .big-tree {
+    bottom: -2% !important;
+  }
+}
+@media (max-width: 3000px) {
+  .small-tree {
+    bottom: -5% !important;
+  }
+  .big-tree {
+    bottom: -5% !important;
+  }
 }
 </style>

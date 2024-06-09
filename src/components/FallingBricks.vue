@@ -369,7 +369,8 @@ export default {
 }
 
 .ideas {
-  width: 100%;
+  margin-left: 1%;
+  width: 98.5%;
   margin-top: 29%;
   z-index: 30;
 }

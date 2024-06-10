@@ -2335,8 +2335,9 @@ export default {
   padding: 10px;
 }
 
-.form button {
+.apply-button {
   background-color: #ff6400;
+  color: #ffffff;
   font-size: 18px;
   padding: 9.43px 18.85px;
   border-radius: 8px;

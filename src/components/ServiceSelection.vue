@@ -2497,6 +2497,20 @@ export default {
   .cases-image {
     width: 90%;
   }
+  .form input {
+    height: 28px;
+    font-size: 12px;
+    font-family: "Montserrat";
+  }
+  .form textarea {
+    height: 52px;
+    font-size: 12px;
+    font-family: "Montserrat";
+  }
+  .form input,
+  .form textarea {
+    margin: 5px 0;
+  }
   .form button {
     margin-top: 10px;
     width: 200px;
@@ -2504,6 +2518,7 @@ export default {
     font-size: 14px;
   }
 }
+
 @media (max-width: 1024px) and (max-height: 600px) {
   .checkboxes-container {
     top: 10%;

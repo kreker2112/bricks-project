@@ -116,4 +116,12 @@ export default {};
     font-size: 150%;
   }
 }
+@media (max-width: 1024px) and (max-height: 768px) {
+  .center a {
+    font-size: 60%;
+  }
+  .right a {
+    font-size: 140%;
+  }
+}
 </style>

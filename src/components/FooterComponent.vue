@@ -94,7 +94,7 @@ export default {};
 
 @media (max-width: 1400px) {
   .center a {
-    font-size: 90%;
+    font-size: 80%;
   }
 }
 

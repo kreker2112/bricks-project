@@ -2223,6 +2223,9 @@ export default {
   .checkbox-item label {
     font-size: 100%;
   }
+  .lightbox-content h2 {
+    margin-bottom: 10px;
+  }
 }
 
 .lightbox {

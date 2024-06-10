@@ -538,4 +538,21 @@ export default {
     top: 53%;
   }
 }
+@media (max-width: 1024px) and (max-height: 600px) {
+  .instruments {
+    top: 54% !important;
+  }
+  .instruments__arrow {
+    top: 60% !important;
+  }
+  .services-block {
+    top: 54%;
+  }
+  .add {
+    top: 54%;
+  }
+  .add-arrow {
+    top: 58%;
+  }
+}
 </style>

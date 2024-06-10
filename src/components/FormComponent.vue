@@ -90,4 +90,20 @@ button {
   border: none;
   cursor: pointer;
 }
+@media (max-width: 1280px) and (max-height: 800px) {
+  .right__section h2 {
+    font-size: 32px;
+  }
+  @media (max-width: 1024px) and (max-height: 600px) {
+    .right__section h2 {
+      font-size: 28px;
+    }
+    .form-right__section input {
+      width: 80%;
+    }
+    .form-right__section textarea {
+      width: 80%;
+    }
+  }
+}
 </style>

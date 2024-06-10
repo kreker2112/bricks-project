@@ -185,7 +185,9 @@
               placeholder="Повідомлення"
               required
             ></textarea>
-            <button @click="applySelection">Застосувати</button>
+            <button class="apply-button" @click="applySelection">
+              Застосувати
+            </button>
           </div>
         </div>
       </div>
@@ -2146,7 +2148,7 @@ export default {
   pointer-events: none;
 }
 
-/* @media (max-width: 3000px) {
+@media (max-width: 3000px) {
   .checkboxes-container {
     top: 8%;
     width: 55%;
@@ -2162,7 +2164,7 @@ export default {
   .checkbox-item label {
     font-size: 130%;
   }
-} */
+}
 
 @media (max-width: 2992px) {
   .checkboxes-container {
@@ -2347,7 +2349,7 @@ export default {
   opacity: 0;
 }
 
-@media (max-width: 1280px) and (max-height: 800px) {
+@media (max-width: 1280px) {
   .checkboxes-container {
     top: 10%;
     width: 10%;
@@ -2361,6 +2363,9 @@ export default {
   }
   .checkbox-item label {
     font-size: 80%;
+  }
+  .funnel-moving {
+    transform: translateX(-135px) translateY(180px) rotate(-60deg);
   }
   .business_up {
     width: 30%;
@@ -2380,6 +2385,94 @@ export default {
   }
   .big-tree {
     bottom: -21%;
+  }
+  .lightbox-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 7px;
+  }
+  .form input,
+  .form textarea {
+    width: 70%;
+    margin: 10px 0;
+    padding: 5px;
+  }
+}
+@media (max-width: 1024px) {
+  .checkboxes-container {
+    top: 10%;
+    width: 3%;
+  }
+  .checkboxes {
+    grid-gap: 1.5%;
+  }
+  .checkbox-item {
+    width: 100%;
+    font-weight: 8%;
+  }
+  .checkbox-item label {
+    font-size: 70%;
+  }
+  .funnel-moving {
+    transform: translateX(-120px) translateY(90px) rotate(-60deg);
+  }
+  .business_up {
+    width: 30%;
+  }
+  .business_up-arrow {
+    margin-left: 10%;
+    width: 15%;
+  }
+  .take-money {
+    top: 40%;
+  }
+  .take-money__arrow {
+    top: 50%;
+  }
+  .small-tree {
+    bottom: -16%;
+  }
+  .big-tree {
+    bottom: -16%;
+  }
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 70%;
+  }
+  .lightbox-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 5px;
+  }
+  .form input,
+  .form textarea {
+    width: 70%;
+    margin: 5px 0;
+    padding: 3px;
+  }
+  .form {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 366px;
+    height: 120px;
+  }
+
+  .form input {
+    height: 20px;
+  }
+
+  .form textarea {
+    height: 52px;
+  }
+  .apply-button {
+    margin-top: 8px !important;
   }
 }
 </style>

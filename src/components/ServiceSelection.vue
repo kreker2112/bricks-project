@@ -2342,6 +2342,7 @@ export default {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  color: #ffffff;
 }
 
 .invisible {

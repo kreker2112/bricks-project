@@ -2148,86 +2148,6 @@ export default {
   pointer-events: none;
 }
 
-@media (max-width: 3000px) {
-  .checkboxes-container {
-    top: 8%;
-    width: 55%;
-    height: 65%;
-  }
-  .checkboxes {
-    grid-gap: 8%;
-  }
-  .checkbox-item {
-    width: 170%;
-    font-weight: 20%;
-  }
-  .checkbox-item label {
-    font-size: 130%;
-  }
-}
-
-@media (max-width: 2992px) {
-  .checkboxes-container {
-    top: 15%;
-    width: 50%;
-    height: 60%;
-  }
-  .checkboxes {
-    grid-gap: 8%;
-  }
-  .checkbox-item {
-    width: 150%;
-    font-weight: 15%;
-  }
-  .checkbox-item label {
-    font-size: 120%;
-  }
-}
-
-@media (max-width: 1920px) {
-  .checkboxes-container {
-    top: 10%;
-    left: 5%;
-    width: 50%;
-    height: 60%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .checkboxes-container {
-    top: 10%;
-    left: 5%;
-    width: 40%;
-    height: 65%;
-  }
-  .checkboxes {
-    grid-gap: 6%;
-  }
-  .checkbox-item label {
-    font-size: 110%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .checkboxes-container {
-    top: 6%;
-    width: 15%;
-  }
-  .checkboxes {
-    grid-gap: 8%;
-  }
-  .checkbox-item {
-    width: 100%;
-    font-weight: 10%;
-  }
-  .checkbox-item label {
-    font-size: 100%;
-  }
-  .lightbox-content h2 {
-    margin-bottom: 10px;
-  }
-}
-
 .lightbox {
   position: absolute;
   top: 0;
@@ -2352,7 +2272,85 @@ export default {
   visibility: hidden;
   opacity: 0;
 }
+@media (max-width: 3000px) {
+  .checkboxes-container {
+    top: 8%;
+    width: 55%;
+    height: 65%;
+  }
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item {
+    width: 170%;
+    font-weight: 20%;
+  }
+  .checkbox-item label {
+    font-size: 130%;
+  }
+}
 
+@media (max-width: 2992px) {
+  .checkboxes-container {
+    top: 15%;
+    width: 50%;
+    height: 60%;
+  }
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item {
+    width: 150%;
+    font-weight: 15%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+}
+
+@media (max-width: 1920px) {
+  .checkboxes-container {
+    top: 10%;
+    left: 5%;
+    width: 50%;
+    height: 60%;
+  }
+}
+
+@media (max-width: 1920px) and (max-height: 963px) {
+  .checkboxes-container {
+    top: 10%;
+    left: 5%;
+    width: 40%;
+    height: 65%;
+  }
+  .checkboxes {
+    grid-gap: 6%;
+  }
+  .checkbox-item label {
+    font-size: 110%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .checkboxes-container {
+    top: 6%;
+    width: 15%;
+  }
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item {
+    width: 100%;
+    font-weight: 10%;
+  }
+  .checkbox-item label {
+    font-size: 100%;
+  }
+  .lightbox-content h2 {
+    margin-bottom: 10px;
+  }
+}
 @media (max-width: 1366px) and (max-height: 1024px) {
   .funnel-moving {
     transform: translateX(-135px) translateY(250px) rotate(-60deg);

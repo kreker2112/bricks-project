@@ -142,7 +142,7 @@
       </div>
     </div>
 
-    <!-- <transition name="fade">
+    <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -189,7 +189,7 @@
           </div>
         </div>
       </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -326,7 +326,7 @@ export default {
         setTimeout(() => {
           showLightbox.value = true;
           lightboxSelectedServices.value = [...selectedServices.value];
-        }, 2000);
+        }, 1000);
       }, 500);
     };
 

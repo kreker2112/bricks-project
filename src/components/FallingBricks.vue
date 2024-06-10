@@ -134,11 +134,12 @@ export default {
 
       const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        context.font = "18px Montserrat";
-        const padding = 20;
-        const textWidth = context.measureText(brick.service).width + padding;
-        const brickWidth = Math.max(160, textWidth);
-        const brickHeight = 50;
+        const fontSize = 1.8 * (width / 100); // Установите размер шрифта относительно ширины окна (1.8vw)
+        context.font = `${fontSize}px Montserrat Bold`;
+        const textWidth = context.measureText(brick.service).width;
+        const padding = textWidth * 0.2; // Padding равен 20% от ширины текста
+        const brickWidth = Math.max(0.08 * width, textWidth + padding); // Минимальная ширина кирпича 8% от ширины окна
+        const brickHeight = 0.05 * height; // Высота кирпича 5% от высоты окна
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];
@@ -148,7 +149,7 @@ export default {
             strokeStyle: "#000000",
             lineWidth: 3,
           },
-          chamfer: { radius: 25 },
+          chamfer: { radius: 0.02 * width }, // Радиус скругления углов 2.5% от ширины окна
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,

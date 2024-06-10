@@ -1151,7 +1151,7 @@ export default {
 }
 
 .big-tree.tree-grow {
-  transform: scale(3); /* Было 2 */
+  transform: scale(3);
   opacity: 1;
   animation: growTree 3s ease-in-out forwards;
 }
@@ -1888,7 +1888,7 @@ export default {
     transform: scale(2.98);
   }
   100% {
-    transform: scale(3); /* Было 2 */
+    transform: scale(3);
   }
 }
 

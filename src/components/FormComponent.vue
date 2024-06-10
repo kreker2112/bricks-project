@@ -106,6 +106,7 @@ button {
     width: 80%;
   }
 }
+
 @media (max-width: 1024px) and (max-height: 600px) {
   .right__section h2 {
     font-size: 28px;

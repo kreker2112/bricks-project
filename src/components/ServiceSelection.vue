@@ -539,7 +539,7 @@ export default {
   height: 40px;
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .drops-container {
     .drop.small {
       width: 10px;
@@ -579,7 +579,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .drops-container {
     top: 30%;
     left: 32%;
@@ -1021,7 +1021,7 @@ export default {
   transition: transform 2s ease-in-out;
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .grow_buisness-with-mosaic {
     width: 29%;
   }
@@ -1180,7 +1180,7 @@ export default {
     bottom: -16%;
   }
 }
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .small-tree {
     bottom: -20%;
   }
@@ -1198,7 +1198,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .small-tree {
     bottom: -20%;
     left: 26%;
@@ -1591,10 +1591,10 @@ export default {
     transform: scale(1);
   }
   1% {
-    transform: scale(1.02); /* 3/150 = 0.02 */
+    transform: scale(1.02);
   }
   2% {
-    transform: scale(1.04); /* 3/150 * 2 = 0.04 */
+    transform: scale(1.04);
   }
   3% {
     transform: scale(1.06);
@@ -1990,7 +1990,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .business_up {
     width: 40%;
   }
@@ -2058,7 +2058,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .cases-image {
     width: 76%;
   }
@@ -2070,7 +2070,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .service-selection__lower--cases {
     justify-content: center;
     gap: 4%;

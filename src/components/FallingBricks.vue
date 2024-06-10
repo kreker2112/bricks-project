@@ -134,11 +134,11 @@ export default {
 
       const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        context.font = "1.8vw Montserrat"; // Используем относительный размер шрифта
+        context.font = "18px Montserrat";
         const padding = 20;
         const textWidth = context.measureText(brick.service).width + padding;
-        const brickWidth = Math.max(0.08 * width, textWidth); // Минимальная ширина кирпича 8% от ширины окна
-        const brickHeight = 0.05 * height; // Высота кирпича 5% от высоты окна
+        const brickWidth = Math.max(160, textWidth);
+        const brickHeight = 50;
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];
@@ -148,7 +148,7 @@ export default {
             strokeStyle: "#000000",
             lineWidth: 3,
           },
-          chamfer: { radius: 0.025 * width }, // Радиус скругления углов 2.5% от ширины окна
+          chamfer: { radius: 25 },
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
@@ -239,7 +239,7 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        context.font = "1.8vw Montserrat"; // Используем относительный размер шрифта
+        context.font = "18px Montserrat";
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";
@@ -435,17 +435,33 @@ export default {
   pointer-events: auto;
 }
 
-@media (max-width: 3200px) {
+/* @media (max-width: 3200px) {
   .falling-bricks .instruments__arrow {
     top: 68%;
     left: 39%;
   }
-}
+  .instruments__arrow {
+    top: 68%;
+    left: 39%;
+  }
+} */
 
 @media (max-width: 3000px) {
   .instruments {
-    top: 62%;
-    left: 9%;
+    top: 62% !important;
+  }
+  .instruments__arrow {
+    top: 70% !important;
+    left: 39%;
+  }
+  .add {
+    top: 61%;
+  }
+  .add-arrow {
+    top: 64%;
+  }
+  .services-block {
+    top: 61%;
   }
 }
 

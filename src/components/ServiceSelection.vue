@@ -142,7 +142,7 @@
       </div>
     </div>
 
-    <!-- <transition name="fade">
+    <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -189,7 +189,7 @@
           </div>
         </div>
       </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
 
@@ -1156,10 +1156,10 @@ export default {
 
 @media (max-width: 3000px) {
   .small-tree {
-    bottom: -5%;
+    bottom: -8% !important;
   }
   .big-tree {
-    bottom: -5%;
+    bottom: -8% !important;
   }
 }
 @media (max-width: 2992px) {
@@ -1973,6 +1973,12 @@ export default {
     margin-left: 16%;
     width: 10%;
   }
+  .take-money {
+    top: 39%;
+  }
+  .take-money__arrow {
+    top: 50%;
+  }
 }
 
 @media (max-width: 1920px) and (max-height: 963px) {
@@ -2148,19 +2154,19 @@ export default {
 
 @media (max-width: 3000px) {
   .checkboxes-container {
-    top: 8%;
-    width: 55%;
-    height: 65%;
+    top: 8% !important;
+    width: 55% !important;
+    height: 65% !important;
   }
   .checkboxes {
-    grid-gap: 8%;
+    grid-gap: 8% !important;
   }
   .checkbox-item {
-    width: 170%;
-    font-weight: 20%;
+    width: 170% !important;
+    font-weight: 20% !important;
   }
   .checkbox-item label {
-    font-size: 130%;
+    font-size: 130% !important;
   }
 }
 

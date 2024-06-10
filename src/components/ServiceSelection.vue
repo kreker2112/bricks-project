@@ -584,6 +584,13 @@ export default {
   }
 }
 
+@media (max-width: 1920px) and (max-height: 963px) {
+  .drops-container {
+    top: 35%;
+    left: 32%;
+  }
+}
+
 @media (max-width: 1884px) {
   .drops-container {
     top: 30%;
@@ -2338,5 +2345,41 @@ export default {
 .invisible {
   visibility: hidden;
   opacity: 0;
+}
+
+@media (max-width: 1280px) and (max-height: 800px) {
+  .checkboxes-container {
+    top: 10%;
+    width: 10%;
+  }
+  .checkboxes {
+    grid-gap: 5%;
+  }
+  .checkbox-item {
+    width: 100%;
+    font-weight: 8%;
+  }
+  .checkbox-item label {
+    font-size: 80%;
+  }
+  .business_up {
+    width: 30%;
+  }
+  .business_up-arrow {
+    margin-left: 10%;
+    width: 15%;
+  }
+  .take-money {
+    top: 40%;
+  }
+  .take-money__arrow {
+    top: 50%;
+  }
+  .small-tree {
+    bottom: -21%;
+  }
+  .big-tree {
+    bottom: -21%;
+  }
 }
 </style>

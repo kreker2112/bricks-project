@@ -10,6 +10,8 @@
 
     <div class="services-block" @drop="handleDrop" @dragover.prevent></div>
 
+    <img class="mosaic-logo" src="../images/logos/logo.png" alt="mosaic-logo" />
+
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
     <div class="center-content">
@@ -329,13 +331,21 @@ export default {
 
 .services-block {
   position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 18%;
-  height: 19%;
+  top: 51%;
+  right: 1%;
+  width: 15%;
+  height: 16%;
   border: 4px dotted #ff6400;
   z-index: 50;
   border-radius: 15%;
+}
+
+.mosaic-logo {
+  position: absolute;
+  top: 14%;
+  left: 10.7%;
+  width: 80%;
+  z-index: 40;
 }
 
 .background-canvas {
@@ -375,6 +385,36 @@ export default {
   z-index: 30;
 }
 
+.instruments {
+  position: absolute;
+  top: 47%;
+  left: 9%;
+  width: 29%;
+  z-index: 30;
+}
+
+.instruments__arrow {
+  position: absolute;
+  top: 55%;
+  left: 38%;
+  width: 9%;
+}
+
+.add {
+  position: absolute;
+  width: 22%;
+  top: 53%;
+  right: 25%;
+}
+
+.add-arrow {
+  position: absolute;
+  top: 60%;
+  right: 18%;
+  width: 5%;
+  rotate: 55deg;
+}
+
 .center-content {
   position: relative;
   display: flex;
@@ -393,14 +433,6 @@ export default {
 .instruments,
 .add {
   pointer-events: auto;
-}
-
-.instruments {
-  position: absolute;
-  top: 47%;
-  left: 9%;
-  width: 29%;
-  z-index: 30;
 }
 
 @media (max-width: 3200px) {
@@ -455,35 +487,53 @@ export default {
   .instruments__arrow {
     top: 65% !important;
   }
+  .add {
+    top: 58%;
+  }
+  .add-arrow {
+    top: 62%;
+  }
+  .services-block {
+    top: 58%;
+  }
 }
 
 @media (max-width: 1400px) and (max-height: 933px) {
+  .mosaic-logo {
+    top: 11%;
+  }
   .instruments {
-    top: 46%;
+    top: 45%;
   }
   .instruments__arrow {
-    top: 50% !important;
+    top: 52% !important;
+  }
+  .add {
+    top: 45%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .services-block {
+    top: 44%;
   }
 }
 
-.instruments__arrow {
-  position: absolute;
-  top: 55%;
-  left: 38%;
-  width: 9%;
-}
-
-.add {
-  position: absolute;
-  width: 22%;
-  top: 20%;
-  right: 26%;
-}
-
-.add-arrow {
-  position: absolute;
-  top: 15%;
-  right: 16%;
-  width: 9%;
+@media (max-width: 1280px) and (max-height: 800px) {
+  .instruments {
+    top: 50% !important;
+  }
+  .instruments__arrow {
+    top: 56% !important;
+  }
+  .services-block {
+    top: 48%;
+  }
+  .add {
+    top: 48%;
+  }
+  .add-arrow {
+    top: 53%;
+  }
 }
 </style>

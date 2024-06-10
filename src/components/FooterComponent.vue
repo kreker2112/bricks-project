@@ -72,6 +72,7 @@ export default {};
   position: relative;
   font-family: "Montserrat";
   font-size: 100%;
+  font-weight: bold;
 }
 
 .right {
@@ -94,6 +95,12 @@ export default {};
 @media (max-width: 1400px) {
   .center a {
     font-size: 90%;
+  }
+}
+
+@media (max-width: 1280px) and (max-height: 800px) {
+  .center a {
+    font-size: 80%;
   }
 }
 </style>

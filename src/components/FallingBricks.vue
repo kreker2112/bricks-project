@@ -340,7 +340,6 @@ export default {
       const data = event.dataTransfer.getData("text");
       store.dispatch("addService", data);
 
-      // Запуск анимации
       store.dispatch("triggerAnimation");
     };
 
@@ -548,7 +547,7 @@ export default {
     top: 45%;
   }
   .instruments__arrow {
-    top: 52% !important;
+    top: 52%;
   }
   .add {
     top: 45%;
@@ -561,12 +560,18 @@ export default {
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1366px) and (max-height: 1024px) {
+  .mosaic-logo {
+    top: 18%;
+  }
+  .ideas {
+    margin-top: 40%;
+  }
   .instruments {
-    top: 50% !important;
+    top: 50%;
   }
   .instruments__arrow {
-    top: 56% !important;
+    top: 56%;
   }
   .services-block {
     top: 48%;
@@ -578,7 +583,25 @@ export default {
     top: 53%;
   }
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1280px) and (max-height: 800px) {
+  .instruments {
+    top: 60%;
+  }
+  .instruments__arrow {
+    top: 65%;
+  }
+  .services-block {
+    top: 60%;
+  }
+  .add {
+    top: 60%;
+  }
+  .add-arrow {
+    top: 63%;
+  }
+}
+@media (max-width: 1180px) and (max-height: 820px) {
   .instruments {
     top: 54% !important;
   }
@@ -593,6 +616,23 @@ export default {
   }
   .add-arrow {
     top: 58%;
+  }
+}
+@media (max-width: 1024px) and (max-height: 600px) {
+  .instruments {
+    top: 67% !important;
+  }
+  .instruments__arrow {
+    top: 70% !important;
+  }
+  .services-block {
+    top: 66%;
+  }
+  .add {
+    top: 66%;
+  }
+  .add-arrow {
+    top: 69%;
   }
 }
 </style>

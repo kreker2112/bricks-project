@@ -2350,6 +2350,27 @@ export default {
   opacity: 0;
 }
 
+@media (max-width: 1366px) and (max-height: 1024px) {
+  .funnel-moving {
+    transform: translateX(-135px) translateY(250px) rotate(-60deg);
+  }
+  .take-money {
+    top: 52%;
+  }
+  .take-money__arrow {
+    top: 63%;
+  }
+  .small-tree {
+    bottom: -31%;
+  }
+  .big-tree {
+    bottom: -32%;
+  }
+  .cases-image {
+    width: 90%;
+  }
+}
+
 @media (max-width: 1280px) {
   .checkboxes-container {
     top: 10%;
@@ -2401,7 +2422,87 @@ export default {
     padding: 5px;
   }
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1180px) and (max-height: 820px) {
+  .funnel-moving {
+    transform: translateX(-120px) translateY(180px) rotate(-60deg);
+  }
+  .checkboxes-container {
+    top: 10%;
+    width: 4%;
+  }
+  .checkboxes {
+    grid-gap: 4%;
+  }
+  .take-money {
+    top: 50%;
+  }
+  .take-money__arrow {
+    top: 58%;
+  }
+  .small-tree {
+    bottom: -31%;
+  }
+  .big-tree {
+    bottom: -32%;
+  }
+  .cases-arrow {
+    width: 60%;
+  }
+  .cases-image {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1024px) and (max-height: 768px) {
+  .grow_buisness-with-mosaic {
+    top: 17%;
+    right: 1%;
+  }
+  .business-arrow__down {
+    top: 30%;
+    right: 5%;
+  }
+  .funnel-container {
+    top: 40%;
+    right: 1%;
+  }
+  .funnel-moving {
+    transform: translateX(-120px) translateY(170px) rotate(-60deg);
+  }
+  .checkboxes-container {
+    top: 10.5%;
+    width: 3%;
+  }
+  .checkboxes {
+    grid-gap: 4%;
+  }
+  .take-money {
+    top: 50%;
+  }
+  .take-money__arrow {
+    top: 60%;
+  }
+  .small-tree {
+    bottom: -33%;
+  }
+  .big-tree {
+    bottom: -31%;
+  }
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 90%;
+  }
+  .form button {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 1024px) and (max-height: 600px) {
   .checkboxes-container {
     top: 10%;
     width: 3%;
@@ -2445,35 +2546,36 @@ export default {
   .cases-image {
     width: 70%;
   }
+  .apply-button {
+    margin-top: 8px !important;
+  }
   .lightbox-content h2 {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 10px;
   }
   .lightbox-checkboxes {
-    grid-gap: 5px;
+    grid-gap: 1%;
   }
-  .form input,
-  .form textarea {
-    width: 70%;
-    margin: 5px 0;
-    padding: 3px;
-  }
-  .form {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    width: 366px;
-    height: 120px;
-  }
-
   .form input {
-    height: 20px;
+    height: 28px;
+    font-size: 12px;
+    font-family: "Montserrat";
   }
 
   .form textarea {
     height: 52px;
+    font-size: 12px;
+    font-family: "Montserrat";
   }
-  .apply-button {
-    margin-top: 8px !important;
+  .form input,
+  .form textarea {
+    margin: 5px 0;
+  }
+
+  .form button {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
   }
 }
 </style>

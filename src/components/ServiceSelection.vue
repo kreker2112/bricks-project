@@ -2326,6 +2326,7 @@ export default {
   width: 275px;
   height: 52px;
   background-color: #ff6400;
+  color: #ffffff;
 }
 
 .form input,
@@ -2336,8 +2337,6 @@ export default {
 }
 
 .apply-button {
-  background-color: #ff6400;
-  color: #ffffff;
   font-size: 18px;
   padding: 9.43px 18.85px;
   border-radius: 8px;

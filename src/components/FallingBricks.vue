@@ -50,6 +50,7 @@ import {
   MouseConstraint,
   Events,
   Composite,
+  Query,
 } from "matter-js";
 import { useStore } from "vuex";
 
@@ -185,11 +186,42 @@ export default {
 
       renderBricks.value.mouse = mouse;
 
-      Events.on(mouseConstraint, "mousedown", (event) => {
-        const { body } = event;
-        if (body) {
-          console.log("Dragging:", body.label);
+      let hoveringBody = null;
+
+      const setCursorStyle = (style) => {
+        renderBricks.value.canvas.style.cursor = style;
+      };
+
+      Events.on(mouseConstraint, "mousemove", (event) => {
+        const foundBodies = Query.point(
+          Composite.allBodies(engine.value.world),
+          event.mouse.position,
+        );
+        if (foundBodies.length > 0) {
+          if (!hoveringBody) {
+            hoveringBody = foundBodies[0];
+            setCursorStyle("grab");
+          }
+        } else {
+          if (hoveringBody) {
+            hoveringBody = null;
+            setCursorStyle("default");
+          }
         }
+      });
+
+      Events.on(mouseConstraint, "mousedown", (event) => {
+        const foundBodies = Query.point(
+          Composite.allBodies(engine.value.world),
+          event.mouse.position,
+        );
+        if (foundBodies.length > 0) {
+          setCursorStyle("grabbing");
+        }
+      });
+
+      Events.on(mouseConstraint, "mouseup", () => {
+        setCursorStyle("default");
       });
 
       Events.on(mouseConstraint, "enddrag", (event) => {
@@ -435,6 +467,14 @@ export default {
 .instruments,
 .add {
   pointer-events: auto;
+}
+
+.grab {
+  cursor: grab;
+}
+
+.grabbing {
+  cursor: grabbing;
 }
 
 @media (max-width: 3200px) {

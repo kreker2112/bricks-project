@@ -98,12 +98,12 @@ export default {};
   }
 }
 
-@media (max-width: 1280px) and (max-height: 800px) {
+@media (max-width: 1280px) {
   .center a {
     font-size: 80%;
   }
 }
-@media (max-width: 1024px) and (max-height: 600px) {
+@media (max-width: 1024px) {
   .center a {
     font-size: 65%;
   }

@@ -2184,7 +2184,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .checkboxes-container {
     top: 10%;
     left: 5%;
@@ -2208,7 +2208,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .checkboxes-container {
     top: 6%;
     width: 15%;

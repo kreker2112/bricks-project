@@ -473,7 +473,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .instruments {
     top: 53%;
   }
@@ -500,7 +500,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .mosaic-logo {
     top: 11%;
   }
@@ -521,7 +521,7 @@ export default {
   }
 }
 
-@media (max-width: 1280px) and (max-height: 800px) {
+@media (max-width: 1280px) {
   .instruments {
     top: 50% !important;
   }
@@ -538,7 +538,7 @@ export default {
     top: 53%;
   }
 }
-@media (max-width: 1024px) and (max-height: 600px) {
+@media (max-width: 1024px) {
   .instruments {
     top: 54% !important;
   }

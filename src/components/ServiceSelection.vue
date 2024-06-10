@@ -2146,7 +2146,7 @@ export default {
   pointer-events: none;
 }
 
-@media (max-width: 3000px) {
+/* @media (max-width: 3000px) {
   .checkboxes-container {
     top: 8%;
     width: 55%;
@@ -2162,7 +2162,7 @@ export default {
   .checkbox-item label {
     font-size: 130%;
   }
-}
+} */
 
 @media (max-width: 2992px) {
   .checkboxes-container {

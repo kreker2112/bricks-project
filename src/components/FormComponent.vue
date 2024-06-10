@@ -95,6 +95,7 @@ button {
     font-size: 32px;
   }
 }
+
 @media (max-width: 1180px) and (max-height: 820px) {
   .right__section h2 {
     font-size: 28px;

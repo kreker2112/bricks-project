@@ -2362,9 +2362,10 @@ export default {
     bottom: -17%;
   }
   .lightbox-content h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    margin-bottom: 20px;
   }
+  .
 }
 
 @media (max-width: 1400px) {

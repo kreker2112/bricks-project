@@ -45,6 +45,20 @@ export default {
   flex-direction: column;
 }
 
+/* @media only screen and (max-width: 1024px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+    height: auto;
+    flex: 1;
+  }
+} */
+
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
   .first-page-content {
     flex-direction: column;

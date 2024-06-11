@@ -115,7 +115,7 @@ export default {
         restitution: 0.8,
         friction: 0.5,
       });
-      const leftWall = Bodies.rectangle(1, height / 2, 2, height, {
+      const leftWall = Bodies.rectangle(0.001, height / 2, 2, height, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,

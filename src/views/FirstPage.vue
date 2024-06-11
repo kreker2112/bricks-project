@@ -109,6 +109,7 @@ export default {
     flex-direction: column;
     gap: 0;
     height: 932px !important;
+    overflow-y: auto;
   }
 }
 </style>

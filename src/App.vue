@@ -76,6 +76,7 @@ export default {
   .page-container {
     width: 100%;
     height: 932px !important;
+    overflow-y: auto;
   }
 }
 </style>

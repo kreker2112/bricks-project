@@ -539,6 +539,28 @@ export default {
   }
 }
 
+@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+  .mosaic-logo {
+    top: 14%;
+  }
+
+  .instruments {
+    top: 54%;
+  }
+  .instruments__arrow {
+    top: 58% !important;
+  }
+  .services-block {
+    top: 53%;
+  }
+  .add {
+    top: 52%;
+  }
+  .add-arrow {
+    top: 57%;
+  }
+}
+
 @media (max-width: 1400px) {
   .mosaic-logo {
     top: 11%;
@@ -754,6 +776,72 @@ export default {
   }
   .ideas {
     margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media (max-width: 767px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .ideas {
+    margin-top: 30% !important;
+  }
+  .instruments {
+    top: 30% !important;
+  }
+  .instruments__arrow {
+    top: 35% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 15%;
+    top: 30%;
+    right: 5%;
+  }
+  .add {
+    top: 30%;
+  }
+  .add-arrow {
+    top: 35%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media (max-width: 375px) {
+  .ideas {
+    margin-top: 40% !important;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 45% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 15%;
+    top: 40%;
+    right: 5%;
+  }
+  .add {
+    top: 40%;
+  }
+  .add-arrow {
+    top: 45%;
+  }
+  .ideas {
+    margin-top: 30% !important;
     margin-left: 5%;
     width: 90%;
   }

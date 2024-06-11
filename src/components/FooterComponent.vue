@@ -92,6 +92,12 @@ export default {};
   align-items: center;
 }
 
+@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+  .center a {
+    font-size: 90%;
+  }
+}
+
 @media (max-width: 1400px) {
   .center a {
     font-size: 80%;
@@ -144,6 +150,11 @@ export default {};
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 768px) and (max-height: 1024px) and (min-height: 1024px) {
+  .footer {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
   .footer {
     display: none;
   }

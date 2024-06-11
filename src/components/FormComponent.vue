@@ -166,4 +166,21 @@ button {
     padding: 12px 24px;
   }
 }
+@media (max-width: 767px) {
+  .right__section h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+  .form-right__section input {
+    width: 80%;
+  }
+  .form-right__section textarea {
+    width: 80%;
+  }
+  button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+  }
+}
 </style>

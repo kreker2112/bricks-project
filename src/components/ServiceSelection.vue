@@ -2332,6 +2332,41 @@ export default {
   }
 }
 
+@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+  .checkboxes-container {
+    top: 10%;
+    left: 5%;
+    width: 40%;
+    height: 65%;
+  }
+  .checkboxes {
+    margin-top: 5%;
+    grid-gap: 5%;
+  }
+  .checkbox-item label {
+    font-size: 100%;
+  }
+  .funnel-moving {
+    transform: translateX(-160px) translateY(170px) rotate(-60deg);
+  }
+  .take-money {
+    top: 45%;
+  }
+  .take-money__arrow {
+    top: 53%;
+  }
+  .small-tree {
+    bottom: -18%;
+  }
+  .big-tree {
+    bottom: -17%;
+  }
+  .lightbox-content h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 1400px) {
   .checkboxes-container {
     top: 6%;
@@ -2878,6 +2913,436 @@ export default {
     margin-top: 10px;
     width: 300px;
     height: 52px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media (max-width: 767px) {
+  .service-selection__upper {
+    height: 55%;
+    background-color: #ffffff;
+  }
+  .service-selection__lower {
+    height: 45%;
+  }
+  .checkboxes-container {
+    left: 1%;
+    top: 5%;
+    width: 20%;
+    height: 47%;
+  }
+
+  .checkboxes {
+    width: 70%;
+    grid-gap: 1%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+
+  .checkbox-item.checked {
+    color: #ff6400;
+    font-weight: bold;
+  }
+  .checkbox-item input {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  .funnel-container {
+    top: 130%;
+    right: 20%;
+  }
+  .funnel-moving {
+    transform: translateX(-40px) translateY(-200px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 70px;
+    left: 35%;
+  }
+  .take-money {
+    right: 40%;
+    top: 35%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 50%;
+    right: 45%;
+    width: 11%;
+  }
+  .cases-image {
+    width: 80%;
+  }
+  .lightbox-content {
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .lightbox-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .lightbox__checkboxes-container {
+    margin-left: -30%;
+    margin-bottom: 2%;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 0.5%;
+  }
+
+  .form input,
+  .form textarea {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+  }
+  .form input {
+    height: 26px;
+  }
+
+  .form textarea {
+    height: 46px;
+  }
+
+  .form button {
+    margin-top: 10px;
+    width: 300px;
+    height: 52px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media (max-width: 430px) {
+  .lightbox-content h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 1%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+  }
+  .form {
+    margin-top: 1%;
+  }
+  .form input,
+  .form textarea {
+    width: 80%;
+  }
+  .form input {
+    height: 20px;
+  }
+
+  .form textarea {
+    height: 40px;
+  }
+
+  .form button {
+    margin-top: 2px;
+    width: 300px;
+    height: 48px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media (max-width: 414px) {
+  .checkboxes-container {
+    left: 2%;
+    top: 8%;
+    width: 30%;
+    height: 30%;
+  }
+
+  .checkboxes {
+    width: 50%;
+    grid-gap: 6%;
+  }
+  .checkbox-item label {
+    font-size: 110%;
+  }
+  .checkbox-item input {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+  }
+  .funnel-moving {
+    transform: translateX(-20px) translateY(-180px) rotate(-60deg);
+  }
+  .lightbox-content h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 1%;
+    margin-bottom: 10%;
+    margin-top: 10%;
+  }
+  .form {
+    margin-top: 1%;
+  }
+  .form input,
+  .form textarea {
+    width: 80%;
+  }
+  .form input {
+    height: 20px;
+  }
+
+  .form textarea {
+    height: 40px;
+  }
+
+  .form button {
+    margin-top: 2px;
+    width: 300px;
+    height: 48px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media (max-width: 390px) {
+  .checkboxes-container {
+    left: 2%;
+    top: 8%;
+    width: 20%;
+    height: 30%;
+  }
+
+  .checkboxes {
+    width: 50%;
+    grid-gap: 5%;
+  }
+  .checkbox-item label {
+    font-size: 100%;
+  }
+  .checkbox-item input {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+  }
+  .funnel-moving {
+    transform: translateX(-20px) translateY(-160px) rotate(-60deg);
+  }
+  .lightbox-content h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 0.5%;
+  }
+  .form {
+    margin-top: 1%;
+  }
+  .form input,
+  .form textarea {
+    width: 80%;
+  }
+  .form input {
+    height: 20px;
+  }
+
+  .form textarea {
+    height: 40px;
+  }
+
+  .form button {
+    margin-top: 2px;
+    width: 300px;
+    height: 48px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media (max-width: 375px) {
+  .checkboxes-container {
+    left: 1%;
+    top: 5%;
+    width: 20%;
+    height: 30%;
+  }
+
+  .checkboxes {
+    margin-left: 50%;
+    width: 70%;
+    grid-gap: 3%;
+  }
+  .checkbox-item label {
+    font-size: 90%;
+  }
+  .checkbox-item input {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+  }
+  .funnel-container {
+    top: 130%;
+    right: 10%;
+  }
+  .funnel-image {
+    width: 80%;
+  }
+  .funnel-moving {
+    transform: translateX(-60px) translateY(-140px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 70px;
+    left: 35%;
+  }
+  .take-money {
+    right: 40%;
+    top: 35%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 50%;
+    right: 45%;
+    width: 11%;
+  }
+  .ground {
+    bottom: -35%;
+  }
+  .cases-image {
+    width: 60%;
+  }
+  .lightbox-content h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 1% auto;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 1%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+  }
+
+  .form input,
+  .form textarea {
+    width: 80%;
+  }
+  .form input {
+    height: 18px;
+  }
+
+  .form textarea {
+    height: 35px;
+  }
+}
+@media (max-width: 360px) {
+  .checkboxes-container {
+    left: 1%;
+    top: 5%;
+    width: 20%;
+    height: 30%;
+  }
+
+  .checkboxes {
+    width: 50%;
+    grid-gap: 3%;
+  }
+  .checkbox-item label {
+    font-size: 90%;
+  }
+  .checkbox-item input {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
+  .funnel-moving {
+    transform: translateX(-20px) translateY(-160px) rotate(-60deg);
+  }
+  .lightbox-content h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .lightbox-checkboxes {
+    font-size: 12px;
+    width: 50%;
+    grid-gap: 1%;
+    margin-bottom: 3%;
+    margin-top: 2%;
+  }
+  .form {
+    margin-top: 1%;
+  }
+  .form input,
+  .form textarea {
+    width: 80%;
+  }
+  .form input {
+    height: 20px;
+  }
+
+  .form textarea {
+    height: 40px;
+  }
+
+  .form button {
+    margin-top: 2px;
+    width: 300px;
+    height: 48px;
     background-color: #ff6400;
     color: #ffffff;
   }

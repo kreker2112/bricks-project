@@ -93,4 +93,20 @@ export default {
     height: 69%;
   }
 }
+@media (max-width: 767px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left-side {
+    width: 100%;
+    height: 31%;
+  }
+
+  .right-side {
+    width: 100%;
+    height: 69%;
+  }
+}
 </style>

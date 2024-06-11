@@ -138,9 +138,9 @@ export default {
         const fontSize = 1.9 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         const textWidth = context.measureText(brick.service).width;
-        const padding = textWidth * 0.3; // Padding от ширины текста
-        const brickWidth = Math.max(0.1 * width, textWidth + padding); // Минимальная ширина кирпича от ширины окна
-        const brickHeight = 0.1 * height; // Высота кирпича от высоты окна
+        const padding = textWidth * 1.09; // Padding от ширины текста
+        const brickWidth = Math.max(0.00000000001 * width, textWidth + padding); // Минимальная ширина кирпича от ширины окна
+        const brickHeight = 0.068 * height; // Высота кирпича от высоты окна
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];
@@ -150,7 +150,7 @@ export default {
             strokeStyle: "#000000",
             lineWidth: 3,
           },
-          chamfer: { radius: 0.009 * width }, // Радиус скругления углов
+          chamfer: { radius: 0.015 * width }, // Радиус скругления углов
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
@@ -272,7 +272,7 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        const fontSize = 1.9 * (width / 100);
+        const fontSize = 2.5 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";

@@ -2655,7 +2655,7 @@ export default {
     margin-top: 8px !important;
   }
   .lightbox-content h2 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 10px;
   }
   .lightbox-checkboxes {

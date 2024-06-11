@@ -2362,7 +2362,7 @@ export default {
     bottom: -17%;
   }
   .lightbox-content h2 {
-    font-size: 28px;
+    font-size: 28px !important;
     margin-bottom: 20px;
   }
 }

@@ -3320,7 +3320,7 @@ export default {
     width: 60%;
   }
   .lightbox-content h2 {
-    font-size: 16px;
+    font-size: 16px !important;
     text-align: center;
     margin: 1% auto;
   }
@@ -3382,7 +3382,7 @@ export default {
     bottom: -10%;
   }
   .lightbox-content h2 {
-    font-size: 20px;
+    font-size: 20px !important;
     margin-bottom: 5px;
   }
 

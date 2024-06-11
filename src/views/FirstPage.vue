@@ -30,8 +30,7 @@ export default {
 .first-page-content {
   display: flex;
   flex-direction: row;
-  /* height: 100%; */
-  height: 100vh;
+  height: 100%;
 }
 
 .left-side {

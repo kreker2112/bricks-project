@@ -39,7 +39,7 @@ export default {
 <style scoped>
 .right__section {
   background-color: #002d6e;
-  color: white;
+  color: #ffffff;
   width: 30%;
   height: 100%;
   display: flex;
@@ -61,9 +61,9 @@ export default {
   align-items: center;
 }
 
-input {
+input,
+textarea {
   width: 289px;
-  height: 49px;
   margin: 10px 0;
   border-radius: 8px;
   font-size: 16px;
@@ -71,12 +71,7 @@ input {
 }
 
 textarea {
-  width: 289px;
   height: 78px;
-  margin: 10px 0;
-  border-radius: 8px;
-  font-size: 16px;
-  padding-left: 10px;
 }
 
 button {
@@ -169,18 +164,17 @@ button {
 @media (max-width: 767px) {
   .right__section h2 {
     font-size: 32px;
-    text-align: center;
   }
-  .form-right__section input {
-    width: 80%;
+
+  input,
+  textarea {
+    width: 60%;
   }
-  .form-right__section textarea {
-    width: 80%;
-  }
+
   button {
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 24px;
+    width: 60%;
+    font-size: 16px;
+    padding: 8px 16px;
   }
 }
 </style>

@@ -96,12 +96,12 @@ export default {
     height: 69%;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 767px) {
   .left-side {
-    width: 271px;
+    height: 280px !important;
   }
   .right-side {
-    width: 602px;
+    height: 652px !important;
   }
   .first-page-content {
     flex-direction: column;

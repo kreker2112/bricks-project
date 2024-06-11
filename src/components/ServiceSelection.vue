@@ -2928,11 +2928,11 @@ export default {
 }
 @media (max-width: 767px) {
   .service-selection__upper {
-    height: 331px;
+    height: 389px !important;
     background-color: #ffffff;
   }
   .service-selection__lower {
-    height: 271;
+    height: 254 !important;
   }
   .checkboxes-container {
     left: 1%;

@@ -3104,7 +3104,7 @@ export default {
     transform: translateX(-20px) translateY(-180px) rotate(-60deg);
   }
   .lightbox-content h2 {
-    font-size: 28px;
+    font-size: 28px !important;
     margin-bottom: 5px;
   }
 
@@ -3171,7 +3171,7 @@ export default {
     transform: translateX(-20px) translateY(-160px) rotate(-60deg);
   }
   .lightbox-content h2 {
-    font-size: 20px;
+    font-size: 20px !important;
     margin-bottom: 5px;
   }
 
@@ -3310,7 +3310,10 @@ export default {
     border-radius: 3px;
   }
   .funnel-moving {
-    transform: translateX(-20px) translateY(-160px) rotate(-60deg);
+    transform: translateX(-60px) translateY(-140px) rotate(-60deg);
+  }
+  .ground {
+    bottom: -10%;
   }
   .lightbox-content h2 {
     font-size: 20px;

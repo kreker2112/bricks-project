@@ -845,5 +845,30 @@ export default {
     margin-left: 5%;
     width: 90%;
   }
+  @media (max-width: 360px) {
+    .instruments {
+      top: 30% !important;
+    }
+    .instruments__arrow {
+      top: 35% !important;
+    }
+    .services-block {
+      width: 15%;
+      height: 15%;
+      top: 30%;
+      right: 5%;
+    }
+    .add {
+      top: 30%;
+    }
+    .add-arrow {
+      top: 35%;
+    }
+    .ideas {
+      margin-top: 30% !important;
+      margin-left: 5%;
+      width: 90%;
+    }
+  }
 }
 </style>

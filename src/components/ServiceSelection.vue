@@ -2351,7 +2351,7 @@ export default {
     margin-bottom: 10px;
   }
 }
-@media (max-width: 1366px) and (max-height: 1024px) {
+@media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
   .funnel-moving {
     transform: translateX(-135px) translateY(250px) rotate(-60deg);
   }
@@ -2424,7 +2424,7 @@ export default {
   }
 }
 
-@media (max-width: 1180px) and (max-height: 820px) {
+@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
   .funnel-moving {
     transform: translateX(-120px) translateY(180px) rotate(-60deg);
   }
@@ -2454,8 +2454,96 @@ export default {
     width: 90%;
   }
 }
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  .service-selection__upper {
+    height: 55%;
+    background-color: #ffffff;
+  }
+  .service-selection__lower {
+    height: 45%;
+  }
+  .checkboxes-container {
+    left: 10%;
+    top: 5%;
+    width: 40%;
+    height: 47%;
+  }
 
-@media (max-width: 1024px) and (max-height: 768px) {
+  .checkboxes {
+    grid-gap: 8%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+
+  .checkbox-item.checked {
+    color: #ff6400;
+    font-weight: bold;
+  }
+  .checkbox-item input {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  .funnel-container {
+    top: 2%;
+    right: 1%;
+  }
+  .funnel-moving {
+    transform: translateX(-320px) translateY(200px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 70px;
+    left: 35%;
+  }
+  .ground {
+    bottom: -120%;
+  }
+  .take-money {
+    right: 25%;
+    top: 33%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 42%;
+    right: 45%;
+    width: 11%;
+  }
+  .cases-image {
+    width: 45%;
+  }
+  .lightbox-content {
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .lightbox-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    z-index: 999;
+  }
+
+  .lightbox-checkboxes {
+    grid-gap: 10px;
+  }
+  .form input,
+  .form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
   .grow_buisness-with-mosaic {
     top: 17%;
     right: 1%;
@@ -2519,7 +2607,7 @@ export default {
   }
 }
 
-@media (max-width: 1024px) and (max-height: 600px) {
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
   .checkboxes-container {
     top: 10%;
     width: 3%;
@@ -2593,6 +2681,213 @@ export default {
     width: 200px;
     height: 40px;
     font-size: 14px;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  .service-selection__upper {
+    height: 55%;
+    background-color: #ffffff;
+  }
+  .service-selection__lower {
+    height: 45%;
+  }
+  .checkboxes-container {
+    left: 10%;
+    top: 5%;
+    width: 40%;
+    height: 47%;
+  }
+
+  .checkboxes {
+    grid-gap: 6%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+
+  .checkbox-item.checked {
+    color: #ff6400;
+    font-weight: bold;
+  }
+  .checkbox-item input {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  .funnel-container {
+    top: 2%;
+    right: 1%;
+  }
+  .funnel-moving {
+    transform: translateX(-260px) translateY(200px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 70px;
+    left: 35%;
+  }
+  .ground {
+    bottom: -90%;
+  }
+  .take-money {
+    right: 25%;
+    top: 33%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 42%;
+    right: 45%;
+    width: 11%;
+  }
+  .cases-image {
+    width: 45%;
+  }
+  .lightbox-content {
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .lightbox-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .lightbox-checkboxes {
+    grid-gap: 1%;
+  }
+  .form input,
+  .form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  .form input {
+    height: 28px;
+  }
+
+  .form textarea {
+    height: 65px;
+  }
+
+  .form button {
+    margin-top: 20px;
+    width: 300px;
+    height: 52px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 768px) and (max-height: 1024px) and (min-height: 1024px) {
+  .service-selection__upper {
+    height: 55%;
+    background-color: #ffffff;
+  }
+  .service-selection__lower {
+    height: 45%;
+  }
+  .checkboxes-container {
+    left: 10%;
+    top: 5%;
+    width: 40%;
+    height: 47%;
+  }
+
+  .checkboxes {
+    grid-gap: 3%;
+  }
+  .checkbox-item label {
+    font-size: 120%;
+  }
+
+  .checkbox-item.checked {
+    color: #ff6400;
+    font-weight: bold;
+  }
+  .checkbox-item input {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+  }
+  .funnel-container {
+    top: 2%;
+    right: 1%;
+  }
+  .funnel-moving {
+    transform: translateX(-250px) translateY(170px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 70px;
+    left: 35%;
+  }
+  .ground {
+    bottom: -120%;
+  }
+  .take-money {
+    right: 25%;
+    top: 33%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 42%;
+    right: 45%;
+    width: 11%;
+  }
+  .cases-image {
+    width: 45%;
+  }
+  .lightbox-content {
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .lightbox-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .lightbox-checkboxes {
+    grid-gap: 1%;
+  }
+
+  .form input,
+  .form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px;
+  }
+  .form input {
+    height: 26px;
+  }
+
+  .form textarea {
+    height: 46px;
+  }
+
+  .form button {
+    margin-top: 10px;
+    width: 300px;
+    height: 52px;
+    background-color: #ff6400;
+    color: #ffffff;
+  }
+
+  .apply-button {
+    font-size: 24px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
   }
 }
 </style>

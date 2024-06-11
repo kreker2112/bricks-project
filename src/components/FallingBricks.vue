@@ -135,12 +135,12 @@ export default {
 
       const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        const fontSize = 1.8 * (width / 100);
+        const fontSize = 1.9 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         const textWidth = context.measureText(brick.service).width;
         const padding = textWidth * 0.3; // Padding от ширины текста
-        const brickWidth = Math.max(0.08 * width, textWidth + padding); // Минимальная ширина кирпича от ширины окна
-        const brickHeight = 0.05 * height; // Высота кирпича от высоты окна
+        const brickWidth = Math.max(0.1 * width, textWidth + padding); // Минимальная ширина кирпича от ширины окна
+        const brickHeight = 0.1 * height; // Высота кирпича от высоты окна
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];
@@ -272,7 +272,7 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        const fontSize = 1.8 * (width / 100);
+        const fontSize = 1.9 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
@@ -560,7 +560,7 @@ export default {
   }
 }
 
-@media (max-width: 1366px) and (max-height: 1024px) {
+@media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
   .mosaic-logo {
     top: 18%;
   }
@@ -584,24 +584,94 @@ export default {
   }
 }
 
-@media (max-width: 1280px) and (max-height: 800px) {
+@media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
   .instruments {
-    top: 60%;
+    top: 50%;
   }
   .instruments__arrow {
-    top: 65%;
+    top: 55% !important;
   }
   .services-block {
-    top: 60%;
+    top: 50%;
   }
   .add {
-    top: 60%;
+    top: 50%;
   }
   .add-arrow {
-    top: 63%;
+    top: 53%;
   }
 }
-@media (max-width: 1180px) and (max-height: 820px) {
+
+@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
+  .instruments {
+    top: 45% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    top: 45%;
+  }
+  .add {
+    top: 46%;
+  }
+  .add-arrow {
+    top: 49%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
+  .instruments {
+    top: 42% !important;
+  }
+  .instruments__arrow {
+    top: 46% !important;
+  }
+  .services-block {
+    top: 40%;
+  }
+  .add {
+    top: 40%;
+  }
+  .add-arrow {
+    top: 45%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
   .instruments {
     top: 54% !important;
   }
@@ -609,30 +679,83 @@ export default {
     top: 60% !important;
   }
   .services-block {
-    top: 54%;
+    top: 55%;
   }
   .add {
-    top: 54%;
+    top: 56%;
   }
   .add-arrow {
-    top: 58%;
+    top: 59%;
   }
 }
-@media (max-width: 1024px) and (max-height: 600px) {
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
   .instruments {
-    top: 67% !important;
+    top: 40% !important;
   }
   .instruments__arrow {
-    top: 70% !important;
+    top: 50% !important;
   }
   .services-block {
-    top: 66%;
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
   }
   .add {
-    top: 66%;
+    top: 42%;
   }
   .add-arrow {
-    top: 69%;
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
   }
 }
 </style>

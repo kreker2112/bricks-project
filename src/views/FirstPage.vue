@@ -44,4 +44,53 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left-side {
+    width: 100%;
+    height: 31%;
+  }
+
+  .right-side {
+    width: 100%;
+    height: 69%;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left-side {
+    width: 100%;
+    height: 31%;
+  }
+
+  .right-side {
+    width: 100%;
+    height: 69%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 768px) and (max-height: 1024px) and (min-height: 1024px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left-side {
+    width: 100%;
+    height: 31%;
+  }
+
+  .right-side {
+    width: 100%;
+    height: 69%;
+  }
+}
 </style>

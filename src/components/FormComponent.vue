@@ -90,13 +90,13 @@ button {
   border: none;
   cursor: pointer;
 }
-@media (max-width: 1280px) and (max-height: 800px) {
+@media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
   .right__section h2 {
     font-size: 32px;
   }
 }
 
-@media (max-width: 1180px) and (max-height: 820px) {
+@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
   .right__section h2 {
     font-size: 28px;
   }
@@ -108,7 +108,7 @@ button {
   }
 }
 
-@media (max-width: 1024px) and (max-height: 600px) {
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
   .right__section h2 {
     font-size: 28px;
   }
@@ -117,6 +117,53 @@ button {
   }
   .form-right__section textarea {
     width: 80%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  .right__section {
+    padding: 0 2%;
+  }
+  .right__section h2 {
+    text-align: center;
+  }
+  button {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 30px;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 820px) and (max-height: 1180px) and (min-height: 1180px) {
+  .right__section h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+  .form-right__section input {
+    width: 80%;
+  }
+  .form-right__section textarea {
+    width: 80%;
+  }
+  button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 768px) and (max-height: 1024px) and (min-height: 1024px) {
+  .right__section h2 {
+    font-size: 32px;
+    text-align: center;
+  }
+  .form-right__section input {
+    width: 80%;
+  }
+  .form-right__section textarea {
+    width: 80%;
+  }
+  button {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
   }
 }
 </style>

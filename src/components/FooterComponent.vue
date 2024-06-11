@@ -133,6 +133,11 @@ export default {};
     font-size: 140%;
   }
 }
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+  .right a {
+    font-size: 120%;
+  }
+}
 @media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
   .footer {
     display: none;

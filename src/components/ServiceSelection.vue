@@ -2365,7 +2365,6 @@ export default {
     font-size: 28px;
     margin-bottom: 20px;
   }
-  .
 }
 
 @media (max-width: 1400px) {

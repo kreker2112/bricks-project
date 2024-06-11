@@ -1,12 +1,10 @@
 <template>
-  <div class="page-content">
-    <div class="first-page-content page">
-      <div class="left-side">
-        <FallingBricks />
-      </div>
-      <div class="right-side">
-        <ServiceSelection @apply-selection="handleApplySelection" />
-      </div>
+  <div class="first-page-content page">
+    <div class="left-side">
+      <FallingBricks />
+    </div>
+    <div class="right-side">
+      <ServiceSelection @apply-selection="handleApplySelection" />
     </div>
   </div>
 </template>
@@ -98,11 +96,7 @@ export default {
     height: 69%;
   }
 }
-@media (max-width: 767px) {
-  .page-content {
-    height: 873px;
-    overflow-y: auto;
-  }
+@media (max-width: 430px) {
   .left-side {
     width: 271px;
   }

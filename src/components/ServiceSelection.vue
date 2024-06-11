@@ -2678,6 +2678,7 @@ export default {
   }
 
   .form button {
+    margin-top: 10px;
     width: 200px;
     height: 40px;
     font-size: 14px;

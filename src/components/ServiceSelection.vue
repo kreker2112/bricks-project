@@ -2662,13 +2662,13 @@ export default {
     grid-gap: 1%;
   }
   .form input {
-    height: 28px;
+    height: 24px;
     font-size: 12px;
     font-family: "Montserrat";
   }
 
   .form textarea {
-    height: 52px;
+    height: 48px;
     font-size: 12px;
     font-family: "Montserrat";
   }

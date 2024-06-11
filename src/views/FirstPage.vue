@@ -1,4 +1,5 @@
 <template>
+<div class="page-content">
   <div class="first-page-content page">
     <div class="left-side">
       <FallingBricks />
@@ -7,6 +8,7 @@
       <ServiceSelection @apply-selection="handleApplySelection" />
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -97,6 +99,10 @@ export default {
   }
 }
 @media (max-width: 767px) {
+.page-content {
+height: 873px;
+overflow-y: auto;
+}
   .first-page-content {
     flex-direction: column;
     gap: 0;

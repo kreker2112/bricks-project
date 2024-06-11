@@ -162,6 +162,9 @@ button {
   }
 }
 @media (max-width: 767px) {
+  .right__section {
+    width: 375px;
+  }
   .right__section h2 {
     font-size: 32px;
   }
@@ -171,10 +174,42 @@ button {
     width: 60%;
   }
 
+  input {
+    height: 30px;
+  }
+
+  textarea {
+    height: 78px;
+  }
+
   button {
-    width: 60%;
+    width: 65%;
+    font-size: 20px;
+    padding: 12px 25px;
+  }
+}
+@media (max-width: 390px) {
+  .right__section h2 {
+    font-size: 24px;
+  }
+
+  input,
+  textarea {
+    width: 75%;
+  }
+
+  input {
+    height: 30px;
+  }
+
+  textarea {
+    height: 78px;
+  }
+
+  button {
+    width: 80%;
     font-size: 16px;
-    padding: 8px 16px;
+    padding: 12px 25px;
   }
 }
 </style>

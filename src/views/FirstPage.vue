@@ -1,14 +1,14 @@
 <template>
-<div class="page-content">
-  <div class="first-page-content page">
-    <div class="left-side">
-      <FallingBricks />
-    </div>
-    <div class="right-side">
-      <ServiceSelection @apply-selection="handleApplySelection" />
+  <div class="page-content">
+    <div class="first-page-content page">
+      <div class="left-side">
+        <FallingBricks />
+      </div>
+      <div class="right-side">
+        <ServiceSelection @apply-selection="handleApplySelection" />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -99,10 +99,16 @@ export default {
   }
 }
 @media (max-width: 767px) {
-.page-content {
-height: 873px;
-overflow-y: auto;
-}
+  .page-content {
+    height: 873px;
+    overflow-y: auto;
+  }
+  .left-side {
+    width: 271px;
+  }
+  .right-side {
+    width: 602px;
+  }
   .first-page-content {
     flex-direction: column;
     gap: 0;

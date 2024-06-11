@@ -539,7 +539,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1400px) and (max-height: 1050px) {
   .mosaic-logo {
     top: 11%;
   }
@@ -547,7 +547,7 @@ export default {
     top: 45%;
   }
   .instruments__arrow {
-    top: 52%;
+    top: 52% !important;
   }
   .add {
     top: 45%;

@@ -781,6 +781,10 @@ export default {
   }
 }
 @media (max-width: 767px) {
+  .falling-bricks {
+    width: 100%;
+    height: 280px;
+  }
   img.bricks-frame {
     top: 9.5%;
     left: 78%;

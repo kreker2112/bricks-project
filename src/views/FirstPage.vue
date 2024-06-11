@@ -98,25 +98,17 @@ export default {
 }
 @media (max-width: 767px) {
   .left-side {
+    width: 100%;
     height: 280px !important;
   }
   .right-side {
+    width: 100%;
     height: 652px !important;
   }
   .first-page-content {
     flex-direction: column;
     gap: 0;
-    height: 100vh;
-  }
-
-  .left-side {
-    width: 100%;
-    height: 31%;
-  }
-
-  .right-side {
-    width: 100%;
-    height: 69%;
+    height: 932px !important;
   }
 }
 </style>

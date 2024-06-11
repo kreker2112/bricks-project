@@ -2928,22 +2928,22 @@ export default {
 }
 @media (max-width: 767px) {
   .service-selection__upper {
-    height: 389px !important;
+    height: 398px !important;
     background-color: #ffffff;
   }
   .service-selection__lower {
-    height: 254 !important;
+    height: 254px !important;
   }
   .checkboxes-container {
     left: 1%;
-    top: 5%;
+    top: 10%;
     width: 20%;
     height: 47%;
   }
 
   .checkboxes {
     width: 70%;
-    grid-gap: 1%;
+    grid-gap: 2%;
   }
   .checkbox-item label {
     font-size: 120%;
@@ -2959,7 +2959,9 @@ export default {
     border-radius: 8px;
   }
   .funnel-container {
-    top: 130%;
+    width: 30%;
+    height: 30%;
+    top: 120% !important;
     right: 20%;
   }
   .funnel-moving {
@@ -2980,7 +2982,7 @@ export default {
     width: 11%;
   }
   .cases-image {
-    width: 80%;
+    width: 70%;
   }
   .lightbox-content {
     height: 100%;

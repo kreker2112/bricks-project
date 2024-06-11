@@ -41,7 +41,7 @@ export default {
 
 <style>
 #app {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
 }
@@ -71,5 +71,11 @@ export default {
 
 .slide-left-leave-to {
   transform: translateX(-100%);
+}
+@media (max-width: 767px) {
+  .page-container {
+    width: 100%;
+    height: 932px !important;
+  }
 }
 </style>

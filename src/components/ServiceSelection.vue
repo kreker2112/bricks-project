@@ -3146,7 +3146,7 @@ export default {
     transform: translateX(-40px) translateY(-220px) rotate(-60deg);
   }
   .lightbox-content h2 {
-    font-size: 28px !important;
+    font-size: 24px !important;
     margin-bottom: 5px;
   }
 
@@ -3320,7 +3320,7 @@ export default {
     width: 60%;
   }
   .lightbox-content h2 {
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin: 1% auto;
   }

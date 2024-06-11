@@ -539,7 +539,7 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 1050px) {
+@media (max-width: 1400px) {
   .mosaic-logo {
     top: 11%;
   }

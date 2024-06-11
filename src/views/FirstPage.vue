@@ -97,6 +97,12 @@ export default {
   }
 }
 @media (max-width: 767px) {
+  .first-page-content {
+    flex-direction: column;
+    gap: 0;
+    height: 932px !important;
+    overflow-y: auto;
+  }
   .left-side {
     width: 100%;
     height: 280px !important;
@@ -104,12 +110,6 @@ export default {
   .right-side {
     width: 100%;
     height: 652px !important;
-  }
-  .first-page-content {
-    flex-direction: column;
-    gap: 0;
-    height: 932px !important;
-    overflow-y: auto;
   }
 }
 </style>

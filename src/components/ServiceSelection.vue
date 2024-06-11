@@ -2936,14 +2936,14 @@ export default {
   }
   .checkboxes-container {
     left: 1%;
-    top: 10%;
+    top: 5%;
     width: 20%;
     height: 47%;
   }
 
   .checkboxes {
     width: 70%;
-    grid-gap: 2%;
+    grid-gap: 1%;
   }
   .checkbox-item label {
     font-size: 120%;

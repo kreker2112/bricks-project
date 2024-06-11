@@ -41,7 +41,7 @@ export default {
 
 <style>
 #app {
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -58,6 +58,7 @@ export default {
   width: 100vw;
   position: absolute;
   transition: all 1s;
+  overflow-y: auto;
 }
 
 .slide-left-enter-active,

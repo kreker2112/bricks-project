@@ -101,7 +101,7 @@ export default {
     flex-direction: column;
     gap: 0;
     height: 932px !important;
-    overflow-y: auto;
+    overflow-y: auto !important;
   }
   .left-side {
     width: 100%;

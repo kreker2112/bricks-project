@@ -75,9 +75,9 @@ export default {
 }
 @media (max-width: 767px) {
   .page-container {
-    width: 100%;
+    width: 100% !important;
     height: 932px !important;
-    overflow-y: auto;
+    overflow-y: auto !important;
   }
 }
 </style>

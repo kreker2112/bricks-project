@@ -329,6 +329,7 @@ export default {
         setTimeout(() => {
           showLightbox.value = true;
           lightboxSelectedServices.value = [...selectedServices.value];
+          console.log(lightboxSelectedServices.value);
         }, 1000);
       }, 500);
     };
@@ -356,6 +357,7 @@ export default {
     const applySelection = () => {
       emit("apply-selection");
       router.push("/second-page");
+      console.log(lightboxSelectedServices.value);
     };
 
     const closeLightbox = () => {
@@ -384,6 +386,7 @@ export default {
       } else {
         lightboxSelectedServices.value.push(service);
       }
+      console.log(lightboxSelectedServices.value);
     };
 
     const animateGrowBusiness = () => {
@@ -408,8 +411,6 @@ export default {
       isArrowAnimating.value = false;
       isGrowBusinessAnimating.value = false;
     };
-
-    console.log(lightboxSelectedServices.value);
 
     return {
       services,

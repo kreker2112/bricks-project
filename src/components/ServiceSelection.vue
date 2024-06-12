@@ -135,7 +135,7 @@
         <div class="service-selection__lower--cases-image">
           <img
             class="cases-image"
-            src="../images/logос/cases.png"
+            src="../images/logos/cases.png"
             alt="cases"
           />
         </div>
@@ -329,7 +329,6 @@ export default {
         setTimeout(() => {
           showLightbox.value = true;
           lightboxSelectedServices.value = [...selectedServices.value];
-          console.log(lightboxSelectedServices.value);
         }, 1000);
       }, 500);
     };
@@ -409,6 +408,8 @@ export default {
       isArrowAnimating.value = false;
       isGrowBusinessAnimating.value = false;
     };
+
+    console.log(lightboxSelectedServices.value);
 
     return {
       services,

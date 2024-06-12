@@ -4,13 +4,13 @@
       <img
         class="grow_buisness-with-mosaic"
         :class="{ animated: isGrowBusinessAnimating }"
-        src="../images/grow_buisness-with-mosaic.png"
+        :src="growBusinessSrc"
         alt="grow_buisness"
       />
       <img
         class="business-arrow__down"
         :class="{ animated: isArrowAnimating }"
-        src="../images/business-arrow__down.png"
+        :src="businessArrowSrc"
         alt="business-arrow__down"
       />
 
@@ -198,7 +198,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
@@ -251,6 +251,30 @@ export default {
     let checkboxCounter = 0;
     let arrowAnimationInterval;
     let growBusinessAnimationTimeout;
+    const isMobile = ref(window.innerWidth <= 767);
+
+    const growBusinessSrc = computed(() =>
+      isMobile.value
+        ? require("../images/grow_buisness-with-mosaic-blue.png")
+        : require("../images/grow_buisness-with-mosaic.png"),
+    );
+    const businessArrowSrc = computed(() =>
+      isMobile.value
+        ? require("../images/business-arrow__down-blue.png")
+        : require("../images/business-arrow__down.png"),
+    );
+
+    const updateIsMobile = () => {
+      isMobile.value = window.innerWidth <= 767;
+    };
+
+    onMounted(() => {
+      window.addEventListener("resize", updateIsMobile);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", updateIsMobile);
+    });
 
     watch(
       () => store.getters.animationTrigger,
@@ -457,6 +481,8 @@ export default {
       isGrowBusinessAnimating,
       toggleLightboxService,
       filterPhoneInput,
+      growBusinessSrc,
+      businessArrowSrc,
     };
   },
 };
@@ -1080,35 +1106,35 @@ export default {
     transform: translateY(0);
   }
   90% {
-    transform: translateY(-2px);
-  }
-  80% {
-    transform: translateY(-4px);
-  }
-  70% {
     transform: translateY(-8px);
   }
+  80% {
+    transform: translateY(-14px);
+  }
+  70% {
+    transform: translateY(-16px);
+  }
   60% {
-    transform: translateY(-10px);
+    transform: translateY(-18px);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-22px);
   }
   40% {
-    transform: translateY(-14px);
+    transform: translateY(-18px);
   }
   30% {
     transform: translateY(-16px);
   }
 
   20% {
-    transform: translateY(-18px);
+    transform: translateY(-14px);
   }
   10% {
-    transform: translateY(-20px);
+    transform: translateY(-8px);
   }
   0% {
-    transform: translateY(-22px);
+    transform: translateY(0px);
   }
 }
 
@@ -2990,6 +3016,33 @@ export default {
     height: 28px;
     border-radius: 8px;
   }
+
+  .grow_buisness-with-mosaic {
+    top: 95%;
+    right: 35%;
+    z-index: 999;
+  }
+
+  .business-arrow__down {
+    width: 10%;
+    top: 111%;
+    right: 35%;
+    z-index: 999;
+    animation: bounceWithRotation 1s infinite;
+  }
+
+  @keyframes bounceWithRotation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .funnel-container {
     width: 30%;
     height: 30%;

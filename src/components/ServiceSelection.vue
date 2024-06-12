@@ -161,8 +161,8 @@
                   :name="'lightbox-service-' + index"
                   type="checkbox"
                   :value="service"
-                  v-model="lightboxSelectedServices"
-                  @change="() => updateLightboxSelectedServices(service)"
+                  :checked="lightboxSelectedServices.includes(service)"
+                  @change="toggleLightboxService(service)"
                 />
                 <label :for="'lightbox-service-' + index">{{ service }}</label>
               </div>
@@ -377,7 +377,7 @@ export default {
       animateGrowBusiness();
     };
 
-    const updateLightboxSelectedServices = (service) => {
+    const toggleLightboxService = (service) => {
       if (lightboxSelectedServices.value.includes(service)) {
         lightboxSelectedServices.value = lightboxSelectedServices.value.filter(
           (s) => s !== service,
@@ -436,7 +436,7 @@ export default {
       isArrowAnimating,
       isAnimating,
       isGrowBusinessAnimating,
-      updateLightboxSelectedServices,
+      toggleLightboxService,
     };
   },
 };

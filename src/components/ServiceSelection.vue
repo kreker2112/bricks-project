@@ -230,6 +230,7 @@ export default {
       "SMM",
       "TV",
       "SEO",
+      "Розсилки",
     ]);
 
     const selectedServices = computed(() => store.getters.selectedServices);

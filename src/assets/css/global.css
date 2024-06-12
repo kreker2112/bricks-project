@@ -10,4 +10,5 @@ body {
     "Montserrat" "Rubik",
     sans-serif;
   overflow-y: auto;
+  overflow-x: hidden;
 }

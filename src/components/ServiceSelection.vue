@@ -355,9 +355,15 @@ export default {
     };
 
     const applySelection = () => {
+      const formData = {
+        name: lightboxName.value,
+        phone: lightboxPhone.value,
+        message: lightboxMessage.value,
+        services: [...lightboxSelectedServices.value],
+      };
+      console.log(formData);
       emit("apply-selection");
       router.push("/second-page");
-      console.log(lightboxSelectedServices.value);
     };
 
     const closeLightbox = () => {

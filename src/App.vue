@@ -79,8 +79,5 @@ export default {
     height: 932px !important;
     overflow-y: auto !important;
   }
-  .page {
-    overflow-y: auto !important;
-  }
 }
 </style>

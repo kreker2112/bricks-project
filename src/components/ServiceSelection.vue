@@ -337,6 +337,10 @@ export default {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
       store.dispatch("addService", service);
+      selectedServicesList.value = selectedServicesList.value.filter(
+        (s) => s !== service,
+      );
+      console.log("Selected Services:", selectedServicesList.value);
     };
 
     const onDragOverFunnel = (event) => {

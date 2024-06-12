@@ -231,7 +231,6 @@ export default {
     ]);
 
     const selectedServices = computed(() => store.getters.selectedServices);
-    const selectedServicesList = ref([]);
     const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
@@ -329,6 +328,7 @@ export default {
         setTimeout(() => {
           showLightbox.value = true;
           lightboxSelectedServices.value = [...selectedServices.value];
+          console.log(lightboxSelectedServices.value);
         }, 1000);
       }, 500);
     };
@@ -337,10 +337,6 @@ export default {
       const service = event.dataTransfer.getData("service");
       console.log("Dropped service:", service);
       store.dispatch("addService", service);
-      if (service && !selectedServices.value.includes(service)) {
-        store.dispatch("addService", service);
-        selectedServicesList.value.push(service);
-      }
     };
 
     const onDragOverFunnel = (event) => {
@@ -369,12 +365,8 @@ export default {
     const toggleService = (service) => {
       if (selectedServices.value.includes(service)) {
         store.dispatch("removeService", service);
-        selectedServicesList.value = selectedServicesList.value.filter(
-          (s) => s !== service,
-        );
       } else {
         store.dispatch("addService", service);
-        selectedServicesList.value.push(service);
         checkboxCounter += 1;
         if (checkboxCounter === 1) {
           startArrowAnimation();
@@ -382,7 +374,6 @@ export default {
         animateFunnel();
       }
       animateGrowBusiness();
-      console.log("Selected Services:", selectedServicesList.value);
     };
 
     const animateGrowBusiness = () => {
@@ -411,7 +402,6 @@ export default {
     return {
       services,
       selectedServices,
-      selectedServicesList,
       lightboxSelectedServices,
       pourWater,
       isPouring,

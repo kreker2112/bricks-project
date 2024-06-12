@@ -1,6 +1,6 @@
 <template>
   <div class="right__section">
-    <h2>Зв'яжіться з нами</h2>
+    <h2 v-if="showSuccessMessage">Зв'яжіться з нами</h2>
     <form
       v-if="!showSuccessMessage"
       class="form-right__section"

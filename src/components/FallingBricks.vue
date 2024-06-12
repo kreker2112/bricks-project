@@ -74,15 +74,15 @@
           </div>
         </div>
         <div class="contact-section">
-          <div class="contact-item">
-            <i class="email-icon"></i> 1234567@gmail.com
-          </div>
-          <div class="contact-item">
-            <i class="phone-icon"></i> 0 800 123 456 7
-          </div>
-          <div class="contact-item"><i class="telegram-icon"></i> @khjhjkh</div>
-          <div class="contact-item">
-            <i class="location-icon"></i> м. Дніпро, вул. Виконкомівська, 85
+          <h2>
+            ЗВ'ЯЖІТЬСЯ <br />
+            З НАМИ
+          </h2>
+          <div class="contact-item-email">1234567@gmail.com</div>
+          <div class="contact-item-phone">0 800 123 456 7</div>
+          <div class="contact-item-telegram">@khjhjkh</div>
+          <div class="contact-item-address">
+            м. Дніпро, вул. Виконкомівська, 85
           </div>
           <div class="footer-section">
             <div class="footer-icon">
@@ -906,18 +906,18 @@ export default {
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: -100%;
+  right: -100%;
   width: 100%;
   height: 100%;
   background-color: #ff6400;
   z-index: 1000;
-  transition: left 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
 }
 
 .mobile-menu.open {
-  left: 0;
+  right: 0;
 }
 
 .mobile-menu__header {
@@ -979,17 +979,15 @@ export default {
   gap: 20px;
 }
 
-.contact-item {
+.contact-item-email,
+.contact-item-phone,
+.contact-item-telegram,
+.contact-item-address {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
   font-size: 1.5rem;
 }
-
-.contact-item i {
-  margin-right: 0.5rem;
-}
-
 .footer-section {
   display: flex;
   justify-content: flex-start;

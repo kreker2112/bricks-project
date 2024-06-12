@@ -148,7 +148,9 @@ export default {
     const submenuOpen = ref("");
 
     const openMenu = () => {
-      isMenuOpen.value = true;
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        isMenuOpen.value = true;
+      }
     };
 
     const closeMenu = () => {

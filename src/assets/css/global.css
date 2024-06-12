@@ -9,4 +9,5 @@ body {
   font-family:
     "Montserrat" "Rubik",
     sans-serif;
+  overflow: hidden;
 }

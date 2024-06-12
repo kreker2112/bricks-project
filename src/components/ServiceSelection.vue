@@ -603,407 +603,407 @@ export default {
 @keyframes drop-fall {
   0% {
     opacity: 1;
-    transform: translateY(6px);
+    transform: translateY(0px);
   }
   1% {
     opacity: 0.99;
-    transform: translateY(12px);
+    transform: translateY(2px);
   }
   2% {
     opacity: 0.98;
-    transform: translateY(18px);
+    transform: translateY(4px);
   }
   3% {
     opacity: 0.97;
-    transform: translateY(24px);
+    transform: translateY(6px);
   }
   4% {
     opacity: 0.96;
-    transform: translateY(30px);
+    transform: translateY(8px);
   }
   5% {
     opacity: 0.95;
-    transform: translateY(36px);
+    transform: translateY(10px);
   }
   6% {
     opacity: 0.94;
-    transform: translateY(42px);
+    transform: translateY(12px);
   }
   7% {
     opacity: 0.93;
-    transform: translateY(48px);
+    transform: translateY(14px);
   }
   8% {
     opacity: 0.92;
-    transform: translateY(54px);
+    transform: translateY(16px);
   }
   9% {
     opacity: 0.91;
-    transform: translateY(60px);
+    transform: translateY(18px);
   }
   10% {
     opacity: 0.9;
-    transform: translateY(66px);
+    transform: translateY(20px);
   }
   11% {
     opacity: 0.89;
-    transform: translateY(72px);
+    transform: translateY(22px);
   }
   12% {
     opacity: 0.88;
-    transform: translateY(78px);
+    transform: translateY(24px);
   }
   13% {
     opacity: 0.87;
-    transform: translateY(84px);
+    transform: translateY(26px);
   }
   14% {
     opacity: 0.86;
-    transform: translateY(90px);
+    transform: translateY(28px);
   }
   15% {
     opacity: 0.85;
-    transform: translateY(96px);
+    transform: translateY(30px);
   }
   16% {
     opacity: 0.84;
-    transform: translateY(102px);
+    transform: translateY(32px);
   }
   17% {
     opacity: 0.83;
-    transform: translateY(108px);
+    transform: translateY(34px);
   }
   18% {
     opacity: 0.82;
-    transform: translateY(114px);
+    transform: translateY(36px);
   }
   19% {
     opacity: 0.81;
-    transform: translateY(120px);
+    transform: translateY(38px);
   }
   20% {
     opacity: 0.8;
-    transform: translateY(126px);
+    transform: translateY(40px);
   }
   21% {
     opacity: 0.79;
-    transform: translateY(132px);
+    transform: translateY(42px);
   }
   22% {
     opacity: 0.78;
-    transform: translateY(138px);
+    transform: translateY(44px);
   }
   23% {
     opacity: 0.77;
-    transform: translateY(144px);
+    transform: translateY(46px);
   }
   24% {
     opacity: 0.76;
-    transform: translateY(150px);
+    transform: translateY(48px);
   }
   25% {
     opacity: 0.75;
-    transform: translateY(156px);
+    transform: translateY(50px);
   }
   26% {
     opacity: 0.74;
-    transform: translateY(162px);
+    transform: translateY(52px);
   }
   27% {
     opacity: 0.73;
-    transform: translateY(168px);
+    transform: translateY(54px);
   }
   28% {
     opacity: 0.72;
-    transform: translateY(174px);
+    transform: translateY(56px);
   }
   29% {
     opacity: 0.71;
-    transform: translateY(180px);
+    transform: translateY(58px);
   }
   30% {
     opacity: 0.7;
-    transform: translateY(186px);
+    transform: translateY(60px);
   }
   31% {
     opacity: 0.69;
-    transform: translateY(192px);
+    transform: translateY(62px);
   }
   32% {
     opacity: 0.68;
-    transform: translateY(198px);
+    transform: translateY(64px);
   }
   33% {
     opacity: 0.67;
-    transform: translateY(204px);
+    transform: translateY(66px);
   }
   34% {
     opacity: 0.66;
-    transform: translateY(210px);
+    transform: translateY(68px);
   }
   35% {
     opacity: 0.65;
-    transform: translateY(216px);
+    transform: translateY(70px);
   }
   36% {
     opacity: 0.64;
-    transform: translateY(222px);
+    transform: translateY(72px);
   }
   37% {
     opacity: 0.63;
-    transform: translateY(228px);
+    transform: translateY(74px);
   }
   38% {
     opacity: 0.62;
-    transform: translateY(234px);
+    transform: translateY(76px);
   }
   39% {
     opacity: 0.61;
-    transform: translateY(240px);
+    transform: translateY(78px);
   }
   40% {
     opacity: 0.6;
-    transform: translateY(246px);
+    transform: translateY(80px);
   }
   41% {
     opacity: 0.59;
-    transform: translateY(252px);
+    transform: translateY(82px);
   }
   42% {
     opacity: 0.58;
-    transform: translateY(258px);
+    transform: translateY(84px);
   }
   43% {
     opacity: 0.57;
-    transform: translateY(264px);
+    transform: translateY(86px);
   }
   44% {
     opacity: 0.56;
-    transform: translateY(270px);
+    transform: translateY(88px);
   }
   45% {
     opacity: 0.55;
-    transform: translateY(276px);
+    transform: translateY(90px);
   }
   46% {
     opacity: 0.54;
-    transform: translateY(282px);
+    transform: translateY(92px);
   }
   47% {
     opacity: 0.53;
-    transform: translateY(288px);
+    transform: translateY(94px);
   }
   48% {
     opacity: 0.52;
-    transform: translateY(294px);
+    transform: translateY(96px);
   }
   49% {
     opacity: 0.51;
-    transform: translateY(300px);
+    transform: translateY(98px);
   }
   50% {
     opacity: 0.5;
-    transform: translateY(306px);
+    transform: translateY(100px);
   }
   51% {
     opacity: 0.49;
-    transform: translateY(312px);
+    transform: translateY(102px);
   }
   52% {
     opacity: 0.48;
-    transform: translateY(318px);
+    transform: translateY(104px);
   }
   53% {
     opacity: 0.47;
-    transform: translateY(324px);
+    transform: translateY(106px);
   }
   54% {
     opacity: 0.46;
-    transform: translateY(330px);
+    transform: translateY(108px);
   }
   55% {
     opacity: 0.45;
-    transform: translateY(336px);
+    transform: translateY(110px);
   }
   56% {
     opacity: 0.44;
-    transform: translateY(342px);
+    transform: translateY(112px);
   }
   57% {
     opacity: 0.43;
-    transform: translateY(348px);
+    transform: translateY(114px);
   }
   58% {
     opacity: 0.42;
-    transform: translateY(354px);
+    transform: translateY(116px);
   }
   59% {
     opacity: 0.41;
-    transform: translateY(360px);
+    transform: translateY(118px);
   }
   60% {
     opacity: 0.4;
-    transform: translateY(366px);
+    transform: translateY(120px);
   }
   61% {
     opacity: 0.39;
-    transform: translateY(372px);
+    transform: translateY(122px);
   }
   62% {
     opacity: 0.38;
-    transform: translateY(378px);
+    transform: translateY(124px);
   }
   63% {
     opacity: 0.37;
-    transform: translateY(384px);
+    transform: translateY(126px);
   }
   64% {
     opacity: 0.36;
-    transform: translateY(390px);
+    transform: translateY(128px);
   }
   65% {
     opacity: 0.35;
-    transform: translateY(396px);
+    transform: translateY(130px);
   }
   66% {
     opacity: 0.34;
-    transform: translateY(402px);
+    transform: translateY(132px);
   }
   67% {
     opacity: 0.33;
-    transform: translateY(408px);
+    transform: translateY(134px);
   }
   68% {
     opacity: 0.32;
-    transform: translateY(414px);
+    transform: translateY(136px);
   }
   69% {
     opacity: 0.31;
-    transform: translateY(420px);
+    transform: translateY(138px);
   }
   70% {
     opacity: 0.3;
-    transform: translateY(426px);
+    transform: translateY(140px);
   }
   71% {
     opacity: 0.29;
-    transform: translateY(432px);
+    transform: translateY(142px);
   }
   72% {
     opacity: 0.28;
-    transform: translateY(438px);
+    transform: translateY(144px);
   }
   73% {
     opacity: 0.27;
-    transform: translateY(444px);
+    transform: translateY(146px);
   }
   74% {
     opacity: 0.26;
-    transform: translateY(450px);
+    transform: translateY(148px);
   }
   75% {
     opacity: 0.25;
-    transform: translateY(456px);
+    transform: translateY(150px);
   }
   76% {
     opacity: 0.24;
-    transform: translateY(462px);
+    transform: translateY(152px);
   }
   77% {
     opacity: 0.23;
-    transform: translateY(468px);
+    transform: translateY(154px);
   }
   78% {
     opacity: 0.22;
-    transform: translateY(474px);
+    transform: translateY(156px);
   }
   79% {
     opacity: 0.21;
-    transform: translateY(480px);
+    transform: translateY(158px);
   }
   80% {
     opacity: 0.2;
-    transform: translateY(486px);
+    transform: translateY(160px);
   }
   81% {
     opacity: 0.19;
-    transform: translateY(492px);
+    transform: translateY(162px);
   }
   82% {
     opacity: 0.18;
-    transform: translateY(498px);
+    transform: translateY(164px);
   }
   83% {
     opacity: 0.17;
-    transform: translateY(504px);
+    transform: translateY(166px);
   }
   84% {
     opacity: 0.16;
-    transform: translateY(510px);
+    transform: translateY(168px);
   }
   85% {
     opacity: 0.15;
-    transform: translateY(516px);
+    transform: translateY(170px);
   }
   86% {
     opacity: 0.14;
-    transform: translateY(522px);
+    transform: translateY(172px);
   }
   87% {
     opacity: 0.13;
-    transform: translateY(528px);
+    transform: translateY(174px);
   }
   88% {
     opacity: 0.12;
-    transform: translateY(534px);
+    transform: translateY(176px);
   }
   89% {
     opacity: 0.11;
-    transform: translateY(540px);
+    transform: translateY(178px);
   }
   90% {
     opacity: 0.1;
-    transform: translateY(546px);
+    transform: translateY(180px);
   }
   91% {
     opacity: 0.09;
-    transform: translateY(552px);
+    transform: translateY(182px);
   }
   92% {
     opacity: 0.08;
-    transform: translateY(558px);
+    transform: translateY(184px);
   }
   93% {
     opacity: 0.07;
-    transform: translateY(564px);
+    transform: translateY(186px);
   }
   94% {
     opacity: 0.06;
-    transform: translateY(570px);
+    transform: translateY(188px);
   }
   95% {
     opacity: 0.05;
-    transform: translateY(576px);
+    transform: translateY(190px);
   }
   96% {
     opacity: 0.04;
-    transform: translateY(582px);
+    transform: translateY(192px);
   }
   97% {
     opacity: 0.03;
-    transform: translateY(588px);
+    transform: translateY(194px);
   }
   98% {
     opacity: 0.02;
-    transform: translateY(594px);
+    transform: translateY(196px);
   }
   99% {
     opacity: 0.01;
-    transform: translateY(598px);
+    transform: translateY(198px);
   }
   100% {
     opacity: 0;
-    transform: translateY(600px);
+    transform: translateY(200px);
   }
 }
 

@@ -364,6 +364,7 @@ export default {
       console.log(formData);
       emit("apply-selection");
       router.push("/second-page");
+      // Здесь вы можете отправить данные на сервер или выполнить другие действия
     };
 
     const closeLightbox = () => {

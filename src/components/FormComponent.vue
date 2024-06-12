@@ -3,8 +3,20 @@
   <div class="right__section">
     <h2>Зв'яжіться з нами</h2>
     <form class="form-right__section" @submit.prevent="submitForm">
-      <input type="text" v-model="name" placeholder="Ім'я" required />
-      <input type="tel" v-model="phone" placeholder="Телефон" required />
+      <input
+        class="form-input"
+        type="text"
+        v-model="name"
+        placeholder="Ім'я"
+        required
+      />
+      <input
+        class="form-input"
+        type="tel"
+        v-model="phone"
+        placeholder="Телефон"
+        required
+      />
       <textarea
         v-model="message"
         placeholder="Повідомлення"
@@ -24,7 +36,15 @@ export default {
     const phone = ref("");
     const message = ref("");
 
-    const submitForm = () => {};
+    const submitForm = () => {
+      const formData = {
+        name: name.value,
+        phone: phone.value,
+        message: message.value,
+      };
+      console.log(formData);
+      // Здесь вы можете отправить данные на сервер или выполнить другие действия
+    };
 
     return {
       name,
@@ -64,6 +84,7 @@ export default {
 input,
 textarea {
   width: 289px;
+  height: 40px;
   margin: 10px 0;
   border-radius: 8px;
   font-size: 16px;

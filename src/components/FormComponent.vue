@@ -15,6 +15,8 @@
         type="tel"
         v-model="phone"
         placeholder="Телефон"
+        pattern="^\+?[0-9\s\-]*$"
+        inputmode="tel"
         required
       />
       <textarea

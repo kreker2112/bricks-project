@@ -50,6 +50,7 @@ export default {
   width: 100vw;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -59,6 +60,7 @@ export default {
   position: absolute;
   transition: all 1s;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .slide-left-enter-active,

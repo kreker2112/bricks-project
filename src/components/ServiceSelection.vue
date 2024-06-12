@@ -258,6 +258,10 @@ export default {
       },
     );
 
+    watch(selectedServicesContent, (newValue) => {
+      console.log("Selected services content:", newValue);
+    });
+
     const startArrowAnimation = () => {
       clearInterval(arrowAnimationInterval);
       isArrowAnimating.value = true;
@@ -406,10 +410,6 @@ export default {
         };
       });
     });
-
-    console.log(
-      `selectedServicesContentValue: ${selectedServicesContent.value}`,
-    );
 
     return {
       services,

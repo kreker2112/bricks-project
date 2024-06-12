@@ -179,8 +179,7 @@
               type="tel"
               v-model="lightboxPhone"
               placeholder="Телефон"
-              pattern="^\+?[0-9\s\-]*$"
-              inputmode="tel"
+              @input="filterPhoneInput"
               required
             />
             <textarea
@@ -421,6 +420,14 @@ export default {
       isGrowBusinessAnimating.value = false;
     };
 
+    const filterPhoneInput = (event) => {
+      const input = event.target;
+      const value = input.value;
+      const filteredValue = value.replace(/[^0-9+\-\s]/g, "");
+      input.value = filteredValue;
+      lightboxPhone.value = filteredValue;
+    };
+
     return {
       services,
       selectedServices,
@@ -448,6 +455,7 @@ export default {
       isAnimating,
       isGrowBusinessAnimating,
       toggleLightboxService,
+      filterPhoneInput,
     };
   },
 };

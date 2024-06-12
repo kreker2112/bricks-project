@@ -364,7 +364,6 @@ export default {
         services: [...lightboxSelectedServices.value],
       };
       console.log(formData);
-      alert(formData); // Это алерт для демонстрации, в реальном проекте его не будет, удалите его
       emit("apply-selection");
       router.push("/second-page");
       // Здесь вы можете отправить данные на сервер или выполнить другие действия

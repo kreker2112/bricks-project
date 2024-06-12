@@ -18,11 +18,12 @@
         required
       />
       <textarea
+        class="form-textarea"
         v-model="message"
         placeholder="Повідомлення"
         required
       ></textarea>
-      <button type="submit">Замовити дзвінок</button>
+      <button class="form-buttom" type="submit">Замовити дзвінок</button>
     </form>
   </div>
 </template>
@@ -81,8 +82,7 @@ export default {
   align-items: center;
 }
 
-input,
-textarea {
+.form-input {
   width: 289px;
   height: 40px;
   margin: 10px 0;
@@ -91,17 +91,22 @@ textarea {
   padding-left: 10px;
 }
 
-textarea {
+.form-textarea {
+  width: 289px;
   height: 78px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-left: 10px;
 }
 
-button {
+.form-buttom {
   margin-top: 60px;
   background-color: #ff6400;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bolder;
-  padding: 9.43px 18.85px;
+  padding: 12px 22px;
   border-radius: 8px;
   border: none;
   cursor: pointer;

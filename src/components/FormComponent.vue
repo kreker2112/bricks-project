@@ -1,8 +1,11 @@
-<!-- FormComponent.vue -->
 <template>
   <div class="right__section">
     <h2>Зв'яжіться з нами</h2>
-    <form class="form-right__section" @submit.prevent="submitForm">
+    <form
+      v-if="!showSuccessMessage"
+      class="form-right__section"
+      @submit.prevent="submitForm"
+    >
       <input
         class="form-input"
         type="text"
@@ -27,6 +30,10 @@
       ></textarea>
       <button class="form-buttom" type="submit">Замовити дзвінок</button>
     </form>
+    <div v-else class="success-message">
+      <h2>Дякуємо за звернення!</h2>
+      <p>Наш менеджер скоро зв'яжеться з вами</p>
+    </div>
   </div>
 </template>
 
@@ -38,6 +45,7 @@ export default {
     const name = ref("");
     const phone = ref("");
     const message = ref("");
+    const showSuccessMessage = ref(false);
 
     const submitForm = () => {
       const formData = {
@@ -46,6 +54,7 @@ export default {
         message: message.value,
       };
       console.log(formData);
+      showSuccessMessage.value = true;
       // Здесь вы можете отправить данные на сервер или выполнить другие действия
     };
 
@@ -53,6 +62,7 @@ export default {
       name,
       phone,
       message,
+      showSuccessMessage,
       submitForm,
     };
   },
@@ -113,6 +123,25 @@ export default {
   border: none;
   cursor: pointer;
 }
+
+.success-message {
+  text-align: center;
+}
+
+.success-message h2 {
+  font-size: 36px;
+  font-family: "Montserrat";
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.success-message p {
+  font-size: 20px;
+  font-family: "Montserrat";
+  font-weight: 300;
+}
+
+/* Media Queries */
 @media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
   .right__section h2 {
     font-size: 32px;

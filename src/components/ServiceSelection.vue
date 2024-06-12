@@ -231,7 +231,6 @@ export default {
     ]);
 
     const selectedServices = computed(() => store.getters.selectedServices);
-    console.log(selectedServices.value);
     const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
@@ -399,6 +398,19 @@ export default {
       isGrowBusinessAnimating.value = false;
     };
 
+    const selectedServicesContent = computed(() => {
+      return selectedServices.value.map((service) => {
+        return {
+          service,
+          content: services.value.find((s) => s === service),
+        };
+      });
+    });
+
+    console.log(
+      `selectedServicesContentValue: ${selectedServicesContent.value}`,
+    );
+
     return {
       services,
       selectedServices,
@@ -425,6 +437,7 @@ export default {
       isArrowAnimating,
       isAnimating,
       isGrowBusinessAnimating,
+      selectedServicesContent,
     };
   },
 };

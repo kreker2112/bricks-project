@@ -3028,7 +3028,10 @@ export default {
     top: 111%;
     right: 35%;
     z-index: 999;
-    animation: bounceWithRotation 1s infinite;
+  }
+
+  .business-arrow__down.animated {
+    animation: bounce 1s infinite;
   }
 
   @keyframes bounceWithRotation {

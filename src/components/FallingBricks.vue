@@ -241,9 +241,25 @@ export default {
         const fontSize = 1.9 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         const textWidth = context.measureText(brick.service).width;
-        const padding = textWidth * 1.09; // Padding от ширины текста
-        const brickWidth = Math.max(0.00000000001 * width, textWidth + padding); // Минимальная ширина кирпича от ширины окна
-        const brickHeight = 0.068 * height; // Высота кирпича от высоты окна
+
+        // Горизонтальный и вертикальный padding
+        const horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
+        const verticalPadding = height * 0.03; // Вертикальный padding от высоты окна
+
+        // Размеры кирпича
+        let brickWidth = Math.max(
+          0.00000000001 * width,
+          textWidth + horizontalPadding,
+        );
+        let brickHeight = verticalPadding + fontSize;
+
+        // Увеличение размеров на малых экранах
+        if (window.innerWidth < 767) {
+          const scaleFactor = 1.3; // Коэффициент увеличения размеров
+          brickWidth *= scaleFactor;
+          brickHeight *= scaleFactor;
+        }
+
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];

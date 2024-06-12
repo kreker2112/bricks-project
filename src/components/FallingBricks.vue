@@ -79,6 +79,7 @@ export default {
       { service: "Логотип" },
       { service: "Неймінг" },
       { service: "SEO" },
+      { service: "Розсилки" },
       { service: "Партнерство" },
       { service: "TV" },
       { service: "Позиціонування" },

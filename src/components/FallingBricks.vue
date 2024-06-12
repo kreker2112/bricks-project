@@ -69,7 +69,9 @@
             <div class="submenu-item">Подпункт 1</div>
             <div class="submenu-item">Подпункт 2</div>
           </div>
-          <div class="menu-item">Про нас</div>
+          <div class="menu-item">
+            <a class="link-about" href="#">Про нас</a>
+          </div>
         </div>
         <div class="contact-section">
           <div class="contact-item">
@@ -82,14 +84,10 @@
           <div class="contact-item">
             <i class="location-icon"></i> м. Дніпро, вул. Виконкомівська, 85
           </div>
-        </div>
-        <div class="footer-section">
-          <div class="footer-icon">
-            <img src="../images/footerframe.png" alt="footerframe" />
-          </div>
-          <div class="footer-text">
-            ВИРІШУЄМО <br />
-            ПРОБЛЕМУ В 1 КЛІК
+          <div class="footer-section">
+            <div class="footer-icon">
+              <img src="../images/footerframe_white.png" alt="footerframe" />
+            </div>
           </div>
         </div>
       </div>
@@ -916,7 +914,6 @@ export default {
   transition: left 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .mobile-menu.open {
@@ -926,11 +923,12 @@ export default {
 .mobile-menu__header {
   display: flex;
   justify-content: flex-end;
-  padding: 1rem;
+  padding: 0 1rem 0 0;
+  color: #dddfdf;
 }
 
 .close-btn {
-  font-size: 2rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -938,18 +936,27 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+  text-align: left;
   justify-content: space-between;
 }
 
 .menu-section {
   padding: 1rem;
+  height: 40%;
 }
 
 .menu-item {
   padding: 0.5rem 1rem;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
   cursor: pointer;
-  border-bottom: 1px solid #fff;
+  color: #dddfdf;
+}
+
+.link-about {
+  color: #dddfdf;
+  text-decoration: none;
 }
 
 .submenu {
@@ -965,12 +972,18 @@ export default {
   background-color: #002d6e;
   color: #fff;
   padding: 1rem;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
+  font-size: 1.5rem;
 }
 
 .contact-item i {
@@ -979,7 +992,7 @@ export default {
 
 .footer-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 1rem;
   background-color: #002d6e;
@@ -987,7 +1000,7 @@ export default {
 }
 
 .footer-icon img {
-  width: 50px;
+  width: 100%;
 }
 
 .footer-text {

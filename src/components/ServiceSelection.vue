@@ -231,6 +231,7 @@ export default {
     ]);
 
     const selectedServices = computed(() => store.getters.selectedServices);
+    const selectedServicesList = ref([]);
     const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);
@@ -364,8 +365,12 @@ export default {
     const toggleService = (service) => {
       if (selectedServices.value.includes(service)) {
         store.dispatch("removeService", service);
+        selectedServicesList.value = selectedServicesList.value.filter(
+          (s) => s !== service,
+        );
       } else {
         store.dispatch("addService", service);
+        selectedServicesList.value.push(service);
         checkboxCounter += 1;
         if (checkboxCounter === 1) {
           startArrowAnimation();
@@ -373,6 +378,7 @@ export default {
         animateFunnel();
       }
       animateGrowBusiness();
+      console.log("Selected Services:", selectedServicesList.value);
     };
 
     const animateGrowBusiness = () => {
@@ -398,18 +404,10 @@ export default {
       isGrowBusinessAnimating.value = false;
     };
 
-    const selectedServicesContent = computed(() => {
-      return selectedServices.value.map((service) => {
-        return {
-          service,
-          content: services.value.find((s) => s === service),
-        };
-      });
-    });
-
     return {
       services,
       selectedServices,
+      selectedServicesList,
       lightboxSelectedServices,
       pourWater,
       isPouring,
@@ -433,7 +431,6 @@ export default {
       isArrowAnimating,
       isAnimating,
       isGrowBusinessAnimating,
-      selectedServicesContent,
     };
   },
 };

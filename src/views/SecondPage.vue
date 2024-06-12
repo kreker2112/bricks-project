@@ -140,7 +140,7 @@ export default {
 @media (max-width: 767px) {
   .second-page {
     width: 1710px;
-    height: 100vh;
+    height: 932px;
     overflow-x: auto;
   }
 }

@@ -719,291 +719,291 @@ export default {
   }
   29% {
     opacity: 0.71;
-    transform: translateY(145px);
+    transform: translateY(116px);
   }
   30% {
     opacity: 0.7;
-    transform: translateY(150px);
+    transform: translateY(120px);
   }
   31% {
     opacity: 0.69;
-    transform: translateY(155px);
+    transform: translateY(124px);
   }
   32% {
     opacity: 0.68;
-    transform: translateY(160px);
+    transform: translateY(128px);
   }
   33% {
     opacity: 0.67;
-    transform: translateY(165px);
+    transform: translateY(132px);
   }
   34% {
     opacity: 0.66;
-    transform: translateY(170px);
+    transform: translateY(136px);
   }
   35% {
     opacity: 0.65;
-    transform: translateY(175px);
+    transform: translateY(140px);
   }
   36% {
     opacity: 0.64;
-    transform: translateY(180px);
+    transform: translateY(144px);
   }
   37% {
     opacity: 0.63;
-    transform: translateY(185px);
+    transform: translateY(148px);
   }
   38% {
     opacity: 0.62;
-    transform: translateY(190px);
+    transform: translateY(152px);
   }
   39% {
     opacity: 0.61;
-    transform: translateY(195px);
+    transform: translateY(156px);
   }
   40% {
     opacity: 0.6;
-    transform: translateY(200px);
+    transform: translateY(160px);
   }
   41% {
     opacity: 0.59;
-    transform: translateY(205px);
+    transform: translateY(164px);
   }
   42% {
     opacity: 0.58;
-    transform: translateY(210px);
+    transform: translateY(168px);
   }
   43% {
     opacity: 0.57;
-    transform: translateY(215px);
+    transform: translateY(172px);
   }
   44% {
     opacity: 0.56;
-    transform: translateY(220px);
+    transform: translateY(176px);
   }
   45% {
     opacity: 0.55;
-    transform: translateY(225px);
+    transform: translateY(180px);
   }
   46% {
     opacity: 0.54;
-    transform: translateY(230px);
+    transform: translateY(184px);
   }
   47% {
     opacity: 0.53;
-    transform: translateY(235px);
+    transform: translateY(188px);
   }
   48% {
     opacity: 0.52;
-    transform: translateY(240px);
+    transform: translateY(192px);
   }
   49% {
     opacity: 0.51;
-    transform: translateY(245px);
+    transform: translateY(196px);
   }
   50% {
     opacity: 0.5;
-    transform: translateY(250px);
+    transform: translateY(200px);
   }
   51% {
     opacity: 0.49;
-    transform: translateY(255px);
+    transform: translateY(204px);
   }
   52% {
     opacity: 0.48;
-    transform: translateY(260px);
+    transform: translateY(208px);
   }
   53% {
     opacity: 0.47;
-    transform: translateY(265px);
+    transform: translateY(212px);
   }
   54% {
     opacity: 0.46;
-    transform: translateY(270px);
+    transform: translateY(216px);
   }
   55% {
     opacity: 0.45;
-    transform: translateY(275px);
+    transform: translateY(220px);
   }
   56% {
     opacity: 0.44;
-    transform: translateY(280px);
+    transform: translateY(224px);
   }
   57% {
     opacity: 0.43;
-    transform: translateY(285px);
+    transform: translateY(228px);
   }
   58% {
     opacity: 0.42;
-    transform: translateY(290px);
+    transform: translateY(232px);
   }
   59% {
     opacity: 0.41;
-    transform: translateY(295px);
+    transform: translateY(236px);
   }
   60% {
     opacity: 0.4;
-    transform: translateY(300px);
+    transform: translateY(240px);
   }
   61% {
     opacity: 0.39;
-    transform: translateY(305px);
+    transform: translateY(244px);
   }
   62% {
     opacity: 0.38;
-    transform: translateY(310px);
+    transform: translateY(248px);
   }
   63% {
     opacity: 0.37;
-    transform: translateY(315px);
+    transform: translateY(252px);
   }
   64% {
     opacity: 0.36;
-    transform: translateY(320px);
+    transform: translateY(256px);
   }
   65% {
     opacity: 0.35;
-    transform: translateY(325px);
+    transform: translateY(260px);
   }
   66% {
     opacity: 0.34;
-    transform: translateY(330px);
+    transform: translateY(264px);
   }
   67% {
     opacity: 0.33;
-    transform: translateY(335px);
+    transform: translateY(268px);
   }
   68% {
     opacity: 0.32;
-    transform: translateY(340px);
+    transform: translateY(272px);
   }
   69% {
     opacity: 0.31;
-    transform: translateY(345px);
+    transform: translateY(276px);
   }
   70% {
     opacity: 0.3;
-    transform: translateY(350px);
+    transform: translateY(280px);
   }
   71% {
     opacity: 0.29;
-    transform: translateY(355px);
+    transform: translateY(284px);
   }
   72% {
     opacity: 0.28;
-    transform: translateY(360px);
+    transform: translateY(288px);
   }
   73% {
     opacity: 0.27;
-    transform: translateY(365px);
+    transform: translateY(292px);
   }
   74% {
     opacity: 0.26;
-    transform: translateY(370px);
+    transform: translateY(296px);
   }
   75% {
     opacity: 0.25;
-    transform: translateY(375px);
+    transform: translateY(300px);
   }
   76% {
     opacity: 0.24;
-    transform: translateY(380px);
+    transform: translateY(304px);
   }
   77% {
     opacity: 0.23;
-    transform: translateY(385px);
+    transform: translateY(308px);
   }
   78% {
     opacity: 0.22;
-    transform: translateY(390px);
+    transform: translateY(312px);
   }
   79% {
     opacity: 0.21;
-    transform: translateY(395px);
+    transform: translateY(316px);
   }
   80% {
     opacity: 0.2;
-    transform: translateY(400px);
+    transform: translateY(320px);
   }
   81% {
     opacity: 0.19;
-    transform: translateY(405px);
+    transform: translateY(324px);
   }
   82% {
     opacity: 0.18;
-    transform: translateY(410px);
+    transform: translateY(328px);
   }
   83% {
     opacity: 0.17;
-    transform: translateY(415px);
+    transform: translateY(332px);
   }
   84% {
     opacity: 0.16;
-    transform: translateY(420px);
+    transform: translateY(336px);
   }
   85% {
     opacity: 0.15;
-    transform: translateY(425px);
+    transform: translateY(340px);
   }
   86% {
     opacity: 0.14;
-    transform: translateY(430px);
+    transform: translateY(344px);
   }
   87% {
     opacity: 0.13;
-    transform: translateY(435px);
+    transform: translateY(348px);
   }
   88% {
     opacity: 0.12;
-    transform: translateY(440px);
+    transform: translateY(352px);
   }
   89% {
     opacity: 0.11;
-    transform: translateY(445px);
+    transform: translateY(356px);
   }
   90% {
     opacity: 0.1;
-    transform: translateY(450px);
+    transform: translateY(360px);
   }
   91% {
     opacity: 0.09;
-    transform: translateY(455px);
+    transform: translateY(364px);
   }
   92% {
     opacity: 0.08;
-    transform: translateY(460px);
+    transform: translateY(368px);
   }
   93% {
     opacity: 0.07;
-    transform: translateY(465px);
+    transform: translateY(372px);
   }
   94% {
     opacity: 0.06;
-    transform: translateY(470px);
+    transform: translateY(376px);
   }
   95% {
     opacity: 0.05;
-    transform: translateY(475px);
+    transform: translateY(380px);
   }
   96% {
     opacity: 0.04;
-    transform: translateY(480px);
+    transform: translateY(384px);
   }
   97% {
     opacity: 0.03;
-    transform: translateY(485px);
+    transform: translateY(388px);
   }
   98% {
     opacity: 0.02;
-    transform: translateY(490px);
+    transform: translateY(392px);
   }
   99% {
     opacity: 0.01;
-    transform: translateY(495px);
+    transform: translateY(396px);
   }
   100% {
     opacity: 0;
-    transform: translateY(500px);
+    transform: translateY(400px);
   }
 }
 

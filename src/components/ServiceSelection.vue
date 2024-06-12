@@ -135,7 +135,7 @@
         <div class="service-selection__lower--cases-image">
           <img
             class="cases-image"
-            src="../images/logos/cases.png"
+            src="../images/logос/cases.png"
             alt="cases"
           />
         </div>

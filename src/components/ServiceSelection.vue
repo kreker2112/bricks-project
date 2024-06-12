@@ -231,7 +231,7 @@ export default {
     ]);
 
     const selectedServices = computed(() => store.getters.selectedServices);
-    console.log(selectedServices);
+    console.log(selectedServices.value);
     const lightboxSelectedServices = ref([]);
     const isPouring = ref(false);
     const isGrown = ref(false);

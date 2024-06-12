@@ -1,6 +1,6 @@
 <template>
   <div class="falling-bricks" ref="container">
-    <a href="#">
+    <a href="#" @click.prevent="openMenu">
       <img
         class="bricks-frame"
         src="../images/logos/bricks-frame.png"
@@ -35,6 +35,65 @@
 
     <canvas ref="backgroundCanvas" class="background-canvas"></canvas>
     <canvas ref="bricksCanvas" class="bricks-canvas"></canvas>
+
+    <!-- Sliding Menu -->
+    <div class="mobile-menu" :class="{ open: isMenuOpen }">
+      <div class="mobile-menu__header">
+        <span class="close-btn" @click="closeMenu">&times;</span>
+      </div>
+      <div class="mobile-menu__content">
+        <div class="menu-section">
+          <div class="menu-item" @click="toggleSubmenu('marketing')">
+            Маркетинг
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'marketing'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('analytics')">
+            Аналітика
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'analytics'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('design')">Дизайн</div>
+          <div class="submenu" v-if="submenuOpen === 'design'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('promotion')">
+            Просування
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'promotion'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item">Про нас</div>
+        </div>
+        <div class="contact-section">
+          <div class="contact-item">
+            <i class="email-icon"></i> 1234567@gmail.com
+          </div>
+          <div class="contact-item">
+            <i class="phone-icon"></i> 0 800 123 456 7
+          </div>
+          <div class="contact-item"><i class="telegram-icon"></i> @khjhjkh</div>
+          <div class="contact-item">
+            <i class="location-icon"></i> м. Дніпро, вул. Виконкомівська, 85
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="footer-icon">
+            <img src="../images/footerframe.png" alt="footerframe" />
+          </div>
+          <div class="footer-text">
+            ВИРІШУЄМО <br />
+            ПРОБЛЕМУ В 1 КЛІК
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,6 +143,21 @@ export default {
       { service: "TV" },
       { service: "Позиціонування" },
     ]);
+
+    const isMenuOpen = ref(false);
+    const submenuOpen = ref("");
+
+    const openMenu = () => {
+      isMenuOpen.value = true;
+    };
+
+    const closeMenu = () => {
+      isMenuOpen.value = false;
+    };
+
+    const toggleSubmenu = (menu) => {
+      submenuOpen.value = submenuOpen.value === menu ? "" : menu;
+    };
 
     const updateCanvasSize = () => {
       const width = container.value.clientWidth;
@@ -349,6 +423,11 @@ export default {
       bricksCanvas,
       bricks,
       handleDrop,
+      isMenuOpen,
+      submenuOpen,
+      openMenu,
+      closeMenu,
+      toggleSubmenu,
     };
   },
 };
@@ -822,57 +901,94 @@ export default {
     width: 90%;
   }
 }
-@media (max-width: 375px) {
-  .ideas {
-    margin-top: 40% !important;
-  }
-  .instruments {
-    top: 25% !important;
-  }
-  .instruments__arrow {
-    top: 35% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 15%;
-    top: 30%;
-    right: 5%;
-  }
-  .add {
-    top: 30%;
-  }
-  .add-arrow {
-    top: 35%;
-  }
-  .ideas {
-    margin-top: 36% !important;
-    margin-left: 5%;
-    width: 90%;
-  }
-  @media (max-width: 360px) {
-    .instruments {
-      top: 30% !important;
-    }
-    .instruments__arrow {
-      top: 35% !important;
-    }
-    .services-block {
-      width: 15%;
-      height: 15%;
-      top: 30%;
-      right: 5%;
-    }
-    .add {
-      top: 30%;
-    }
-    .add-arrow {
-      top: 35%;
-    }
-    .ideas {
-      margin-top: 38% !important;
-      margin-left: 5%;
-      width: 90%;
-    }
-  }
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ff6400;
+  z-index: 1000;
+  transition: left 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobile-menu.open {
+  left: 0;
+}
+
+.mobile-menu__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.close-btn {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.mobile-menu__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-section {
+  padding: 1rem;
+}
+
+.menu-item {
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid #fff;
+}
+
+.submenu {
+  padding-left: 1rem;
+}
+
+.submenu-item {
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.contact-section {
+  background-color: #002d6e;
+  color: #fff;
+  padding: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.contact-item i {
+  margin-right: 0.5rem;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #002d6e;
+  color: #fff;
+}
+
+.footer-icon img {
+  width: 50px;
+}
+
+.footer-text {
+  text-align: right;
 }
 </style>

@@ -2165,6 +2165,7 @@ export default {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
+  cursor: pointer;
 }
 
 .checkbox-item input:checked::after {

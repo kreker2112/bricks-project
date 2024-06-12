@@ -179,6 +179,8 @@
               type="tel"
               v-model="lightboxPhone"
               placeholder="Телефон"
+              pattern="^\+?[0-9\s\-]*$"
+              inputmode="tel"
               required
             />
             <textarea

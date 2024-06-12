@@ -105,11 +105,11 @@ export default {
   }
   .left-side {
     width: 100%;
-    height: 280px !important;
+    height: 300px !important;
   }
   .right-side {
     width: 100%;
-    height: 652px !important;
+    height: 632px !important;
   }
 }
 </style>

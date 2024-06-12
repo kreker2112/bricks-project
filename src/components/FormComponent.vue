@@ -164,6 +164,7 @@ button {
 @media (max-width: 767px) {
   .right__section {
     width: 375px;
+    height: 100vh;
   }
   .right__section h2 {
     font-size: 32px;

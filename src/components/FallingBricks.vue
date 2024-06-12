@@ -783,7 +783,7 @@ export default {
 @media (max-width: 767px) {
   .falling-bricks {
     width: 100%;
-    height: 280px;
+    height: 300px;
   }
   img.bricks-frame {
     top: 9.5%;
@@ -796,7 +796,7 @@ export default {
     width: 58%;
   }
   .ideas {
-    margin-top: 30% !important;
+    margin-top: 35% !important;
   }
   .instruments {
     top: 30% !important;
@@ -806,7 +806,7 @@ export default {
   }
   .services-block {
     width: 15%;
-    height: 15%;
+    height: 17%;
     top: 30%;
     right: 5%;
   }
@@ -827,25 +827,25 @@ export default {
     margin-top: 40% !important;
   }
   .instruments {
-    top: 40% !important;
+    top: 25% !important;
   }
   .instruments__arrow {
-    top: 45% !important;
+    top: 35% !important;
   }
   .services-block {
     width: 15%;
     height: 15%;
-    top: 40%;
+    top: 30%;
     right: 5%;
   }
   .add {
-    top: 40%;
+    top: 30%;
   }
   .add-arrow {
-    top: 45%;
+    top: 35%;
   }
   .ideas {
-    margin-top: 30% !important;
+    margin-top: 36% !important;
     margin-left: 5%;
     width: 90%;
   }
@@ -869,7 +869,7 @@ export default {
       top: 35%;
     }
     .ideas {
-      margin-top: 30% !important;
+      margin-top: 38% !important;
       margin-left: 5%;
       width: 90%;
     }

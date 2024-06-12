@@ -2928,11 +2928,11 @@ export default {
 }
 @media (max-width: 767px) {
   .service-selection__upper {
-    height: 398px !important;
+    height: 348px !important;
     background-color: #ffffff;
   }
   .service-selection__lower {
-    height: 254px !important;
+    height: 284px !important;
   }
   .checkboxes-container {
     left: 1%;
@@ -2961,11 +2961,11 @@ export default {
   .funnel-container {
     width: 30%;
     height: 30%;
-    top: 120% !important;
+    top: 140% !important;
     right: 20%;
   }
   .funnel-moving {
-    transform: translateX(-40px) translateY(-200px) rotate(-60deg);
+    transform: translateX(-120px) translateY(-200px) rotate(-60deg);
   }
   .drops-container {
     top: 70px;
@@ -2984,8 +2984,13 @@ export default {
   .cases-image {
     width: 70%;
   }
+
+  .lightbox {
+    height: 632px;
+  }
+
   .lightbox-content {
-    height: 100%;
+    height: 632px;
     padding: 0;
     border-radius: 0;
   }
@@ -3040,7 +3045,7 @@ export default {
 @media (max-width: 430px) {
   .checkboxes-container {
     left: 2%;
-    top: 4%;
+    top: 10%;
     width: 30%;
     height: 30%;
   }
@@ -3062,13 +3067,13 @@ export default {
     right: 18%;
   }
   .funnel-moving {
-    transform: translateX(-50px) translateY(-220px) rotate(-60deg);
+    transform: translateX(-90px) translateY(-220px) rotate(-60deg);
   }
   .take-money {
-    top: 45%;
+    top: 43%;
   }
   .take-money__arrow {
-    top: 56%;
+    top: 57%;
   }
   .small-tree {
     bottom: -30%;
@@ -3123,7 +3128,7 @@ export default {
 @media (max-width: 414px) {
   .checkboxes-container {
     left: 2%;
-    top: 4%;
+    top: 10%;
     width: 30%;
     height: 30%;
   }
@@ -3145,7 +3150,7 @@ export default {
     right: 16.5%;
   }
   .funnel-moving {
-    transform: translateX(-40px) translateY(-220px) rotate(-60deg);
+    transform: translateX(-90px) translateY(-210px) rotate(-60deg);
   }
   .lightbox-content h2 {
     font-size: 24px !important;
@@ -3194,14 +3199,14 @@ export default {
 @media (max-width: 390px) {
   .checkboxes-container {
     left: 2%;
-    top: 4%;
+    top: 9%;
     width: 20%;
     height: 30%;
   }
 
   .checkboxes {
     width: 50%;
-    grid-gap: 5%;
+    grid-gap: 7%;
   }
   .checkbox-item label {
     font-size: 100%;
@@ -3223,7 +3228,7 @@ export default {
     left: 43%;
   }
   .funnel-moving {
-    transform: translateX(-50px) translateY(-190px) rotate(-60deg);
+    transform: translateX(-80px) translateY(-190px) rotate(-60deg);
   }
 
   .lightbox-content h2 {
@@ -3273,7 +3278,7 @@ export default {
 @media (max-width: 375px) {
   .checkboxes-container {
     left: 1%;
-    top: 7%;
+    top: 10%;
     width: 20%;
     height: 30%;
   }
@@ -3281,7 +3286,7 @@ export default {
   .checkboxes {
     margin-left: 50%;
     width: 70%;
-    grid-gap: 3%;
+    grid-gap: 10%;
   }
   .checkbox-item label {
     font-size: 90%;
@@ -3292,14 +3297,14 @@ export default {
     border-radius: 3px;
   }
   .funnel-container {
-    top: 130%;
-    right: 10%;
+    top: 150% !important;
+    right: 15%;
   }
   .funnel-image {
     width: 80%;
   }
   .funnel-moving {
-    transform: translateX(-60px) translateY(-140px) rotate(-60deg);
+    transform: translateX(-80px) translateY(-200px) rotate(-60deg);
   }
   .drops-container {
     top: 70px;
@@ -3307,19 +3312,19 @@ export default {
   }
   .take-money {
     right: 40%;
-    top: 35%;
+    top: 45%;
     width: 30%;
   }
   .take-money__arrow {
-    top: 52%;
+    top: 58%;
     right: 45%;
     width: 11%;
   }
   .ground {
-    bottom: -35%;
+    bottom: -5%;
   }
   .cases-image {
-    width: 60%;
+    width: 80%;
   }
   .lightbox-content h2 {
     font-size: 16px !important;
@@ -3350,14 +3355,14 @@ export default {
 @media (max-width: 360px) {
   .checkboxes-container {
     left: 1%;
-    top: 5%;
+    top: 6%;
     width: 20%;
     height: 30%;
   }
 
   .checkboxes {
     width: 50%;
-    grid-gap: 3%;
+    grid-gap: 10%;
   }
   .checkbox-item label {
     font-size: 90%;
@@ -3369,19 +3374,22 @@ export default {
   }
   .funnel-container {
     top: 140%;
-    right: 10%;
+    right: 15%;
   }
   .take-money {
     top: 45%;
   }
   .take-money__arrow {
-    top: 56%;
+    top: 58%;
   }
   .funnel-moving {
-    transform: translateX(-60px) translateY(-140px) rotate(-60deg);
+    transform: translateX(-80px) translateY(-200px) rotate(-60deg);
   }
   .ground {
-    bottom: -10%;
+    bottom: -3%;
+  }
+  .big-tree {
+    bottom: -30%;
   }
   .lightbox-content h2 {
     font-size: 20px !important;

@@ -49,7 +49,7 @@ export default {
 .page-container {
   width: 100vw;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   position: relative;
 }
 
@@ -58,7 +58,7 @@ export default {
   width: 100vw;
   position: absolute;
   transition: all 1s;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .slide-left-enter-active,

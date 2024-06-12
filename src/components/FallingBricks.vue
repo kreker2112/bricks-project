@@ -44,37 +44,65 @@
       <div class="mobile-menu__content">
         <div class="menu-section">
           <div class="menu-item" @click="toggleSubmenu('marketing')">
-            Маркетинг
+            МАРКЕТИНГ
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'marketing' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
           </div>
+
           <div class="submenu" v-if="submenuOpen === 'marketing'">
-            <div class="submenu-item">Подпункт 1</div>
-            <div class="submenu-item">Подпункт 2</div>
+            <div class="submenu-item">Концепції</div>
+            <div class="submenu-item">Ідеї</div>
+            <div class="submenu-item">Стратегії</div>
           </div>
           <div class="menu-item" @click="toggleSubmenu('analytics')">
-            Аналітика
+            АНАЛІТИКА
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'analytics' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
           </div>
           <div class="submenu" v-if="submenuOpen === 'analytics'">
             <div class="submenu-item">Подпункт 1</div>
             <div class="submenu-item">Подпункт 2</div>
           </div>
-          <div class="menu-item" @click="toggleSubmenu('design')">Дизайн</div>
+          <div class="menu-item" @click="toggleSubmenu('design')">
+            ДИЗАЙН
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'design' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
           <div class="submenu" v-if="submenuOpen === 'design'">
             <div class="submenu-item">Подпункт 1</div>
             <div class="submenu-item">Подпункт 2</div>
           </div>
           <div class="menu-item" @click="toggleSubmenu('promotion')">
-            Просування
+            ПРОСУВАННЯ
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'promotion' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
           </div>
           <div class="submenu" v-if="submenuOpen === 'promotion'">
             <div class="submenu-item">Подпункт 1</div>
             <div class="submenu-item">Подпункт 2</div>
           </div>
-          <div class="menu-item">
-            <a class="link-about" href="#">Про нас</a>
+          <div class="menu-item-about">
+            <a class="link-about" href="#">ПРО НАС</a>
           </div>
         </div>
         <div class="contact-section">
-          <h2>
+          <h2 class="contact-section__header">
             ЗВ'ЯЖІТЬСЯ <br />
             З НАМИ
           </h2>
@@ -82,7 +110,8 @@
           <div class="contact-item-phone">0 800 123 456 7</div>
           <div class="contact-item-telegram">@khjhjkh</div>
           <div class="contact-item-address">
-            м. Дніпро, вул. Виконкомівська, 85
+            м. Дніпро, вул. <br />
+            Виконкомівська, 85
           </div>
           <div class="footer-section">
             <div class="footer-icon">
@@ -924,11 +953,12 @@ export default {
   display: flex;
   justify-content: flex-end;
   padding: 0 1rem 0 0;
-  color: #dddfdf;
+  color: #ffffff;
 }
 
 .close-btn {
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: bolder;
   cursor: pointer;
 }
 
@@ -938,24 +968,48 @@ export default {
   flex-direction: column;
   text-align: left;
   justify-content: space-between;
+  overflow: auto;
 }
 
 .menu-section {
-  padding: 1rem;
-  height: 40%;
+  margin-top: 0;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-item {
   padding: 0.5rem 1rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: "Montserrat";
   font-weight: bolder;
   cursor: pointer;
-  color: #dddfdf;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.menu-item__arrow {
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-item__arrow.rotated {
+  transform: translateY(3px) rotate(90deg);
+}
+
+.menu-item-about {
+  padding: 0.5rem 1rem;
+  font-size: 2.5rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
 }
 
 .link-about {
-  color: #dddfdf;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -965,18 +1019,30 @@ export default {
 
 .submenu-item {
   padding: 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
+  color: #ffffff;
+}
+
+.submenu-item::after {
+  content: url("../images/submenu-item__arrow.png");
+  margin-left: 10px;
 }
 
 .contact-section {
   background-color: #002d6e;
-  color: #fff;
-  padding: 1rem;
-  height: 60%;
+  color: #ffffff;
+  padding: 2rem 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+}
+
+.contact-section__header {
+  font-size: 2rem;
+  font-style: "Montserrat";
+  justify-self: flex-start;
+  margin: 0 0 0 2rem;
 }
 
 .contact-item-email,
@@ -986,13 +1052,36 @@ export default {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
-  font-size: 1.5rem;
+  font-style: "Montserrat";
+  font-size: 1.2rem;
+  margin-left: 2rem;
 }
+
+.contact-item-email::before {
+  content: url("../images/letter-logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-phone::before {
+  content: url("../images/phone-logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-telegram::before {
+  content: url("../images/telegram_logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-address::before {
+  content: url("../images/path-logo.png");
+  margin-right: 1.1rem;
+}
+
 .footer-section {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 2rem;
   background-color: #002d6e;
   color: #fff;
 }
@@ -1003,5 +1092,14 @@ export default {
 
 .footer-text {
   text-align: right;
+}
+
+@media (max-width: 390px) {
+  .menu-item {
+    font-size: 2rem;
+  }
+  .menu-item-about {
+    font-size: 2rem;
+  }
 }
 </style>

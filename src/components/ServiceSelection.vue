@@ -187,7 +187,10 @@
               placeholder="Повідомлення"
               required
             ></textarea>
-            <button class="apply-button" @click="applySelection">
+            <div v-if="showWarning" class="warning-message">
+              Будь ласка, заповніть усі поля форми.
+            </div>
+            <button class="apply-button" @click="validateAndApply">
               Застосувати
             </button>
           </div>
@@ -248,6 +251,7 @@ export default {
     const lightboxMessage = ref("");
     const isArrowAnimating = ref(false);
     const isAnimating = ref(false);
+    const showWarning = ref(false);
     let checkboxCounter = 0;
     let arrowAnimationInterval;
     let growBusinessAnimationTimeout;
@@ -393,8 +397,18 @@ export default {
       // Здесь вы можете отправить данные на сервер или выполнить другие действия
     };
 
+    const validateAndApply = () => {
+      if (!lightboxName.value || !lightboxPhone.value) {
+        showWarning.value = true;
+      } else {
+        showWarning.value = false;
+        applySelection();
+      }
+    };
+
     const closeLightbox = () => {
       showLightbox.value = false;
+      showWarning.value = false;
     };
 
     const toggleService = (service) => {
@@ -474,6 +488,7 @@ export default {
       lightboxPhone,
       lightboxMessage,
       applySelection,
+      validateAndApply,
       closeLightbox,
       toggleService,
       isArrowAnimating,
@@ -483,12 +498,18 @@ export default {
       filterPhoneInput,
       growBusinessSrc,
       businessArrowSrc,
+      showWarning,
     };
   },
 };
 </script>
 
 <style>
+.warning-message {
+  color: red;
+  font-size: 150%;
+  margin-top: 10px;
+}
 .service-selection {
   display: flex;
   flex-direction: column;

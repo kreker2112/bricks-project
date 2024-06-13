@@ -243,8 +243,8 @@ export default {
         const textWidth = context.measureText(brick.service).width;
 
         // Горизонтальный и вертикальный padding
-        const horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
-        const verticalPadding = height * 0.03; // Вертикальный padding от высоты окна
+        let horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
+        let verticalPadding = height * 0.03; // Вертикальный padding от высоты окна
 
         // Размеры кирпича
         let brickWidth = Math.max(
@@ -256,6 +256,8 @@ export default {
         // Увеличение размеров на малых экранах
         if (window.innerWidth < 767) {
           const scaleFactor = 1.3; // Коэффициент увеличения размеров
+          horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
+          verticalPadding = height * 0.04; // Вертикальный padding от высоты окна
           brickWidth *= scaleFactor;
           brickHeight *= scaleFactor;
         }
@@ -391,11 +393,17 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        const fontSize = 2.5 * (width / 100);
+        let fontSize = 2.5 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";
+
+        if (window.innerWidth < 767) {
+          const scaleFactorText = 1.7;
+          fontSize = 2.5 * (width / 100) * scaleFactorText;
+          context.font = `${fontSize}px Montserrat Bold`;
+        }
 
         allBodies.forEach((body) => {
           if (body.label && !body.isStatic) {
@@ -929,7 +937,7 @@ export default {
     top: 35% !important;
   }
   .services-block {
-    width: 15%;
+    width: 18%;
     height: 17%;
     top: 30%;
     right: 5%;
@@ -989,7 +997,7 @@ export default {
 
 .menu-section {
   margin-top: 0;
-  margin-left: 2rem;
+  margin-left: 1rem;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;

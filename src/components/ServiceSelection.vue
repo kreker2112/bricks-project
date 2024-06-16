@@ -14,6 +14,57 @@
         alt="business-arrow__down"
       />
 
+      <div class="checkboxes-container__upper">
+        <form class="checkboxes__upper">
+          <div
+            v-for="(service, index) in services"
+            :key="service"
+            :class="[
+              'checkbox-item__upper',
+              { checked: selectedServices.includes(service) },
+            ]"
+          >
+            <input
+              class="checkbox-item__upper--input"
+              :id="'service-' + index"
+              :name="'service-' + index"
+              type="checkbox"
+              :value="service"
+              v-model="selectedServices"
+              @change="toggleService(service)"
+            />
+            <label :for="'service-' + index">{{ service }}</label>
+          </div>
+        </form>
+      </div>
+      <div class="service-selection__upper--cases">
+        <img class="cases-image" src="../images/logos/cases.png" alt="cases" />
+      </div>
+    </div>
+    <div class="service-selection__lower">
+      <div class="service-selection__lower--instuction">
+        <div class="instuction-image__container">
+          <img
+            class="instruction-image"
+            src="../images/instruction.png"
+            alt="instruction"
+          />
+          <div class="take-money__container">
+            <img
+              class="take-money"
+              :class="{ invisible: isGrown }"
+              src="../images/money.png"
+              alt="take-money"
+            />
+            <img
+              class="take-money__arrow"
+              :class="{ invisible: isGrown }"
+              src="../images/money-arrow.png"
+              alt="money-arrow"
+            />
+          </div>
+        </div>
+      </div>
       <div class="funnel-container">
         <img
           :class="[
@@ -21,6 +72,7 @@
             isPouring ? 'funnel-moving' : '',
             isAnimating ? 'funnel-animating' : '',
           ]"
+          class="container__funnel-image"
           src="../images/logos/funnel.svg"
           alt="funnel"
           @click="pourWater"
@@ -33,30 +85,6 @@
           @mousedown="startDragging"
         />
       </div>
-      <div class="checkboxes-container">
-        <form class="checkboxes">
-          <div
-            v-for="(service, index) in services"
-            :key="service"
-            :class="[
-              'checkbox-item',
-              { checked: selectedServices.includes(service) },
-            ]"
-          >
-            <input
-              :id="'service-' + index"
-              :name="'service-' + index"
-              type="checkbox"
-              :value="service"
-              v-model="selectedServices"
-              @change="toggleService(service)"
-            />
-            <label :for="'service-' + index">{{ service }}</label>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="service-selection__lower">
       <div class="service-selection__lower--tree">
         <img
           class="business_up"
@@ -67,21 +95,10 @@
         <img
           class="business_up-arrow"
           :class="{ invisible: isGrown }"
-          src="../images/business_up-arrow.png"
+          src="../images/business_up-arrow.svg"
           alt="business_up-arrow"
         />
-        <img
-          class="take-money"
-          :class="{ invisible: isGrown }"
-          src="../images/money.png"
-          alt="take-money"
-        />
-        <img
-          class="take-money__arrow"
-          :class="{ invisible: isGrown }"
-          src="../images/money-arrow.png"
-          alt="money-arrow"
-        />
+
         <div class="small-tree__container">
           <transition name="tree-fade">
             <img
@@ -110,9 +127,8 @@
             />
           </transition-group>
         </div>
-        <div class="ground-container">
-          <img class="ground" src="../images/ground.png" alt="ground" />
-        </div>
+
+        <img class="ground" src="../images/ground.png" alt="ground" />
 
         <div class="drops-container">
           <img
@@ -124,25 +140,9 @@
           />
         </div>
       </div>
-      <div class="service-selection__lower--cases">
-        <div class="service-selection__lower--cases-arrow">
-          <img
-            class="cases-arrow"
-            src="../images/logos/cases-arrow.png"
-            alt="cases-arrow"
-          />
-        </div>
-        <div class="service-selection__lower--cases-image">
-          <img
-            class="cases-image"
-            src="../images/logos/cases.png"
-            alt="cases"
-          />
-        </div>
-      </div>
     </div>
 
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
           <h2>Поживна суміш для зростання:</h2>
@@ -196,7 +196,7 @@
           </div>
         </div>
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -206,9 +206,7 @@ import { useStore } from "vuex";
 import dropBig from "../images/drop-big.png";
 import dropMedium from "../images/drop-medium.png";
 import dropSmall from "../images/drop-small.png";
-import dropBig1 from "../images/drop-big1.png";
-import dropMedium1 from "../images/drop-medium1.png";
-import dropSmall1 from "../images/drop-small1.png";
+
 import { useRouter } from "vue-router";
 
 export default {
@@ -312,14 +310,11 @@ export default {
     };
 
     const createDrops = () => {
-      const dropSizes = ["big1", "medium1", "small1", "big", "medium", "small"];
+      const dropSizes = ["big", "medium", "small"];
       const dropSources = {
         big: dropBig,
         medium: dropMedium,
         small: dropSmall,
-        big1: dropBig1,
-        medium1: dropMedium1,
-        small1: dropSmall1,
       };
       let dropIndex = 0;
 
@@ -510,6 +505,7 @@ export default {
   font-size: 150%;
   margin-top: 10px;
 }
+
 .service-selection {
   display: flex;
   flex-direction: column;
@@ -521,34 +517,207 @@ export default {
 }
 
 .service-selection__upper {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   background-color: #828282;
   width: 100%;
-  height: 60%;
+  height: 32%;
+}
+
+.checkboxes-container__upper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.checkboxes__upper {
+  margin-bottom: -5%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 85%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.checkbox-item__upper {
+  display: flex;
+  align-items: center;
+  font-family: "Montserrat";
+  color: #9e9e9e;
+}
+
+.checkbox-item__upper label {
+  font-size: 100%;
+}
+
+.checkbox-item__upper.checked {
+  color: #ffffff;
+}
+
+.checkbox-item__upper--input {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 2px solid #9e9e9e;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-item__upper--input:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/logos/check-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+.service-selection__upper--cases {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.cases-image {
+  height: 95%;
+}
+
+.grow_buisness-with-mosaic {
+  position: absolute;
+  left: 5%;
+  top: 1%;
+  width: 76%;
+  transition: transform 2s ease-in-out;
+}
+
+.grow_buisness-with-mosaic.animated {
+  transform: scale(1.1);
+}
+
+.business-arrow__down {
+  position: absolute;
+  right: 20%;
+  top: 6%;
+  width: 6%;
+}
+
+.business-arrow__down.animated {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  100% {
+    transform: translateY(0);
+  }
+  90% {
+    transform: translateY(-8px);
+  }
+  80% {
+    transform: translateY(-14px);
+  }
+  70% {
+    transform: translateY(-16px);
+  }
+  60% {
+    transform: translateY(-18px);
+  }
+  50% {
+    transform: translateY(-22px);
+  }
+  40% {
+    transform: translateY(-18px);
+  }
+  30% {
+    transform: translateY(-16px);
+  }
+
+  20% {
+    transform: translateY(-14px);
+  }
+  10% {
+    transform: translateY(-8px);
+  }
+  0% {
+    transform: translateY(0px);
+  }
+}
+
+.service-selection__lower {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.service-selection__lower--instuction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ededed;
+}
+
+.instruction-image {
+  position: relative;
+  top: 1%;
+  left: 2%;
+  width: 100%;
+}
+
+.service-selection__lower--tree {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #ededed;
+  z-index: 1;
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .funnel-container {
   position: absolute;
-  top: 28%;
-  right: 4%;
-  width: 40%;
-  height: 50%;
-  z-index: 10;
+  bottom: 1%;
+  right: 57%;
+  width: 80%;
+  z-index: 801;
+  pointer-events: auto;
 }
 
-@media (max-width: 2992px) {
-  .funnel-container {
-    width: 40%;
-  }
-}
-
-.funnel-image {
+.container__funnel-image {
   cursor: pointer;
-  width: 100%;
-  object-fit: contain;
+  width: inherit;
   object-position: center;
+  object-fit: contain;
+  transform-origin: bottom;
   transition: transform 2s ease-in-out;
-  z-index: 10;
+  z-index: 802;
 }
 
 .funnel-animating {
@@ -556,25 +725,7 @@ export default {
 }
 
 .funnel-moving {
-  transform: translateX(-200px) translateY(180px) rotate(-60deg);
-}
-
-@media (max-width: 3000px) {
-  .funnel-moving {
-    transform: translateX(-250px) translateY(180px) rotate(-60deg);
-  }
-}
-
-@media (max-width: 1920px) {
-  .funnel-moving {
-    transform: translateX(-200px) translateY(200px) rotate(-60deg);
-  }
-}
-
-@media (max-width: 1400px) {
-  .funnel-moving {
-    transform: translateX(-140px) translateY(220px) rotate(-60deg);
-  }
+  transform: translateX(200px) translateY(-350px) rotate(60deg);
 }
 
 .drops-container {
@@ -594,90 +745,15 @@ export default {
   width: 15px;
   height: 15px;
 }
-.drop.small1 {
-  width: 20px;
-  height: 20px;
-}
 
 .drop.medium {
   width: 25px;
   height: 25px;
 }
 
-.drop.medium1 {
-  width: 30px;
-  height: 30px;
-}
-
 .drop.big {
   width: 35px;
   height: 35px;
-}
-
-.drop.big1 {
-  width: 40px;
-  height: 40px;
-}
-
-@media (max-width: 1400px) {
-  .drops-container {
-    .drop.small {
-      width: 10px;
-      height: 10px;
-    }
-    .drop.small1 {
-      width: 12px;
-      height: 12px;
-    }
-
-    .drop.medium {
-      width: 15px;
-      height: 15px;
-    }
-
-    .drop.medium1 {
-      width: 18px;
-      height: 18px;
-    }
-
-    .drop.big {
-      width: 20px;
-      height: 20px;
-    }
-
-    .drop.big1 {
-      width: 25px;
-      height: 25px;
-    }
-  }
-}
-
-@media (max-width: 3000px) {
-  .drops-container {
-    top: 30%;
-    left: 34%;
-  }
-}
-
-@media (max-width: 1920px) {
-  .drops-container {
-    top: 30%;
-    left: 32%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .drops-container {
-    top: 35%;
-    left: 32%;
-  }
-}
-
-@media (max-width: 1884px) {
-  .drops-container {
-    top: 30%;
-    left: 32%;
-  }
 }
 
 @keyframes drop-fall {
@@ -1093,119 +1169,17 @@ export default {
     opacity 1s;
 }
 
-.grow_buisness-with-mosaic {
-  position: absolute;
-  right: 7%;
-  top: 7%;
-  width: 32%;
-  transition: transform 2s ease-in-out;
-}
-
-@media (max-width: 1400px) {
-  .grow_buisness-with-mosaic {
-    width: 29%;
-  }
-}
-
-.grow_buisness-with-mosaic.animated {
-  transform: scale(1.1);
-}
-
-.business-arrow__down {
-  position: absolute;
-  right: 5.5%;
-  top: 15%;
-  width: 7%;
-}
-
-.business-arrow__down.animated {
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  100% {
-    transform: translateY(0);
-  }
-  90% {
-    transform: translateY(-8px);
-  }
-  80% {
-    transform: translateY(-14px);
-  }
-  70% {
-    transform: translateY(-16px);
-  }
-  60% {
-    transform: translateY(-18px);
-  }
-  50% {
-    transform: translateY(-22px);
-  }
-  40% {
-    transform: translateY(-18px);
-  }
-  30% {
-    transform: translateY(-16px);
-  }
-
-  20% {
-    transform: translateY(-14px);
-  }
-  10% {
-    transform: translateY(-8px);
-  }
-  0% {
-    transform: translateY(0px);
-  }
-}
-
-.service-selection__lower {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 60%;
-  z-index: 1;
-}
-
-.service-selection__lower--tree {
-  position: relative;
-  width: 82%;
-  background-color: #ededed;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  z-index: 1;
-}
-
-.ground-container {
-  position: relative;
-  height: 40%;
-  width: 100%;
-  z-index: 10;
-}
-
-.ground {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 10;
-}
-
 .small-tree__container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  height: 60%;
+  position: absolute;
+  left: 51%;
+  bottom: 19%;
+  width: 51%;
   z-index: 20;
 }
 
 .small-tree {
-  position: absolute;
-  left: 30%;
-  bottom: -17.5%;
-  width: 15%;
+  width: inherit;
+  object-fit: contain;
   transition:
     opacity 0.0005s ease-out,
     transform 0.0005s ease-out;
@@ -1218,9 +1192,9 @@ export default {
 
 .big-tree {
   position: absolute;
-  left: 30%;
-  bottom: -15.5%;
-  width: 15%;
+  right: 55%;
+  bottom: inherit;
+  width: 35%;
   transform-origin: bottom;
   transition:
     width 3s ease-in-out,
@@ -1230,73 +1204,41 @@ export default {
   z-index: 90;
 }
 
+.business_up {
+  position: absolute;
+  left: 20%;
+  bottom: 28%;
+  width: 30%;
+  z-index: 50;
+}
+
+.business_up-arrow {
+  position: absolute;
+  left: 43%;
+  bottom: 40%;
+  z-index: 50;
+}
+
+.take-money {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  width: 31%;
+  z-index: 50;
+}
+
+.take-money__arrow {
+  position: absolute;
+  top: 16%;
+  right: 6%;
+  width: 7%;
+  z-index: 50;
+}
+
 .big-tree.tree-grow {
   transform: scale(3);
   opacity: 1;
   animation: growTree 3s ease-in-out forwards;
-}
-
-@media (max-width: 3000px) {
-  .small-tree {
-    bottom: -5%;
-  }
-  .big-tree {
-    bottom: -5%;
-  }
-}
-@media (max-width: 2992px) {
-  .small-tree {
-    bottom: -6%;
-  }
-  .big-tree {
-    bottom: -2%;
-  }
-}
-@media (max-width: 2691px) {
-  .small-tree {
-    bottom: -18%;
-  }
-  .big-tree {
-    bottom: -16%;
-  }
-}
-@media (max-width: 1920px) {
-  .small-tree {
-    bottom: -20%;
-  }
-  .big-tree {
-    bottom: -19%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .small-tree {
-    bottom: -10%;
-  }
-  .big-tree {
-    bottom: -9%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .small-tree {
-    bottom: -20%;
-    left: 26%;
-    width: 20%;
-  }
-  .big-tree {
-    bottom: -20%;
-    width: 20%;
-    left: 28%;
-  }
-}
-@media (max-width: 1365px) {
-  .small-tree {
-    bottom: -25%;
-  }
-  .big-tree {
-    bottom: -26%;
-  }
 }
 
 @keyframes fadeOut {
@@ -2016,219 +1958,6 @@ export default {
   transition: transform 3s;
 }
 
-.business_up {
-  margin-top: 4%;
-  margin-left: 4%;
-  width: 29%;
-  z-index: 50;
-}
-
-.business_up-arrow {
-  margin-top: 1%;
-  margin-left: 16%;
-  width: 10%;
-  z-index: 50;
-}
-
-.take-money {
-  position: absolute;
-  right: 25%;
-  top: 45%;
-  width: 29%;
-  z-index: 50;
-}
-
-.take-money__arrow {
-  position: absolute;
-  top: 56%;
-  right: 47%;
-  width: 10%;
-  z-index: 50;
-}
-
-@media (max-width: 3000px) {
-  .business_up {
-    width: 25%;
-  }
-  .business_up-arrow {
-    margin-top: 1%;
-    margin-left: 16%;
-    width: 10%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .take-money {
-    right: 25%;
-    top: 40%;
-    width: 30%;
-  }
-  .take-money__arrow {
-    top: 50%;
-    right: 46%;
-    width: 11%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .business_up {
-    width: 40%;
-  }
-  .business_up-arrow {
-    margin-top: 1%;
-    margin-left: 5%;
-    width: 20%;
-  }
-  .take-money {
-    right: 20%;
-    top: 48%;
-    width: 40%;
-  }
-  .take-money__arrow {
-    top: 57%;
-    right: 45%;
-    width: 12%;
-  }
-}
-
-.service-selection__lower--cases {
-  position: relative;
-  width: 18%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-}
-
-.service-selection__lower--cases-arrow {
-  width: 100%;
-}
-
-.cases-arrow {
-  margin-left: 40%;
-  width: 50%;
-}
-
-.cases-image {
-  width: 60%;
-}
-
-.service-selection__lower--cases-image {
-  width: 100%;
-}
-
-@media (max-width: 3000px) {
-  .cases-arrow {
-    margin-left: 30%;
-    width: 55%;
-  }
-  .cases-image {
-    width: 70%;
-  }
-}
-
-@media (max-width: 2691px) {
-  .cases-arrow {
-    margin-left: 30%;
-    width: 55%;
-  }
-  .cases-image {
-    width: 75%;
-  }
-}
-
-@media (max-width: 1920px) {
-  .cases-image {
-    width: 76%;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .cases-image {
-    width: 70%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .service-selection__lower--cases {
-    justify-content: center;
-    gap: 4%;
-  }
-  .cases-arrow {
-    margin-left: 15%;
-    width: 68%;
-  }
-  .cases-image {
-    width: 85%;
-  }
-}
-
-.checkboxes-container {
-  position: absolute;
-  left: 2%;
-  top: 30%;
-  width: 50%;
-  height: 47%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkboxes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 5%;
-  width: 100%;
-  height: 100%;
-}
-
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  font-family: "Montserrat";
-  font-weight: 10%;
-  color: #9e9e9e;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.checkbox-item label {
-  font-size: 90%;
-}
-
-.checkbox-item.checked {
-  color: #ffffff;
-}
-
-.checkbox-item input {
-  margin-right: 10px;
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 2px solid #9e9e9e;
-  background-color: transparent;
-  appearance: none;
-  -webkit-appearance: none;
-  position: relative;
-  cursor: pointer;
-}
-
-.checkbox-item input:checked::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-image: url("../images/logos/check-icon.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  pointer-events: none;
-}
-
 .lightbox {
   position: absolute;
   top: 0;
@@ -2351,7 +2080,15 @@ export default {
   visibility: hidden;
   opacity: 0;
 }
-@media (max-width: 3000px) {
+/* @media (max-width: 3000px) {
+  .business_up {
+    width: 25%;
+  }
+  .business_up-arrow {
+    margin-top: 1%;
+    margin-left: 16%;
+    width: 10%;
+  }
   .checkboxes-container {
     top: 8%;
     width: 55%;
@@ -2366,6 +2103,26 @@ export default {
   }
   .checkbox-item label {
     font-size: 130%;
+  }
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 70%;
+  }
+  .funnel-moving {
+    transform: translateX(-250px) translateY(180px) rotate(-60deg);
+  }
+  .drops-container {
+    top: 30%;
+    left: 34%;
+  }
+  .small-tree {
+    bottom: -5%;
+  }
+  .big-tree {
+    bottom: -5%;
   }
 }
 
@@ -2385,16 +2142,54 @@ export default {
   .checkbox-item label {
     font-size: 120%;
   }
+  .small-tree {
+    bottom: -6%;
+  }
+  .big-tree {
+    bottom: -2%;
+  }
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 2691px) {
+  .cases-arrow {
+    margin-left: 30%;
+    width: 55%;
+  }
+  .cases-image {
+    width: 75%;
+  }
+  .small-tree {
+    bottom: -18%;
+  }
+  .big-tree {
+    bottom: -16%;
+  }
+} */
+
+/* @media (max-width: 1920px) {
   .checkboxes-container {
     top: 10%;
     left: 5%;
     width: 50%;
     height: 60%;
   }
-}
+  .cases-image {
+    width: 76%;
+  }
+  .small-tree {
+    bottom: -20%;
+  }
+  .big-tree {
+    bottom: -19%;
+  }
+  .funnel-moving {
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
+  }
+  .drops-container {
+    top: 30%;
+    left: 32%;
+  }
+} */
 
 @media (max-width: 1920px) and (max-height: 963px) {
   .checkboxes-container {
@@ -2408,6 +2203,29 @@ export default {
   }
   .checkbox-item label {
     font-size: 110%;
+  }
+  .cases-image {
+    width: 70%;
+  }
+  .take-money {
+    right: 25%;
+    top: 40%;
+    width: 30%;
+  }
+  .take-money__arrow {
+    top: 50%;
+    right: 46%;
+    width: 11%;
+  }
+  .small-tree {
+    bottom: -10%;
+  }
+  .big-tree {
+    bottom: -9%;
+  }
+  .drops-container {
+    top: 35%;
+    left: 32%;
   }
 }
 
@@ -2426,7 +2244,7 @@ export default {
     font-size: 100%;
   }
   .funnel-moving {
-    transform: translateX(-160px) translateY(170px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .take-money {
     top: 45%;
@@ -2447,6 +2265,81 @@ export default {
 }
 
 @media (max-width: 1400px) {
+  .grow_buisness-with-mosaic {
+    width: 29%;
+  }
+  .service-selection__upper--cases {
+    justify-content: center;
+    gap: 4%;
+  }
+  .business_up {
+    width: 40%;
+  }
+  .business_up-arrow {
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 20%;
+  }
+  .take-money {
+    right: 20%;
+    top: 48%;
+    width: 40%;
+  }
+  .take-money__arrow {
+    top: 57%;
+    right: 45%;
+    width: 12%;
+  }
+  .small-tree {
+    bottom: -20%;
+    left: 26%;
+    width: 20%;
+  }
+  .big-tree {
+    bottom: -20%;
+    width: 20%;
+    left: 28%;
+  }
+  .cases-arrow {
+    margin-left: 15%;
+    width: 68%;
+  }
+  .cases-image {
+    width: 85%;
+  }
+  .funnel-moving {
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
+  }
+  .drops-container {
+    .drop.small {
+      width: 10px;
+      height: 10px;
+    }
+    .drop.small1 {
+      width: 12px;
+      height: 12px;
+    }
+
+    .drop.medium {
+      width: 15px;
+      height: 15px;
+    }
+
+    .drop.medium1 {
+      width: 18px;
+      height: 18px;
+    }
+
+    .drop.big {
+      width: 20px;
+      height: 20px;
+    }
+
+    .drop.big1 {
+      width: 25px;
+      height: 25px;
+    }
+  }
   .checkboxes-container {
     top: 6%;
     width: 15%;
@@ -2467,7 +2360,7 @@ export default {
 }
 @media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
   .funnel-moving {
-    transform: translateX(-135px) translateY(250px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .take-money {
     top: 52%;
@@ -2483,6 +2376,15 @@ export default {
   }
   .cases-image {
     width: 90%;
+  }
+}
+
+@media (max-width: 1365px) {
+  .small-tree {
+    bottom: -25%;
+  }
+  .big-tree {
+    bottom: -26%;
   }
 }
 
@@ -2502,7 +2404,7 @@ export default {
     font-size: 80%;
   }
   .funnel-moving {
-    transform: translateX(-135px) translateY(180px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .business_up {
     width: 30%;
@@ -2540,7 +2442,7 @@ export default {
 
 @media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
   .funnel-moving {
-    transform: translateX(-120px) translateY(180px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .checkboxes-container {
     top: 10%;
@@ -2604,7 +2506,7 @@ export default {
     right: 1%;
   }
   .funnel-moving {
-    transform: translateX(-320px) translateY(200px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
     top: 70px;
@@ -2671,7 +2573,7 @@ export default {
     right: 1%;
   }
   .funnel-moving {
-    transform: translateX(-120px) translateY(170px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .checkboxes-container {
     top: 10.5%;
@@ -2737,7 +2639,7 @@ export default {
     font-size: 70%;
   }
   .funnel-moving {
-    transform: translateX(-120px) translateY(90px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .business_up {
     width: 30%;
@@ -2834,7 +2736,7 @@ export default {
     right: 1%;
   }
   .funnel-moving {
-    transform: translateX(-260px) translateY(200px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
     top: 70px;
@@ -2937,7 +2839,7 @@ export default {
     right: 1%;
   }
   .funnel-moving {
-    transform: translateX(-250px) translateY(170px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
     top: 70px;
@@ -3074,7 +2976,7 @@ export default {
     right: 20%;
   }
   .funnel-moving {
-    transform: translateX(-120px) translateY(-200px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
     top: 70px;
@@ -3176,7 +3078,7 @@ export default {
     right: 18%;
   }
   .funnel-moving {
-    transform: translateX(-90px) translateY(-220px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .take-money {
     top: 43%;
@@ -3259,7 +3161,7 @@ export default {
     right: 16.5%;
   }
   .funnel-moving {
-    transform: translateX(-90px) translateY(-210px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .lightbox-content h2 {
     font-size: 24px !important;
@@ -3337,7 +3239,7 @@ export default {
     left: 43%;
   }
   .funnel-moving {
-    transform: translateX(-80px) translateY(-190px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
 
   .lightbox-content h2 {
@@ -3413,7 +3315,7 @@ export default {
     width: 80%;
   }
   .funnel-moving {
-    transform: translateX(-80px) translateY(-200px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
     top: 70px;
@@ -3492,7 +3394,7 @@ export default {
     top: 58%;
   }
   .funnel-moving {
-    transform: translateX(-80px) translateY(-200px) rotate(-60deg);
+    transform: translateX(200px) translateY(-350px) rotate(60deg);
   }
   .ground {
     bottom: -3%;

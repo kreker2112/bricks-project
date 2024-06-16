@@ -217,21 +217,37 @@ export default {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,
+        render: {
+          fillStyle: "transparent",
+          strokeStyle: "transparent",
+        },
       });
       const leftWall = Bodies.rectangle(0.001, height / 2, 2, height, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,
+        render: {
+          fillStyle: "transparent",
+          strokeStyle: "transparent",
+        },
       });
       const rightWall = Bodies.rectangle(width + 5, height / 2, 10, height, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,
+        render: {
+          fillStyle: "transparent",
+          strokeStyle: "transparent",
+        },
       });
       const ceiling = Bodies.rectangle(width / 2, -5, width, 10, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,
+        render: {
+          fillStyle: "transparent",
+          strokeStyle: "transparent",
+        },
       });
 
       const colors = ["#ff6400", "#d8d8d8", "#d9d9d9", "#ffffff"];
@@ -268,10 +284,9 @@ export default {
         const body = Bodies.rectangle(x, y, brickWidth, brickHeight, {
           render: {
             fillStyle: color,
-            strokeStyle: "#000000",
-            lineWidth: 3,
+            strokeStyle: "none",
           },
-          chamfer: { radius: 0.015 * width }, // Радиус скругления углов
+          chamfer: { radius: 0.02 * width }, // Радиус скругления углов
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
@@ -286,7 +301,7 @@ export default {
       const dropBrick = () => {
         if (currentBrickIndex < brickBodies.length) {
           World.add(engine.value.world, brickBodies[currentBrickIndex]);
-          currentBrickIndex++;
+          currentBrickIndex += 1;
           setTimeout(dropBrick, 500);
         }
       };
@@ -496,12 +511,11 @@ export default {
 
 .services-block {
   position: absolute;
-  top: 51%;
-  right: 1%;
+  top: 70%;
+  right: 0.5%;
   width: 15%;
-  height: 16%;
-  border: 4px dotted #ff6400;
-  z-index: 50;
+  height: 24.5%;
+  z-index: 40;
   border-radius: 15%;
 }
 
@@ -510,7 +524,6 @@ export default {
   top: 14%;
   left: 10.7%;
   width: 80%;
-  z-index: 40;
 }
 
 .background-canvas {
@@ -526,7 +539,6 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 60;
   width: 100%;
   height: 100%;
   z-index: 90;
@@ -544,8 +556,8 @@ export default {
 }
 
 .ideas {
-  margin-left: 1%;
-  width: 98.5%;
+  margin-left: -0.5%;
+  width: 102%;
   margin-top: 29%;
   z-index: 30;
 }
@@ -574,10 +586,9 @@ export default {
 
 .add-arrow {
   position: absolute;
-  top: 60%;
+  top: 55%;
   right: 18%;
-  width: 5%;
-  rotate: 55deg;
+  width: 8%;
 }
 
 .center-content {

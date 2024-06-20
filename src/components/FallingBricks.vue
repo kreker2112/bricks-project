@@ -1,3 +1,4 @@
+<!-- FallingBricks.vue -->
 <template>
   <div class="falling-bricks" ref="container">
     <a href="#" @click.prevent="openMenu">
@@ -14,7 +15,7 @@
 
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
-    <div class="center-content">
+    <div class="center-content" v-show="!isLightboxVisible">
       <img
         class="instruments"
         src="../images/logos/instruments.png"
@@ -33,8 +34,16 @@
       />
     </div>
 
-    <canvas ref="backgroundCanvas" class="background-canvas"></canvas>
-    <canvas ref="bricksCanvas" class="bricks-canvas"></canvas>
+    <canvas
+      ref="backgroundCanvas"
+      class="background-canvas"
+      v-show="!isLightboxVisible"
+    ></canvas>
+    <canvas
+      ref="bricksCanvas"
+      class="bricks-canvas"
+      v-show="!isLightboxVisible"
+    ></canvas>
 
     <!-- Sliding Menu -->
     <div class="mobile-menu" :class="{ open: isMenuOpen }">
@@ -125,7 +134,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 import {
   Engine,
   Render,
@@ -171,8 +180,15 @@ export default {
       { service: "Позиціонування" },
     ]);
 
+    const duplicatedBricks = bricks.value.flatMap((brick) => [
+      brick,
+      { ...brick },
+    ]);
+
     const isMenuOpen = ref(false);
     const submenuOpen = ref("");
+
+    const isLightboxVisible = computed(() => store.state.isLightboxVisible);
 
     const openMenu = () => {
       if (window.matchMedia("(max-width: 767px)").matches) {
@@ -252,7 +268,7 @@ export default {
 
       const colors = ["#ff6400", "#d8d8d8", "#d9d9d9", "#ffffff"];
 
-      const brickBodies = bricks.value.map((brick, index) => {
+      const brickBodies = duplicatedBricks.map((brick, index) => {
         const context = renderBricks.value.context;
         const fontSize = 1.9 * (width / 100);
         context.font = `${fontSize}px Montserrat Bold`;
@@ -489,13 +505,14 @@ export default {
       container,
       backgroundCanvas,
       bricksCanvas,
-      bricks,
+      bricks: duplicatedBricks,
       handleDrop,
       isMenuOpen,
       submenuOpen,
       openMenu,
       closeMenu,
       toggleSubmenu,
+      isLightboxVisible,
     };
   },
 };
@@ -511,12 +528,13 @@ export default {
 
 .services-block {
   position: absolute;
-  top: 70%;
+  top: 60%;
   right: 0.5%;
   width: 15%;
-  height: 24.5%;
+  height: 30%;
   z-index: 40;
   border-radius: 15%;
+  /* border: 2px solid #ff6400; */
 }
 
 .mosaic-logo {
@@ -541,7 +559,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 90;
+  z-index: 800;
 }
 
 .bricks-frame {
@@ -549,7 +567,7 @@ export default {
   left: 2%;
   top: 2%;
   width: 6%;
-  z-index: 800;
+  z-index: 802;
 }
 .bricks-frame:hover {
   cursor: pointer;
@@ -582,6 +600,7 @@ export default {
   width: 22%;
   top: 53%;
   right: 25%;
+  z-index: 20;
 }
 
 .add-arrow {
@@ -589,6 +608,7 @@ export default {
   top: 55%;
   right: 18%;
   width: 8%;
+  z-index: 20;
 }
 
 .center-content {

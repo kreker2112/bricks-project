@@ -425,7 +425,7 @@ export default {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
         let fontSize = 2.5 * (width / 100);
-        context.font = `${fontSize}px Montserrat Bold`;
+        context.font = `${fontSize}px 'Montserrat'`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";
@@ -433,7 +433,7 @@ export default {
         if (window.innerWidth < 767) {
           const scaleFactorText = 1.7;
           fontSize = 2.5 * (width / 100) * scaleFactorText;
-          context.font = `${fontSize}px Montserrat Bold`;
+          context.font = `${fontSize}px 'Montserrat'`;
         }
 
         allBodies.forEach((body) => {
@@ -534,6 +534,8 @@ export default {
   height: 30%;
   z-index: 40;
   border-radius: 15%;
+  z-index: 800;
+  cursor: pointer;
   /* border: 2px solid #ff6400; */
 }
 

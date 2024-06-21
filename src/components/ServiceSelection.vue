@@ -106,34 +106,37 @@
           alt="business_up-arrow"
         />
 
-        <transition name="tree-fade">
-          <img
-            v-if="showSmallTree"
-            class="small-tree"
-            src="@/images/small-tree.svg"
-            alt="small-tree"
-          />
-        </transition>
-        <transition name="tree-grow" @after-enter="onTreeGrown">
-          <img
-            v-if="isGrown"
-            class="big-tree"
-            :class="{ 'tree-grow': isGrown }"
-            src="@/images/big-tree.svg"
-            alt="big-tree"
-          />
-        </transition>
-        <transition-group name="coins-appear">
-          <img
-            v-for="(coin, index) in coins"
-            :key="index"
-            :class="['coin', 'coin-' + index]"
-            :src="coin.src"
-            :style="coin.style"
-            alt="coin"
-          />
-        </transition-group>
-
+        <div class="tree">
+          <transition name="tree-fade">
+            <img
+              v-if="showSmallTree"
+              class="small-tree"
+              src="@/images/small-tree.svg"
+              alt="small-tree"
+            />
+          </transition>
+          <transition name="tree-grow" @after-enter="onTreeGrown">
+            <img
+              v-if="isGrown"
+              class="big-tree"
+              :class="{ 'tree-grow': isGrown }"
+              src="@/images/big-tree.svg"
+              alt="big-tree"
+            />
+          </transition>
+          <div class="coins__container">
+            <transition-group name="coins-appear">
+              <img
+                v-for="(coin, index) in coins"
+                :key="index"
+                :class="['coin', 'coin-' + index]"
+                :src="coin.src"
+                :style="coin.style"
+                alt="coin"
+              />
+            </transition-group>
+          </div>
+        </div>
         <img class="ground" src="../images/ground.png" alt="ground" />
 
         <div class="drops-container">
@@ -147,67 +150,6 @@
         </div>
       </div>
     </div>
-
-    <transition name="fade">
-      <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
-        <div class="lightbox-content">
-          <h2>Поживна суміш для зростання:</h2>
-          <div class="lightbox__checkboxes-container">
-            <form class="lightbox-checkboxes">
-              <div
-                v-for="(service, index) in services"
-                :key="service"
-                :class="[
-                  'lightbox__checkbox-item',
-                  { checked: lightboxSelectedServices.includes(service) },
-                ]"
-              >
-                <input
-                  class="lightbox__checkbox-item--input"
-                  :id="'lightbox-service-' + index"
-                  :name="'lightbox-service-' + index"
-                  type="checkbox"
-                  :value="service"
-                  :checked="lightboxSelectedServices.includes(service)"
-                  @change="toggleLightboxService(service)"
-                />
-                <label
-                  class="lightbox__checkbox-item--label"
-                  :for="'lightbox-service-' + index"
-                  >{{ service }}</label
-                >
-              </div>
-            </form>
-          </div>
-          <div class="form">
-            <input
-              type="text"
-              v-model="lightboxName"
-              placeholder="Ім'я"
-              required
-            />
-            <input
-              type="tel"
-              v-model="lightboxPhone"
-              placeholder="Телефон"
-              @input="filterPhoneInput"
-              required
-            />
-            <textarea
-              v-model="lightboxMessage"
-              placeholder="Повідомлення"
-              required
-            ></textarea>
-            <div v-if="showWarning" class="warning-message">
-              Будь ласка, заповніть усі поля форми.
-            </div>
-            <button class="apply-button" @click="validateAndApply">
-              Застосувати
-            </button>
-          </div>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -349,26 +291,39 @@ export default {
         style: getCoinStyle(index, selectedServiceCount),
       }));
       setTimeout(() => {
-        coins.value = [];
-        setTimeout(() => {
-          openLightbox();
-          lightboxSelectedServices.value = [...selectedServices.value];
-          console.log(lightboxSelectedServices.value);
-        }, 1000);
+        coins.value.forEach((coin, index) => {
+          setTimeout(() => {
+            coin.style.transform = "scale(1)";
+            coin.style.opacity = 1;
+          }, index * 100);
+        });
+        setTimeout(
+          () => {
+            openLightbox();
+            lightboxSelectedServices.value = [...selectedServices.value];
+            console.log(lightboxSelectedServices.value);
+          },
+          selectedServiceCount * 100 + 1000,
+        );
       }, 500);
     };
 
     const getCoinStyle = (index, total) => {
+      const container = document.querySelector(".coins__container");
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+
       const angle = (index / total) * 360;
-      const radius = 50; // Радиус окружности, на которой располагаются монеты
+      const radius = Math.min(containerWidth, containerHeight) / 3; // Радиус окружности, на которой располагаются монеты
       const x = radius * Math.cos((angle * Math.PI) / 180);
       const y = radius * Math.sin((angle * Math.PI) / 180);
+
       return {
         top: `${50 + y}%`,
         left: `${50 + x}%`,
         transform: "scale(0)",
         opacity: 0,
-        transition: `transform 2s ease-in-out, opacity 2s ease-in-out ${index * 0.1}s`,
+        transition: `transform 1s ease-in-out, opacity 1s ease-in-out`,
       };
     };
 
@@ -666,7 +621,6 @@ export default {
   30% {
     transform: translateY(-16px);
   }
-
   20% {
     transform: translateY(-14px);
   }
@@ -1189,6 +1143,42 @@ export default {
     opacity 1s;
 }
 
+.tree {
+  position: relative;
+  margin-top: 55%;
+  margin-left: 15%;
+  width: 75%;
+  z-index: 100;
+}
+
+.coins__container {
+  position: absolute;
+  bottom: 30%;
+  right: 3%;
+  width: 345px;
+  height: 200px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.coins-appear-enter-active {
+  transition: transform 3s;
+}
+
+.coin {
+  position: absolute;
+  transition:
+    transform 1s ease-in-out,
+    opacity 1s ease-in-out;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.coins-appear-enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+
 .small-tree {
   position: absolute;
   bottom: 19%;
@@ -1555,24 +1545,6 @@ export default {
   100% {
     transform: scale(2);
   }
-}
-
-.coins-appear-enter-active {
-  transition: transform 3s;
-}
-
-.coin {
-  position: absolute;
-  transition:
-    transform 2s ease-in-out,
-    opacity 2s ease-in-out;
-  transform: scale(0);
-  opacity: 0;
-}
-
-.coins-appear-enter-to {
-  transform: scale(1);
-  opacity: 1;
 }
 
 .lightbox {

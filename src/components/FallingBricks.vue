@@ -9,7 +9,12 @@
       />
     </a>
 
-    <div class="services-block" @drop="handleDrop" @dragover.prevent></div>
+    <div
+      class="services-block"
+      v-if="!isLightboxVisible"
+      @drop="handleDrop"
+      @dragover.prevent
+    ></div>
 
     <img class="mosaic-logo" src="../images/logos/logo.png" alt="mosaic-logo" />
 
@@ -45,13 +50,14 @@
       v-show="!isLightboxVisible"
     ></canvas>
 
-    <!-- Sliding Menu -->
+    <!-- Sliding Menu for mobile -->
     <div class="mobile-menu" :class="{ open: isMenuOpen }">
       <div class="mobile-menu__header">
         <span class="close-btn" @click="closeMenu">&times;</span>
       </div>
       <div class="mobile-menu__content">
         <div class="menu-section">
+          <!-- меню для мобильных экранов -->
           <div class="menu-item" @click="toggleSubmenu('marketing')">
             МАРКЕТИНГ
             <img
@@ -61,11 +67,10 @@
               alt="menu-item__arrow"
             />
           </div>
-
           <div class="submenu" v-if="submenuOpen === 'marketing'">
-            <div class="submenu-item">Концепції</div>
-            <div class="submenu-item">Ідеї</div>
-            <div class="submenu-item">Стратегії</div>
+            <div class="submenu-item">КОНЦЕПЦІЇ</div>
+            <div class="submenu-item">ІДЕЇ</div>
+            <div class="submenu-item">СТРАТЕГІЇ</div>
           </div>
           <div class="menu-item" @click="toggleSubmenu('analytics')">
             АНАЛІТИКА
@@ -77,8 +82,8 @@
             />
           </div>
           <div class="submenu" v-if="submenuOpen === 'analytics'">
-            <div class="submenu-item">Подпункт 1</div>
-            <div class="submenu-item">Подпункт 2</div>
+            <div class="submenu-item">АУДИТ</div>
+            <div class="submenu-item">АНАЛІТИКА</div>
           </div>
           <div class="menu-item" @click="toggleSubmenu('design')">
             ДИЗАЙН
@@ -90,8 +95,9 @@
             />
           </div>
           <div class="submenu" v-if="submenuOpen === 'design'">
-            <div class="submenu-item">Подпункт 1</div>
-            <div class="submenu-item">Подпункт 2</div>
+            <div class="submenu-item">ДИЗАЙН</div>
+            <div class="submenu-item">УПАКОВКА БРЕНДУ</div>
+            <div class="submenu-item">СТВОРЕННЯ САЙТІВ</div>
           </div>
           <div class="menu-item" @click="toggleSubmenu('promotion')">
             ПРОСУВАННЯ
@@ -103,8 +109,10 @@
             />
           </div>
           <div class="submenu" v-if="submenuOpen === 'promotion'">
-            <div class="submenu-item">Подпункт 1</div>
-            <div class="submenu-item">Подпункт 2</div>
+            <div class="submenu-item">SEO</div>
+            <div class="submenu-item">КОНТЕКСТ</div>
+            <div class="submenu-item">ТАРГЕТ</div>
+            <div class="submenu-item">SMM</div>
           </div>
           <div class="menu-item-about">
             <a class="link-about" href="#">ПРО НАС</a>
@@ -127,6 +135,107 @@
               <img src="../images/footerframe_white.png" alt="footerframe" />
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Menu for desktop -->
+
+    <div class="desktop-menu" v-show="isDesktop" :class="{ open: isMenuOpen }">
+      <div class="close-btn__container">
+        <span class="desktop-menu__close-btn" @click="closeMenu">&times;</span>
+      </div>
+      <div class="desktop-menu__content">
+        <div
+          class="desktop-menu-item"
+          :class="{ active: activeMenu === 'marketing' }"
+          @click="selectMenu('marketing')"
+        >
+          МАРКЕТИНГ<img
+            class="desktop-menu-item__arrow"
+            src="../images/menu-item__arrow.png"
+            alt="menu-item__arrow"
+          />
+        </div>
+        <div
+          class="desktop-menu-item"
+          :class="{ active: activeMenu === 'analytics' }"
+          @click="selectMenu('analytics')"
+        >
+          АНАЛІТИКА<img
+            class="desktop-menu-item__arrow"
+            src="../images/menu-item__arrow.png"
+            alt="menu-item__arrow"
+          />
+        </div>
+        <div
+          class="desktop-menu-item"
+          :class="{ active: activeMenu === 'design' }"
+          @click="selectMenu('design')"
+        >
+          ДИЗАЙН<img
+            class="desktop-menu-item__arrow"
+            src="../images/menu-item__arrow.png"
+            alt="menu-item__arrow"
+          />
+        </div>
+        <div
+          class="desktop-menu-item"
+          :class="{ active: activeMenu === 'promotion' }"
+          @click="selectMenu('promotion')"
+        >
+          ПРОСУВАННЯ<img
+            class="desktop-menu-item__arrow"
+            src="../images/menu-item__arrow.png"
+            alt="menu-item__arrow"
+          />
+        </div>
+        <div
+          class="desktop-menu-item"
+          :class="{ active: activeMenu === 'about' }"
+          @click="selectMenu('about')"
+        >
+          <div class="desktop-menu-item" href="#">
+            ПРО НАС<img
+              class="desktop-menu-item__arrow"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="desktop-menu__contact-section-container">
+        <div v-if="!activeMenu" class="desktop-menu__contact-section">
+          <h2 class="contact-section__header">ЗВ'ЯЖІТЬСЯ З НАМИ</h2>
+          <div class="contact-item-email">1234567@gmail.com</div>
+          <div class="contact-item-phone">0 800 123 456 7</div>
+          <div class="contact-item-telegram">@khjhjkh</div>
+          <div class="contact-item-address">
+            м. Дніпро, вул. Виконкомівська, 85
+          </div>
+          <div class="desktop-menu__socials">
+            <a href="#"
+              ><img src="../images/logos/facebook.png" alt="facebook"
+            /></a>
+            <a href="#"
+              ><img src="../images/logos/instagram.png" alt="instagram"
+            /></a>
+          </div>
+          <div class="footer-section">
+            <div class="footer-icon">
+              <img src="../images/footerframe_white.png" alt="footerframe" />
+            </div>
+          </div>
+        </div>
+        <div v-else class="desktop-menu__dynamic-content">
+          <a
+            v-for="item in getMenuItems(activeMenu)"
+            class="desktop-menu__dynamic-content--item"
+            href="#"
+            :key="item"
+          >
+            {{ item }}
+          </a>
         </div>
       </div>
     </div>
@@ -187,21 +296,60 @@ export default {
 
     const isMenuOpen = ref(false);
     const submenuOpen = ref("");
+    const isDesktop = ref(window.innerWidth > 767);
+    const activeMenu = ref(null);
 
     const isLightboxVisible = computed(() => store.state.isLightboxVisible);
 
     const openMenu = () => {
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        isMenuOpen.value = true;
-      }
+      isMenuOpen.value = true;
     };
 
     const closeMenu = () => {
       isMenuOpen.value = false;
+      activeMenu.value = null; // Сбрасываем активное меню при закрытии
     };
 
     const toggleSubmenu = (menu) => {
       submenuOpen.value = submenuOpen.value === menu ? "" : menu;
+    };
+
+    const selectMenu = (menu) => {
+      activeMenu.value = activeMenu.value === menu ? null : menu;
+    };
+
+    const getMenuTitle = (menu) => {
+      switch (menu) {
+        case "marketing":
+          return "МАРКЕТИНГ";
+        case "analytics":
+          return "АНАЛІТИКА";
+        case "design":
+          return "ДИЗАЙН";
+        case "promotion":
+          return "ПРОСУВАННЯ";
+        case "about":
+          return "ПРО НАС";
+        default:
+          return "";
+      }
+    };
+
+    const getMenuItems = (menu) => {
+      switch (menu) {
+        case "marketing":
+          return ["КОНЦЕПЦІЇ", "ІДЕЇ", "СТРАТЕГІЇ"];
+        case "analytics":
+          return ["АУДИТ", "АНАЛІТИКА"];
+        case "design":
+          return ["ДИЗАЙН", "УПАКОВКА БРЕНДУ", "СТВОРЕННЯ САЙТІВ"];
+        case "promotion":
+          return ["SEO", "КОНТЕКСТ", "ТАРГЕТ", "SMM"];
+        case "about":
+          return ["ПРО НАС"];
+        default:
+          return [];
+      }
     };
 
     const updateCanvasSize = () => {
@@ -383,10 +531,13 @@ export default {
           const funnelArea = container.value
             .querySelector(".services-block")
             .getBoundingClientRect();
-          const funnelX = funnelArea.left;
-          const funnelY = funnelArea.top;
+          const funnelX = funnelArea.left + window.scrollX;
+          const funnelY = funnelArea.top + window.scrollY;
           const funnelWidth = funnelArea.width;
           const funnelHeight = funnelArea.height;
+
+          console.log("Position:", position);
+          console.log("Funnel Area:", funnelArea);
 
           if (
             position.x > funnelX &&
@@ -482,7 +633,10 @@ export default {
 
       updateCanvasSize();
 
-      window.addEventListener("resize", updateCanvasSize);
+      window.addEventListener("resize", () => {
+        updateCanvasSize();
+        isDesktop.value = window.innerWidth > 767;
+      });
     });
 
     onBeforeUnmount(() => {
@@ -512,7 +666,12 @@ export default {
       openMenu,
       closeMenu,
       toggleSubmenu,
+      selectMenu,
+      getMenuTitle,
+      getMenuItems,
+      activeMenu,
       isLightboxVisible,
+      isDesktop,
     };
   },
 };
@@ -641,354 +800,7 @@ export default {
   cursor: grabbing;
 }
 
-@media (max-width: 3200px) {
-  .falling-bricks .instruments__arrow {
-    top: 68%;
-    left: 39%;
-  }
-}
-
-@media (max-width: 3000px) {
-  .instruments {
-    top: 62%;
-    left: 9%;
-  }
-}
-
-@media (max-width: 2992px) {
-  .instruments {
-    top: 56%;
-    left: 9%;
-  }
-  .instruments__arrow {
-    top: 62%;
-    left: 39%;
-  }
-}
-
-@media (max-width: 2691px) {
-  .instruments {
-    top: 47%;
-    left: 9%;
-  }
-  .instruments__arrow {
-    top: 52%;
-    left: 39%;
-  }
-}
-
-@media (max-width: 1920px) {
-  .instruments {
-    top: 53%;
-  }
-  .instruments__arrow {
-    top: 60% !important;
-  }
-}
-
-@media (max-width: 1920px) and (max-height: 963px) {
-  .instruments {
-    top: 60%;
-  }
-  .instruments__arrow {
-    top: 65% !important;
-  }
-  .add {
-    top: 58%;
-  }
-  .add-arrow {
-    top: 62%;
-  }
-  .services-block {
-    top: 58%;
-  }
-}
-
-@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
-  .mosaic-logo {
-    top: 14%;
-  }
-
-  .instruments {
-    top: 54%;
-  }
-  .instruments__arrow {
-    top: 58% !important;
-  }
-  .services-block {
-    top: 53%;
-  }
-  .add {
-    top: 52%;
-  }
-  .add-arrow {
-    top: 57%;
-  }
-}
-
-@media (max-width: 1400px) {
-  .mosaic-logo {
-    top: 11%;
-  }
-  .instruments {
-    top: 45%;
-  }
-  .instruments__arrow {
-    top: 52% !important;
-  }
-  .add {
-    top: 45%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .services-block {
-    top: 44%;
-  }
-}
-
-@media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
-  .mosaic-logo {
-    top: 18%;
-  }
-  .ideas {
-    margin-top: 40%;
-  }
-  .instruments {
-    top: 50%;
-  }
-  .instruments__arrow {
-    top: 56%;
-  }
-  .services-block {
-    top: 48%;
-  }
-  .add {
-    top: 48%;
-  }
-  .add-arrow {
-    top: 53%;
-  }
-}
-
-@media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
-  .instruments {
-    top: 50%;
-  }
-  .instruments__arrow {
-    top: 55% !important;
-  }
-  .services-block {
-    top: 50%;
-  }
-  .add {
-    top: 50%;
-  }
-  .add-arrow {
-    top: 53%;
-  }
-}
-
-@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
-  .instruments {
-    top: 45% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    top: 45%;
-  }
-  .add {
-    top: 46%;
-  }
-  .add-arrow {
-    top: 49%;
-  }
-}
-@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
-  }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
-  .instruments {
-    top: 42% !important;
-  }
-  .instruments__arrow {
-    top: 46% !important;
-  }
-  .services-block {
-    top: 40%;
-  }
-  .add {
-    top: 40%;
-  }
-  .add-arrow {
-    top: 45%;
-  }
-}
-@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
-  .instruments {
-    top: 54% !important;
-  }
-  .instruments__arrow {
-    top: 60% !important;
-  }
-  .services-block {
-    top: 55%;
-  }
-  .add {
-    top: 56%;
-  }
-  .add-arrow {
-    top: 59%;
-  }
-}
-@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
-  }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
-  }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-@media (max-width: 767px) {
-  .falling-bricks {
-    width: 100%;
-    height: 300px;
-  }
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .ideas {
-    margin-top: 35% !important;
-  }
-  .instruments {
-    top: 30% !important;
-  }
-  .instruments__arrow {
-    top: 35% !important;
-  }
-  .services-block {
-    width: 18%;
-    height: 17%;
-    top: 30%;
-    right: 5%;
-  }
-  .add {
-    top: 30%;
-  }
-  .add-arrow {
-    top: 35%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-
-/* Mobile Menu Styles */
+/* Styles for mobile menu */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -1075,14 +887,10 @@ export default {
 }
 
 .submenu-item {
+  font-family: "Montserrat";
   padding: 0.5rem 0;
   font-size: 1.7rem;
   color: #ffffff;
-}
-
-.submenu-item::after {
-  content: url("../images/submenu-item__arrow.png");
-  margin-left: 10px;
 }
 
 .contact-section {
@@ -1097,7 +905,7 @@ export default {
 
 .contact-section__header {
   font-size: 2rem;
-  font-style: "Montserrat";
+  font-family: "Montserrat";
   justify-self: flex-start;
   margin: 0 0 0 2rem;
 }
@@ -1109,7 +917,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 0.5rem 0;
-  font-style: "Montserrat";
+  font-family: "Montserrat";
   font-size: 1.2rem;
   margin-left: 2rem;
 }
@@ -1151,12 +959,196 @@ export default {
   text-align: right;
 }
 
-@media (max-width: 390px) {
-  .menu-item {
-    font-size: 2rem;
+/* Styles for desktop menu */
+.desktop-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Изначально меню скрыто за левым краем */
+  width: 100%;
+  height: 100%;
+  background-color: #ff6400;
+  z-index: 1000;
+  transition: left 0.3s ease-in-out;
+  flex-direction: column;
+}
+
+.desktop-menu.open {
+  left: 0; /* Показываем меню при добавлении класса .open */
+}
+
+.desktop-menu__close-btn {
+  font-size: 4rem;
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.desktop-menu__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.desktop-menu__content {
+  padding-left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5%;
+  width: 58%;
+  text-align: left;
+}
+
+.desktop-menu-item {
+  font-size: 3rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  align-items: center;
+}
+
+.desktop-menu-item__arrow {
+  margin-left: 10px;
+}
+
+.desktop-menu-item.active {
+  border-bottom: 2px solid #ffffff;
+}
+
+.desktop-menu__dynamic-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 2rem;
+  gap: 2rem;
+}
+
+.desktop-menu__dynamic-content--item {
+  font-size: 3rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+.desktop-menu-item-about {
+  font-size: 3rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.close-btn__container {
+  margin-top: 0;
+  margin-left: 1%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.desktop-menu__contact-section-container {
+  width: 42%;
+  background-color: #002d6e;
+  color: #ffffff;
+  padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+.desktop-menu__contact-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.desktop-menu__socials {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding: 0.5rem 0;
+  padding-left: 3rem;
+  margin-top: 5%;
+  margin-left: 2rem;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
   }
-  .menu-item-about {
-    font-size: 2rem;
+  .desktop-menu {
+    display: flex;
+    flex-direction: row;
+  }
+  .contact-section__header {
+    font-size: 3.5rem;
+    font-family: "Montserrat";
+    justify-self: flex-start;
+    margin: 0 0 0 2rem;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-family: "Montserrat";
+    font-size: 1.7rem;
+    padding-left: 3rem;
+  }
+
+  .contact-item-email::before {
+    content: url("../images/letter-logo.png");
+    margin-right: 1.3rem;
+  }
+
+  .contact-item-phone::before {
+    content: url("../images/phone-logo.png");
+    margin-right: 1.3rem;
+  }
+
+  .contact-item-telegram::before {
+    content: url("../images/telegram_logo.png");
+    margin-right: 1.3rem;
+  }
+
+  .contact-item-address::before {
+    content: url("../images/path-logo.png");
+    margin-right: 1.3rem;
+  }
+  .footer-section {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1rem 1rem 2rem;
+    background-color: #002d6e;
+    color: #fff;
+  }
+
+  .footer-icon img {
+    width: 110%;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-menu {
+    display: none;
   }
 }
 </style>

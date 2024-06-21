@@ -68,6 +68,7 @@
       </div>
 
       <img
+        v-if="selectedServices.length > 0"
         class="business-arrow__down--funnel"
         src="../images/business-arrow__down.svg"
         :class="{ animated: isArrowAnimating, invisible: isGrown }"
@@ -75,6 +76,7 @@
       />
 
       <img
+        v-if="!showLightbox"
         :class="[
           'funnel-image',
           isPouring ? 'funnel-moving' : '',
@@ -150,6 +152,66 @@
         </div>
       </div>
     </div>
+    <transition name="fade">
+      <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
+        <div class="lightbox-content">
+          <h2>Поживна суміш для зростання:</h2>
+          <div class="lightbox__checkboxes-container">
+            <form class="lightbox-checkboxes">
+              <div
+                v-for="(service, index) in services"
+                :key="service"
+                :class="[
+                  'lightbox__checkbox-item',
+                  { checked: lightboxSelectedServices.includes(service) },
+                ]"
+              >
+                <input
+                  class="lightbox__checkbox-item--input"
+                  :id="'lightbox-service-' + index"
+                  :name="'lightbox-service-' + index"
+                  type="checkbox"
+                  :value="service"
+                  :checked="lightboxSelectedServices.includes(service)"
+                  @change="toggleLightboxService(service)"
+                />
+                <label
+                  class="lightbox__checkbox-item--label"
+                  :for="'lightbox-service-' + index"
+                  >{{ service }}</label
+                >
+              </div>
+            </form>
+          </div>
+          <div class="form">
+            <input
+              type="text"
+              v-model="lightboxName"
+              placeholder="Ім'я"
+              required
+            />
+            <input
+              type="tel"
+              v-model="lightboxPhone"
+              placeholder="Телефон"
+              @input="filterPhoneInput"
+              required
+            />
+            <textarea
+              v-model="lightboxMessage"
+              placeholder="Повідомлення"
+              required
+            ></textarea>
+            <div v-if="showWarning" class="warning-message">
+              Будь ласка, заповніть усі поля форми.
+            </div>
+            <button class="apply-button" @click="validateAndApply">
+              Застосувати
+            </button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -290,6 +352,7 @@ export default {
         src: coinSrc,
         style: getCoinStyle(index, selectedServiceCount),
       }));
+
       setTimeout(() => {
         coins.value.forEach((coin, index) => {
           setTimeout(() => {
@@ -297,6 +360,7 @@ export default {
             coin.style.opacity = 1;
           }, index * 100);
         });
+
         setTimeout(
           () => {
             openLightbox();
@@ -305,7 +369,7 @@ export default {
           },
           selectedServiceCount * 100 + 1000,
         );
-      }, 500);
+      }, 10); // Задержка перед началом появления монет
     };
 
     const getCoinStyle = (index, total) => {
@@ -313,14 +377,41 @@ export default {
       const containerWidth = container.offsetWidth;
       const containerHeight = container.offsetHeight;
 
-      const angle = (index / total) * 360;
-      const radius = Math.min(containerWidth, containerHeight) / 3; // Радиус окружности, на которой располагаются монеты
-      const x = radius * Math.cos((angle * Math.PI) / 180);
-      const y = radius * Math.sin((angle * Math.PI) / 180);
+      const coinSize = Math.max(70, containerWidth / (total * 20)); // Уменьшаем размер монет в зависимости от их количества
+
+      let x, y, overlapping;
+      let attempts = 0;
+      const maxAttempts = 100;
+      const coins = document.querySelectorAll(".coin");
+
+      do {
+        x = Math.random() * (containerWidth - coinSize);
+        y = Math.random() * (containerHeight - coinSize);
+        overlapping = false;
+
+        for (let i = 0; i < coins.length; i++) {
+          const coin = coins[i];
+          const coinX = parseFloat(coin.style.left);
+          const coinY = parseFloat(coin.style.top);
+
+          const distance = Math.sqrt((coinX - x) ** 10 + (coinY - y) ** 10);
+          if (distance < coinSize * 20) {
+            overlapping = false;
+            break;
+          }
+        }
+        attempts++;
+      } while (overlapping && attempts < maxAttempts);
+
+      if (attempts === maxAttempts) {
+        console.warn("Unable to place coin without overlap");
+      }
 
       return {
-        top: `${50 + y}%`,
-        left: `${50 + x}%`,
+        width: `${coinSize}px`,
+        height: `${coinSize}px`,
+        top: `${y}px`,
+        left: `${x}px`,
         transform: "scale(0)",
         opacity: 0,
         transition: `transform 1s ease-in-out, opacity 1s ease-in-out`,
@@ -674,7 +765,7 @@ export default {
 
 .business-arrow__down--funnel {
   position: absolute;
-  left: 25%;
+  left: 15%;
   bottom: 55%;
   width: 8%;
   rotate: 13deg;
@@ -1153,12 +1244,12 @@ export default {
 
 .coins__container {
   position: absolute;
-  bottom: 30%;
-  right: 3%;
-  width: 345px;
-  height: 200px;
-  overflow: hidden;
+  bottom: 130px;
+  right: -4.5%;
+  width: 430px;
+  height: 310px;
   z-index: 100;
+  border-radius: 15%;
 }
 
 .coins-appear-enter-active {
@@ -1235,7 +1326,7 @@ export default {
 }
 
 .big-tree.tree-grow {
-  transform: translateX(-50%) scale(1.5);
+  transform: translateX(-50%) scale(2.5);
   transform-origin: bottom;
   opacity: 1;
   animation: growTree 3s ease-in-out forwards;
@@ -1246,304 +1337,304 @@ export default {
     transform: scale(1);
   }
   1% {
-    transform: scale(1.01);
+    transform: scale(1.015);
   }
   2% {
-    transform: scale(1.02);
-  }
-  3% {
     transform: scale(1.03);
   }
+  3% {
+    transform: scale(1.045);
+  }
   4% {
-    transform: scale(1.04);
-  }
-  5% {
-    transform: scale(1.05);
-  }
-  6% {
     transform: scale(1.06);
   }
-  7% {
-    transform: scale(1.07);
+  5% {
+    transform: scale(1.075);
   }
-  8% {
-    transform: scale(1.08);
-  }
-  9% {
+  6% {
     transform: scale(1.09);
   }
-  10% {
-    transform: scale(1.1);
+  7% {
+    transform: scale(1.105);
   }
-  11% {
-    transform: scale(1.11);
-  }
-  12% {
+  8% {
     transform: scale(1.12);
   }
-  13% {
-    transform: scale(1.13);
+  9% {
+    transform: scale(1.135);
   }
-  14% {
-    transform: scale(1.14);
-  }
-  15% {
+  10% {
     transform: scale(1.15);
   }
-  16% {
-    transform: scale(1.16);
+  11% {
+    transform: scale(1.165);
   }
-  17% {
-    transform: scale(1.17);
-  }
-  18% {
+  12% {
     transform: scale(1.18);
   }
-  19% {
-    transform: scale(1.19);
+  13% {
+    transform: scale(1.195);
   }
-  20% {
-    transform: scale(1.2);
-  }
-  21% {
+  14% {
     transform: scale(1.21);
   }
-  22% {
-    transform: scale(1.22);
+  15% {
+    transform: scale(1.225);
   }
-  23% {
-    transform: scale(1.23);
-  }
-  24% {
+  16% {
     transform: scale(1.24);
   }
-  25% {
-    transform: scale(1.25);
+  17% {
+    transform: scale(1.255);
   }
-  26% {
-    transform: scale(1.26);
-  }
-  27% {
+  18% {
     transform: scale(1.27);
   }
-  28% {
-    transform: scale(1.28);
+  19% {
+    transform: scale(1.285);
   }
-  29% {
-    transform: scale(1.29);
-  }
-  30% {
+  20% {
     transform: scale(1.3);
   }
-  31% {
-    transform: scale(1.31);
+  21% {
+    transform: scale(1.315);
   }
-  32% {
-    transform: scale(1.32);
-  }
-  33% {
+  22% {
     transform: scale(1.33);
   }
-  34% {
-    transform: scale(1.34);
+  23% {
+    transform: scale(1.345);
   }
-  35% {
-    transform: scale(1.35);
-  }
-  36% {
+  24% {
     transform: scale(1.36);
   }
-  37% {
-    transform: scale(1.37);
+  25% {
+    transform: scale(1.375);
   }
-  38% {
-    transform: scale(1.38);
-  }
-  39% {
+  26% {
     transform: scale(1.39);
   }
-  40% {
-    transform: scale(1.4);
+  27% {
+    transform: scale(1.405);
   }
-  41% {
-    transform: scale(1.41);
-  }
-  42% {
+  28% {
     transform: scale(1.42);
   }
-  43% {
-    transform: scale(1.43);
+  29% {
+    transform: scale(1.435);
   }
-  44% {
-    transform: scale(1.44);
-  }
-  45% {
+  30% {
     transform: scale(1.45);
   }
-  46% {
-    transform: scale(1.46);
+  31% {
+    transform: scale(1.465);
   }
-  47% {
-    transform: scale(1.47);
-  }
-  48% {
+  32% {
     transform: scale(1.48);
   }
-  49% {
-    transform: scale(1.49);
+  33% {
+    transform: scale(1.495);
   }
-  50% {
-    transform: scale(1.5);
-  }
-  51% {
+  34% {
     transform: scale(1.51);
   }
-  52% {
-    transform: scale(1.52);
+  35% {
+    transform: scale(1.525);
   }
-  53% {
-    transform: scale(1.53);
-  }
-  54% {
+  36% {
     transform: scale(1.54);
   }
-  55% {
-    transform: scale(1.55);
+  37% {
+    transform: scale(1.555);
   }
-  56% {
-    transform: scale(1.56);
-  }
-  57% {
+  38% {
     transform: scale(1.57);
   }
-  58% {
-    transform: scale(1.58);
+  39% {
+    transform: scale(1.585);
   }
-  59% {
-    transform: scale(1.59);
-  }
-  60% {
+  40% {
     transform: scale(1.6);
   }
-  61% {
-    transform: scale(1.61);
+  41% {
+    transform: scale(1.615);
   }
-  62% {
-    transform: scale(1.62);
-  }
-  63% {
+  42% {
     transform: scale(1.63);
   }
-  64% {
-    transform: scale(1.64);
+  43% {
+    transform: scale(1.645);
   }
-  65% {
-    transform: scale(1.65);
-  }
-  66% {
+  44% {
     transform: scale(1.66);
   }
-  67% {
-    transform: scale(1.67);
+  45% {
+    transform: scale(1.675);
   }
-  68% {
-    transform: scale(1.68);
-  }
-  69% {
+  46% {
     transform: scale(1.69);
   }
-  70% {
-    transform: scale(1.7);
+  47% {
+    transform: scale(1.705);
   }
-  71% {
-    transform: scale(1.71);
-  }
-  72% {
+  48% {
     transform: scale(1.72);
   }
-  73% {
-    transform: scale(1.73);
+  49% {
+    transform: scale(1.735);
   }
-  74% {
-    transform: scale(1.74);
-  }
-  75% {
+  50% {
     transform: scale(1.75);
   }
-  76% {
-    transform: scale(1.76);
+  51% {
+    transform: scale(1.765);
   }
-  77% {
-    transform: scale(1.77);
-  }
-  78% {
+  52% {
     transform: scale(1.78);
   }
-  79% {
-    transform: scale(1.79);
+  53% {
+    transform: scale(1.795);
   }
-  80% {
-    transform: scale(1.8);
-  }
-  81% {
+  54% {
     transform: scale(1.81);
   }
-  82% {
-    transform: scale(1.82);
+  55% {
+    transform: scale(1.825);
   }
-  83% {
-    transform: scale(1.83);
-  }
-  84% {
+  56% {
     transform: scale(1.84);
   }
-  85% {
-    transform: scale(1.85);
+  57% {
+    transform: scale(1.855);
   }
-  86% {
-    transform: scale(1.86);
-  }
-  87% {
+  58% {
     transform: scale(1.87);
   }
-  88% {
-    transform: scale(1.88);
+  59% {
+    transform: scale(1.885);
   }
-  89% {
-    transform: scale(1.89);
-  }
-  90% {
+  60% {
     transform: scale(1.9);
   }
-  91% {
-    transform: scale(1.91);
+  61% {
+    transform: scale(1.915);
   }
-  92% {
-    transform: scale(1.92);
-  }
-  93% {
+  62% {
     transform: scale(1.93);
   }
-  94% {
-    transform: scale(1.94);
+  63% {
+    transform: scale(1.945);
   }
-  95% {
-    transform: scale(1.95);
-  }
-  96% {
+  64% {
     transform: scale(1.96);
   }
-  97% {
-    transform: scale(1.97);
+  65% {
+    transform: scale(1.975);
   }
-  98% {
-    transform: scale(1.98);
-  }
-  99% {
+  66% {
     transform: scale(1.99);
   }
+  67% {
+    transform: scale(2.005);
+  }
+  68% {
+    transform: scale(2.02);
+  }
+  69% {
+    transform: scale(2.035);
+  }
+  70% {
+    transform: scale(2.05);
+  }
+  71% {
+    transform: scale(2.065);
+  }
+  72% {
+    transform: scale(2.08);
+  }
+  73% {
+    transform: scale(2.095);
+  }
+  74% {
+    transform: scale(2.11);
+  }
+  75% {
+    transform: scale(2.125);
+  }
+  76% {
+    transform: scale(2.14);
+  }
+  77% {
+    transform: scale(2.155);
+  }
+  78% {
+    transform: scale(2.17);
+  }
+  79% {
+    transform: scale(2.185);
+  }
+  80% {
+    transform: scale(2.2);
+  }
+  81% {
+    transform: scale(2.215);
+  }
+  82% {
+    transform: scale(2.23);
+  }
+  83% {
+    transform: scale(2.245);
+  }
+  84% {
+    transform: scale(2.26);
+  }
+  85% {
+    transform: scale(2.275);
+  }
+  86% {
+    transform: scale(2.29);
+  }
+  87% {
+    transform: scale(2.305);
+  }
+  88% {
+    transform: scale(2.32);
+  }
+  89% {
+    transform: scale(2.335);
+  }
+  90% {
+    transform: scale(2.35);
+  }
+  91% {
+    transform: scale(2.365);
+  }
+  92% {
+    transform: scale(2.38);
+  }
+  93% {
+    transform: scale(2.395);
+  }
+  94% {
+    transform: scale(2.41);
+  }
+  95% {
+    transform: scale(2.425);
+  }
+  96% {
+    transform: scale(2.44);
+  }
+  97% {
+    transform: scale(2.455);
+  }
+  98% {
+    transform: scale(2.47);
+  }
+  99% {
+    transform: scale(2.485);
+  }
   100% {
-    transform: scale(2);
+    transform: scale(2.5);
   }
 }
 
@@ -1681,6 +1772,7 @@ export default {
   height: 35px;
   font-size: 16px;
   font-family: "Montserrat";
+  z-index: 10000;
 }
 
 .form textarea {
@@ -1688,6 +1780,7 @@ export default {
   height: 80px;
   font-size: 16px;
   font-family: "Montserrat";
+  z-index: 10000;
 }
 
 .form button {

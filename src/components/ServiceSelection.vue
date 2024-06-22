@@ -582,7 +582,6 @@ export default {
 .service-selection__upper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   background-color: #828282;
   width: 100%;
   height: 32%;
@@ -1647,7 +1646,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5); /* Затемнение заднего фона */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 10000;
 }
 
@@ -1668,6 +1667,7 @@ export default {
 }
 
 .lightbox-content h2 {
+  font-family: "Montserrat";
   font-size: 36px;
   margin-bottom: 60px;
   z-index: 999;
@@ -1697,6 +1697,7 @@ export default {
 
 .lightbox__checkbox-item--input {
   margin-right: 10px;
+
   width: 20px;
   height: 20px;
   border-radius: 4px;
@@ -1724,6 +1725,7 @@ export default {
 }
 
 .lightbox__checkbox-item--label {
+  font-family: "Montserrat";
   font-size: 20px;
   font-weight: 500;
   color: #ededed;
@@ -1811,5 +1813,82 @@ export default {
 .invisible {
   visibility: hidden;
   opacity: 0;
+}
+
+@media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 963px) and (max-height: 963px) {
+  .business-arrow__down--funnel {
+    width: 8%;
+    left: 10%;
+  }
+  .business_up {
+    bottom: 30%;
+  }
+  .business_up-arrow {
+    bottom: 42%;
+  }
+  .tree {
+    margin-top: 45%;
+  }
+  .drops-container {
+    top: 100px;
+  }
+  .lightbox-content h2 {
+    margin-bottom: 30px;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 3%;
+  }
+  .form {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1400px) and (min-height: 933px) and (max-height: 933px) {
+  .checkboxes-container__upper {
+    justify-content: flex-start;
+  }
+  .checkboxes__upper {
+    padding: 2%;
+  }
+  .checkbox-item__upper {
+    font-size: 80%;
+  }
+  .business-arrow__down--funnel {
+    width: 10%;
+    top: 30%;
+    left: 20%;
+  }
+  .funnel-moving {
+    transform: translateX(120px) translateY(-500px) rotate(60deg);
+  }
+  .drops-container {
+    top: 80px;
+  }
+  .tree {
+    margin-top: 63%;
+  }
+  .coins__container {
+    bottom: 100px;
+    width: 320px;
+    height: 220px;
+  }
+  .business_up {
+    bottom: 22.5%;
+  }
+  .business_up-arrow {
+    bottom: 34.5%;
+  }
+  .lightbox-content h2 {
+    font-size: 2rem;
+    margin-bottom: 5%;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 3%;
+  }
+  .form {
+    margin-top: 20%;
+    margin-bottom: 10%;
+  }
 }
 </style>

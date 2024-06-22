@@ -737,7 +737,7 @@ export default {
 .ideas {
   margin-left: -0.5%;
   width: 102%;
-  margin-top: 29%;
+  margin-top: 30%;
   z-index: 30;
 }
 
@@ -1084,6 +1084,30 @@ export default {
   padding-left: 3rem;
   margin-top: 5%;
   margin-left: 2rem;
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1400px) and (min-height: 933px) and (max-height: 933px) {
+  .ideas {
+    margin-top: 32%;
+  }
+}
+
+@media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
+  .ideas {
+    margin-top: 34%;
+  }
+}
+
+@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
+  .ideas {
+    margin-top: 36%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
+  .ideas {
+    margin-top: 38%;
+  }
 }
 
 @media (min-width: 768px) {

@@ -185,17 +185,17 @@
               </div>
             </form>
           </div>
-          <div class="form">
+          <form class="form">
             <input
               type="text"
               v-model="lightboxName"
-              placeholder="Ім'я"
+              placeholder="Ім'я *"
               required
             />
             <input
               type="tel"
               v-model="lightboxPhone"
-              placeholder="Телефон"
+              placeholder="Телефон *"
               @input="filterPhoneInput"
               required
             />
@@ -204,13 +204,10 @@
               placeholder="Повідомлення"
               required
             ></textarea>
-            <div v-if="showWarning" class="warning-message">
-              Будь ласка, заповніть усі поля форми.
-            </div>
             <button class="apply-button" @click="validateAndApply">
               Застосувати
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </transition>
@@ -263,7 +260,7 @@ export default {
     const lightboxMessage = ref("");
     const isArrowAnimating = ref(false);
     const isAnimating = ref(false);
-    const showWarning = ref(false);
+
     let checkboxCounter = 0;
     let arrowAnimationInterval;
     let growBusinessAnimationTimeout;
@@ -455,9 +452,8 @@ export default {
 
     const validateAndApply = () => {
       if (!lightboxName.value || !lightboxPhone.value) {
-        showWarning.value = true;
+        return;
       } else {
-        showWarning.value = false;
         applySelection();
       }
     };
@@ -468,7 +464,6 @@ export default {
 
     const closeLightbox = () => {
       store.dispatch("setLightboxVisibility", false);
-      showWarning.value = false;
     };
 
     const toggleService = (service) => {
@@ -558,19 +553,12 @@ export default {
       filterPhoneInput,
       growBusinessSrc,
       businessArrowSrc,
-      showWarning,
     };
   },
 };
 </script>
 
 <style>
-.warning-message {
-  color: red;
-  font-size: 150%;
-  margin-top: 10px;
-}
-
 .service-selection {
   display: flex;
   flex-direction: column;
@@ -2140,6 +2128,10 @@ export default {
     top: 5%;
     width: 40%;
     height: 47%;
+  }
+
+  .checkboxes__upper {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .checkboxes {

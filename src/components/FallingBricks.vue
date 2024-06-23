@@ -1086,9 +1086,22 @@ export default {
   margin-left: 2rem;
 }
 
+@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+  .contact-item-address {
+    text-align: start;
+    width: 400px;
+  }
+}
+
 @media only screen and (min-width: 1400px) and (max-width: 1400px) and (min-height: 933px) and (max-height: 933px) {
   .ideas {
     margin-top: 32%;
+  }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
   }
 }
 
@@ -1096,17 +1109,90 @@ export default {
   .ideas {
     margin-top: 34%;
   }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+  .ideas {
+    margin-top: 36%;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    padding-left: 1rem !important;
+  }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
+  }
 }
 
 @media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
   .ideas {
     margin-top: 36%;
   }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    padding-left: 1rem !important;
+  }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
+  }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
   .ideas {
     margin-top: 38%;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    padding-left: 1rem !important;
+  }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+  .contact-section__header {
+    font-size: 2rem !important;
+    font-family: "Montserrat";
+    justify-self: center;
+    text-align: center;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    font-size: 1.2rem !important;
+    padding-left: 1rem !important;
+  }
+  .contact-item-address {
+    text-align: start;
+  }
+  .desktop-menu__dynamic-content {
+    text-align: start;
+  }
+  .footer-section {
+    margin-top: 0 !important;
   }
 }
 

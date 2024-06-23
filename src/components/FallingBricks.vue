@@ -1,6 +1,6 @@
 <template>
   <div class="falling-bricks" ref="container">
-    <a href="#">
+    <a href="#" @click.prevent="openMenu">
       <img
         class="bricks-frame"
         src="../images/logos/bricks-frame.png"
@@ -35,6 +35,92 @@
 
     <canvas ref="backgroundCanvas" class="background-canvas"></canvas>
     <canvas ref="bricksCanvas" class="bricks-canvas"></canvas>
+
+    <!-- Sliding Menu -->
+    <div class="mobile-menu" :class="{ open: isMenuOpen }">
+      <div class="mobile-menu__header">
+        <span class="close-btn" @click="closeMenu">&times;</span>
+      </div>
+      <div class="mobile-menu__content">
+        <div class="menu-section">
+          <div class="menu-item" @click="toggleSubmenu('marketing')">
+            МАРКЕТИНГ
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'marketing' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
+
+          <div class="submenu" v-if="submenuOpen === 'marketing'">
+            <div class="submenu-item">Концепції</div>
+            <div class="submenu-item">Ідеї</div>
+            <div class="submenu-item">Стратегії</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('analytics')">
+            АНАЛІТИКА
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'analytics' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'analytics'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('design')">
+            ДИЗАЙН
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'design' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'design'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item" @click="toggleSubmenu('promotion')">
+            ПРОСУВАННЯ
+            <img
+              class="menu-item__arrow"
+              :class="{ rotated: submenuOpen === 'promotion' }"
+              src="../images/menu-item__arrow.png"
+              alt="menu-item__arrow"
+            />
+          </div>
+          <div class="submenu" v-if="submenuOpen === 'promotion'">
+            <div class="submenu-item">Подпункт 1</div>
+            <div class="submenu-item">Подпункт 2</div>
+          </div>
+          <div class="menu-item-about">
+            <a class="link-about" href="#">ПРО НАС</a>
+          </div>
+        </div>
+        <div class="contact-section">
+          <h2 class="contact-section__header">
+            ЗВ'ЯЖІТЬСЯ <br />
+            З НАМИ
+          </h2>
+          <div class="contact-item-email">1234567@gmail.com</div>
+          <div class="contact-item-phone">0 800 123 456 7</div>
+          <div class="contact-item-telegram">@khjhjkh</div>
+          <div class="contact-item-address">
+            м. Дніпро, вул. <br />
+            Виконкомівська, 85
+          </div>
+          <div class="footer-section">
+            <div class="footer-icon">
+              <img src="../images/footerframe_white.png" alt="footerframe" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,6 +136,7 @@ import {
   MouseConstraint,
   Events,
   Composite,
+  Query,
 } from "matter-js";
 import { useStore } from "vuex";
 
@@ -84,6 +171,23 @@ export default {
       { service: "Позиціонування" },
     ]);
 
+    const isMenuOpen = ref(false);
+    const submenuOpen = ref("");
+
+    const openMenu = () => {
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        isMenuOpen.value = true;
+      }
+    };
+
+    const closeMenu = () => {
+      isMenuOpen.value = false;
+    };
+
+    const toggleSubmenu = (menu) => {
+      submenuOpen.value = submenuOpen.value === menu ? "" : menu;
+    };
+
     const updateCanvasSize = () => {
       const width = container.value.clientWidth;
       const height = container.value.clientHeight;
@@ -114,7 +218,7 @@ export default {
         restitution: 0.8,
         friction: 0.5,
       });
-      const leftWall = Bodies.rectangle(1, height / 2, 2, height, {
+      const leftWall = Bodies.rectangle(0.001, height / 2, 2, height, {
         isStatic: true,
         restitution: 0.8,
         friction: 0.5,
@@ -134,11 +238,30 @@ export default {
 
       const brickBodies = bricks.value.map((brick, index) => {
         const context = renderBricks.value.context;
-        context.font = "18px Montserrat";
-        const padding = 20;
-        const textWidth = context.measureText(brick.service).width + padding;
-        const brickWidth = Math.max(160, textWidth);
-        const brickHeight = 50;
+        const fontSize = 1.9 * (width / 100);
+        context.font = `${fontSize}px Montserrat Bold`;
+        const textWidth = context.measureText(brick.service).width;
+
+        // Горизонтальный и вертикальный padding
+        let horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
+        let verticalPadding = height * 0.03; // Вертикальный padding от высоты окна
+
+        // Размеры кирпича
+        let brickWidth = Math.max(
+          0.00000000001 * width,
+          textWidth + horizontalPadding,
+        );
+        let brickHeight = verticalPadding + fontSize;
+
+        // Увеличение размеров на малых экранах
+        if (window.innerWidth < 767) {
+          const scaleFactor = 1.3; // Коэффициент увеличения размеров
+          horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
+          verticalPadding = height * 0.04; // Вертикальный padding от высоты окна
+          brickWidth *= scaleFactor;
+          brickHeight *= scaleFactor;
+        }
+
         const x = Math.random() * (width - brickWidth) + brickWidth / 2;
         const y = brickHeight / 2;
         const color = colors[index % colors.length];
@@ -148,7 +271,7 @@ export default {
             strokeStyle: "#000000",
             lineWidth: 3,
           },
-          chamfer: { radius: 25 },
+          chamfer: { radius: 0.015 * width }, // Радиус скругления углов
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
@@ -184,11 +307,42 @@ export default {
 
       renderBricks.value.mouse = mouse;
 
-      Events.on(mouseConstraint, "mousedown", (event) => {
-        const { body } = event;
-        if (body) {
-          console.log("Dragging:", body.label);
+      let hoveringBody = null;
+
+      const setCursorStyle = (style) => {
+        renderBricks.value.canvas.style.cursor = style;
+      };
+
+      Events.on(mouseConstraint, "mousemove", (event) => {
+        const foundBodies = Query.point(
+          Composite.allBodies(engine.value.world),
+          event.mouse.position,
+        );
+        if (foundBodies.length > 0) {
+          if (!hoveringBody) {
+            hoveringBody = foundBodies[0];
+            setCursorStyle("grab");
+          }
+        } else {
+          if (hoveringBody) {
+            hoveringBody = null;
+            setCursorStyle("default");
+          }
         }
+      });
+
+      Events.on(mouseConstraint, "mousedown", (event) => {
+        const foundBodies = Query.point(
+          Composite.allBodies(engine.value.world),
+          event.mouse.position,
+        );
+        if (foundBodies.length > 0) {
+          setCursorStyle("grabbing");
+        }
+      });
+
+      Events.on(mouseConstraint, "mouseup", () => {
+        setCursorStyle("default");
       });
 
       Events.on(mouseConstraint, "enddrag", (event) => {
@@ -239,10 +393,17 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
-        context.font = "18px Montserrat";
+        let fontSize = 2.5 * (width / 100);
+        context.font = `${fontSize}px Montserrat Bold`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";
+
+        if (window.innerWidth < 767) {
+          const scaleFactorText = 1.7;
+          fontSize = 2.5 * (width / 100) * scaleFactorText;
+          context.font = `${fontSize}px Montserrat Bold`;
+        }
 
         allBodies.forEach((body) => {
           if (body.label && !body.isStatic) {
@@ -306,7 +467,6 @@ export default {
       const data = event.dataTransfer.getData("text");
       store.dispatch("addService", data);
 
-      // Запуск анимации
       store.dispatch("triggerAnimation");
     };
 
@@ -316,6 +476,11 @@ export default {
       bricksCanvas,
       bricks,
       handleDrop,
+      isMenuOpen,
+      submenuOpen,
+      openMenu,
+      closeMenu,
+      toggleSubmenu,
     };
   },
 };
@@ -487,7 +652,7 @@ export default {
   }
 }
 
-@media (max-width: 1920px) and (max-height: 1083px) {
+@media (max-width: 1920px) {
   .instruments {
     top: 53%;
   }
@@ -514,7 +679,29 @@ export default {
   }
 }
 
-@media (max-width: 1400px) and (max-height: 933px) {
+@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+  .mosaic-logo {
+    top: 14%;
+  }
+
+  .instruments {
+    top: 54%;
+  }
+  .instruments__arrow {
+    top: 58% !important;
+  }
+  .services-block {
+    top: 53%;
+  }
+  .add {
+    top: 52%;
+  }
+  .add-arrow {
+    top: 57%;
+  }
+}
+
+@media (max-width: 1400px) {
   .mosaic-logo {
     top: 11%;
   }
@@ -535,12 +722,18 @@ export default {
   }
 }
 
-@media (max-width: 1280px) and (max-height: 800px) {
+@media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
+  .mosaic-logo {
+    top: 18%;
+  }
+  .ideas {
+    margin-top: 40%;
+  }
   .instruments {
-    top: 50% !important;
+    top: 50%;
   }
   .instruments__arrow {
-    top: 56% !important;
+    top: 56%;
   }
   .services-block {
     top: 48%;
@@ -550,6 +743,395 @@ export default {
   }
   .add-arrow {
     top: 53%;
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+  .instruments {
+    top: 50%;
+  }
+  .instruments__arrow {
+    top: 55% !important;
+  }
+  .services-block {
+    top: 50%;
+  }
+  .add {
+    top: 50%;
+  }
+  .add-arrow {
+    top: 53%;
+  }
+}
+
+@media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
+  .instruments {
+    top: 45% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    top: 45%;
+  }
+  .add {
+    top: 46%;
+  }
+  .add-arrow {
+    top: 49%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
+  .instruments {
+    top: 42% !important;
+  }
+  .instruments__arrow {
+    top: 46% !important;
+  }
+  .services-block {
+    top: 40%;
+  }
+  .add {
+    top: 40%;
+  }
+  .add-arrow {
+    top: 45%;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+  .instruments {
+    top: 54% !important;
+  }
+  .instruments__arrow {
+    top: 60% !important;
+  }
+  .services-block {
+    top: 55%;
+  }
+  .add {
+    top: 56%;
+  }
+  .add-arrow {
+    top: 59%;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media (max-width: 767px) {
+  .falling-bricks {
+    width: 100%;
+    height: 300px;
+  }
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .ideas {
+    margin-top: 35% !important;
+  }
+  .instruments {
+    top: 30% !important;
+  }
+  .instruments__arrow {
+    top: 35% !important;
+  }
+  .services-block {
+    width: 18%;
+    height: 17%;
+    top: 30%;
+    right: 5%;
+  }
+  .add {
+    top: 30%;
+  }
+  .add-arrow {
+    top: 35%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ff6400;
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu__header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem 0 0;
+  color: #ffffff;
+}
+
+.close-btn {
+  font-size: 4rem;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.mobile-menu__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+.menu-section {
+  margin-top: 0;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  padding: 0.5rem 1rem;
+  font-size: 2.5rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.menu-item__arrow {
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-item__arrow.rotated {
+  transform: translateY(3px) rotate(90deg);
+}
+
+.menu-item-about {
+  padding: 0.5rem 1rem;
+  font-size: 2.5rem;
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.link-about {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.submenu {
+  padding-left: 1rem;
+}
+
+.submenu-item {
+  padding: 0.5rem 0;
+  font-size: 1.7rem;
+  color: #ffffff;
+}
+
+.submenu-item::after {
+  content: url("../images/submenu-item__arrow.png");
+  margin-left: 10px;
+}
+
+.contact-section {
+  background-color: #002d6e;
+  color: #ffffff;
+  padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contact-section__header {
+  font-size: 2rem;
+  font-style: "Montserrat";
+  justify-self: flex-start;
+  margin: 0 0 0 2rem;
+}
+
+.contact-item-email,
+.contact-item-phone,
+.contact-item-telegram,
+.contact-item-address {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-style: "Montserrat";
+  font-size: 1.2rem;
+  margin-left: 2rem;
+}
+
+.contact-item-email::before {
+  content: url("../images/letter-logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-phone::before {
+  content: url("../images/phone-logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-telegram::before {
+  content: url("../images/telegram_logo.png");
+  margin-right: 1.1rem;
+}
+
+.contact-item-address::before {
+  content: url("../images/path-logo.png");
+  margin-right: 1.1rem;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 1rem 1rem 2rem;
+  background-color: #002d6e;
+  color: #fff;
+}
+
+.footer-icon img {
+  width: 100%;
+}
+
+.footer-text {
+  text-align: right;
+}
+
+@media (max-width: 390px) {
+  .menu-item {
+    font-size: 2rem;
+  }
+  .menu-item-about {
+    font-size: 2rem;
   }
 }
 </style>

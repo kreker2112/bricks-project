@@ -37,7 +37,9 @@ export default {
 
 <style scoped>
 .second-page-content {
+  width: 100%;
   height: 100%;
+  overflow-x: auto;
 }
 
 .second-page {
@@ -134,5 +136,12 @@ export default {
 .left-section,
 .form-component {
   flex: 1;
+}
+@media (max-width: 767px) {
+  .second-page {
+    width: 1710px;
+    height: 932px;
+    overflow-x: auto;
+  }
 }
 </style>

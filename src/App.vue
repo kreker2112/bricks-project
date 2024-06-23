@@ -49,7 +49,8 @@ export default {
 .page-container {
   width: 100vw;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
 }
 
@@ -58,6 +59,8 @@ export default {
   width: 100vw;
   position: absolute;
   transition: all 1s;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .slide-left-enter-active,
@@ -71,5 +74,12 @@ export default {
 
 .slide-left-leave-to {
   transform: translateX(-100%);
+}
+@media (max-width: 767px) {
+  .page-container {
+    width: 100% !important;
+    height: 932px !important;
+    overflow-y: auto !important;
+  }
 }
 </style>

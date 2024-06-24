@@ -82,7 +82,7 @@
           isPouring ? 'funnel-moving' : '',
           isAnimating ? 'funnel-animating' : '',
         ]"
-        src="../images/logos/funnel.svg"
+        src="../images/logos/funnel.png"
         alt="funnel"
         @click="pourWater"
         @dragenter.prevent="onDragEnterFunnel"

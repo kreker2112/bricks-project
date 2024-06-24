@@ -1937,7 +1937,7 @@ export default {
     bottom: 50%;
   }
   .tree {
-    margin-top: 38% !important;
+    margin-top: 38%;
   }
   .funnel-moving {
     transform: translateX(190px) translateY(-480px) rotate(60deg);
@@ -1954,9 +1954,6 @@ export default {
   }
   .drops-container {
     top: 80px;
-  }
-  .tree {
-    margin-top: 40%;
   }
   .coins__container {
     bottom: 160px;
@@ -2029,7 +2026,7 @@ export default {
     top: 90px;
   }
   .tree {
-    margin-top: 51.5%;
+    margin-top: 55% !important;
   }
   @keyframes drop-fall {
     0% {

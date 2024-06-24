@@ -1891,6 +1891,97 @@ export default {
   }
 }
 
+@media (max-width: 1920px) {
+  .checkboxes-container__upper {
+    justify-content: flex-start;
+  }
+  .checkboxes__upper {
+    padding: 2%;
+    gap: 7%;
+  }
+  .checkbox-item__upper {
+    font-size: 120%;
+  }
+  .grow_buisness-with-mosaic {
+    top: 2%;
+    width: 80%;
+  }
+  .business-arrow__down {
+    right: 15%;
+    top: 6%;
+  }
+  .instruction-image {
+    width: 120%;
+  }
+  .take-money {
+    width: 35%;
+  }
+  .business-arrow__down--funnel {
+    width: 8%;
+    left: 10%;
+  }
+  .funnel-moving {
+    transform: translateX(140px) translateY(-550px) rotate(60deg);
+  }
+  .drops-container {
+    top: 90px;
+  }
+  .tree {
+    margin-top: 51.5%;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(400px);
+    }
+  }
+  .coins__container {
+    bottom: 140px;
+    width: 430px;
+    height: 310px;
+  }
+
+  .business_up {
+    bottom: 27%;
+  }
+  .business_up-arrow {
+    bottom: 38%;
+  }
+  .lightbox-content h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 5%;
+  }
+  .lightbox__checkbox-item--label {
+    font-size: 1.5rem;
+  }
+  .form {
+    margin-top: 20%;
+    margin-bottom: 10%;
+  }
+  .form input {
+    height: 10%;
+  }
+  .form textarea {
+    height: 30%;
+  }
+  .form button {
+    margin-top: 40px;
+    width: 250px;
+    height: 80px;
+    text-align: center;
+  }
+  .apply-button {
+    font-size: 2rem;
+  }
+}
+
 @media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 963px) and (max-height: 963px) {
   .business-arrow__down--funnel {
     width: 8%;
@@ -1902,11 +1993,24 @@ export default {
   .business_up-arrow {
     bottom: 42%;
   }
+  .instruction-image {
+    width: 100%;
+  }
   .tree {
     margin-top: 45%;
   }
   .drops-container {
     top: 100px;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(300px);
+    }
   }
   .lightbox-content h2 {
     margin-bottom: 30px;
@@ -1934,6 +2038,9 @@ export default {
     width: 10%;
     top: 30%;
     left: 20%;
+  }
+  .instruction-image {
+    width: 100%;
   }
   .funnel-moving {
     transform: translateX(120px) translateY(-500px) rotate(60deg);
@@ -1989,11 +2096,24 @@ export default {
     top: 40%;
     left: 15%;
   }
+  .instruction-image {
+    width: 97%;
+  }
   .funnel-moving {
     transform: translateX(120px) translateY(-450px) rotate(60deg);
   }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(310px);
+    }
+  }
   .drops-container {
-    top: 150px;
+    top: 190px;
   }
   .tree {
     margin-top: 77%;
@@ -2028,6 +2148,7 @@ export default {
   }
   .checkboxes__upper {
     padding: 2%;
+    gap: 2%;
   }
   .checkbox-item__upper {
     font-size: 80%;
@@ -2039,6 +2160,12 @@ export default {
   .instruction-image {
     width: 95%;
   }
+  .take-money {
+    width: 33%;
+  }
+  .business-arrow__down {
+    top: 6%;
+  }
   .business-arrow__down--funnel {
     width: 10%;
     top: 30%;
@@ -2046,6 +2173,16 @@ export default {
   }
   .funnel-moving {
     transform: translateX(120px) translateY(-400px) rotate(60deg);
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(250px);
+    }
   }
   .drops-container {
     top: 80px;
@@ -2104,6 +2241,9 @@ export default {
   .checkbox-item__upper label {
     font-size: 85%;
   }
+  .take-money {
+    width: 30%;
+  }
   .instruction-image {
     width: 90%;
   }
@@ -2113,10 +2253,20 @@ export default {
     left: 15%;
   }
   .funnel-moving {
-    transform: translateX(120px) translateY(-450px) rotate(60deg);
+    transform: translateX(120px) translateY(-350px) rotate(60deg);
   }
   .drops-container {
-    top: 50px;
+    top: 110px;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(250px);
+    }
   }
   .tree {
     margin-top: 65%;
@@ -2274,16 +2424,32 @@ export default {
   .instruction-image {
     width: 75%;
   }
+  .take-money {
+    width: 33%;
+  }
+  .take-money__arrow {
+    width: 11%;
+  }
   .business-arrow__down--funnel {
     width: 10%;
     top: 30%;
     left: 15%;
   }
   .funnel-moving {
-    transform: translateX(90px) translateY(-420px) rotate(60deg);
+    transform: translateX(90px) translateY(-300px) rotate(60deg);
   }
   .drops-container {
-    top: 50px;
+    top: 160px;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(200px);
+    }
   }
   .tree {
     margin-top: 73%;
@@ -2347,8 +2513,8 @@ export default {
     font-size: 80%;
   }
   .checkbox-item__upper--input {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 4px;
     border: 2px solid #9e9e9e;
     background-color: transparent;
@@ -2360,8 +2526,15 @@ export default {
   .checkbox-item__upper label {
     font-size: 80%;
   }
+  .grow_buisness-with-mosaic {
+    top: 0.5%;
+    width: 80%;
+  }
   .instruction-image {
     width: 75%;
+  }
+  .take-money {
+    width: 33%;
   }
   .business-arrow__down--funnel {
     width: 7%;
@@ -2372,7 +2545,20 @@ export default {
     transform: translateX(90px) translateY(-320px) rotate(60deg);
   }
   .drops-container {
-    top: 50px;
+    top: 10px;
+  }
+  .drop.one-size {
+    width: 60px;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(230px);
+    }
   }
   .tree {
     margin-top: 45%;

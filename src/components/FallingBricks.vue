@@ -423,8 +423,8 @@ export default {
         const textWidth = context.measureText(brick.service).width;
 
         // Горизонтальный и вертикальный padding
-        let horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
-        let verticalPadding = height * 0.03; // Вертикальный padding от высоты окна
+        let horizontalPadding = textWidth * 1.5; // Горизонтальный padding от ширины текста
+        let verticalPadding = height * 0.058; // Вертикальный padding от высоты окна
 
         // Размеры кирпича
         let brickWidth = Math.max(
@@ -575,8 +575,9 @@ export default {
       Events.on(renderBricks.value, "afterRender", () => {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
+        const fontWeight = "bold";
         let fontSize = 2.5 * (width / 100);
-        context.font = `${fontSize}px 'Montserrat'`;
+        context.font = `${fontWeight} ${fontSize}px 'Montserrat'`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";
         context.textBaseline = "middle";

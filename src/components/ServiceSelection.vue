@@ -444,10 +444,11 @@ export default {
         message: lightboxMessage.value,
         services: [...lightboxSelectedServices.value],
       });
-      console.log(formData);
+      console.log("ServiceSelection formData: ", formData);
       store.dispatch("setFormData", formData);
       emit("apply-selection");
       router.push("/second-page");
+
       // Здесь вы можете отправить данные на сервер или выполнить другие действия
     };
 

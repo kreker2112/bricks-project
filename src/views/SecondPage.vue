@@ -41,7 +41,7 @@ export default {
   },
   mounted() {
     const formData = toRaw(this.formData); // Преобразуем прокси в обычный объект
-    console.log("Данные из хранилища: ", formData);
+    console.log("SecondPage formData : ", formData);
   },
 };
 </script>

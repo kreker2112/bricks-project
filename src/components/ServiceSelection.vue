@@ -1927,7 +1927,7 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 28% !important;
+    top: 2% !important;
     left: 20% !important;
   }
   .business_up {
@@ -2026,7 +2026,7 @@ export default {
     top: 90px;
   }
   .tree {
-    margin-top: 55% !important;
+    margin-top: 51.5%;
   }
   @keyframes drop-fall {
     0% {

@@ -1806,7 +1806,7 @@ export default {
   opacity: 0;
 }
 
-@media (max-width: 1921px) {
+@media (max-width: 2560px) {
   .checkboxes-container__upper {
     justify-content: flex-start;
   }

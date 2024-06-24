@@ -92,7 +92,7 @@ export default {};
   align-items: center;
 }
 
-@media (max-width: 1921px) {
+@media (max-width: 2560px) {
   .center a {
     font-size: 90%;
   }

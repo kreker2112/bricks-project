@@ -92,7 +92,7 @@ export default {};
   align-items: center;
 }
 
-@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+@media (max-width: 1921px) {
   .center a {
     font-size: 90%;
   }

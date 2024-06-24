@@ -1086,10 +1086,21 @@ export default {
   margin-left: 2rem;
 }
 
-@media only screen and (min-width: 1536px) and (max-width: 1536px) and (min-height: 864px) and (max-height: 864px) {
+@media (max-width: 1921px) {
+  .add {
+    top: 40%;
+  }
+  .add-arrow {
+    top: 44%;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
   .contact-item-address {
-    text-align: start;
-    width: 400px;
+    margin: 0 !important;
+  }
+  .contact-item-address {
+    font-size: 1.5rem !important;
   }
 }
 

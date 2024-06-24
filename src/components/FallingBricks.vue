@@ -1105,7 +1105,7 @@ export default {
   }
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1400px) and (min-height: 933px) and (max-height: 933px) {
+@media (max-width: 1400px) {
   .ideas {
     margin-top: 32%;
   }
@@ -1114,6 +1114,12 @@ export default {
   }
   .desktop-menu__dynamic-content {
     text-align: start;
+  }
+  .add {
+    top: 45%;
+  }
+  .add-arrow {
+    top: 53%;
   }
 }
 

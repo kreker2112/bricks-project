@@ -1910,7 +1910,7 @@ export default {
   }
   .business-arrow__down {
     right: 15%;
-    top: 8% !important;
+    top: 8%;
   }
   .instruction-image {
     width: 150%;
@@ -1921,9 +1921,6 @@ export default {
   .take-money__arrow {
     top: 20%;
     width: 9%;
-  }
-  .business-arrow__down {
-    top: 6%;
   }
   .business-arrow__down--funnel {
     width: 10%;
@@ -2139,7 +2136,7 @@ export default {
   }
   .business-arrow__down {
     right: 15%;
-    top: 8% !important;
+    top: 8%;
   }
   .instruction-image {
     width: 120%;
@@ -2150,9 +2147,6 @@ export default {
   .take-money__arrow {
     top: 20%;
     width: 9%;
-  }
-  .business-arrow__down {
-    top: 6%;
   }
   .business-arrow__down--funnel {
     width: 10%;
@@ -2228,6 +2222,10 @@ export default {
   }
   .checkbox-item__upper {
     font-size: 80% !important;
+  }
+  .business-arrow__down {
+    right: 15%;
+    top: 4%;
   }
   .business-arrow__down--funnel {
     width: 15%;

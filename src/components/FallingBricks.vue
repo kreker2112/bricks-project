@@ -1086,7 +1086,7 @@ export default {
   margin-left: 2rem;
 }
 
-@media (max-width: 1921px) {
+@media (max-width: 2560px) {
   .add {
     top: 40%;
   }

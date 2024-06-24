@@ -1924,8 +1924,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 2%;
-    left: 20%;
+    top: 20%;
+    left: 25%;
   }
   .business_up {
     bottom: 35%;
@@ -2150,8 +2150,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 8%;
-    left: 13%;
+    top: 25%;
+    left: 21%;
   }
   .business_up {
     bottom: 35%;

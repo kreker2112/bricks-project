@@ -1,3 +1,4 @@
+// SecondPage.vue
 <template>
   <div class="second-page-content page">
     <div class="second-page">
@@ -26,12 +27,22 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import FormComponent from "../components/FormComponent.vue";
+import { toRaw } from "vue";
+
 export default {
   components: {
     FormComponent,
   },
   name: "SecondPage",
+  computed: {
+    ...mapGetters(["formData"]),
+  },
+  mounted() {
+    const formData = toRaw(this.formData); // Преобразуем прокси в обычный объект
+    console.log("Данные из хранилища: ", formData);
+  },
 };
 </script>
 

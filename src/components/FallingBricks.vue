@@ -255,8 +255,35 @@ import {
   Events,
   Composite,
   Query,
+  Runner,
 } from "matter-js";
 import { useStore } from "vuex";
+
+// Обертка для Mouse.create
+const wrapMouseCreate = () => {
+  const originalMouseCreate = Mouse.create;
+  Mouse.create = function (element) {
+    const mouse = originalMouseCreate(element);
+    const setElement = mouse.setElement;
+
+    mouse.setElement = function (element) {
+      setElement(element);
+
+      const originalAddEventListener = element.addEventListener.bind(element);
+      element.addEventListener = function (type, listener, options) {
+        if (["mousewheel", "touchmove", "touchstart"].includes(type)) {
+          options = options || {};
+          if (typeof options === "object") {
+            options.passive = true; // Установите false для пассивного слушателя
+          }
+        }
+        originalAddEventListener(type, listener, options);
+      };
+    };
+
+    return mouse;
+  };
+};
 
 export default {
   setup() {
@@ -267,6 +294,7 @@ export default {
     const engine = ref(null);
     const renderBackground = ref(null);
     const renderBricks = ref(null);
+    const runner = ref(null);
 
     const bricks = ref([
       { service: "Контекст" },
@@ -482,6 +510,7 @@ export default {
           },
         },
       });
+
       World.add(engine.value.world, mouseConstraint);
 
       renderBricks.value.mouse = mouse;
@@ -602,6 +631,8 @@ export default {
     };
 
     onMounted(() => {
+      wrapMouseCreate(); // Вызов функции обертки перед созданием элементов Matter.js
+
       engine.value = Engine.create();
 
       renderBackground.value = Render.create({
@@ -628,7 +659,9 @@ export default {
         },
       });
 
-      Engine.run(engine.value);
+      runner.value = Runner.create();
+      Runner.run(runner.value, engine.value);
+
       Render.run(renderBackground.value);
       Render.run(renderBricks.value);
 
@@ -646,6 +679,7 @@ export default {
       Render.stop(renderBricks.value);
       World.clear(engine.value.world);
       Engine.clear(engine.value);
+      Runner.stop(runner.value);
     });
 
     const handleDrop = (event) => {

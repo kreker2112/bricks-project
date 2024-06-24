@@ -215,7 +215,7 @@
 </template>
 
 <script>
-import { ref, computed, watch, onMounted, onUnmounted } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted, toRaw } from "vue";
 import { useStore } from "vuex";
 import dropsImage from "@/images/drops.svg";
 import coinImage from "@/images/coin.svg";
@@ -438,13 +438,14 @@ export default {
     };
 
     const applySelection = () => {
-      const formData = {
+      const formData = toRaw({
         name: lightboxName.value,
         phone: lightboxPhone.value,
         message: lightboxMessage.value,
         services: [...lightboxSelectedServices.value],
-      };
+      });
       console.log(formData);
+      store.dispatch("setFormData", formData);
       emit("apply-selection");
       router.push("/second-page");
       // Здесь вы можете отправить данные на сервер или выполнить другие действия

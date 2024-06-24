@@ -1121,6 +1121,9 @@ export default {
   .add-arrow {
     top: 53%;
   }
+  .contact-item-address {
+    text-align: center;
+  }
 }
 
 @media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
@@ -1128,7 +1131,7 @@ export default {
     margin-top: 34%;
   }
   .contact-item-address {
-    text-align: start;
+    text-align: center;
   }
   .desktop-menu__dynamic-content {
     text-align: start;
@@ -1146,7 +1149,7 @@ export default {
     padding-left: 1rem !important;
   }
   .contact-item-address {
-    text-align: start;
+    text-align: center;
   }
   .desktop-menu__dynamic-content {
     text-align: start;

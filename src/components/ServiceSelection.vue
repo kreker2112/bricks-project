@@ -388,7 +388,7 @@ export default {
         y = Math.random() * (containerHeight - coinSize);
         overlapping = false;
 
-        for (let i = 0; i < coins.length; i++) {
+        for (let i = 0; i < coins.length; i += 1) {
           const coin = coins[i];
           const coinX = parseFloat(coin.style.left);
           const coinY = parseFloat(coin.style.top);
@@ -399,7 +399,7 @@ export default {
             break;
           }
         }
-        attempts++;
+        attempts += 1;
       } while (overlapping && attempts < maxAttempts);
 
       if (attempts === maxAttempts) {
@@ -2279,15 +2279,16 @@ export default {
 }
 
 @media only screen and (min-width: 1366px) and (max-width: 1366px) and (min-height: 1024px) and (max-height: 1024px) {
+  .grow_buisness-with-mosaic {
+    top: 2% !important;
+    width: 80% !important;
+  }
   .business-arrow__down {
     right: 15%;
-    top: 5%;
-  }
-  .checkboxes-container__upper {
-    justify-content: flex-start;
+    top: 6%;
   }
   .checkboxes__upper {
-    margin: 5% 0 0 0;
+    margin: 0;
     padding: 10px;
     grid-gap: 15px;
   }
@@ -2296,8 +2297,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 40%;
-    left: 15%;
+    top: 55%;
+    left: 23%;
   }
   .instruction-image {
     width: 97%;
@@ -2319,7 +2320,7 @@ export default {
     top: 190px;
   }
   .tree {
-    margin-top: 77%;
+    margin-top: 77% !important;
   }
   .coins__container {
     bottom: 100px;
@@ -2346,12 +2347,9 @@ export default {
 }
 
 @media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
     padding: 2%;
-    gap: 2%;
+    gap: 2% !important;
   }
   .checkbox-item__upper {
     font-size: 80%;
@@ -2371,8 +2369,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 30%;
-    left: 25%;
+    top: 42%;
+    left: 21%;
   }
   .funnel-moving {
     transform: translateX(120px) translateY(-400px) rotate(60deg);
@@ -2391,7 +2389,7 @@ export default {
     top: 80px;
   }
   .tree {
-    margin-top: 54%;
+    margin-top: 54% !important;
   }
   .coins__container {
     bottom: 90px;
@@ -2430,19 +2428,15 @@ export default {
     right: 15%;
     top: 5%;
   }
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
-    margin: 5% 0 0 0;
-    padding: 15px;
-    grid-gap: 5px;
+    padding-top: 7% !important;
+    grid-gap: 5px !important;
   }
   .checkbox-item__upper {
-    font-size: 85%;
+    font-size: 80%;
   }
   .checkbox-item__upper label {
-    font-size: 85%;
+    font-size: 80%;
   }
   .take-money {
     width: 30%;
@@ -2452,11 +2446,11 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 30%;
-    left: 15%;
+    top: 48%;
+    left: 23%;
   }
   .funnel-moving {
-    transform: translateX(120px) translateY(-350px) rotate(60deg);
+    transform: translateX(120px) translateY(-400px) rotate(60deg);
   }
   .drops-container {
     top: 110px;
@@ -2472,7 +2466,7 @@ export default {
     }
   }
   .tree {
-    margin-top: 65%;
+    margin-top: 65% !important;
   }
   .coins__container {
     bottom: 80px;
@@ -2610,19 +2604,15 @@ export default {
     right: 15%;
     top: 5%;
   }
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
-    margin: 5% 0 0 0;
-    padding: 15px;
-    grid-gap: 5px;
+    padding-top: 4% !important;
+    grid-gap: 2% !important;
   }
   .checkbox-item__upper {
-    font-size: 75%;
+    font-size: 75% !important;
   }
   .checkbox-item__upper label {
-    font-size: 75%;
+    font-size: 75% !important;
   }
   .instruction-image {
     width: 75%;
@@ -2635,8 +2625,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 30%;
-    left: 15%;
+    top: 51%;
+    left: 24%;
   }
   .funnel-moving {
     transform: translateX(90px) translateY(-300px) rotate(60deg);
@@ -2655,7 +2645,7 @@ export default {
     }
   }
   .tree {
-    margin-top: 73%;
+    margin-top: 73% !important;
   }
   .coins__container {
     bottom: 70px;
@@ -2704,15 +2694,11 @@ export default {
     right: 15%;
     top: 5%;
   }
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
-    margin: 5% 0 0 0;
-    padding: 15px;
-    grid-gap: 5px;
+    padding-top: 4% !important;
+    grid-gap: 2% !important;
   }
-  .checkbox-item__upper {
+  .heckbox-item__upper {
     font-size: 80%;
   }
   .checkbox-item__upper--input {
@@ -2740,9 +2726,9 @@ export default {
     width: 33%;
   }
   .business-arrow__down--funnel {
-    width: 7%;
-    top: 30%;
-    left: 12%;
+    width: 10%;
+    top: 36%;
+    left: 23%;
   }
   .funnel-moving {
     transform: translateX(90px) translateY(-320px) rotate(60deg);
@@ -2764,7 +2750,7 @@ export default {
     }
   }
   .tree {
-    margin-top: 45%;
+    margin-top: 45% !important;
   }
   .coins__container {
     bottom: 70px;

@@ -98,6 +98,12 @@ export default {};
   }
 }
 
+@media (max-width: 2304px) {
+  .center a {
+    font-size: 120%;
+  }
+}
+
 @media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 912px) and (max-height: 912px) {
   .center a {
     font-size: 120%;

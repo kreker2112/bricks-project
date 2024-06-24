@@ -70,7 +70,7 @@
       <img
         v-if="selectedServices.length > 0"
         class="business-arrow__down--funnel"
-        src="../images/business-arrow__down.svg"
+        src="../images/business-arrow__down-funnel.svg"
         :class="{ animated: isArrowAnimating, invisible: isGrown }"
         alt="business-arrow__down-funnel"
       />
@@ -1891,6 +1891,108 @@ export default {
   }
 }
 
+@media (max-width: 2304px) {
+  .checkboxes__upper {
+    margin-bottom: 0;
+    padding-left: 5%;
+    gap: 6% !important;
+  }
+  .checkbox-item__upper {
+    font-size: 110% !important;
+  }
+  .checkbox-item__upper--input {
+    width: 20px;
+    height: 20px;
+  }
+  .grow_buisness-with-mosaic {
+    top: 1% !important;
+    width: 75% !important;
+  }
+  .business-arrow__down {
+    right: 15%;
+    top: 8% !important;
+  }
+  .instruction-image {
+    width: 150%;
+  }
+  .take-money {
+    width: 39%;
+  }
+  .take-money__arrow {
+    top: 20%;
+    width: 9%;
+  }
+  .business-arrow__down {
+    top: 6%;
+  }
+  .business-arrow__down--funnel {
+    width: 10%;
+    top: 28% !important;
+    left: 20% !important;
+  }
+  .business_up {
+    bottom: 35%;
+  }
+  .business_up-arrow {
+    bottom: 50%;
+  }
+  .tree {
+    margin-top: 38% !important;
+  }
+  .funnel-moving {
+    transform: translateX(190px) translateY(-480px) rotate(60deg);
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(250px);
+    }
+  }
+  .drops-container {
+    top: 80px;
+  }
+  .tree {
+    margin-top: 40%;
+  }
+  .coins__container {
+    bottom: 160px;
+    width: 520px;
+    height: 390px;
+  }
+  .lightbox-content h2 {
+    margin-top: 1%;
+    font-size: 2.5rem;
+    margin-bottom: 3%;
+  }
+  .lightbox-checkboxes {
+    grid-gap: 1rem;
+  }
+  .lightbox__checkbox-item--label {
+    font-size: 1.2rem;
+  }
+  .form {
+    margin-top: 5%;
+    margin-bottom: 10%;
+  }
+  .form input {
+    height: 7%;
+  }
+  .form textarea {
+    height: 20%;
+  }
+  .form button {
+    margin-top: 5%;
+  }
+  .apply-button {
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+  }
+}
+
 @media (max-width: 1920px) {
   .checkboxes-container__upper {
     justify-content: flex-start;
@@ -2027,7 +2129,7 @@ export default {
 @media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 912px) and (max-height: 912px) {
   .checkboxes__upper {
     padding-left: 5%;
-    gap: 5%;
+    gap: 5% !important;
   }
   .checkbox-item__upper {
     font-size: 110%;

@@ -1927,8 +1927,8 @@ export default {
   }
   .business-arrow__down--funnel {
     width: 10%;
-    top: 2% !important;
-    left: 20% !important;
+    top: 2%;
+    left: 20%;
   }
   .business_up {
     bottom: 35%;
@@ -2016,8 +2016,9 @@ export default {
     width: 35%;
   }
   .business-arrow__down--funnel {
-    width: 8%;
-    left: 10%;
+    width: 12%;
+    top: 34%;
+    left: 22%;
   }
   .funnel-moving {
     transform: translateX(140px) translateY(-550px) rotate(60deg);
@@ -2096,7 +2097,12 @@ export default {
     width: 100%;
   }
   .tree {
-    margin-top: 60% !important;
+    margin-top: 45%;
+  }
+  .business-arrow__down--funnel {
+    width: 12%;
+    top: 30%;
+    left: 20%;
   }
   .drops-container {
     top: 100px;
@@ -2224,8 +2230,8 @@ export default {
     font-size: 80% !important;
   }
   .business-arrow__down--funnel {
-    width: 10%;
-    top: 30%;
+    width: 15%;
+    top: 45%;
     left: 20%;
   }
   .instruction-image {
@@ -2236,6 +2242,16 @@ export default {
   }
   .drops-container {
     top: 80px;
+  }
+  @keyframes drop-fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0.1;
+      transform: translateY(300px);
+    }
   }
   .tree {
     margin-top: 63% !important;

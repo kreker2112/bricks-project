@@ -2096,7 +2096,7 @@ export default {
     width: 100%;
   }
   .tree {
-    margin-top: 45%;
+    margin-top: 60% !important;
   }
   .drops-container {
     top: 100px;
@@ -2216,15 +2216,12 @@ export default {
   }
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1400px) and (min-height: 933px) and (max-height: 933px) {
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
+@media (max-width: 1400px) {
   .checkboxes__upper {
     padding: 2%;
   }
   .checkbox-item__upper {
-    font-size: 80%;
+    font-size: 80% !important;
   }
   .business-arrow__down--funnel {
     width: 10%;
@@ -2241,7 +2238,7 @@ export default {
     top: 80px;
   }
   .tree {
-    margin-top: 63%;
+    margin-top: 63% !important;
   }
   .coins__container {
     bottom: 100px;

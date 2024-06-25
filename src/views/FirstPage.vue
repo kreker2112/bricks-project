@@ -63,6 +63,7 @@ export default {
     height: 69%;
   }
 }
+
 @media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
   .first-page-content {
     flex-direction: column;
@@ -80,6 +81,7 @@ export default {
     height: 69%;
   }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 768px) and (max-height: 1024px) and (min-height: 1024px) {
   .first-page-content {
     flex-direction: column;
@@ -97,20 +99,21 @@ export default {
     height: 69%;
   }
 }
+
 @media (max-width: 767px) {
   .first-page-content {
     flex-direction: column;
     gap: 0;
-    height: 932px !important;
-    overflow-y: auto !important;
+    height: 100vh; /* Ensure full height */
+    overflow-y: auto;
   }
   .left-side {
     width: 100%;
-    height: 300px !important;
+    height: 31%;
   }
   .right-side {
     width: 100%;
-    height: 632px !important;
+    height: 69%;
   }
 }
 </style>

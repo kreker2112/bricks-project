@@ -1,4 +1,3 @@
-<!-- FallingBricks.vue -->
 <template>
   <div class="falling-bricks" ref="container">
     <a href="#" @click.prevent="openMenu">
@@ -51,7 +50,11 @@
     ></canvas>
 
     <!-- Sliding Menu for mobile -->
-    <div class="mobile-menu" :class="{ open: isMenuOpen }">
+    <div
+      class="mobile-menu"
+      v-show="isVerticalLayout"
+      :class="{ open: isMenuOpen }"
+    >
       <div class="mobile-menu__header">
         <span class="close-btn" @click="closeMenu">&times;</span>
       </div>
@@ -140,7 +143,6 @@
     </div>
 
     <!-- Horizontal Menu for desktop -->
-
     <div class="desktop-menu" v-show="isDesktop" :class="{ open: isMenuOpen }">
       <div class="close-btn__container">
         <span class="desktop-menu__close-btn" @click="closeMenu">&times;</span>
@@ -259,7 +261,6 @@ import {
 } from "matter-js";
 import { useStore } from "vuex";
 
-// Обертка для Mouse.create
 const wrapMouseCreate = () => {
   const originalMouseCreate = Mouse.create;
   Mouse.create = function (element) {
@@ -274,7 +275,7 @@ const wrapMouseCreate = () => {
         if (["mousewheel", "touchmove", "touchstart"].includes(type)) {
           options = options || {};
           if (typeof options === "object") {
-            options.passive = true; // Установите false для пассивного слушателя
+            options.passive = true;
           }
         }
         originalAddEventListener(type, listener, options);
@@ -317,14 +318,28 @@ export default {
       { service: "Позиціонування" },
     ]);
 
-    const duplicatedBricks = bricks.value.flatMap((brick) => [
-      brick,
-      { ...brick },
-    ]);
+    const updateIsVerticalLayout = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      // Определение для мобильного меню
+      return (
+        (width === 1024 && height === 1366) ||
+        (width === 820 && height === 1180) ||
+        (width === 768 && height === 1024) ||
+        width <= 767
+      );
+    };
+
+    const isVerticalLayout = ref(updateIsVerticalLayout());
+    const isDesktop = ref(!isVerticalLayout.value);
+
+    const duplicatedBricks = isVerticalLayout.value
+      ? bricks.value
+      : bricks.value.flatMap((brick) => [brick, { ...brick }]);
 
     const isMenuOpen = ref(false);
     const submenuOpen = ref("");
-    const isDesktop = ref(window.innerWidth > 767);
     const activeMenu = ref(null);
 
     const isLightboxVisible = computed(() => store.state.isLightboxVisible);
@@ -335,7 +350,7 @@ export default {
 
     const closeMenu = () => {
       isMenuOpen.value = false;
-      activeMenu.value = null; // Сбрасываем активное меню при закрытии
+      activeMenu.value = null;
     };
 
     const toggleSubmenu = (menu) => {
@@ -450,22 +465,19 @@ export default {
         context.font = `${fontSize}px Montserrat Bold`;
         const textWidth = context.measureText(brick.service).width;
 
-        // Горизонтальный и вертикальный padding
-        let horizontalPadding = textWidth * 1.5; // Горизонтальный padding от ширины текста
-        let verticalPadding = height * 0.058; // Вертикальный padding от высоты окна
+        let horizontalPadding = textWidth * 1.5;
+        let verticalPadding = height * 0.058;
 
-        // Размеры кирпича
         let brickWidth = Math.max(
           0.00000000001 * width,
           textWidth + horizontalPadding,
         );
         let brickHeight = verticalPadding + fontSize;
 
-        // Увеличение размеров на малых экранах
         if (window.innerWidth < 767) {
-          const scaleFactor = 1.3; // Коэффициент увеличения размеров
-          horizontalPadding = textWidth * 0.85; // Горизонтальный padding от ширины текста
-          verticalPadding = height * 0.04; // Вертикальный padding от высоты окна
+          const scaleFactor = 1.3;
+          horizontalPadding = textWidth * 0.85;
+          verticalPadding = height * 0.04;
           brickWidth *= scaleFactor;
           brickHeight *= scaleFactor;
         }
@@ -478,7 +490,7 @@ export default {
             fillStyle: color,
             strokeStyle: "none",
           },
-          chamfer: { radius: 0.02 * width }, // Радиус скругления углов
+          chamfer: { radius: 0.02 * width },
           label: brick.service,
           restitution: 0.8,
           friction: 0.5,
@@ -631,7 +643,7 @@ export default {
     };
 
     onMounted(() => {
-      wrapMouseCreate(); // Вызов функции обертки перед созданием элементов Matter.js
+      wrapMouseCreate();
 
       engine.value = Engine.create();
 
@@ -669,7 +681,12 @@ export default {
 
       window.addEventListener("resize", () => {
         updateCanvasSize();
-        isDesktop.value = window.innerWidth > 767;
+        const verticalLayout = updateIsVerticalLayout();
+        isDesktop.value = !verticalLayout;
+        isVerticalLayout.value = verticalLayout;
+        if (!verticalLayout) {
+          isMenuOpen.value = false;
+        }
       });
     });
 
@@ -707,6 +724,7 @@ export default {
       activeMenu,
       isLightboxVisible,
       isDesktop,
+      isVerticalLayout,
     };
   },
 };
@@ -730,7 +748,7 @@ export default {
   border-radius: 15%;
   z-index: 800;
   cursor: pointer;
-  /* border: 2px solid #ff6400; */
+  border: 2px solid #ff6400;
 }
 
 .mosaic-logo {
@@ -974,7 +992,7 @@ export default {
 
 .contact-item-address::before {
   content: url("../images/path-logo.png");
-  margin-right: 1.1rem;
+  margin-right: 1.1рем;
 }
 
 .footer-section {
@@ -998,7 +1016,7 @@ export default {
 .desktop-menu {
   position: fixed;
   top: 0;
-  left: -100%; /* Изначально меню скрыто за левым краем */
+  left: -100%;
   width: 100%;
   height: 100%;
   background-color: #ff6400;
@@ -1008,7 +1026,7 @@ export default {
 }
 
 .desktop-menu.open {
-  left: 0; /* Показываем меню при добавлении класса .open */
+  left: 0;
 }
 
 .desktop-menu__close-btn {
@@ -1208,6 +1226,60 @@ export default {
   }
 }
 
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+  .mobile-menu__content {
+    text-align: center;
+  }
+  .menu-section {
+    margin-top: 0;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .contact-item-email,
+  .contact-item-phone,
+  .contact-item-telegram,
+  .contact-item-address {
+    padding: auto;
+  }
+}
+
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
   .ideas {
     margin-top: 38%;
@@ -1252,9 +1324,6 @@ export default {
 }
 
 @media (min-width: 768px) {
-  .mobile-menu {
-    display: none;
-  }
   .desktop-menu {
     display: flex;
     flex-direction: row;
@@ -1311,9 +1380,126 @@ export default {
   }
 }
 
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+
 @media (max-width: 767px) {
-  .desktop-menu {
-    display: none;
+  .falling-bricks {
+    width: 100%;
+    height: 300px;
+  }
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .ideas {
+    margin-top: 35% !important;
+  }
+  .instruments {
+    top: 30% !important;
+  }
+  .instruments__arrow {
+    top: 35% !important;
+  }
+  .services-block {
+    width: 18%;
+    height: 17%;
+    top: 30%;
+    right: 5%;
+  }
+  .add {
+    top: 30%;
+  }
+  .add-arrow {
+    top: 35%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+}
+@media (max-width: 390px) {
+  .menu-item {
+    font-size: 2rem;
+  }
+  .menu-item-about {
+    font-size: 2rem;
   }
 }
 </style>

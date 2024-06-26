@@ -169,12 +169,6 @@
   >
     <div class="service-selection__upper--vertical">
       <img
-        class="grow_buisness-with-mosaic--vertical"
-        :class="{ animated: isGrowBusinessAnimating }"
-        :src="growBusinessSrc"
-        alt="grow_buisness"
-      />
-      <img
         class="business-arrow__down--vertical"
         :class="{ animated: isArrowAnimating }"
         :src="businessArrowSrc"
@@ -189,7 +183,7 @@
             isPouring ? 'funnel-moving--vertical' : '',
             isAnimating ? 'funnel-animating--vertical' : '',
           ]"
-          src="../images/logos/funnel.png"
+          src="../images/logos/funnel-left.png"
           alt="funnel"
           @click="pourWater"
           @dragenter.prevent="onDragEnterFunnel"
@@ -202,6 +196,11 @@
         />
       </div>
       <div class="checkboxes-container--vertical">
+        <img
+          class="instruction-image"
+          src="../images/instruction.png"
+          alt="instruction"
+        />
         <form class="checkboxes--vertical">
           <div
             v-for="(service, index) in services"
@@ -1360,16 +1359,6 @@ export default {
 .drop--vertical {
   left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
-}
-
-.grow_buisness-with-mosaic--vertical {
-  position: absolute;
-  top: 1%;
-  left: 5%;
-  width: 75%;
-}
-.grow_buisness-with-mosaic--vertical.animated {
-  transform: scale(1.1);
 }
 
 .business-arrow__down--vertical {
@@ -2802,23 +2791,6 @@ export default {
     width: 28px;
     height: 28px;
     border-radius: 8px;
-  }
-
-  .grow_buisness-with-mosaic--vertical {
-    top: 95%;
-    right: 35%;
-    z-index: 999;
-  }
-
-  .business-arrow__down--vertical {
-    width: 10%;
-    top: 111%;
-    right: 35%;
-    z-index: 999;
-  }
-
-  .business-arrow__down--vertical.animated {
-    animation: bounce 1s infinite;
   }
 
   @keyframes bounceWithRotation {

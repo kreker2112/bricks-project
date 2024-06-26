@@ -123,14 +123,15 @@
         </div>
         <div class="contact-section-container">
           <div class="contact-section">
-            <h2 class="contact-section__header">ЗВ'ЯЖІТЬСЯ З НАМИ</h2>
+            <h2 class="mobile-menu__contact-section__header">
+              ЗВ'ЯЖІТЬСЯ З НАМИ
+            </h2>
             <div class="contacts">
               <div class="contact-item-email">1234567@gmail.com</div>
               <div class="contact-item-phone">0 800 123 456 7</div>
               <div class="contact-item-telegram">@khjhjkh</div>
               <div class="contact-item-address">
-                м. Дніпро, вул. <br />
-                Виконкомівська, 85
+                м. Дніпро, вул. Виконкомівська, 85
               </div>
               <div class="menu__socials">
                 <a href="#"
@@ -217,7 +218,9 @@
       </div>
       <div class="desktop-menu__contact-section-container">
         <div v-if="!activeMenu" class="desktop-menu__contact-section">
-          <h2 class="contact-section__header">ЗВ'ЯЖІТЬСЯ З НАМИ</h2>
+          <h2 class="desktop-menu__contact-section__header">
+            ЗВ'ЯЖІТЬСЯ З НАМИ
+          </h2>
           <div class="contact-item-email">1234567@gmail.com</div>
           <div class="contact-item-phone">0 800 123 456 7</div>
           <div class="contact-item-telegram">@khjhjkh</div>
@@ -975,7 +978,9 @@ export default {
   gap: 20px;
 }
 
-.contact-section__header {
+.mobile-menu__contact-section__header {
+  display: flex;
+  flex-direction: column;
   font-size: 2rem;
   font-family: "Montserrat";
   justify-self: flex-start;
@@ -1169,6 +1174,15 @@ export default {
   gap: 20px;
 }
 
+.desktop-menu__contact-section__header {
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
+  font-family: "Montserrat";
+  justify-self: flex-start;
+  margin: 0 0 0 2rem;
+}
+
 .desktop-menu__socials {
   display: flex;
   justify-content: flex-start;
@@ -1314,11 +1328,10 @@ export default {
 
   .contact-section-header {
     margin-bottom: 2rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Montserrat";
     justify-self: center;
     text-align: center;
-    word-break: break-all;
   }
   .menu-section {
     margin-top: 0;
@@ -1587,24 +1600,19 @@ export default {
     width: 90%;
   }
 
-  .contact-section {
-    width: 100%;
-  }
-
-  .contact-section-header {
+  .mobile-menu__contact-section__header {
     font-size: 2rem;
-    font-family: "Montserrat";
-    justify-self: flex-start;
-    margin: 0 0 0 2rem;
+    margin-left: 0;
   }
   .contacts {
-    width: 200px;
+    width: 300px !important;
     margin-left: 2rem;
   }
   .menu-socials {
     margin-left: 0;
   }
 }
+
 @media (max-width: 390px) {
   .menu-item {
     font-size: 2rem;

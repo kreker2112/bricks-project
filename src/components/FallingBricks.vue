@@ -121,21 +121,30 @@
             <a class="link-about" href="#">ПРО НАС</a>
           </div>
         </div>
-        <div class="contact-section">
-          <h2 class="contact-section__header">
-            ЗВ'ЯЖІТЬСЯ <br />
-            З НАМИ
-          </h2>
-          <div class="contact-item-email">1234567@gmail.com</div>
-          <div class="contact-item-phone">0 800 123 456 7</div>
-          <div class="contact-item-telegram">@khjhjkh</div>
-          <div class="contact-item-address">
-            м. Дніпро, вул. <br />
-            Виконкомівська, 85
-          </div>
-          <div class="footer-section">
-            <div class="footer-icon">
-              <img src="../images/footerframe_white.png" alt="footerframe" />
+        <div class="contact-section-container">
+          <div class="contact-section">
+            <h2 class="contact-section__header">ЗВ'ЯЖІТЬСЯ З НАМИ</h2>
+            <div class="contacts">
+              <div class="contact-item-email">1234567@gmail.com</div>
+              <div class="contact-item-phone">0 800 123 456 7</div>
+              <div class="contact-item-telegram">@khjhjkh</div>
+              <div class="contact-item-address">
+                м. Дніпро, вул. <br />
+                Виконкомівська, 85
+              </div>
+              <div class="menu__socials">
+                <a href="#"
+                  ><img src="../images/logos/facebook.png" alt="facebook"
+                /></a>
+                <a href="#"
+                  ><img src="../images/logos/instagram.png" alt="instagram"
+                /></a>
+              </div>
+            </div>
+            <div class="footer-section">
+              <div class="footer-icon">
+                <img src="../images/footerframe_white.png" alt="footerframe" />
+              </div>
             </div>
           </div>
         </div>
@@ -876,6 +885,7 @@ export default {
   justify-content: flex-end;
   padding: 0 1rem 0 0;
   color: #ffffff;
+  opacity: 1;
 }
 
 .close-btn {
@@ -946,6 +956,14 @@ export default {
   color: #ffffff;
 }
 
+.contact-section-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
 .contact-section {
   background-color: #002d6e;
   color: #ffffff;
@@ -953,6 +971,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   gap: 20px;
 }
 
@@ -961,6 +980,15 @@ export default {
   font-family: "Montserrat";
   justify-self: flex-start;
   margin: 0 0 0 2rem;
+}
+
+.contacts {
+  margin-top: 2rem;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
 .contact-item-email,
@@ -993,6 +1021,18 @@ export default {
 .contact-item-address::before {
   content: url("../images/path-logo.png");
   margin-right: 1.1рем;
+}
+
+.menu__socials {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  padding: 0.5rem 0;
+}
+
+.menu__socials img {
+  width: 150%;
 }
 
 .footer-section {
@@ -1263,6 +1303,23 @@ export default {
   .mobile-menu__content {
     text-align: center;
   }
+
+  .contact-section {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .contact-section-header {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-family: "Montserrat";
+    justify-self: center;
+    text-align: center;
+    word-break: break-all;
+  }
   .menu-section {
     margin-top: 0;
     margin-left: 1rem;
@@ -1277,6 +1334,13 @@ export default {
   .contact-item-telegram,
   .contact-item-address {
     padding: auto;
+  }
+
+  .footer-icon {
+    margin-bottom: 1rem;
+  }
+  .footer-icon img {
+    width: 150% !important;
   }
 }
 
@@ -1320,6 +1384,107 @@ export default {
   }
   .footer-section {
     margin-top: 0 !important;
+  }
+}
+
+@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+
+  .menu-section {
+    text-align: center;
+    gap: 1rem;
+  }
+  .menu-item {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .contact-section {
+    align-items: center;
+  }
+  .contacts {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
+  img.bricks-frame {
+    top: 9.5%;
+    left: 78%;
+    width: 12%;
+  }
+  .mosaic-logo {
+    left: 10%;
+    top: 10%;
+    width: 58%;
+  }
+  .instruments {
+    top: 40% !important;
+  }
+  .instruments__arrow {
+    top: 50% !important;
+  }
+  .services-block {
+    width: 15%;
+    height: 25%;
+    top: 42%;
+    right: 5%;
+  }
+  .add {
+    top: 42%;
+  }
+  .add-arrow {
+    top: 50%;
+  }
+  .ideas {
+    margin-top: 26%;
+    margin-left: 5%;
+    width: 90%;
+  }
+  .menu-section {
+    text-align: center;
+    gap: 1rem;
+  }
+  .menu-item {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .contact-section {
+    align-items: center;
+  }
+  .contacts {
+    text-align: center;
   }
 }
 
@@ -1380,78 +1545,6 @@ export default {
   }
 }
 
-@media only screen and (min-width: 820px) and (max-width: 820px) and (min-height: 1180px) and (max-height: 1180px) {
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
-  }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 768px) and (min-height: 1024px) and (max-height: 1024px) {
-  img.bricks-frame {
-    top: 9.5%;
-    left: 78%;
-    width: 12%;
-  }
-  .mosaic-logo {
-    left: 10%;
-    top: 10%;
-    width: 58%;
-  }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
-  .services-block {
-    width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
-  }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
-  .ideas {
-    margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
-  }
-}
-
 @media (max-width: 767px) {
   .falling-bricks {
     width: 100%;
@@ -1492,6 +1585,24 @@ export default {
     margin-top: 26%;
     margin-left: 5%;
     width: 90%;
+  }
+
+  .contact-section {
+    width: 100%;
+  }
+
+  .contact-section-header {
+    font-size: 2rem;
+    font-family: "Montserrat";
+    justify-self: flex-start;
+    margin: 0 0 0 2rem;
+  }
+  .contacts {
+    width: 200px;
+    margin-left: 2rem;
+  }
+  .menu-socials {
+    margin-left: 0;
   }
 }
 @media (max-width: 390px) {

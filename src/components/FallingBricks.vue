@@ -133,14 +133,14 @@
               <div class="contact-item-address">
                 м. Дніпро, вул. Виконкомівська, 85
               </div>
-              <div class="menu__socials">
-                <a href="#"
-                  ><img src="../images/logos/facebook.png" alt="facebook"
-                /></a>
-                <a href="#"
-                  ><img src="../images/logos/instagram.png" alt="instagram"
-                /></a>
-              </div>
+            </div>
+            <div class="menu__socials">
+              <a href="#"
+                ><img src="../images/logos/facebook.png" alt="facebook"
+              /></a>
+              <a href="#"
+                ><img src="../images/logos/instagram.png" alt="instagram"
+              /></a>
             </div>
             <div class="footer-section">
               <div class="footer-icon">
@@ -1326,12 +1326,13 @@ export default {
     align-items: center;
   }
 
-  .contact-section-header {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-family: "Montserrat";
-    justify-self: center;
-    text-align: center;
+  .contacts {
+    width: 600px;
+  }
+
+  .mobile-menu__contact-section__header {
+    margin-top: 2rem;
+    font-size: 3rem;
   }
   .menu-section {
     margin-top: 0;
@@ -1447,6 +1448,7 @@ export default {
     align-items: center;
   }
   .contacts {
+    width: 600px;
     text-align: center;
   }
 }
@@ -1497,7 +1499,11 @@ export default {
     align-items: center;
   }
   .contacts {
+    width: 600px;
     text-align: center;
+  }
+  .footer-section {
+    margin-top: 0 !important;
   }
 }
 
@@ -1561,7 +1567,6 @@ export default {
 @media (max-width: 767px) {
   .falling-bricks {
     width: 100%;
-    height: 300px;
   }
   img.bricks-frame {
     top: 9.5%;

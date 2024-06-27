@@ -1299,9 +1299,9 @@ export default {
   }
   .services-block {
     width: 15%;
-    height: 25%;
-    top: 42%;
-    right: 5%;
+    height: 45%;
+    top: 60%;
+    right: 6%;
   }
   .add {
     top: 42%;

@@ -168,6 +168,13 @@
     ref="serviceSelection"
   >
     <div class="service-selection__upper--vertical">
+      <div class="instruction-image__container--vertical">
+        <img
+          class="instruction-image--vertical"
+          src="../images/instruction.png"
+          alt="instruction"
+        />
+      </div>
       <img
         class="business-arrow__down--vertical"
         :class="{ animated: isArrowAnimating }"
@@ -195,32 +202,29 @@
           @mousedown="startDragging"
         />
       </div>
-      <div class="checkboxes-container--vertical">
-        <img
-          class="instruction-image"
-          src="../images/instruction.png"
-          alt="instruction"
-        />
-        <form class="checkboxes--vertical">
-          <div
-            v-for="(service, index) in services"
-            :key="service"
-            :class="[
-              'checkbox-item--vertical',
-              { checked: selectedServices.includes(service) },
-            ]"
-          >
-            <input
-              :id="'service-' + index"
-              :name="'service-' + index"
-              type="checkbox"
-              :value="service"
-              v-model="selectedServices"
-              @change="toggleService(service)"
-            />
-            <label :for="'service-' + index">{{ service }}</label>
-          </div>
-        </form>
+      <div class="service-selection__checboxes-instruction container">
+        <div class="checkboxes-container--vertical">
+          <form class="checkboxes--vertical">
+            <div
+              v-for="(service, index) in services"
+              :key="service"
+              :class="[
+                'checkbox-item--vertical',
+                { checked: selectedServices.includes(service) },
+              ]"
+            >
+              <input
+                :id="'service-' + index"
+                :name="'service-' + index"
+                type="checkbox"
+                :value="service"
+                v-model="selectedServices"
+                @change="toggleService(service)"
+              />
+              <label :for="'service-' + index">{{ service }}</label>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <div class="service-selection__lower--vertical">
@@ -1316,6 +1320,9 @@ export default {
 }
 
 .service-selection__upper--vertical {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: relative;
   background-color: #828282;
   width: 100%;
@@ -1323,19 +1330,20 @@ export default {
 }
 
 .funnel-container--vertical {
-  position: absolute;
-  top: 28%;
-  right: 4%;
+  position: relative;
+  top: 2%;
+  right: 1%;
   width: 40%;
   height: 50%;
   z-index: 10;
+  overflow: hidden; /* Добавлено */
 }
 
 .funnel-image--vertical {
-  cursor: pointer;
   width: 100%;
-  object-fit: contain;
-  object-position: center;
+  height: 100%; /* Убедитесь, что изображение занимает весь контейнер */
+  object-fit: contain; /* Добавлено для сохранения пропорций изображения */
+  cursor: pointer;
   transition: transform 2s ease-in-out;
   z-index: 10;
 }
@@ -1378,6 +1386,19 @@ export default {
   width: 100%;
   height: 60%;
   z-index: 1;
+}
+.instruction-image__container--vertical {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  object-fit: contain;
+  width: 50%;
+}
+
+.instruction-image--vertical {
+  position: relative;
+  top: 1%;
+  left: 2%;
 }
 .service-selection__lower--tree--vertical {
   position: relative;
@@ -1504,21 +1525,27 @@ export default {
 
 .checkboxes-container--vertical {
   position: absolute;
-  left: 2%;
-  top: 30%;
-  width: 50%;
-  height: 47%;
+  left: 10%;
+  top: 5%;
+  width: 200%; /* Измените ширину по необходимости */
+  height: 200%; /* Измените высоту по необходимости */
   display: flex;
   justify-content: center;
   align-items: center;
+  /* overflow: hidden; Это предотвратит выход содержимого за границы контейнера */
 }
 
 .checkboxes--vertical {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 5%;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Измените количество колонок по необходимости */
+  grid-gap: 5%; /* Измените значение gap по необходимости */
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .checkbox-item--vertical {
@@ -2267,21 +2294,26 @@ export default {
 
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
   .service-selection__upper--vertical {
+    display: flex;
     height: 55%;
     background-color: #ffffff;
   }
   .service-selection__lower--vertical {
     height: 45%;
   }
+
+  .instruction-image__container {
+    width: 50%;
+  }
   .checkboxes-container--vertical {
-    left: 10%;
-    top: 5%;
-    width: 40%;
-    height: 47%;
+    left: 5%;
+    top: 39%;
+    width: 100%;
+    height: 60%;
   }
 
   .checkboxes--vertical {
-    grid-gap: 8%;
+    grid-gap: 1%;
   }
   .checkbox-item--vertical label {
     font-size: 120%;
@@ -2297,8 +2329,10 @@ export default {
     border-radius: 8px;
   }
   .funnel-container--vertical {
-    top: 2%;
-    right: 1%;
+    top: -50%;
+    right: -12%;
+    width: 60%;
+    height: 60%;
   }
   .funnel-moving--vertical {
     transform: translateX(-320px) translateY(200px) rotate(-60deg);

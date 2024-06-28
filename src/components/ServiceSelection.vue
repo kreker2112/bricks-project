@@ -175,33 +175,26 @@
           alt="instruction"
         />
       </div>
+
       <img
-        class="business-arrow__down--vertical"
-        :class="{ animated: isArrowAnimating }"
-        :src="businessArrowSrc"
-        alt="business-arrow__down"
+        v-if="!showLightbox"
+        :class="[
+          'funnel-image--vertical',
+          isPouring ? 'funnel-moving--vertical' : '',
+          isAnimating ? 'funnel-animating--vertical' : '',
+        ]"
+        src="../images/logos/funnel-left.png"
+        alt="funnel"
+        @click="pourWater"
+        @dragenter.prevent="onDragEnterFunnel"
+        @dragleave.prevent="onDragLeaveFunnel"
+        @drop="onDrop"
+        @dragover.prevent="onDragOverFunnel"
+        @mouseenter="isHoveringOverFunnel = true"
+        @mouseleave="isHoveringOverFunnel = false"
+        @mousedown="startDragging"
       />
 
-      <div class="funnel-container--vertical">
-        <img
-          v-if="!showLightbox"
-          :class="[
-            'funnel-image--vertical',
-            isPouring ? 'funnel-moving--vertical' : '',
-            isAnimating ? 'funnel-animating--vertical' : '',
-          ]"
-          src="../images/logos/funnel-left.png"
-          alt="funnel"
-          @click="pourWater"
-          @dragenter.prevent="onDragEnterFunnel"
-          @dragleave.prevent="onDragLeaveFunnel"
-          @drop="onDrop"
-          @dragover.prevent="onDragOverFunnel"
-          @mouseenter="isHoveringOverFunnel = true"
-          @mouseleave="isHoveringOverFunnel = false"
-          @mousedown="startDragging"
-        />
-      </div>
       <div class="service-selection__checboxes-instruction container">
         <div class="checkboxes-container--vertical">
           <form class="checkboxes--vertical">
@@ -1329,20 +1322,9 @@ export default {
   height: 60%;
 }
 
-.funnel-container--vertical {
-  position: relative;
-  top: 2%;
-  right: 1%;
-  width: 40%;
-  height: 50%;
-  z-index: 10;
-  overflow: hidden; /* Добавлено */
-}
-
 .funnel-image--vertical {
+  position: absolute;
   width: 100%;
-  height: 100%; /* Убедитесь, что изображение занимает весь контейнер */
-  object-fit: contain; /* Добавлено для сохранения пропорций изображения */
   cursor: pointer;
   transition: transform 2s ease-in-out;
   z-index: 10;
@@ -1367,17 +1349,6 @@ export default {
 .drop--vertical {
   left: calc(50% - 40px);
   animation: drop-fall 3s linear forwards;
-}
-
-.business-arrow__down--vertical {
-  position: absolute;
-  right: 5.5%;
-  top: 15%;
-  width: 7%;
-}
-
-.business-arrow__down--vertical.animated {
-  animation: bounce 1s infinite;
 }
 
 .service-selection__lower--vertical {
@@ -1465,6 +1436,16 @@ export default {
   transform: scale(3);
   opacity: 1;
   animation: growTree 3s ease-in-out forwards;
+}
+
+.coins__container {
+  position: absolute;
+  bottom: 130px;
+  right: -4.5%;
+  width: 430px;
+  height: 310px;
+  z-index: 100;
+  border-radius: 15%;
 }
 
 .business_up--vertical {
@@ -2305,6 +2286,11 @@ export default {
   .instruction-image__container {
     width: 50%;
   }
+  .funnel-image--vertical {
+    width: 30%;
+    right: 1%;
+    top: -25%;
+  }
   .checkboxes-container--vertical {
     left: 5%;
     top: 39%;
@@ -2328,14 +2314,20 @@ export default {
     height: 28px;
     border-radius: 8px;
   }
-  .funnel-container--vertical {
-    top: -50%;
-    right: -12%;
-    width: 60%;
-    height: 60%;
-  }
   .funnel-moving--vertical {
-    transform: translateX(-320px) translateY(200px) rotate(-60deg);
+    transform: translateX(-400px) translateY(380px) rotate(-60deg);
+  }
+  .small-tree__container--vertical {
+    width: 120%;
+    right: 10%;
+    top: 10%;
+  }
+
+  .coins__container {
+    left: 20%;
+    bottom: 70%;
+    width: 350px;
+    height: 270px;
   }
   .drops-container--vertical {
     top: 70px;
@@ -2355,26 +2347,34 @@ export default {
     width: 11%;
   }
   .cases-image--vertical {
-    width: 45%;
+    width: 60%;
   }
   .lightbox-content {
-    height: 100%;
+    width: 600px;
+    height: 90%;
     padding: 0;
-    border-radius: 0;
+    border-radius: 30px;
+    z-index: 803;
   }
 
   .lightbox-content h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 10%;
     z-index: 999;
   }
 
   .lightbox-checkboxes {
     grid-gap: 10px;
   }
-  .form input,
+  .form input {
+    width: 80%;
+    height: 5%;
+    margin: 10px 0;
+    padding: 10px;
+  }
   .form textarea {
-    width: 100%;
+    width: 80%;
+    height: 30%;
     margin: 10px 0;
     padding: 10px;
   }

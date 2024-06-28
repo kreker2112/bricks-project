@@ -760,7 +760,7 @@ export default {
   border-radius: 15%;
   z-index: 800;
   cursor: pointer;
-  border: 2px solid #ff6400;
+  /* border: 2px solid #ff6400; */
 }
 
 .mosaic-logo {
@@ -1283,7 +1283,7 @@ export default {
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
   img.bricks-frame {
     top: 9.5%;
-    left: 78%;
+    left: 82%;
     width: 12%;
   }
   .mosaic-logo {
@@ -1298,21 +1298,22 @@ export default {
     top: 50% !important;
   }
   .services-block {
-    width: 15%;
+    width: 25%;
     height: 45%;
     top: 60%;
-    right: 6%;
+    right: 3%;
   }
   .add {
-    top: 42%;
+    top: 37%;
   }
   .add-arrow {
+    right: 15%;
     top: 50%;
   }
   .ideas {
     margin-top: 26%;
-    margin-left: 5%;
-    width: 90%;
+
+    width: 105%;
   }
   .mobile-menu__content {
     text-align: center;

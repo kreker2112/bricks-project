@@ -5,6 +5,7 @@
     class="service-selection"
     ref="serviceSelection"
   >
+    <!-- Горизонтальная разметка -->
     <div class="service-selection__upper">
       <img
         class="grow_buisness-with-mosaic"
@@ -12,12 +13,12 @@
         :src="growBusinessSrc"
         alt="grow_buisness"
       />
-      <img
+      <!-- <img
         class="business-arrow__down"
         :class="{ animated: isArrowAnimating }"
         :src="businessArrowSrc"
         alt="business-arrow__down"
-      />
+      /> -->
 
       <div class="checkboxes-container__upper">
         <form class="checkboxes__upper">
@@ -71,13 +72,13 @@
         </div>
       </div>
 
-      <img
+      <!-- <img
         v-if="selectedServices.length > 0"
         class="business-arrow__down--funnel"
         src="../images/business-arrow__down-funnel.svg"
         :class="{ animated: isArrowAnimating, invisible: isGrown }"
         alt="business-arrow__down-funnel"
-      />
+      /> -->
 
       <img
         v-if="!showLightbox"
@@ -158,6 +159,65 @@
         </div>
       </div>
     </div>
+
+    <!-- Лайтбокс для горизонтальной разметки -->
+    <transition name="fade">
+      <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
+        <div class="lightbox-content">
+          <h2>Поживна суміш для зростання:</h2>
+          <div class="lightbox__checkboxes-container">
+            <form class="lightbox-checkboxes">
+              <div
+                v-for="(service, index) in services"
+                :key="service"
+                :class="[
+                  'lightbox__checkbox-item',
+                  { checked: lightboxSelectedServices.includes(service) },
+                ]"
+              >
+                <input
+                  class="lightbox__checkbox-item--input"
+                  :id="'lightbox-service-' + index"
+                  :name="'lightbox-service-' + index"
+                  type="checkbox"
+                  :value="service"
+                  :checked="lightboxSelectedServices.includes(service)"
+                  @change="toggleLightboxService(service)"
+                />
+                <label
+                  class="lightbox__checkbox-item--label"
+                  :for="'lightbox-service-' + index"
+                  >{{ service }}</label
+                >
+              </div>
+            </form>
+          </div>
+          <form class="form">
+            <input
+              type="text"
+              v-model="lightboxName"
+              placeholder="Ім'я *"
+              required
+            />
+            <input
+              type="tel"
+              v-model="lightboxPhone"
+              placeholder="Телефон *"
+              @input="filterPhoneInput"
+              required
+            />
+            <textarea
+              v-model="lightboxMessage"
+              placeholder="Повідомлення"
+              required
+            ></textarea>
+            <button class="apply-button" @click="validateAndApply">
+              Застосувати
+            </button>
+          </form>
+        </div>
+      </div>
+    </transition>
   </div>
 
   <!-- Вертикальная разметка -->
@@ -313,8 +373,7 @@
       </div>
     </div>
 
-    <!-- Лайтбокс -->
-
+    <!-- Лайтбокс для вертикальной разметки -->
     <transition name="fade">
       <div v-if="showLightbox" class="lightbox" @click.self="closeLightbox">
         <div class="lightbox-content">
@@ -852,16 +911,16 @@ export default {
   transform: scale(1.1);
 }
 
-.business-arrow__down {
+/* .business-arrow__down {
   position: absolute;
   right: 20%;
   top: 6%;
   width: 6%;
-}
+} */
 
-.business-arrow__down.animated {
+/* .business-arrow__down.animated {
   animation: bounce 1s infinite;
-}
+} */
 
 @keyframes bounce {
   100% {
@@ -939,18 +998,18 @@ export default {
   z-index: 10;
 }
 
-.business-arrow__down--funnel {
+/* .business-arrow__down--funnel {
   position: absolute;
   left: 15%;
   bottom: 55%;
   width: 8%;
   rotate: 13deg;
   z-index: 1005;
-}
+} */
 
-.business-arrow__down--funnel.animated {
+/* .business-arrow__down--funnel.animated {
   animation: bounce 1s infinite;
-}
+} */
 
 .funnel-image {
   position: absolute;
@@ -1575,9 +1634,6 @@ export default {
   pointer-events: none;
 }
 @media (max-width: 2560px) {
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
     padding-left: 5%;
     gap: 1%;
@@ -1585,10 +1641,10 @@ export default {
   .checkbox-item__upper {
     font-size: 80%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 8%;
     left: 10%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(120px) translateY(-350px) rotate(60deg);
   }
@@ -1676,10 +1732,10 @@ export default {
     top: 1% !important;
     width: 75% !important;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 8%;
-  }
+  } */
   .instruction-image {
     width: 150%;
   }
@@ -1690,11 +1746,11 @@ export default {
     top: 20%;
     width: 9%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 20%;
     left: 25%;
-  }
+  } */
   .business_up {
     bottom: 35%;
   }
@@ -1721,9 +1777,10 @@ export default {
     top: 80px;
   }
   .coins__container {
+    right: -5%;
     bottom: 160px;
-    width: 520px;
-    height: 390px;
+    width: 500px;
+    height: 370px;
   }
   .lightbox-content h2 {
     margin-top: 1%;
@@ -1756,9 +1813,6 @@ export default {
 }
 
 @media (max-width: 1920px) {
-  .checkboxes-container__upper {
-    justify-content: flex-start;
-  }
   .checkboxes__upper {
     padding: 2%;
     gap: 7%;
@@ -1770,21 +1824,21 @@ export default {
     top: 2%;
     width: 80%;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 6%;
-  }
+  } */
   .instruction-image {
     width: 120%;
   }
   .take-money {
     width: 35%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 12%;
     top: 34%;
     left: 22%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(140px) translateY(-550px) rotate(60deg);
   }
@@ -1848,10 +1902,10 @@ export default {
 }
 
 @media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 963px) and (max-height: 963px) {
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 8%;
     left: 10%;
-  }
+  } */
   .business_up {
     bottom: 30%;
   }
@@ -1864,11 +1918,11 @@ export default {
   .tree {
     margin-top: 45%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 12%;
     top: 30%;
     left: 20%;
-  }
+  } */
   .drops-container {
     top: 100px;
   }
@@ -1896,16 +1950,15 @@ export default {
 
 @media only screen and (min-width: 1920px) and (max-width: 1920px) and (min-height: 912px) and (max-height: 912px) {
   .checkboxes__upper {
-    padding-left: 5%;
     gap: 5% !important;
   }
   .checkbox-item__upper {
     font-size: 110%;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 8%;
-  }
+  } */
   .instruction-image {
     width: 120%;
   }
@@ -1916,11 +1969,11 @@ export default {
     top: 20%;
     width: 9%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 25%;
     left: 21%;
-  }
+  } */
   .business_up {
     bottom: 35%;
   }
@@ -1950,9 +2003,10 @@ export default {
     margin-top: 40%;
   }
   .coins__container {
-    bottom: 130px;
-    width: 440px;
-    height: 310px;
+    bottom: 140px;
+    right: -3%;
+    width: 420px;
+    height: 270px;
   }
   .lightbox-content h2 {
     margin-top: 1%;
@@ -1991,15 +2045,15 @@ export default {
   .checkbox-item__upper {
     font-size: 80% !important;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 4%;
-  }
-  .business-arrow__down--funnel {
+  } */
+  /* .business-arrow__down--funnel {
     width: 15%;
     top: 45%;
     left: 20%;
-  }
+  } */
   .instruction-image {
     width: 100%;
   }
@@ -2051,10 +2105,10 @@ export default {
     top: 2% !important;
     width: 80% !important;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 6%;
-  }
+  } */
   .checkboxes__upper {
     margin: 0;
     padding: 10px;
@@ -2063,11 +2117,11 @@ export default {
   .checkbox-item__upper {
     font-size: 85%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 55%;
     left: 23%;
-  }
+  } */
   .instruction-image {
     width: 97%;
   }
@@ -2122,24 +2176,24 @@ export default {
   .checkbox-item__upper {
     font-size: 80%;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 5%;
-  }
+  } */
   .instruction-image {
     width: 95%;
   }
   .take-money {
     width: 33%;
   }
-  .business-arrow__down {
+  /* .business-arrow__down {
     top: 6%;
-  }
-  .business-arrow__down--funnel {
+  } */
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 42%;
     left: 21%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(120px) translateY(-400px) rotate(60deg);
   }
@@ -2192,10 +2246,10 @@ export default {
 }
 
 @media only screen and (min-width: 1180px) and (max-width: 1180px) and (min-height: 820px) and (max-height: 820px) {
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 5%;
-  }
+  } */
   .checkboxes__upper {
     padding-top: 7% !important;
     grid-gap: 5px !important;
@@ -2212,11 +2266,11 @@ export default {
   .instruction-image {
     width: 90%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 48%;
     left: 23%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(120px) translateY(-400px) rotate(60deg);
   }
@@ -2390,10 +2444,10 @@ export default {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 768px) and (max-height: 768px) {
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 5%;
-  }
+  } */
   .checkboxes__upper {
     padding-top: 4% !important;
     grid-gap: 2% !important;
@@ -2413,11 +2467,11 @@ export default {
   .take-money__arrow {
     width: 11%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 51%;
     left: 24%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(90px) translateY(-300px) rotate(60deg);
   }
@@ -2480,10 +2534,10 @@ export default {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
-  .business-arrow__down {
+  /* .business-arrow__down {
     right: 15%;
     top: 5%;
-  }
+  } */
   .checkboxes__upper {
     padding-top: 4% !important;
     grid-gap: 2% !important;
@@ -2515,11 +2569,11 @@ export default {
   .take-money {
     width: 33%;
   }
-  .business-arrow__down--funnel {
+  /* .business-arrow__down--funnel {
     width: 10%;
     top: 36%;
     left: 23%;
-  }
+  } */
   .funnel-moving {
     transform: translateX(90px) translateY(-320px) rotate(60deg);
   }

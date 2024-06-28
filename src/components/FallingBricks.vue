@@ -473,12 +473,12 @@ export default {
 
       const brickBodies = duplicatedBricks.map((brick, index) => {
         const context = renderBricks.value.context;
-        const fontSize = 1.9 * (width / 100);
+        const fontSize = 1.9 * (width / 100); // Размер шрифта оставляем прежним
         context.font = `${fontSize}px Montserrat Bold`;
         const textWidth = context.measureText(brick.service).width;
 
-        let horizontalPadding = textWidth * 1.5;
-        let verticalPadding = height * 0.058;
+        let horizontalPadding = textWidth * (1.5 / 1.9); // Уменьшаем горизонтальные отступы в 1.9 раза
+        let verticalPadding = height * (0.058 / 1.9); // Уменьшаем вертикальные отступы в 1.9 раза
 
         let brickWidth = Math.max(
           0.00000000001 * width,
@@ -488,8 +488,8 @@ export default {
 
         if (window.innerWidth < 767) {
           const scaleFactor = 1.3;
-          horizontalPadding = textWidth * 0.85;
-          verticalPadding = height * 0.04;
+          horizontalPadding = textWidth * (0.85 / 1.9); // Уменьшаем горизонтальные отступы в 1.9 раза
+          verticalPadding = height * (0.04 / 1.9); // Уменьшаем вертикальные отступы в 1.9 раза
           brickWidth *= scaleFactor;
           brickHeight *= scaleFactor;
         }
@@ -502,10 +502,10 @@ export default {
             fillStyle: color,
             strokeStyle: "none",
           },
-          chamfer: { radius: 0.02 * width },
+          chamfer: { radius: 0.0059 * width }, // Уменьшаем радиус скругления для более прямоугольных краев
           label: brick.service,
-          restitution: 0.8,
-          friction: 0.5,
+          restitution: 0.9, // Увеличиваем упругость для большей скорости падения
+          friction: 0.3, // Уменьшаем трение для большей скорости падения
         });
         Body.rotate(body, Math.random() * Math.PI);
         return body;
@@ -518,7 +518,7 @@ export default {
         if (currentBrickIndex < brickBodies.length) {
           World.add(engine.value.world, brickBodies[currentBrickIndex]);
           currentBrickIndex += 1;
-          setTimeout(dropBrick, 500);
+          setTimeout(dropBrick, 300); // Увеличиваем частоту падения кирпичей
         }
       };
 
@@ -613,7 +613,7 @@ export default {
       Events.on(engine.value, "beforeUpdate", () => {
         const allBodies = Composite.allBodies(engine.value.world);
         allBodies.forEach((body) => {
-          const maxSpeed = 10;
+          const maxSpeed = 15; // Увеличиваем максимальную скорость
           const speed = Math.sqrt(body.velocity.x ** 2 + body.velocity.y ** 2);
           if (speed > maxSpeed) {
             const scale = maxSpeed / speed;
@@ -629,7 +629,7 @@ export default {
         const context = renderBricks.value.context;
         const allBodies = Composite.allBodies(engine.value.world);
         const fontWeight = "bold";
-        let fontSize = 2.5 * (width / 100);
+        let fontSize = 1.9 * (width / 100);
         context.font = `${fontWeight} ${fontSize}px 'Montserrat'`;
         context.fillStyle = "#002d6e";
         context.textAlign = "center";

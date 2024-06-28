@@ -7,20 +7,13 @@
   >
     <!-- Горизонтальная разметка -->
     <div class="service-selection__upper">
-      <img
-        class="grow_buisness-with-mosaic"
-        :class="{ animated: isGrowBusinessAnimating }"
-        :src="growBusinessSrc"
-        alt="grow_buisness"
-      />
-      <!-- <img
-        class="business-arrow__down"
-        :class="{ animated: isArrowAnimating }"
-        :src="businessArrowSrc"
-        alt="business-arrow__down"
-      /> -->
-
       <div class="checkboxes-container__upper">
+        <img
+          class="instruments__img"
+          :class="{ animated: isGrowBusinessAnimating }"
+          src="../images/logos/instruments.png"
+          alt="instruments"
+        />
         <form class="checkboxes__upper">
           <div
             v-for="(service, index) in services"
@@ -55,30 +48,8 @@
             src="../images/instruction.png"
             alt="instruction"
           />
-          <div class="take-money__container">
-            <img
-              class="take-money"
-              :class="{ invisible: isGrown }"
-              src="../images/money.png"
-              alt="take-money"
-            />
-            <img
-              class="take-money__arrow"
-              :class="{ invisible: isGrown }"
-              src="../images/money-arrow.png"
-              alt="money-arrow"
-            />
-          </div>
         </div>
       </div>
-
-      <!-- <img
-        v-if="selectedServices.length > 0"
-        class="business-arrow__down--funnel"
-        src="../images/business-arrow__down-funnel.svg"
-        :class="{ animated: isArrowAnimating, invisible: isGrown }"
-        alt="business-arrow__down-funnel"
-      /> -->
 
       <img
         v-if="!showLightbox"
@@ -100,19 +71,6 @@
       />
 
       <div class="service-selection__lower--tree">
-        <img
-          class="business_up"
-          :class="{ invisible: isGrown }"
-          src="../images/business_up.svg"
-          alt="business_up"
-        />
-        <img
-          class="business_up-arrow"
-          :class="{ invisible: isGrown }"
-          src="../images/business_up-arrow.svg"
-          alt="business_up-arrow"
-        />
-
         <div class="tree">
           <transition name="tree-fade">
             <img
@@ -146,6 +104,26 @@
         </div>
         <div class="ground-container">
           <img class="ground" src="../images/ground.png" alt="ground" />
+          <img
+            class="add"
+            src="../images/logos/add.png"
+            alt="add"
+            v-if="!isAnyCheckboxSelected"
+          />
+          <img
+            class="add-arrow"
+            src="../images/logos/add-arrow.png"
+            :class="{ animated: isArrowAnimating }"
+            alt="add-arrow"
+            v-if="!isAnyCheckboxSelected"
+          />
+          <img
+            class="grow_business-with-mosaic"
+            :class="{ animated: isGrowBusinessAnimating }"
+            src="../images/grow_buisness-with-mosaic.png"
+            alt="grow-business-with-mosaic"
+            v-if="isAnyCheckboxSelected"
+          />
         </div>
 
         <div class="drops-container">
@@ -476,23 +454,12 @@ export default {
     const lightboxName = ref("");
     const lightboxPhone = ref("");
     const lightboxMessage = ref("");
-    const isArrowAnimating = ref(false);
+    const isArrowAnimating = ref(true);
     const isAnimating = ref(false);
 
     let checkboxCounter = 0;
     let arrowAnimationInterval;
     let growBusinessAnimationTimeout;
-
-    const growBusinessSrc = computed(() =>
-      isVerticalLayout.value
-        ? require("../images/grow_buisness-with-mosaic-blue.png")
-        : require("../images/grow_buisness-with-mosaic.png"),
-    );
-    const businessArrowSrc = computed(() =>
-      isVerticalLayout.value
-        ? require("../images/business-arrow__down-blue.png")
-        : require("../images/business-arrow__down.png"),
-    );
 
     const showLightbox = computed(() => store.getters.isLightboxVisible);
 
@@ -767,6 +734,11 @@ export default {
       lightboxPhone.value = filteredValue;
     };
 
+    // Новое вычисляемое свойство
+    const isAnyCheckboxSelected = computed(
+      () => selectedServices.value.length > 0,
+    );
+
     return {
       services,
       selectedServices,
@@ -796,9 +768,8 @@ export default {
       isGrowBusinessAnimating,
       toggleLightboxService,
       filterPhoneInput,
-      growBusinessSrc,
-      businessArrowSrc,
       isVerticalLayout,
+      isAnyCheckboxSelected, // добавление нового свойства
     };
   },
 };
@@ -817,10 +788,23 @@ export default {
 
 .service-selection__upper {
   display: flex;
+
   justify-content: space-between;
   background-color: #828282;
   width: 100%;
   height: 32%;
+}
+
+.instruments__img {
+  position: absolute;
+  left: 5%;
+  top: 2%;
+  width: 76%;
+  transition: transform 2s ease-in-out;
+}
+
+.instruments__img.animated {
+  transform: scale(1.1);
 }
 
 .checkboxes-container__upper {
@@ -899,15 +883,16 @@ export default {
   height: 95%;
 }
 
-.grow_buisness-with-mosaic {
+.grow-business-with-mosaic {
   position: absolute;
-  left: 5%;
-  top: 1%;
+  left: 11%;
+  bottom: 9%;
   width: 76%;
   transition: transform 2s ease-in-out;
+  z-index: 11;
 }
 
-.grow_buisness-with-mosaic.animated {
+.grow-business-with-mosaic {
   transform: scale(1.1);
 }
 
@@ -996,6 +981,39 @@ export default {
   bottom: 0;
   width: 100%;
   z-index: 10;
+}
+
+.add {
+  position: absolute;
+  bottom: 2%;
+  left: 25%;
+  width: 40%;
+  z-index: 11;
+}
+
+.add-arrow {
+  position: absolute;
+  bottom: 7%;
+  left: 10%;
+  width: 13%;
+  z-index: 11;
+}
+
+.add-arrow.animated {
+  animation: bounce 1s infinite;
+}
+
+.grow_business-with-mosaic {
+  position: absolute;
+  left: 10%;
+  bottom: 6%;
+  width: 85%;
+  transition: transform 2s ease-in-out;
+  z-index: 11;
+}
+
+.grow-business-with-mosaic {
+  transform: scale(1.1);
 }
 
 /* .business-arrow__down--funnel {

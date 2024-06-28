@@ -19,25 +19,6 @@
 
     <img class="ideas" src="../images/logos/ideas.png" alt="ideas" />
 
-    <div class="center-content" v-show="!isLightboxVisible">
-      <img
-        class="instruments"
-        src="../images/logos/instruments.png"
-        alt="instruments"
-      />
-      <img
-        src="../images/logos/instruments-arrow.png"
-        alt="instruments-arrow"
-        class="instruments__arrow"
-      />
-      <img class="add" src="../images/logos/add.png" alt="add" />
-      <img
-        src="../images/logos/add-arrow.png"
-        alt="add-arrow"
-        class="add-arrow"
-      />
-    </div>
-
     <canvas
       ref="backgroundCanvas"
       class="background-canvas"
@@ -207,13 +188,7 @@
           :class="{ active: activeMenu === 'about' }"
           @click="selectMenu('about')"
         >
-          <div class="desktop-menu-item" href="#">
-            ПРО НАС<img
-              class="desktop-menu-item__arrow"
-              src="../images/menu-item__arrow.png"
-              alt="menu-item__arrow"
-            />
-          </div>
+          <div class="desktop-menu-item" href="#">ПРО НАС</div>
         </div>
       </div>
       <div class="desktop-menu__contact-section-container">
@@ -229,10 +204,16 @@
           </div>
           <div class="desktop-menu__socials">
             <a href="#"
-              ><img src="../images/logos/facebook.png" alt="facebook"
+              ><img
+                class="desktop-menu__facebook-logo"
+                src="../images/logos/facebook.png"
+                alt="facebook"
             /></a>
             <a href="#"
-              ><img src="../images/logos/instagram.png" alt="instagram"
+              ><img
+                class="desktop-menu__instagram-logo"
+                src="../images/logos/instagram.png"
+                alt="instagram"
             /></a>
           </div>
           <div class="footer-section">
@@ -242,14 +223,41 @@
           </div>
         </div>
         <div v-else class="desktop-menu__dynamic-content">
-          <a
-            v-for="item in getMenuItems(activeMenu)"
-            class="desktop-menu__dynamic-content--item"
-            href="#"
-            :key="item"
-          >
-            {{ item }}
-          </a>
+          <template v-if="activeMenu === 'about'">
+            <h2 class="desktop-menu__contact-section__header">
+              ЗВ'ЯЖІТЬСЯ З НАМИ
+            </h2>
+            <div class="contact-item-email">1234567@gmail.com</div>
+            <div class="contact-item-phone">0 800 123 456 7</div>
+            <div class="contact-item-telegram">@khjhjkh</div>
+            <div class="contact-item-address">
+              м. Дніпро, вул. Виконкомівська, 85
+            </div>
+            <div class="desktop-menu__socials">
+              <a href="#"
+                ><img
+                  class="desktop-menu__facebook-logo"
+                  src="../images/logos/facebook.png"
+                  alt="facebook"
+              /></a>
+              <a href="#"
+                ><img
+                  class="desktop-menu__instagram-logo"
+                  src="../images/logos/instagram.png"
+                  alt="instagram"
+              /></a>
+            </div>
+          </template>
+          <template v-else>
+            <a
+              v-for="item in getMenuItems(activeMenu)"
+              class="desktop-menu__dynamic-content--item"
+              href="#"
+              :key="item"
+            >
+              {{ item }}
+            </a>
+          </template>
         </div>
       </div>
     </div>
@@ -401,7 +409,7 @@ export default {
         case "promotion":
           return ["SEO", "КОНТЕКСТ", "ТАРГЕТ", "SMM"];
         case "about":
-          return ["ПРО НАС"];
+          return "about";
         default:
           return [];
       }
@@ -806,37 +814,6 @@ export default {
   z-index: 30;
 }
 
-.instruments {
-  position: absolute;
-  top: 47%;
-  left: 9%;
-  width: 29%;
-  z-index: 30;
-}
-
-.instruments__arrow {
-  position: absolute;
-  top: 55%;
-  left: 38%;
-  width: 9%;
-}
-
-.add {
-  position: absolute;
-  width: 22%;
-  top: 53%;
-  right: 25%;
-  z-index: 20;
-}
-
-.add-arrow {
-  position: absolute;
-  top: 55%;
-  right: 18%;
-  width: 8%;
-  z-index: 20;
-}
-
 .center-content {
   position: relative;
   display: flex;
@@ -850,11 +827,6 @@ export default {
   width: 100%;
   pointer-events: none;
   z-index: 30;
-}
-
-.instruments,
-.add {
-  pointer-events: auto;
 }
 
 .grab {
@@ -1186,11 +1158,19 @@ export default {
 .desktop-menu__socials {
   display: flex;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 3rem;
   padding: 0.5rem 0;
   padding-left: 3rem;
   margin-top: 5%;
   margin-left: 2rem;
+}
+
+.desktop-menu__facebook-logo {
+  width: 150%;
+}
+
+.desktop-menu__instagram-logo {
+  width: 150%;
 }
 
 @media (max-width: 2560px) {
@@ -1291,12 +1271,7 @@ export default {
     top: 10%;
     width: 58%;
   }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
+
   .services-block {
     width: 25%;
     height: 45%;
@@ -1413,24 +1388,14 @@ export default {
     top: 10%;
     width: 58%;
   }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
+
   .services-block {
     width: 15%;
     height: 25%;
     top: 42%;
     right: 5%;
   }
-  .add {
-    top: 42%;
-  }
-  .add-arrow {
-    top: 50%;
-  }
+
   .ideas {
     margin-top: 26%;
     margin-left: 5%;
@@ -1465,12 +1430,7 @@ export default {
     top: 10%;
     width: 58%;
   }
-  .instruments {
-    top: 40% !important;
-  }
-  .instruments__arrow {
-    top: 50% !important;
-  }
+
   .services-block {
     width: 15%;
     height: 25%;
@@ -1582,12 +1542,7 @@ export default {
   .ideas {
     margin-top: 35% !important;
   }
-  .instruments {
-    top: 30% !important;
-  }
-  .instruments__arrow {
-    top: 35% !important;
-  }
+
   .services-block {
     width: 18%;
     height: 17%;

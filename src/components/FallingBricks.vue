@@ -1392,8 +1392,8 @@ export default {
   .services-block {
     width: 15%;
     height: 25%;
-    top: 42%;
-    right: 5%;
+    top: 75%;
+    right: 7%;
   }
 
   .ideas {
@@ -1434,8 +1434,8 @@ export default {
   .services-block {
     width: 15%;
     height: 25%;
-    top: 42%;
-    right: 5%;
+    top: 73%;
+    right: 7%;
   }
   .add {
     top: 42%;

@@ -2195,14 +2195,23 @@ export default {
 }
 
 @media only screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px) {
+  .instruments__img {
+    top: 1%;
+    width: 80%;
+  }
   .checkboxes-container__upper {
     justify-content: start;
   }
   .checkboxes__upper {
+    margin-top: 2%;
     padding: 2%;
     gap: 2% !important;
   }
   .checkbox-item__upper {
+    font-size: 80%;
+  }
+
+  .checkbox-item__upper label {
     font-size: 80%;
   }
 
@@ -2234,8 +2243,8 @@ export default {
   }
   .coins__container {
     bottom: 90px;
-    width: 290px;
-    height: 205px;
+    width: 280px;
+    height: 195px;
   }
   .lightbox-content h2 {
     margin-top: 1%;
@@ -2551,12 +2560,18 @@ export default {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1024px) and (min-height: 600px) and (max-height: 600px) {
+  .instruments__img {
+    top: 1%;
+  }
+  .checkboxes-container__upper {
+    justify-content: flex-start;
+  }
   .checkboxes__upper {
     padding-top: 4% !important;
-    grid-gap: 2% !important;
+    grid-gap: 3% !important;
   }
-  .heckbox-item__upper {
-    font-size: 80%;
+  .checkbox-item__upper label {
+    font-size: 63% !important;
   }
   .checkbox-item__upper--input {
     width: 12px;
@@ -2570,7 +2585,10 @@ export default {
     cursor: pointer;
   }
   .checkbox-item__upper label {
-    font-size: 80%;
+    font-size: 72%;
+  }
+  .cases-image--vertical {
+    width: 60%;
   }
   .grow_buisness-with-mosaic {
     top: 0.5%;
@@ -2605,9 +2623,9 @@ export default {
     margin-top: 45% !important;
   }
   .coins__container {
-    bottom: 70px;
-    width: 235px;
-    height: 170px;
+    bottom: 80px;
+    width: 225px;
+    height: 150px;
   }
   .business_up {
     bottom: 30%;
@@ -3242,6 +3260,9 @@ export default {
 @media (max-width: 412px) {
   .checkbox-item--vertical label {
     font-size: 75% !important;
+  }
+  .big-tree--vertical {
+    bottom: -10% !important;
   }
 }
 @media (max-width: 390px) {

@@ -495,9 +495,9 @@ export default {
         let brickHeight = verticalPadding + fontSize;
 
         if (window.innerWidth < 767) {
-          const scaleFactor = 1.3;
-          horizontalPadding = textWidth * (0.85 / 1.9); // Уменьшаем горизонтальные отступы в 1.9 раза
-          verticalPadding = height * (0.04 / 1.9); // Уменьшаем вертикальные отступы в 1.9 раза
+          const scaleFactor = 1.5;
+          horizontalPadding = textWidth * 0.85;
+          verticalPadding = height * 0.09;
           brickWidth *= scaleFactor;
           brickHeight *= scaleFactor;
         }
@@ -510,10 +510,10 @@ export default {
             fillStyle: color,
             strokeStyle: "none",
           },
-          chamfer: { radius: 0.0059 * width }, // Уменьшаем радиус скругления для более прямоугольных краев
+          chamfer: { radius: 0.0059 * width },
           label: brick.service,
-          restitution: 0.9, // Увеличиваем упругость для большей скорости падения
-          friction: 0.3, // Уменьшаем трение для большей скорости падения
+          restitution: 0.9,
+          friction: 0.3,
         });
         Body.rotate(body, Math.random() * Math.PI);
         return body;
@@ -621,7 +621,7 @@ export default {
       Events.on(engine.value, "beforeUpdate", () => {
         const allBodies = Composite.allBodies(engine.value.world);
         allBodies.forEach((body) => {
-          const maxSpeed = 15; // Увеличиваем максимальную скорость
+          const maxSpeed = 15;
           const speed = Math.sqrt(body.velocity.x ** 2 + body.velocity.y ** 2);
           if (speed > maxSpeed) {
             const scale = maxSpeed / speed;
@@ -645,8 +645,9 @@ export default {
 
         if (window.innerWidth < 767) {
           const scaleFactorText = 1.7;
-          fontSize = 2.5 * (width / 100) * scaleFactorText;
-          context.font = `${fontSize}px 'Montserrat'`;
+          const fontWeight = "bold";
+          fontSize = 2 * (width / 100) * scaleFactorText;
+          context.font = `${fontWeight} ${fontSize}px 'Montserrat'`;
         }
 
         allBodies.forEach((body) => {
@@ -768,7 +769,7 @@ export default {
   border-radius: 15%;
   z-index: 800;
   cursor: pointer;
-  /* border: 2px solid #ff6400; */
+  border: 2px solid #ff6400;
 }
 
 .mosaic-logo {
@@ -1544,9 +1545,9 @@ export default {
   }
 
   .services-block {
-    width: 18%;
-    height: 17%;
-    top: 30%;
+    width: 21%;
+    height: 25%;
+    top: 75%;
     right: 5%;
   }
   .add {

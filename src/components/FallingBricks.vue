@@ -769,7 +769,7 @@ export default {
   border-radius: 15%;
   z-index: 800;
   cursor: pointer;
-  border: 2px solid #ff6400;
+  /* border: 2px solid #ff6400; */
 }
 
 .mosaic-logo {

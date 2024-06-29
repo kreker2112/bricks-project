@@ -2959,7 +2959,7 @@ export default {
   }
   .checkboxes-container--vertical {
     left: -5% !important;
-    top: 40% !important;
+    top: 30% !important;
     width: 100%;
     height: 60%;
   }
@@ -3186,9 +3186,7 @@ export default {
 @media (max-width: 414px) {
   .checkboxes-container--vertical {
     left: -6% !important;
-    top: 10%;
-    width: 30%;
-    height: 30%;
+    top: 30% !important;
   }
 
   .checkboxes--vertical {
@@ -3258,6 +3256,9 @@ export default {
   }
 }
 @media (max-width: 412px) {
+  .checkboxes-container--vertical {
+    top: 30% !important;
+  }
   .checkbox-item--vertical label {
     font-size: 75% !important;
   }
@@ -3356,9 +3357,7 @@ export default {
 @media (max-width: 375px) {
   .checkboxes-container--vertical {
     left: 1%;
-    top: 10%;
-    width: 20%;
-    height: 30%;
+    top: 35% !important;
   }
 
   .checkboxes--vertical {

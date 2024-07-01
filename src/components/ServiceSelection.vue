@@ -116,13 +116,6 @@
           </div>
         </div>
         <div class="ground-container">
-          <img class="ground" src="../images/ground.png" alt="ground" />
-          <img
-            v-if="!isAnyCheckboxSelected && !isPouring"
-            class="add"
-            src="../images/logos/add.png"
-            alt="add"
-          />
           <img
             v-if="!isAnyCheckboxSelected && !isPouring"
             class="add-arrow"
@@ -130,24 +123,46 @@
             :class="{ animated: isArrowAnimating }"
             alt="add-arrow"
           />
-          <img
-            v-if="isAnyCheckboxSelected && !isPouring && !isGrown"
-            class="grow_business-with-mosaic"
-            :class="{ animated: isGrowBusinessAnimating }"
-            src="../images/grow_buisness-with-mosaic.png"
-            alt="grow-business-with-mosaic"
-          />
+          <img class="ground" src="../images/ground.png" alt="ground" />
+
+          <div class="ground-instruction_container">
+            <img
+              v-if="!isAnyCheckboxSelected && !isPouring"
+              class="add"
+              src="../images/logos/add.png"
+              alt="add"
+            />
+            <img
+              v-if="isAnyCheckboxSelected && !isPouring && !isGrown"
+              class="grow_business-with-mosaic"
+              :class="{ animated: isGrowBusinessAnimating }"
+              src="../images/grow_buisness-with-mosaic.png"
+              alt="grow-business-with-mosaic"
+            />
+            <img
+              v-if="isPouring || (isGrown && !isTakeMoneyWhiteVisible)"
+              class="business-up"
+              src="../images/business_up.svg"
+              alt="business-up"
+            />
+            <img
+              v-if="isTakeMoneyWhiteVisible"
+              class="take-money-white"
+              src="../images/money.png"
+              alt="take-money"
+            />
+          </div>
           <img
             v-if="isPouring || (isGrown && !isTakeMoneyWhiteVisible)"
-            class="business-up"
-            src="../images/business_up.svg"
-            alt="business-up"
+            class="business-grow-arrow"
+            src="../images/business_up-arrow-white.png"
+            alt="business-grow"
           />
           <img
             v-if="isTakeMoneyWhiteVisible"
-            class="take-money-white"
-            src="../images/money.svg"
-            alt="take-money"
+            class="take-money-arrow"
+            src="../images/business_up-arrow-white.png"
+            alt="take-money-arrow"
           />
         </div>
 
@@ -1002,19 +1017,28 @@ export default {
   z-index: 10;
 }
 
-.add {
+.ground-instruction_container {
   position: absolute;
-  bottom: 2%;
-  left: 25%;
-  width: 40%;
+
+  left: 20%;
+
+  width: 80%;
+  height: 20%;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.add {
   z-index: 11;
 }
 
 .add-arrow {
   position: absolute;
-  bottom: 7%;
-  left: 10%;
-  width: 13%;
+  bottom: 13%;
+  left: 7%;
+  width: 10%;
   z-index: 11;
 }
 
@@ -1023,16 +1047,7 @@ export default {
 }
 
 .grow_business-with-mosaic {
-  position: absolute;
-  left: 10%;
-  bottom: 6%;
-  width: 83%;
-  transition: transform 2s ease-in-out;
   z-index: 11;
-}
-
-.grow_business-with-mosaic {
-  transform: scale(1.1);
 }
 
 @keyframes pulse {
@@ -1070,18 +1085,26 @@ export default {
 }
 
 .business-up {
+  z-index: 1001;
+}
+
+.business-grow-arrow {
   position: absolute;
-  left: 25%;
-  bottom: 2%;
-  width: 30%;
+  left: 62%;
+  bottom: 20%;
+  transform: rotate(45deg);
   z-index: 1001;
 }
 
 .take-money-white {
+  z-index: 1001;
+}
+
+.take-money-arrow {
   position: absolute;
-  right: 5%;
-  bottom: 6%;
-  width: 80%;
+  left: 68%;
+  bottom: 17%;
+  width: 6%;
   z-index: 1001;
 }
 
